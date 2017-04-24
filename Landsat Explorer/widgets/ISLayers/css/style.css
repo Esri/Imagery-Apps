@@ -1,0 +1,106 @@
+.esriLegendServiceLabel {
+    font-size: 14px;
+}
+.esriLegendLayer{
+    font-size: 12px;
+}
+.red{
+    background-image: url(../images/red.png);
+}
+.LayerSwipe .vertical {
+    width: 1px !important;
+}
+#buildDialog_underlay {
+    visibility: hidden;
+}
+.claro .dijitButton {
+  margin: 0;
+  margin-left: 5px;
+}
+.claro .dijitSelect .dijitArrowButton {
+background-color: white;
+
+}
+.claro .dijitSelect {
+    background-color: white;
+}
+#shareButton
+{
+    border: 0px ;
+    padding: 2px 4px 4px 4px;
+  color: white;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: #3366CC;
+  -webkit-transition: border .15s ease-in-out;
+  -moz-transition: border .15s ease-in-out;
+  transition: border .15s ease-in-out;
+}
+.claro .dijitDialogPaneContent {
+  overflow-y:scroll;
+  height:95%;
+}
+#apply,#applyIndex,#reset
+{
+  cursor: pointer;
+   padding: 5px 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+#apply:hover,#apply:focus,#applyIndex:hover,#applyIndex:focus,#reset:hover,#reset:focus {
+    background-color: #428BC9!important;
+    border-color: whitesmoke;
+    color: white;
+}
+
+.claro .dijitButton .dijitButtonNode {
+    padding: 0px;
+        border: 0px solid transparent;
+    box-shadow: none;
+    background-color: transparent;
+}
+#horiSliderLeft .dijitSliderRemainingBarH{
+    width: 121% !important;
+    
+}
+.claro .dijitSliderButtonContainerH {
+    padding: 0;
+}
+
+#_29_panel  {
+    background-color: white;
+   border-radius: 10px;
+}
+#dijit__WidgetBase_0 .jimu-preload-widget-icon.jimu-state-selected{
+    width: 0px;
+    height: 0px;
+}
+
+
+.claro .dijitDialogCloseIcon {
+    right: 2px;
+}
+
+#rendererInfoDialog .dijitDialogTitleBar {
+        background: #00304d;
+    padding-bottom: 0px;
+    padding-top: 9px;
+}
+#rendererInfoDialog .dijitDialogPaneContent {
+        background: #00304d;
+    color: orange;
+}

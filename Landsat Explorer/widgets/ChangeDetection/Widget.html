@@ -1,0 +1,81 @@
+<div>
+
+    <div data-dojo-type="dijit/Dialog" id="changeDetectionDialog" title="Change Detection" style="background-color: white;" data-dojo-props="focus:function(){}">
+        <div id='changeDisplay' style='display: none;'>    <label for="changeOptions" style="color: #0080C0;">Change in &nbsp;</label>
+            <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="changeOptions">
+                <option value="NDVI">Veg. Index</option>
+                <option value="SAVI">Soil Adjusted Veg. Index</option>
+                <option value="BurnIndex">Burn Index</option>
+                <option value="NDWI">Water Index</option>
+                <option value="Urban">Urban Index</option>
+            </select>&nbsp;<div style="display: inline-block;color: #0080C0;" data-dojo-attach-point="changeInNDVI"></div> 
+            <label for="changeMode" style="color: #0080C0;">Mode: </label>
+            <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="changeMode">
+                <option value="Image">Difference Image</option>
+                <option value="difference">Difference Mask</option>
+                <option value="threshold">Threshold Mask</option>
+
+            </select>
+            <br />
+            <br />
+
+            <div id="modeDisplay" style="display:none;">
+                <div id="histogram" style="width: 275px; height: 140px;"></div>
+
+                <div data-dojo-attach-point="changeLabel" style="vertical-align: top;display:inline-block;">Positive</div>&nbsp;&nbsp;&nbsp;
+                <div id="horiSliderInclusion" data-dojo-attach-point="horizontalsliderInclusion" style="width:180px;display: inline-block;" data-dojo-type="dijit/form/HorizontalSlider" data-dojo-props="value:0.1,minimum: 0,maximum:1.00,intermediateChanges:true,showButtons:true">
+                    <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" style="height:5px;" data-dojo-props="count:11"></div>
+                    <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray;">
+                        <li>0</li>
+                        <li>0.2</li>
+                        <li>0.4</li>
+                        <li>0.6</li>
+                        <li>0.8</li>
+                        <li>1</li>
+                    </ol>      
+                </div>&nbsp;
+                <div data-dojo-attach-point="inclusionThreshold" style="display: inline-block;vertical-align: top;"><b>[0.3]</b></div>
+                <br /><br />
+                <div id="differenceMode" style="display: none;">
+                    <div style="vertical-align: top;display: inline-block;">Negative&nbsp;&nbsp;</div>
+                    <div id="horiSliderDecrease" data-dojo-attach-point="horizontalsliderleft" style="width:180px;display: inline-block;" data-dojo-type="dijit/form/HorizontalSlider" data-dojo-props="value:-0.4,minimum: -1,maximum:0,intermediateChanges:true,showButtons:true">
+                        <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" style="height:5px;" data-dojo-props="count:11"></div>
+                        <ol  data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray;">
+                            <li>-1</li>
+                            <li>-0.8</li>
+                            <li>-0.6</li>
+                            <li>-0.4</li>
+                            <li>-0.2</li>
+                            <li>0</li>
+                        </ol>      
+                    </div>&nbsp;
+                    <div data-dojo-attach-point="negativeDiff" style="color: #0080C0;display: inline-block;vertical-align: top;"><b></b></div>
+                    <br /><br />
+                </div>
+                <div id="thresholdMode" style="display: none;">
+                    <div style="vertical-align: top;display: inline-block">Difference&nbsp;&nbsp;</div>
+                    <div id="horiSliderRight" data-dojo-attach-point="horizontalsliderright" style="width:180px;display: inline-block;" data-dojo-type="dijit/form/HorizontalSlider" data-dojo-props="value:0.1,minimum: 0,maximum:1.00,intermediateChanges:true,showButtons:true">
+                        <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" style="height:5px;" data-dojo-props="count:11"></div>
+                        <ol  data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray;">
+                            <li>0</li>
+                            <li>0.2</li>
+                            <li>0.4</li>
+                            <li>0.6</li>
+                            <li>0.8</li>
+                            <li>1</li>
+                        </ol>      
+                    </div>&nbsp;<div data-dojo-attach-point="changeTolerance" style="color: #0080C0;display: inline-block;vertical-align: top;"><b></b></div>
+                    <br /><br />
+                </div>
+
+                <div data-dojo-attach-point="sliderValueLeft" style="color: #0080C0;display: inline-block;">Area Decrease / Increase:</div>&nbsp;&nbsp;<div data-dojo-attach-point="areaValueLeft"  style="font-weight: bolder;color: magenta; display: inline-block;"></div><br />
+            </div>
+            <label for="primaryOpacity" style="color: #0080C0;">Transparency:&nbsp;&nbsp;&nbsp;</label><div id="primaryOpacity" data-dojo-attach-point="transparency" style="top: 5px;width:180px;display:inline-block;position: relative;" data-dojo-type="dijit/form/HorizontalSlider" data-dojo-props="value:0,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true">
+            </div><br /><br />
+            <input data-dojo-type="dijit/form/CheckBox" id="markedChangeAreas" /><label for="markedChangeAreas" style="color: #0080C0;">Define Areas of Interest</label>
+            <button type="button" data-dojo-type="dijit/form/Button" id="clipChange" style="display: none;margin: auto;">Apply</button>
+        </div><div data-dojo-attach-point='errorHandler' style='color: #0080C0;'></div>
+
+
+    </div>
+</div>

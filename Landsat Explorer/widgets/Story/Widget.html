@@ -1,0 +1,64 @@
+<div>
+
+    <div  data-dojo-type="dijit/Dialog" id="storyDialog" title="Stories" draggable= false style="background-color: white;max-height: 66%;" data-dojo-props="focus:function(){}">
+        <div id="defineSteps" style="display: none;">
+        </div>
+        <div id="firstStage">
+            <div data-dojo-attach-point="listAppStories"></div>
+            <br />
+            <div id="createStory" style="width: 40%;display: inline-block;border: 1px solid whitesmoke;margin-left: 4%;cursor: pointer;">
+                <div style="text-align: center;margin: 10px;">Create new story</div> 
+            </div>
+            <div id="updateStory" style="width: 40%;display: inline-block;border: 1px solid whitesmoke; margin-left: 9%;cursor: pointer;">
+                <div style="text-align: center;margin: 10px;">Update story</div> 
+            </div>
+        </div>
+        <div id="storyTitle" style="display: none;">
+            <div style="font-size: 22px;width: 250px;text-align: justify;">Give title to your story</div><br/>
+            <input data-dojo-type="dijit/form/TextBox" id="titleStage" style="width:200px;border-radius: 5px;display: inline-block;margin-top: -23px;" placeholder="Enter your title" />
+            <div id="titleNext" style="background: url(widgets/Story/images/title.png);width:30px; height:30px;display: inline-block;"></div>
+        </div>
+
+        <div id='addOrganize' style='display: none;float: right;'>
+            <div id="addSection" style="cursor: pointer;display: block;border: 1px solid whitesmoke;margin-top: 0px;margin-left: 10px; width:100px; height:80px;font-weight: bolder;">
+                <img src="./widgets/Story/images/add.png"  width="30px" height="30px" style="margin-top: 10px;margin-left: 35px;" /><br />
+                <div style="width:100px;text-align: center;margin-top: 10px;margin-bottom: 10px;">ADD SECTION</div> 
+            </div>
+            <div id="editSection" style="cursor: pointer;display: block;border: 1px solid whitesmoke;margin-left: 10px;margin-top: 0px;margin-right: 10px;width:100px; height:80px;font-weight: bolder;">
+                <img src="./widgets/Story/images/edit.png" width="30px" height="30px" style="margin-top: 10px;margin-left: 35px;" /><br />
+                <div style="width:100px;text-align: center;margin-top: 10px;margin-bottom: 10px;">EDIT SECTION</div> 
+            </div>
+            <div id="organize" style="cursor: pointer;display: block;border: 1px solid whitesmoke;margin-left: 10px;margin-top: 0px; width:100px; height:80px;font-weight: bolder;">
+                <img src="./widgets/Story/images/organize.png" width="30px" height="30px" style="margin-top: 10px;margin-left: 35px;" /><br />
+                <div style="width:100px;text-align: center;margin-top: 10px;margin-bottom: 10px;">ORGANIZE</div> 
+            </div>
+            <div id="finish" style="cursor: pointer;display: block;border: 1px solid whitesmoke;margin-left: 10px;margin-top: 0px;margin-bottom: 10px;margin-right: 10px; width:100px; height:80px;font-weight: bolder;">
+                <img src="./widgets/Story/images/finish.png" width="30px" height="30px" style="margin-top: 10px;margin-left: 35px;" /><br />
+                <div style="width:100px;text-align: center;margin-top: 10px;margin-bottom: 10px;">FINISH</div> 
+            </div>
+        </div>
+        <div id="finalStoryLink" style="display: none;">
+            <label for="storyLink">Link: </label><input data-dojo-type="dijit/form/TextBox" id="storyLink" style="width:200px;border-radius: 5px;display: inline-block;"  /> 
+            <br />
+            <div data-dojo-attach-point='sharingPublicDescription' style='color: #0080C0;text-align: justify;width: 280px;'></div>
+        </div>
+        <div id='editSectionList' style='display: none;vertical-align: top;float:left;overflow-y: auto;'></div>
+        <div id='organizeList' style='display: none;vertical-align: top;float:left;overflow-y: auto;'></div>
+        <div id="updateStoryLink" data-dojo-attach-point="itemListContainer" style="display: none;overflow-y: auto;">
+
+        </div>
+
+
+    </div>
+    <div  data-dojo-type="dijit/Dialog" id="addUpdateDialog" title="Add Section" style="background-color: white;max-height: 66%;overflow-y: auto;" data-dojo-props="focus:function(){}">
+        <input data-dojo-type="dijit/form/TextBox" id="titleStep" style="margin-left: 10px;border-radius: 5px;display: none;" placeholder="Section title" /><br />
+        <div id="textEditor" data-dojo-type="dijit/Editor"  style="margin: 10px;height: ''; overflow-y: hidden;" data-dojo-props="plugins: ['bold', 'italic', 'underline', 'foreColor', 'hiliteColor', 'removeFormat','|',  'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull','|', 'insertOrderedList', 'insertUnorderedList', 'indent', 'outdent','|', 'selectAll', 'cut', 'copy', 'paste', 'delete','|', 'undo', 'redo','|', 'insertHorizontalRule'],extraPlugins: ['dijit/_editor/plugins/AlwaysShowToolbar', '|','createLink', 'unlink', 'pastefromword','|',{name: 'fullscreen', zIndex:1000}, 'preview','|', 'findreplace', 'toggleDir', 'insertEntity', 'smiley', 'insertanchor', 'insertImage','toolbarlinebreak','fontName', 'fontSize', 'formatBlock']">
+            <p>Add your description here.</p>
+        </div>
+        <button data-dojo-type='dijit/form/Button' id='addStep' style='margin-left: 45%;'>ADD</button>
+        <div id="updateDeleteStep" style="display: none;margin-left: 38%;">
+            <button data-dojo-type='dijit/form/Button' id='updateStep' style='display: inline-block;'>UPDATE</button>
+            <button data-dojo-type='dijit/form/Button' id='deleteStep' style='display: inline-block;'>DELETE</button>
+        </div>
+    </div>
+</div>

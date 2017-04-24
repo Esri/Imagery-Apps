@@ -1,0 +1,196 @@
+@import url("http://js.arcgis.com/3.20/dojox/form/resources/FileUploader.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/TextColor.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/editorPlugins.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/PasteFromWord.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/Preview.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/InsertEntity.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/FindReplace.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/InsertAnchor.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/Smiley.css");
+@import url("http://js.arcgis.com/3.20/dojox/editor/plugins/resources/css/LocalImage.css");
+.esriLegendServiceLabel {
+    font-size: 14px;
+}
+.esriLegendLayer{
+    font-size: 12px;
+}
+.red{
+    background-image: url(../images/red.png);
+}
+.LayerSwipe .vertical {
+    width: 1px !important;
+}
+#buildDialog_underlay {
+    visibility: hidden;
+}
+.claro .dijitButton {
+    margin: 0;
+    margin-left: 5px;
+}
+#widget_dijit__editor_plugins__FontNameDropDown_0_select,#widget_dijit__editor_plugins__FontSizeDropDown_0_select,#widget_dijit__editor_plugins__FormatBlockDropDown_0_select{
+    width: 150px;
+}
+
+.claro .dijitButton .dijitButtonNode {
+    padding: 0px;
+}
+#horiSliderLeft .dijitSliderRemainingBarH{
+    width: 121% !important;
+
+}
+#textEditor_iframe {
+    height: 200px;
+}
+.claro .dijitSliderButtonContainerH {
+    padding: 0;
+}
+#createStory:hover, #createStory:focus,#updateStory:hover, #updateStory:focus,#appStories:hover, #appStories:focus {
+    background-color: #428BC9;
+    color: white;
+}
+#storyDisplay::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+#storyDisplay::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+#storyDisplay::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+/*pseudo class if any*/
+#storyDisplay::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0,0,0,0.1); 
+}
+.buttonCss, .buttonCss1{
+    cursor: pointer;
+    min-width: 70px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+.buttonCss:hover,.buttonCss:focus{
+    background-color: #e6e6e6;
+    border-color: #d2d2d2;
+}
+.buttonCss1:hover,.buttonCss1:focus{
+    background-color: lightcoral;
+    border-color: whitesmoke;
+    color: white;
+}
+#addSection:hover, #organize:hover, #finish:hover, #editSection:hover,#addSection:focus, #organize:focus, #finish:focus, #editSection:focus{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #485566;
+    color: white;
+    -webkit-transition: border .15s ease-in-out;
+    -moz-transition: border .15s ease-in-out;
+    transition: border .15s ease-in-out;
+}
+.button3d {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+
+    cursor: pointer;
+    /* padding: 9px 20px;*/
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid lightcoral;
+    font: normal 11px/1 "Acme", Helvetica, sans-serif;
+    color: rgba(0,0,0,1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background: #ffffff;
+    -webkit-box-shadow: 3px 3px 0 0 rgba(240,128,128,0.8) ;
+    box-shadow: 3px 3px 0 0 rgba(240,128,128,0.8) ;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+
+}
+
+.button3d:active {
+    margin: 3px 0 0 3px;
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(240,128,128,0.8) ;
+    box-shadow: 1px 1px 1px 0 rgba(240,128,128,0.8) ;
+}
+#nextImage {
+    background-position: 50% center;background-repeat: no-repeat;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 2.5s;
+    -webkit-animation-timing-function: cubic-bezier(.5,0,1,1);
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 2.5s;
+    -moz-animation-timing-function: cubic-bezier(.5,0,1,1);
+    -moz-animation-iteration-count: infinite;
+    animation-name: blinker;
+    animation-duration: 2.5s;
+    animation-timing-function: cubic-bezier(.5,0,1,1);
+    animation-iteration-count: infinite;
+
+}
+#addStep,#updateStep,#deleteStep, #backToAddOrganize {
+
+    cursor: pointer;
+    padding: 5px 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+.claro .dijitButton .dijitButtonNode {
+    border: 0px solid transparent;
+    border-radius: 2px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    background-color: #fff;
+    background-image: none;
+}
+#addStep:hover,#addStep:focus,#updateStep:hover,#updateStep:focus,#deleteStep:hover,#deleteStep:focus {
+    background-color: #428BC9!important;
+    border-color: whitesmoke;
+    color: white;
+}
+#_29_panel  {
+    background-color: white;
+    border-radius: 10px;
+}
+#dijit__WidgetBase_0 .jimu-preload-widget-icon.jimu-state-selected{
+    width: 0px;
+    height: 0px;
+}
+
+

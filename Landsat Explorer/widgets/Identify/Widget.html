@@ -1,0 +1,69 @@
+<div>
+
+    <div data-dojo-type="dijit/Dialog" id="chartDialog1" title="Identify" style="background-color: white;" data-dojo-props="focus:function(){}">
+        <div data-dojo-attach-point="identifytab" style="color: #0080C0;"></div>
+
+        <div id="identifysp" style ="display: none;">
+            <div style="width:100%;">
+                <input data-dojo-type="dijit/form/CheckBox" checked id="type" value="spectral" /> <label for="type">Show Spectral Profile</label>
+                <div id="typical" style="float:right; color: #0080C0; display: none;">Typical Spectral Profiles</div>
+                <br />
+                <div>
+
+                    <div id="chartshow1" style="display: none;">
+                        <br />
+                        <div>
+                            <div id="chartNode1" style="float:left; width: 390px; height: 270px;"></div>
+                            <div id="legend1" style="float:right;"></div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div id="onlyidentify" style ="display:block;">
+
+            <div style="float: left;color: #0080C0;">Pick a point on the map to get a spectral profile for that point, or 
+                <button data-dojo-type="dijit/form/Button" id="scatterPlot" style="">Scatter Plot</button></div>
+            <br />
+        </div>
+        <div id="scatterPlotContainer" style="display:none;">
+            <label for="xBand" style="color: #0080C0;">X: </label><select id="xBand" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                <option value="0">Coastal(1)</option>
+                <option value="1">Blue(2)</option>
+                <option value="2">Green(3)</option>
+                <option value="3" selected="selected">Red(4)</option>
+                <option value="4">NIR(5)</option>
+                <option value="5">SWIR_1(6)</option>
+                <option value="6">SWIR_2(7)</option>
+                <option value="7">Cirrus(8)</option>
+            </select>
+            <label for="yBand" style="color: #0080C0;margin-left: 5px;">Y: </label><select id="yBand" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                <option value="0">Coastal(1)</option>
+                <option value="1">Blue(2)</option>
+                <option value="2">Green(3)</option>
+                <option value="3">Red(4)</option>
+                <option value="4" selected="selected">NIR(5)</option>
+                <option value="5">SWIR_1(6)</option>
+                <option value="6">SWIR_2(7)</option>
+                <option value="7">Cirrus(8)</option>
+            </select>
+            <br><br>
+            <div id='canvasContainer' style='/*width: 300px;height: 300px;*/'>
+                <div>
+                    <div style="height: 256px;display: inline-block;float: left;max-width: 20px;"><div id="ymax" style='transform: rotate(-90deg);text-align: right;'></div><div id="yBandName" style='transform: rotate(-90deg);margin-top: 106px;'>NIR</div><div id="ymin" style='transform: rotate(-90deg);margin-top: 104px;'></div></div>
+                    <canvas id="scatterPlotCanvas" width="260" height="260" style='float: right;display: inline-block;border-left: 2px solid black;border-bottom: 2px solid black;margin: auto;margin-right: 20px;cursor: crosshair;'></canvas>
+                </div>  <table style='margin-left: 15px;margin-top: -4px;width: 275px;border: 0px solid transparent;'><tr><td id="xmin" style='text-align: left;width: 91px;'></td><td><div id='xBandName' style='text-align: center;width: 92px;'>Red</div></td><td id="xmax" style='text-align: right;width: 92px;'></td></tr></table>
+                <img src='./widgets/Identify/images/ramp.PNG' style='margin-left: 10px;' />
+            </div>
+            <div style="color: #0080C0;">Draw on plot to select pixels in the map.<br>Click on map to see point on plot.</div>
+            <input data-dojo-type="dijit/form/CheckBox" id="markedAreasScatter" /><label for="markedAreasScatter" style="color: #0080C0;">Define Areas Of Interest</label>
+            <button type="button" data-dojo-type="dijit/form/Button" id="clipScatter" style="display: none;margin: auto;margin-left: 10px;">Apply</button>
+            <button type="button" data-dojo-type="dijit/form/Button" id="resetScatter" style="display: none;margin: auto;margin-left: 10px;">Reset</button>
+        </div>
+        <div data-dojo-attach-point="noinfo" style="color: #0080C0;">
+        </div>
+    </div>
+</div>
+

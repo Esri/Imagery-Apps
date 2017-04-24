@@ -1,0 +1,48 @@
+
+#horiSliderLeft .dijitSliderRemainingBarH{
+    width: 121% !important;
+    
+}
+.claro .dijitSliderButtonContainerH {
+    padding: 0;
+}
+
+#changeDetectionDialog .dijitDialogCloseIcon:before {
+  content: url("../../../jimu.js/css/images/btn_sub.png");
+}
+#clipChange
+{
+     cursor: pointer;
+   padding: 5px 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+#clipChange:hover,#clipChange:focus{
+    background-color: #428BC9!important;
+    border-color: whitesmoke;
+    color: white;
+}
+#horiSliderInclusion .dijitSliderRemainingBarH{
+    background-color: #0080C0;
+    border-color: lightskyblue;
+}
+#horiSliderRight .dijitSliderRemainingBarH{
+    background-color: #0080C0;
+    border-color: lightskyblue;
+}
+#horiSliderDecrease .dijitSliderProgressBarH{
+    background-color: #0080C0;
+    border-color: lightskyblue;
+    background-image: linear-gradient(#0080C0, #0080C0);
+}

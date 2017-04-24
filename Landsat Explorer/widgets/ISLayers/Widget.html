@@ -1,0 +1,170 @@
+<div>
+    <div class="layer-item" id="bandCombination" data-dojo-attach-point="multiARadio" data-tooltip="<span class='tooltip-title has-margin'>Renderer</span> Choose how to visualize your data.">
+        <img src="widgets/ISLayers/images/svg/buildYourOwn24.svg"/>
+    </div>
+
+
+    <div data-dojo-type="dijit/Dialog" id="bandCombinationDialog" title="Choose Rendering" style="background-color: white;top: 20%;" data-dojo-props="focus:function(){}">
+        <div style="display: inline-block;">
+            <select data-dojo-type="dijit/form/Select" style="height: inherit;display: inline-block;" id="bandComboList" data-dojo-props="focus:function(){}">
+                <option value="Agriculture with DRA">Agriculture</option>
+                <option value="Pansharpened Enhanced with DRA">Natural Color</option>
+                <option value="Color Infrared with DRA">Color Infrared</option>
+                <option value="Short-wave Infrared with DRA">Short-wave Infrared</option>
+                <option value="Geology with DRA">Geology</option>
+                <option value="Bathymetric with DRA">Bathymetric</option>
+                <option value="Panchromatic with DRA">Panchromatic</option>
+                <option value="NDVI Colorized">Vegetation Index</option>
+                <option value="Normalized Difference Moisture Index Colorized">Moisture Index</option>
+                <option value="SAVI">Soil Adjusted Veg. Index - SAVI</option>
+                <option value="NDWI">Water Index</option>
+                <option value="NBR">Burn Index</option>
+                <option value="Urban">Urban Index</option>
+                <option value="Build">Custom Bands</option>
+                <option value="Index">Custom Index</option>
+                <option value="None">Basemap Only</option>
+            </select> 
+            <img id="renderingInfo" src='./widgets/ISLayers/images/info.png' style="vertical-align: bottom;cursor:pointer;margin-left: 5px;" height='23'/>
+            <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'renderingInfo',position:['after']">
+                Click to know more about the renderer.
+            </div>
+        </div>
+
+
+
+
+        <div id="buildExtension" style="display: none;">
+            <br />
+
+            <label for='bnd1' style ='color : #0080C0;'>RGB Composite: </label>
+            <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd1">
+                <option value="1">Coastal(1)</option>
+                <option value="2">Blue(2)</option>
+                <option value="3">Green(3)</option>
+                <option value="4">Red(4)</option>
+                <option value="5">NIR(5)</option>
+                <option value="6" selected="selected">SWIR1(6)</option>
+                <option value="7">SWIR2(7)</option>
+                <option value="8">Cirrus(8)</option>
+            </select>
+            &nbsp;&nbsp;    
+            <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd2">
+                <option value="1">Coastal(1)</option>
+                <option value="2">Blue(2)</option>
+                <option value="3">Green(3)</option>
+                <option value="4">Red(4)</option>
+                <option value="5" selected="selected">NIR(5)</option>
+                <option value="6">SWIR1(6)</option>
+                <option value="7">SWIR2(7)</option>
+                <option value="8">Cirrus(8)</option>
+            </select>
+            &nbsp;&nbsp;    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd3">
+                <option value="1">Coastal(1)</option>
+                <option value="2" selected="selected">Blue(2)</option>
+                <option value="3">Green(3)</option>
+                <option value="4">Red(4)</option>
+                <option value="5">NIR(5)</option>
+                <option value="6">SWIR1(6)</option>
+                <option value="7">SWIR2(7)</option>
+                <option value="8">Cirrus(8)</option>
+            </select>
+
+
+            <br /><br />
+
+            <label for="stretchoptions" style="color: #0080C0;">Stretch:</label>
+            <select data-dojo-type="dijit/form/Select" style="display : inline-block; height: inherit;" id="stretchoptions">
+                <option value="none">Fixed</option>
+                <option value="standard">2 Std.Dev</option>
+                <option value="standard1">3 Std.Dev</option>
+                <option value="clip">2% Clip</option>
+                <option value="clip1">0.5% Clip</option>
+                <option value="clip2" selected="selected">0.1% Clip</option>
+                <option value='full'>Full</option>
+                <option value="dark">Dark</option>
+                <option value="vdark">VDark</option>
+                <option value="light">Light</option>
+                <option value="vlight">VLight</option>
+            </select>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="gammaoptions" style="color: #0080C0;">Gamma:</label> 
+            <select data-dojo-type="dijit/form/Select"  style="height: inherit;" id="gammaoptions">
+                <option value="1">0.3</option>
+                <option value="2">0.5</option>
+                <option value="3">0.8</option>
+                <option value="4" selected="selected">1</option>
+                <option value="5">1.4</option>
+                <option value="6">2</option>
+                <option value="7">4</option>
+            </select>
+
+            <br />
+            <br />
+            <div style="margin-left: 31%;">
+                <button data-dojo-type="dijit/form/Button"  id="apply" type="button" >Apply</button>
+                <button data-dojo-type="dijit/form/Button" id="reset"  type="button">Reset</button> 
+            </div>
+        </div>
+
+
+
+        <div style="display: none;color: indianred;" id='formula'>Offset + Scale * ((A-B)/(A+B))</div>
+        <div id="indexExtension" style="display: none;">
+            <br />
+
+            <div id="indexBands" style="display:none;">
+                <label for="bandA" style="color: #0080C0;">Band A: </label>
+                <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandA">
+                    <option value=1>Coastal(1)</option>
+                    <option value=2>Blue(2)</option>
+                    <option value=3>Green(3)</option>
+                    <option value=4>Red(4)</option>
+                    <option value=5 selected="selected">NIR(5)</option>
+                    <option value=6>SWIR1(6)</option>
+                    <option value=7>SWIR2(7)</option>
+                    <option value=8>Cirrus(8)</option></select>
+                <label for="bandB" style="color: #0080C0;">Band B: </label> <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandB">
+                    <option value=1>Coastal(1)</option>
+                    <option value=2>Blue(2)</option>
+                    <option value=3>Green(3)</option>
+                    <option value=4 selected='selected'>Red(4)</option>
+                    <option value=5>NIR(5)</option>
+                    <option value=6>SWIR1(6)</option>
+                    <option value=7>SWIR2(7)</option>
+                    <option value=8>Cirrus(8)</option></select>
+                <br /><br /></div>
+            <label for="OffsetValue" style="color: #0080C0;">Offset: </label><input data-dojo-type="dijit/form/TextBox" style="width: 50px;" id="OffsetValue" value=100 /> 
+            <label for="Scale" style="color: #0080C0;">Scale: </label><input data-dojo-type="dijit/form/TextBox" style="width: 50px;" id="Scale" value=100 /> 
+
+            <label for="colorRamp" style="color: #0080C0;">Renderer: </label><select data-dojo-type="dijit/form/Select" id="colorRamp" style="display: inline-block;height: inherit;"><option value="Yellow to Red">Yellow to Red</option>
+                <option value="Red to Green">Red to Green</option>
+                <option value="Green to Blue">Green to Blue</option>
+                <option value="Cyan to Purple">Cyan to Purple</option>
+                <option value="Black to White">Black to White</option>
+                <option value="Precipitation">Precipitation</option>
+                <option value="Prediction">Prediction</option>
+                <option value="Spectrum-Full Bright">Spectrum</option>
+                <option value="custom"  selected='selected'>NDVI Colorized</option>
+                <option value="moisture">Moisture</option>
+
+            </select><br /><br />
+
+            <button data-dojo-type="dijit/form/Button" id="applyIndex" style="margin-left: 40%;">Apply</button>
+        </div> </div>
+    <input data-dojo-type="dijit/form/TextBox" id="currentOBJECTID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="secondOBJECTID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="appSceneID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="savePropAccess" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="dateCompareFlag" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="changeProp" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="primarySceneId" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="secondarySceneId" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="changeMaskDetect" style="display: none;" />
+    <div data-dojo-type="dijit/Dialog" id="linkDialog" title="Share Link" style="background-color: white;" data-dojo-props="focus:function(){}">
+        <input type="text" data-dojo-type="dijit/form/TextBox" id="linkValue" style="width: 200px;;height: 30px;right: 10px; top: 130px;" />
+    </div>
+    <div data-dojo-type="dijit/Dialog" id="rendererInfoDialog" title="" style="background-color: #00304d;border-radius: 5px;" data-dojo-props="focus:function(){}">
+        <div id="renderDescription" data-dojo-attach-point="descriptionRenderer" style="max-height: 300px;max-width: 400px;overflow: auto;">Agriculture is bright green.</div>
+    </div>
+</div>

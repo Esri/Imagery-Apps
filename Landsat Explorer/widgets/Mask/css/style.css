@@ -1,0 +1,55 @@
+
+.claro .dijitButton {
+  margin: 0;
+  margin-left: 5px;
+}
+
+#maskSlider .dijitSliderRemainingBarH{
+    background-color: #0080C0;
+    border-color: lightskyblue;
+}
+#clipMask, #colorButton
+{
+     cursor: pointer;
+   padding: 5px 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+#clipMask:hover,#clipMask:focus{
+    background-color: #428BC9!important;
+    border-color: whitesmoke;
+    color: white;
+}
+#colorButton:hover,#colorButton:focus{
+    background-color: #ddd!important;
+    border-color: whitesmoke;
+    color: white;
+}
+.claro .dijitButton .dijitButtonNode {
+    padding: 0px;
+    
+}
+.claro .dijitDropDownButton .dijitButtonNode{
+    padding: 0px;
+    border: 0px solid transparent;
+    box-shadow: none;
+}
+
+#maskDialog .dijitDialogCloseIcon:before {
+  content: url("../../../jimu.js/css/images/btn_sub.png");
+}
+
+
+
+

@@ -1,0 +1,547 @@
+{
+    "theme": {
+        "name": "LandsatTheme",
+        "styles": [
+            "default",
+            "black",
+            "blue",
+            "cyan",
+            "green",
+            "purple",
+            "red",
+            "yellow"
+        ],
+        "version": "2.3"
+    },
+    "portalUrl": "http://www.arcgis.com",
+    "appId": "",
+    "authorizedCrossOriginDomains": [],
+    "title": "Landsat Explorer",
+    "subtitle": "",
+    "keepAppState": false,
+    "logo": "http://www.esri.com/favicon.ico",
+    "geometryService": "http://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
+    "links": [],
+    "widgetOnScreen": {
+        "panel": {
+            "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+            "positionRelativeTo": "browser",
+            "position": {
+                "top": 0,
+                "left": 10,
+                "height": 140,
+                "width": 80
+            }
+        },
+        "widgets": [
+            {
+                "uri": "themes/LandsatTheme/widgets/HeaderController/Widget",
+                "position": {
+                    "left": 0,
+                    "width": 95,
+                    "top": 82,
+                    "bottom": 0,
+                    "relativeTo": "browser"
+                },
+                "version": "2.3"
+
+            },
+            {
+                "uri": "widgets/Scalebar/Widget",
+                "position": {
+                    "left": 10,
+                    "bottom": 10,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_Scalebar_Widget_2",
+                "name": "Scalebar"
+            },
+            {
+                "uri": "widgets/Search/Widget",
+                "position": {
+                    "left": 60,
+                    "top": 20,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_Search_Widget_3",
+                "name": "Search"
+            },
+            {
+                "uri": "widgets/Coordinate/Widget",
+                "position": {
+                    "left": 160,
+                    "bottom": 5,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_Coordinate_Widget_4",
+                "name": "Coordinate"
+            },
+            {
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "position": {
+                        "top": 40,
+                        "left": 0,
+                        "height": 60,
+                        "width": 95
+                    }
+                },
+                "placeholderIndex": 1,
+                "id": "_8",
+                "position": {
+                    "left": 0,
+                    "bottom": 0
+                },
+                "positionRelativeTo": "browser",
+                "name": "ISLayers",
+                "label": "Band Combinations",
+                "version": "",
+                "icon": "//:0",
+                "id": "_8",
+                "uri": "widgets/ISLayers/Widget",
+                "config": "configs/ISLayers/config_Band Combinations.json",
+                "openAtStart": true
+            },
+            {
+                "uri": "widgets/OverviewMap/Widget",
+                "position": {
+                    "right": 0,
+                    "top": 0,
+                    "zIndex": 1,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_OverviewMap_Widget_10",
+                "name": "OverviewMap"
+            },
+            {
+                "position": {
+                    "left": 20,
+                    "top": 140,
+                    "width": 200,
+                    "height": 200
+
+                },
+                "placeholderIndex": 1,
+                "id": "_29",
+                "name": "BasemapGallery",
+                "label": "Basemap Gallery",
+                "version": "1.4",
+                "uri": "widgets/BasemapGallery/Widget",
+                "config": "widgets/BasemapGallery/config.json"
+            },
+            {
+                "uri": "widgets/HomeButton/Widget",
+                "position": {
+                    "left": 20,
+                    "top": 95,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_HomeButton_Widget_11",
+                "name": "HomeButton"
+            }
+
+
+
+
+
+        ],
+        "panel": {
+            "uri": "jimu/OnScreenWidgetPanel",
+            "position": {
+                "relativeTo": "map"
+            }
+        }
+    },
+    "map": {
+        "3D": false,
+        "2D": true,
+        "position": {
+            "top": 40,
+            "right": 10,
+            "bottom": 10,
+            "left": 95
+        },
+        "itemId": "",
+        "mapOptions": {
+            "maxZoom": 21,
+            "minZoom": 1,
+            "extent": {
+                "xmin": -13069590.083624298,
+                "ymin": 4017886.758757296,
+                "xmax": -13011497.942127643,
+                "ymax": 4051251.5216037305,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            }
+        },
+        "id": "map",
+        "portalUrl": "http://www.arcgis.com"
+    },
+    "widgetPool": {
+        "panel": {
+            "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+            "positionRelativeTo": "map",
+            "noOverlay": false,
+            "position": {
+                "left": 0,
+                "bottom": 0,
+                "width": 0,
+                "height": 0
+            }
+        },
+        "widgets": [
+            {
+                "name": "Identify",
+                "label": "<b>Identify</b><br /><span style='font-size:85%;'>Get more information about the scene or a point on the map.</span>",
+                "version": "",
+                "icon": "widgets/ISLayers/images/svg/identify24.svg",
+                "uri": "widgets/Identify/Widget",
+                "config": "configs/Identify/config_Identify.json",
+                "index": 4,
+                "id": "widgets/Identify/Widget_14"
+            }
+        ],
+        "groups": [
+            {
+                "widgets": [
+                    {
+                        "name": "ISTimeFilter",
+                        "label": "Time Line",
+                        "version": "",
+                        "icon": "configs/ISTimeFilter/time24.svg",
+                        "uri": "widgets/ISTimeFilter/Widget",
+                        "config": "configs/ISTimeFilter/config_Time .json",
+                        "index": 2,
+                        "id": "widgets/ISTimeFilter/Widget_15"
+                    }
+                ],
+                "label": "<b>Time Selector</b><br /><span style='font-size:85%;'>Pick dates to visualize and compare.</span>",
+                "index": 0,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "map",
+                    "noOverlay": false,
+                    "position": {
+                        "width": 440,
+                        "height": "auto",
+                        "left": 155,
+                        "top": 70
+                    }
+                },
+                "id": "_32",
+                "visible": true,
+                "icon": "widgets/ISLayers/images/svg/time24.svg"
+
+            }, {
+                "widgets": [
+                    {
+                        "name": "ChangeDetection",
+                        "label": "Change Detection",
+                        "version": "1.1",
+                        "icon": "widgets/ChangeDetection/images/icon.png",
+                        "uri": "widgets/ChangeDetection/Widget",
+                        "config": "widgets/ChangeDetection/config.json",
+                        "index": 8,
+                        "id": "widgets/ChangeDetection/Widget_18"
+                    }
+                ],
+                "label": "<b>Change Detection</b><br /><span style='font-size:85%;'>Compute the change between two dates.</span>",
+                "index": 3,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 0,
+                        "height": 0,
+                        "left": 0,
+                        "bottom": 0
+                    }
+                },
+                "id": "_28",
+                "visible": true,
+                "icon": "widgets/ChangeDetection/images/change.gif"
+            }, {
+                "widgets": [
+                    {
+                        "name": "ISCompare",
+                        "label": "Compare Tool",
+                        "version": "1.1",
+                        "icon": "widgets/ISCompare/images/icon.png",
+                        "uri": "widgets/ISCompare/Widget",
+                        "index": 3,
+                        "id": "widgets/ISCompare/Widget_18"
+                    }
+                ],
+                "label": "<b>Swipe</b><br /><span style='font-size:85%;'>Interactively compare two dates.</span>",
+                "index": 1,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 0,
+                        "height": 0,
+                        "left": 0,
+                        "bottom": 0
+                    }
+                },
+                "id": "_30",
+                "visible": true,
+                "icon": "widgets/ISCompare/images/icon.png"
+            },
+            {
+                "widgets": [
+                    {
+                        "name": "Save",
+                        "label": "Save",
+                        "version": "1.1",
+                        "icon": "widgets/Save/images/icon.png",
+                        "uri": "widgets/Save/Widget",
+                        "index": 5,
+                        "id": "widgets/Save/Widget_18"
+                    }
+                ],
+                "label": "Save Top Layer to <br /> ArcGIS Online",
+                "index": 6,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 0,
+                        "height": 0,
+                        "left": 0,
+                        "bottom": 0
+                    }
+                },
+                "id": "_20",
+                "visible": true,
+                "icon": "widgets/Save/images/icon.png"
+            },
+            {
+                "widgets": [
+                    {
+                        "name": "ExportFunction",
+                        "label": "Export",
+                        "version": "1.1",
+                        "icon": "widgets/ExportFunction/images/icon.png",
+                        "uri": "widgets/ExportFunction/Widget",
+                        "index": 6,
+                        "id": "widgets/ExportFunction/Widget_17"
+                    }
+                ],
+                "label": "<b>Export</b><br /><span style='font-size:85%;'>Download the top layer as a png or tif image.</span>",
+                "index": 7,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 320,
+                        "height": 250,
+                        "left": "40%",
+                        "bottom": "40%"
+                    }
+                },
+                "id": "_19",
+                "visible": true,
+                "icon": "widgets/ExportFunction/images/icon.png"
+            },
+            {
+                "widgets": [
+                    {
+                        "name": "About",
+                        "label": "About",
+                        "version": "1.1",
+                        "icon": "null",
+                        "uri": "widgets/About/Widget",
+                        "config": "configs/About/config_About.json",
+                        "index": 9,
+                        "id": "widgets/About/Widget_16"
+                    }
+                ],
+                "label": "About",
+                "index": 10,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 350,
+                        "height": 300
+
+                    }
+                },
+                "id": "_22",
+                "visible": true,
+                "icon": "null"
+            }, {
+                "widgets": [
+                    {
+                        "name": "AddData",
+                        "label": "Add Data from ArcGIS Online",
+                        "version": "2.1",
+                        "icon": "widgets/AddData/images/icon.png",
+                        "uri": "widgets/AddData/Widget",
+                        "config": "widgets/AddData/config.json",
+                        "index": 4,
+                        "id": "widgets/AddData/Widget_16"
+                    }
+                ],
+                "label": "Add Data from ArcGIS Online",
+                "index": 5,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 400,
+                        "height": 400
+
+                    }
+                },
+                "id": "_70",
+                "visible": true,
+                "icon": "widgets/AddData/images/icon.png"
+            }, {
+                "widgets": [
+                    {
+                        "name": "Mask",
+                        "label": "Mask",
+                        "version": "1.1",
+                        "icon": "widgets/Mask/images/change.png",
+                        "config": "widgets/Mask/config.json",
+                        "uri": "widgets/Mask/Widget",
+                        "index": 10,
+                        "id": "widgets/Mask/Widget_40"
+                    }
+                ],
+                "label": "<b>Mask</b><br /><span style='font-size:85%;'>Select map values to cover or highlight.</span>",
+                "index": 2,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 0,
+                        "height": 0,
+                        "left": 0,
+                        "bottom": 0
+                    }
+                },
+                "id": "_40",
+                "visible": true,
+                "icon": "widgets/Mask/images/change.gif"
+            },
+            {
+                "widgets": [
+                    {
+                        "name": "Story",
+                        "label": "Story Builder",
+                        "version": "1.1",
+                        "icon": "widgets/Story/images/icon.png",
+                        "uri": "widgets/Story/Widget",
+                        "index": 7,
+                        "id": "widgets/Story/Widget_60"
+                    }
+                ],
+                "label": "<b>Stories</b><br /><span style='font-size:85%;'>See example stories using imagery from the app.</span>",
+                "index": 8,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 0,
+                        "height": 0,
+                        "left": 0,
+                        "bottom": 0
+                    }
+                },
+                "id": "_60",
+                "visible": true,
+                "icon": "widgets/Story/images/icon.png"
+            },
+            {
+                "widgets": [
+                    {
+                        "name": "Tutorial",
+                        "label": "App Tutorial",
+                        "version": "1.1",
+                        "icon": "widgets/Tutorial/images/icon.png",
+                        "config": "widgets/Tutorial/config.json",
+                        "uri": "widgets/Tutorial/Widget",
+                        "index": 8,
+                        "id": "widgets/Tutorial/Widget_50"
+                    }
+                ],
+                "label": "<b>App Tutorial</b><br /><span style='font-size:85%;'>Learn how to use the Landsat Explorer tools.</span>",
+                "index": 9,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 0,
+                        "height": 0,
+                        "left": 0,
+                        "bottom": 0
+                    }
+                },
+                "id": "_50",
+                "visible": true,
+                "icon": "widgets/Tutorial/images/icon.png"
+            }
+
+        ]
+    },
+    "mobileLayout": {
+        "widgetOnScreen": {
+            "widgets": {
+                "widgets/Scalebar/Widget": {
+                    "position": {
+                        "left": 7,
+                        "bottom": 40
+                    },
+                    "version": "1.4"
+                },
+                "widgets/Coordinate/Widget": {
+                    "position": {
+                        "left": 7,
+                        "bottom": 17
+                    },
+                    "version": "1.4"
+                }
+            }
+        }
+    },
+    "loadingPage": {
+        "backgroundColor": "#151e27",
+        "backgroundImage": {
+            "visible": false
+        },
+        "loadingGif": {
+            "visible": true,
+            "uri": "configs/loading/images/loading.gif",
+            "width": 58,
+            "height": 29
+        }
+    },
+    "wabVersion": "2.3",
+    "isTemplateApp": true,
+    "isWebTier": false,
+    "httpProxy": {
+        "useProxy": true,
+        "alwaysUseProxy": false,
+        "url": "",
+        "rules": []
+    }
+}
