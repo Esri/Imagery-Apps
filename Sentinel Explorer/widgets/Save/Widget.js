@@ -75,12 +75,13 @@ define([
                         registry.byId("timeDialog").hide();
                     var x = document.getElementsByClassName("icon-node");
                     html.set(this.successNotification, "");
-                    for (var a = this.map.layerIds.length - 1; a >= 0; a--) {
-                        if (this.map.getLayer(this.map.layerIds[a]).url.slice(7, 15) === "vps53565") {
-                            var resultLayerProperties = this.map.getLayer(this.map.layerIds[a]);
-                            break;
-                        }
-                    }
+                    
+                      if(this.map.getLayer("resultLayer"))
+                        var resultLayerProperties = this.map.getLayer("resultLayer");
+                    else if(this.map.getLayer("primaryLayer"))
+                        var resultLayerProperties = this.map.getLayer("primaryLayer");
+                    else if(this.map.getLayer("secondaryLayer"))
+                        var resultLayerProperties = this.map.getLayer("secondaryLayer");
 
                     var renderer = dom.byId("rendererInformation").innerHTML.split(":&nbsp;")[1];
                     if (resultLayerProperties.id === "resultLayer") {
@@ -156,12 +157,13 @@ define([
                         registry.byId("tutorialStage").set("value", "29");
                     }
                     this.showLoading();
-                    for (var a = this.map.layerIds.length - 1; a >= 0; a--) {
-                        if (this.map.getLayer(this.map.layerIds[a]).url.slice(7, 15) === "vps53565") {
-                            var resultLayerProperties = this.map.getLayer(this.map.layerIds[a]);
-                            break;
-                        }
-                    }
+                  
+                    if(this.map.getLayer("resultLayer"))
+                        var resultLayerProperties = this.map.getLayer("resultLayer");
+                    else if(this.map.getLayer("primaryLayer"))
+                        var resultLayerProperties = this.map.getLayer("primaryLayer");
+                    else if(this.map.getLayer("secondaryLayer"))
+                        var resultLayerProperties = this.map.getLayer("secondaryLayer");
                     var extent = this.map.geographicExtent.xmin + "," + this.map.geographicExtent.ymin + "," + this.map.geographicExtent.xmax + "," + this.map.geographicExtent.ymax;
                     var spatialReference = this.map.extent.spatialReference.wkid;
                     var mosaicRule = resultLayerProperties.mosaicRule;

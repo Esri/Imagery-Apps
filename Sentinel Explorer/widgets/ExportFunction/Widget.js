@@ -326,14 +326,13 @@ define([
                         var width = (this.map.extent.xmax - this.map.extent.xmin);
                         var height = (this.map.extent.ymax - this.map.extent.ymin);
                     }
-                    for (var i = this.map.layerIds.length - 1; i >= 0; i--) {
-
-                        if ((this.map.getLayer(this.map.layerIds[i]).url).slice(7, 15) === "vps53565") {
-                            var exportLayer = this.map.getLayer(this.map.layerIds[i]);
-
-                            break;
-                        }
-                    }
+                  
+                    if(this.map.getLayer("resultLayer"))
+                        var exportLayer = this.map.getLayer("resultLayer");
+                    else if(this.map.getLayer("primaryLayer"))
+                        var exportLayer = this.map.getLayer("primaryLayer");
+                    else if(this.map.getLayer("secondaryLayer"))
+                        var exportLayer = this.map.getLayer("secondaryLayer");
                     var pixelsize = parseFloat((registry.byId("pixelSize").get("value")).split(" ")[0]);
 
                     var widthMax = this.map.width;
