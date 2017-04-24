@@ -1,0 +1,44 @@
+<div>
+
+    <div data-dojo-type="dijit/Dialog" id="maskDialog" title="Mask" style="background-color: white;" data-dojo-props="focus:function(){}">
+        <select data-dojo-type="dijit/form/Select" style="height: inherit;display: inline-block;" id="indexList">
+            <option value="NDVI" selected="selected">Veg. Index</option>
+            <option value="SAVI">Soil Adjusted Veg. Index</option>
+            <option value="NDWI">Water Index</option>
+            <option value="NBR">Burn Index</option>
+            <option value="Urban">Urban</option>
+            <option value="NDMI">Moisture Index</option>
+            <option value="Custom">Custom Index</option>
+        </select>&nbsp;&nbsp;&nbsp;<div style="color: #0080C0;display: inline-block;">Area Covered:</div><div style="display: inline-block;color: indianred;font-weight: bolder;" id="maskArea"></div>
+
+        <br />
+        <div id="maskHistogram" style="width: 275px; height: 140px;"></div>
+        Mask &nbsp;<div  data-dojo-attach-point="maskSliderValue" style="color: #0080C0;display: inline-block;font-weight: bolder;">[0.5 to 1.00]</div><br />
+        <div id="maskSlider" data-dojo-attach-point="maskRangeSlider1" style="width:270px;display: block;" data-dojo-type="dijit/form/HorizontalSlider" data-dojo-props="value:0.5,minimum: -1,maximum:1,intermediateChanges:true,showButtons:true">
+            <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" style="height:5px;" data-dojo-props="count:11"></div>
+            <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray;">
+                <li>-1</li>
+                <li>-0.8</li>
+                <li>-0.6</li>
+                <li>-0.4</li>
+                <li>-0.2</li>
+                <li>0</li>
+                <li>0.2</li>
+                <li>0.4</li>
+                <li>0.6</li>
+                <li>0.8</li>
+                <li>1</li>
+            </ol></div><br />
+        <label for="resultOpacity" style="color: #0080C0;">Transparency:&nbsp;&nbsp;&nbsp;</label><div id="resultOpacity" data-dojo-attach-point="resultTransparency" style="top: 5px;width:180px;display:inline-block;position: relative;" data-dojo-type="dijit/form/HorizontalSlider" data-dojo-props="value:0,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true"></div><br /><br />
+        <input data-dojo-type="dijit/form/CheckBox" id="markedAreas" /><label for="markedAreas" style="color: #0080C0;">Define Areas Of Interest</label>
+        <div data-dojo-type="dijit/form/DropDownButton" style="display: inline-block;" id="colorButton">
+            <span><img src="./widgets/Mask/images/ColorPicker.png" width="15" height="15" /></span>
+            <div data-dojo-type="dijit/TooltipDialog" id="colorDialog">
+                <div id="colorPalette" data-dojo-type="dijit/ColorPalette" data-dojo-props="palette:'7x10'"></div>
+            </div></div>    
+        <button type="button" data-dojo-type="dijit/form/Button" id="clipMask" style="display: none;margin: auto;">Apply</button>
+
+    </div>
+
+
+</div>

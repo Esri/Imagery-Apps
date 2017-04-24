@@ -1,0 +1,183 @@
+
+#startButton
+{
+     cursor: pointer;
+   padding: 5px 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+#startButton:hover{
+    background-color: #428BC9!important;
+    border-color: whitesmoke;
+    color: white;
+    
+}
+#startButton:focus{
+    outline: none;
+}
+#_29_panel  {
+    background-color: white;
+   border-radius: 10px;
+}
+#dijit__WidgetBase_0 .jimu-preload-widget-icon.jimu-state-selected{
+    width: 0px;
+    height: 0px;
+}
+#tooltipDialogIntro .dijitTooltipDialogPopup{
+    left: 95px;
+}
+#tooltipDialogIntro .dijitTooltipContainer{
+    background: #00304d;
+    border: #00304d;
+    width: 300px;
+    border-radius: 4px;
+    margin: 5px;
+    display: block;
+    color:#fff;
+    padding: 7px 10px;
+    -webkit-box-shadow: 0 5px 5px rgba(0,0,0,0.75);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.75);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+}
+#tooltipDialogIntro.dijitTooltipLeft .dijitTooltipContainer{
+    background: #00304d;
+    border: #00304d;
+    width: 300px;
+    border-radius: 4px;
+    margin-right: 15px;
+    display: block;
+    color:#fff;
+    padding: 7px 10px;
+    -webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.75);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+}
+#tooltipDialogIntro .dijitTooltipFocusNode{
+    padding: 4px 6px 4px 6px;
+}
+#tooltipDialogIntro.dijitTooltipRight .dijitTooltipContainer{
+    border-left: 5px solid #00304d;
+    margin-left: 33px;
+}
+#tooltipDialogIntro.dijitTooltipLeft .dijitTooltipContainer{
+    border-right: 5px solid #00304d;
+    margin-left: -53px;
+}
+#tooltipDialogIntro.dijitTooltipAbove .dijitTooltipContainer{
+    border-bottom: 5px solid #00304d;
+    margin-bottom: 48px;
+}
+#tooltipDialogIntro.dijitTooltipBelow .dijitTooltipContainer{
+    border-top: 5px solid #00304d;
+    margin-top: 38px;
+}
+#tooltipDialogIntro  .dijitTooltipConnector{
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    background-image: none;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid #00304d;
+    height: 0px;
+    width: 0px;
+}
+#tooltipDialogIntro.dijitTooltipRight .dijitTooltipConnector{
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    background-image: none;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 0px solid transparent;
+    border-right: 50px solid #00304d;
+    transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    height: 0px;
+    width: 0px;
+}
+#tooltipDialogIntro.dijitTooltipLeft .dijitTooltipConnector{
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    background-image: none;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 50px solid #00304d;
+    transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    height: 0px;
+    width: 0px;
+}
+#tooltipDialogIntro.dijitTooltipAbove .dijitTooltipConnector{
+    top: auto;
+    bottom: 0px;
+    margin: 0 auto;
+    background-image: none;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 50px solid #00304d;
+    transform: rotate(25deg);
+    -webkit-transform: rotate(25deg);
+    height: 0px;
+    width: 0px;
+}
+#tooltipDialogIntro.dijitTooltipAbove.dijitTooltipABRight .dijitTooltipConnector{
+    top: auto;
+    bottom: 0px;
+    margin: 0 auto;
+    background-image: none;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 50px solid #00304d;
+    transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    height: 0px;
+    width: 0px;
+}
+#tooltipDialogIntro.dijitTooltipBelow .dijitTooltipConnector{
+    top: 0px;
+    margin: 0px auto;
+    margin-left: 10px;
+    background-image: none;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 50px solid #00304d;
+    transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+    height: 0px;
+    width: 0px;
+}
+#tooltipDialogIntro.dijitTooltipBelow.dijitTooltipABRight .dijitTooltipConnector{
+    top: 0px;
+    margin: 0 auto;
+    background-image: none;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 50px solid #00304d;
+    transform: rotate(25deg);
+    -webkit-transform: rotate(25deg);
+    height: 0px;
+    width: 0px;
+}

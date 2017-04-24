@@ -1,0 +1,23 @@
+<div>
+    <div  data-dojo-type="dijit/Dialog" id="tourDialog" title="Tutorial" style="background-color: white;width: 390px;" data-dojo-props="focus: function(){}">
+        <input data-dojo-type="dijit/form/TextBox" id="tutorialStage"  style="display: none;" /> 
+
+        <div id="startTour">
+            <p style="text-align: justify;">Welcome to the Sentinel Explorer App Tutorial. This tutorial will introduce you to all the different tools available in Sentinel Explorer and how to use them. This tutorial will take approximately 20 minutes. You can pan or zoom to any location of interest while using the tutorial.</p>
+            <br />
+
+            <label for='chapterSelect'>Select a tool to start: </label><select data-dojo-type='dijit/form/Select' id='chapterSelect' style='height: 16px;'>
+                <option value=0>Renderer</option>
+                <option value=1>Identify</option>
+                <option value=2>Time, Swipe and Change</option>
+                <option value=3>Mask</option>
+                <option value=4>Save Layer to Arcgis Online</option>
+                <option value=5>Export</option>
+                <option value=6>Add Data from Arcgis Online</option>
+            </select><button id="startButton" data-dojo-type="dijit/form/Button">Start</button></div>
+
+    </div>
+    <div data-dojo-type="dijit/Dialog" id="tourEndDialog" title="Tutorial" style="background-color: white;width: 20%;" data-dojo-props="focus: function(){}">
+        <p style="text-align: justify;">You have now completed the Sentinel Explorer App Tutorial, and are ready to analyze Sentinel imagery on your own.</p> 
+    </div>
+</div>
