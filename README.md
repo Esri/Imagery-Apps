@@ -1,2 +1,2 @@
-# Sentinel-Explorer
-Sentinel Explorer App similar to Landsat Explorer
+# Explorer-Apps
+The repository contains the source code of Landsat Explorer and Sentinel Explorer.
