@@ -25,7 +25,9 @@ Features of the apps include the following, which can serve as a model for featu
 
 ## Instructions
 
-1. Fork and then clone the repo. 
+Create your own Explorer apps using your own image services by updating the urls in the config file of each widget.
+
+[Learn more](https://developers.arcgis.com/web-appbuilder/guide/home.htm) about creating and editing apps using Web AppBuilder for ArcGIS.
 
 ## Requirements
 
