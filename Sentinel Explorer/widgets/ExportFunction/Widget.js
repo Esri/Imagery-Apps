@@ -88,20 +88,20 @@ define([
                             domStyle.set(registry.byId("tooltipDialogIntro").connectorNode, "top", "0px");
                             var icon = document.getElementsByClassName("icon-node");
                             for (var a = 0; a < icon.length; a++) {
-                                if (a !== 9 && a !== 5)
+                                if (a !== 8 && a !== 5)
                                     icon[a].style.pointerEvents = "none";
                             }
 
                         } else if (registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && registry.byId("tutorialStage").get("value") === "39") {
                             var icon = document.getElementsByClassName("icon-node");
                             for (var a = 0; a < icon.length; a++) {
-                                if (a !== 9 && a !== 8)
+                                if (a !== 8 && a !== 8)
                                     icon[a].style.pointerEvents = "none";
                             }
                         } else if (registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open") {
                             var icon = document.getElementsByClassName("icon-node");
                             for (var a = 0; a < icon.length; a++) {
-                                if (a !== 9)
+                                if (a !== 8)
                                     icon[a].style.pointerEvents = "none";
                             }
                         }
@@ -326,13 +326,14 @@ define([
                         var width = (this.map.extent.xmax - this.map.extent.xmin);
                         var height = (this.map.extent.ymax - this.map.extent.ymin);
                     }
-                  
-                    if(this.map.getLayer("resultLayer"))
-                        var exportLayer = this.map.getLayer("resultLayer");
-                    else if(this.map.getLayer("primaryLayer"))
-                        var exportLayer = this.map.getLayer("primaryLayer");
-                    else if(this.map.getLayer("secondaryLayer"))
-                        var exportLayer = this.map.getLayer("secondaryLayer");
+                    for (var i = this.map.layerIds.length - 1; i >= 0; i--) {
+
+                        if ((this.map.getLayer(this.map.layerIds[i]).url).indexOf("ImageServer") !== -1) {
+                            var exportLayer = this.map.getLayer(this.map.layerIds[i]);
+                            
+                            break;
+                        }
+                    }
                     var pixelsize = parseFloat((registry.byId("pixelSize").get("value")).split(" ")[0]);
 
                     var widthMax = this.map.width;
@@ -564,9 +565,12 @@ define([
                         else
                             var band = exportLayer.bandIds;
                         var noData = "";
-
+                        if((exportLayer.url.toLowerCase()).indexOf("sentinel") !== -1)
+                               var url = this.config.sentinelUrl;
+                           else
+                               var url= exportLayer.url;
                         var layersRequest = esri.request({
-                            url: exportLayer.url + "/exportImage",
+                            url: url + "/exportImage",
                             content: {
                                 f: "json",
                                 bbox: bbox,

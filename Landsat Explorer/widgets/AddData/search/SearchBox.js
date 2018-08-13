@@ -15,95 +15,101 @@
 ///////////////////////////////////////////////////////////////////////////
 define(["dojo/_base/declare",
     "dojo/_base/lang",
-    "dojo/on", "dijit/registry", "dijit/popup", "dojo/dom-style",
+    "dojo/on","dijit/registry","dijit/popup","dojo/dom-style",
     "dojo/keys",
     "./SearchComponent",
     "dojo/text!./templates/SearchBox.html",
     "dojo/i18n!../nls/strings"
-],
-        function (declare, lang, on, registry, popup, domStyle, keys, SearchComponent, template, i18n) {
+  ],
+  function(declare, lang, on, registry,popup, domStyle,keys, SearchComponent, template, i18n) {
 
-            return declare([SearchComponent], {
-                i18n: i18n,
-                templateString: template,
-                postCreate: function () {
-                    this.inherited(arguments);
-                    this._checkClearButton();
+    return declare([SearchComponent], {
 
-                    this.own(on(this.searchTextBox, "keyup", lang.hitch(this, function (evt) {
-                        this._checkClearButton();
-                        if (evt.keyCode === keys.ENTER) {
-                            this.search();
-                            if (registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && registry.byId("tutorialStage").get("value") === "34") {
-                                var tooltipTemp = registry.byId("tooltipDialogIntro");
-                                tooltipTemp.set("content", "Click <span style='color:orange;font-weight:bolder;'>ADD</span> to add the World Boundaries and Places map service to your map.");
-                                popup.open({
-                                    parent: registry.byId("Add Data from ArcGIS Online"),
-                                    popup: tooltipTemp,
-                                    orient: ["after-centered"],
-                                    around: registry.byId("Add Data from ArcGIS Online").domNode,
-                                    onClose: lang.hitch(this, function () {
-                                        domStyle.set(tooltipTemp._popupWrapper, "display", "block");
-                                    })
-                                });
-                                domStyle.set(tooltipTemp.connectorNode, "top", "0px");
-                                registry.byId("tutorialStage").set("value", "35");
-                            }
-                        }
-                    })));
-                },
-                _checkClearButton: function () {
-                    /*
-                     var v = this.searchTextBox.value;
-                     if (v !== null && v.length > 0) {
-                     //domClass.remove(this.clearButton,"hidden");
-                     domClass.add(this.clearButton, "hidden");
-                     } else {
-                     domClass.add(this.clearButton, "hidden");
-                     }
-                     */
-                },
-                clearButtonClicked: function () {
-                    this.searchTextBox.value = "";
-                    this._checkClearButton();
-                    this.search();
-                },
-                searchButtonClicked: function () {
-                    this.search();
-                    if (registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && registry.byId("tutorialStage").get("value") === "34") {
-                        var tooltipTemp = registry.byId("tooltipDialogIntro");
-                        tooltipTemp.set("content", "Click <span style='color:orange;font-weight:bolder;'>ADD</span> to add the World Boundaries and Places map service to your map.");
-                        popup.open({
-                            parent: registry.byId("Add Data from ArcGIS Online"),
-                            popup: tooltipTemp,
-                            orient: ["after-centered"],
-                            around: registry.byId("Add Data from ArcGIS Online").domNode,
-                            onClose: lang.hitch(this, function () {
-                                domStyle.set(tooltipTemp._popupWrapper, "display", "block");
-                            })
-                        });
-                        domStyle.set(tooltipTemp.connectorNode, "top", "0px");
-                        registry.byId("tutorialStage").set("value", "35");
-                    }
-                },
-                /* SearchComponent API ============================================= */
+      i18n: i18n,
+      templateString: template,
 
-                appendQueryParams: function (params) {
-                    var q = this.searchTextBox.value;
-                    if (q !== null) {
-                        q = lang.trim(q);
-                    }
-                    if (q !== null && q.length > 0) {
-                        params.canSortByRelevance = true;
-                        q = "(" + q + ")";
-                        if (params.q !== null && params.q.length > 0) {
-                            params.q += " AND " + q;
-                        } else {
-                            params.q = q;
-                        }
-                    }
-                }
+      postCreate: function() {
+        this.inherited(arguments);
+        this._checkClearButton();
 
-            });
+        this.own(on(this.searchTextBox, "keyup", lang.hitch(this, function(evt) {
+          this._checkClearButton();
+          if (evt.keyCode === keys.ENTER) {
+            this.search();
+            if(registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && registry.byId("tutorialStage").get("value")==="34"){
+               var tooltipTemp = registry.byId("tooltipDialogIntro");
+               tooltipTemp.set("content","Click <span style='color:orange;font-weight:bolder;'>ADD</span> to add the World Boundaries and Places map service to your map."); 
+               popup.open({
+                   parent: registry.byId("Add Data from ArcGIS Online"),
+                   popup: tooltipTemp,
+                   orient: ["after-centered"],
+                   around: registry.byId("Add Data from ArcGIS Online").domNode,
+                    onClose: lang.hitch(this, function(){
+                                                 domStyle.set(tooltipTemp._popupWrapper,"display","block");
+                                             })
+               });
+                     domStyle.set(tooltipTemp.connectorNode,"top","0px");
+                       registry.byId("tutorialStage").set("value","35");
+           }
+          }
+        })));
+      },
 
-        });
+      _checkClearButton: function() {
+        /*
+        var v = this.searchTextBox.value;
+        if (v !== null && v.length > 0) {
+          //domClass.remove(this.clearButton,"hidden");
+          domClass.add(this.clearButton, "hidden");
+        } else {
+          domClass.add(this.clearButton, "hidden");
+        }
+        */
+      },
+
+      clearButtonClicked: function() {
+        this.searchTextBox.value = "";
+        this._checkClearButton();
+        this.search();
+      },
+
+      searchButtonClicked: function() {
+        this.search();
+        if(registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && registry.byId("tutorialStage").get("value")==="34"){
+               var tooltipTemp = registry.byId("tooltipDialogIntro");
+               tooltipTemp.set("content","Click <span style='color:orange;font-weight:bolder;'>ADD</span> to add the World Boundaries and Places map service to your map."); 
+               popup.open({
+                   parent: registry.byId("Add Data from ArcGIS Online"),
+                   popup: tooltipTemp,
+                   orient: ["after-centered"],
+                   around: registry.byId("Add Data from ArcGIS Online").domNode,
+                    onClose: lang.hitch(this, function(){
+                                                 domStyle.set(tooltipTemp._popupWrapper,"display","block");
+                                             })
+               });
+                     domStyle.set(tooltipTemp.connectorNode,"top","0px");
+                       registry.byId("tutorialStage").set("value","35");
+           }
+      },
+
+      /* SearchComponent API ============================================= */
+
+      appendQueryParams: function(params) {
+        var q = this.searchTextBox.value;
+        if (q !== null) {
+          q = lang.trim(q);
+        }
+        if (q !== null && q.length > 0) {
+          params.canSortByRelevance = true;
+          q = "(" + q + ")";
+          if (params.q !== null && params.q.length > 0) {
+            params.q += " AND " + q;
+          } else {
+            params.q = q;
+          }
+        }
+      }
+
+    });
+
+  });

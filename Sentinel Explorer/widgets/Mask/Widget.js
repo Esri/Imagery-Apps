@@ -317,10 +317,11 @@ define([
                         dom.byId("bandCombination").click();
                     if (pm.getPanelById("_70_panel") && pm.getPanelById("_70_panel").state === "opened")
                         pm.closePanel("_70_panel");
+                    if (pm.getPanelById("_16_panel") && pm.getPanelById("_16_panel").state === "opened")
+                        pm.closePanel("_16_panel");
                     if (pm.getPanelById("_22_panel") && pm.getPanelById("_22_panel").state === "opened")
                         pm.closePanel("_22_panel");
-                    if (pm.getPanelById("_19_panel") && pm.getPanelById("_19_panel").state === "opened")
-                        pm.closePanel("_19_panel");
+                    
 
                     registry.byId("maskDialog").show();
                     registry.byId("maskDialog").closeButtonNode.title = "Minimize";

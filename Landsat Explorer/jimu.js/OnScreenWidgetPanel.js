@@ -214,7 +214,6 @@ define(['dojo/_base/declare',
       },
 
       resize: function(tmp) {
-         
         var posInfo = this._getPositionInfo();
         var _pos = {
           left: posInfo.position.left,

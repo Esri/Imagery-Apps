@@ -18,12 +18,13 @@ define([
     'dijit/_WidgetsInTemplateMixin',
     'dojo/text!./Widget.html',
     'jimu/BaseWidget', "./resourceLoad.js",
+    "dojo/i18n!esri/nls/jsapi",
 ],
         function (
                 declare,
                 _WidgetsInTemplateMixin,
                 template,
-                BaseWidget, resourceLoad
+                BaseWidget, resourceLoad, bundle
                 ) {
             var resource = new resourceLoad({resource: "time"});
             var plugins = resource.load("time");
@@ -243,9 +244,6 @@ define([
                     registry.byId("secondOBJECTID").set("value", registry.byId("currentOBJECTID").get("value"));
                     registry.byId("secondarySceneId").set("value", registry.byId("primarySceneId").get("value"));
                     var aqDate = parseInt(registry.byId("secondOBJECTID").get("value"));
-
-                    //  domStyle.set(this.dateRange,"font-size","11px");
-
                     domStyle.set(this.secondaryRange, "display", "none");
 
                     html.set(this.secondaryRange, "Comparison Date: <b>" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"}) + "</b>&nbsp;&nbsp;&nbsp;");
@@ -348,8 +346,6 @@ define([
                                     break;
                                 }
                             }
-
-
                             if (this.refreshHandlerTime !== null)
                             {
                                 this.refreshHandlerTime.remove();
@@ -368,17 +364,13 @@ define([
                                 }
                             } else
                                 domStyle.set("dropDownOption", "display", "inline-block");
-                            this.hideLoading();//domStyle.set("loadingts", "display", "none");
+                            this.hideLoading();
                         }
-
-
                     }));
 
                     if ((this.map.getLevel()) >= 10)
                     {
                         dojo.style(dojo.byId("access"), "display", "none");
-
-
                         this.refreshData();
                         if (!registry.byId("timeDialog").open)
                             registry.byId("timeDialog").show();
@@ -437,7 +429,7 @@ define([
                         domStyle.set(this.filterDiv, "display", "none");
                         dojo.style(dojo.byId("access"), "display", "block");
                         html.set(this.temporalpro, "");
-                        this.hideLoading();// domStyle.set("loadingts", "display", "none");
+                        this.hideLoading();
                         if (!registry.byId("timeDialog").open)
                             registry.byId("timeDialog").show();
                         registry.byId("timeDialog").closeButtonNode.title = "Minimize";
@@ -519,13 +511,8 @@ define([
                         domStyle.set("slider2", "display", "block");
                         domStyle.set("slider3", "display", "block");
                     }
-                    // }
-
                     this.hideLoading();
-
-
-
-                },
+                 },
                 clear: function () {
 
                     dojo.style(dojo.byId("chartshow"), "display", "none");
@@ -576,7 +563,7 @@ define([
                                     if (this.mosaicBackup) {
                                         var mr = new MosaicRule(this.mosaicBackup);
                                     } else {
-                                        var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Year", "sortValue": 3000, "ascending": true, "mosaicOperation": "MT_FIRST"});
+                                        var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
                                     }
                                     registry.byId("currentOBJECTID").set("value", null);
                                     this.primaryLayer.setMosaicRule(mr);
@@ -641,7 +628,6 @@ define([
                                 break;
                             }
                         }
-
                         var point = evt;
                         var query = new Query();
                         query.geometry = point;
@@ -723,9 +709,6 @@ define([
                                 }
 
                             }
-
-
-
                             if (data.length > 20)
                                 html.set(this.queryScenes, "Please wait. Querying best 20 out of " + data.length + " scenes to create profile. May take longer the first time.");
                             else
@@ -854,10 +837,10 @@ define([
 
                                     var normalizedValues4 = [];
 
-                                    var nir = plot[4] - 5000;
-                                    var red = plot[3] - 5000;
+                                    var nir = plot[4];
+                                    var red = plot[3];
                                     var calc = (nir - red) / (red + nir);
-                                    var swir1 = plot[5] - 5000;
+                                    var swir1 = plot[5];
 
                                     var ndmi = ((nir - swir1) / (nir + swir1));
                                     var urban = (((swir1 - nir) / (swir1 + nir)) - ((nir - red) / (red + nir))) / 2;
@@ -932,7 +915,7 @@ define([
                                     domStyle.set("timeDialog", "left", "160px");
 
                                 }
-                                //dojo.style(dojo.byId("timeDialog"), "top", (this.h + "px"));
+                                
                                 this.chart = new Chart("chartNode");
                                 this.chart.addPlot("default", {
                                     type: "Lines",
@@ -1003,7 +986,6 @@ define([
                                 domStyle.set("slider", "display", "none");
                                 domStyle.set("slider2", "display", "none");
                                 domStyle.set("slider3", "display", "none");
-
                                 domStyle.set("loadingts1", "display", "none");
                             }), lang.hitch(this, function (error)
                             {
@@ -1082,7 +1064,7 @@ define([
 
 
                     this.primaryLayer = this.map.getLayer("primaryLayer");
-                    // domStyle.set("loadingts", "display", "block");
+                    
                     this.item = false;
                     var extent = new Extent(this.map.extent);
                     var xlength = (extent.xmax - extent.xmin) / 4;

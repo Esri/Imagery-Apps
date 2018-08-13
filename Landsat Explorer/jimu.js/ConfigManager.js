@@ -119,7 +119,6 @@ function (declare, lang, array, html, topic, Deferred, on, jimuUtils, WidgetMana
       var loading = new LoadingIndicator();
       loading.placeAt(window.jimuConfig.layoutId);
       return this.configLoader.loadConfig().then(lang.hitch(this, function(appConfig){
-          
         this.portalSelf = this.configLoader.portalSelf;
         this.appConfig = this._addDefaultValues(appConfig);
 

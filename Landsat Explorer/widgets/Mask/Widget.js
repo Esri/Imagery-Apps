@@ -83,6 +83,7 @@ define([
                 postCreate: function () {
                     window.addEventListener("resize", lang.hitch(this, this.resizeMaskWidget));
                     registry.byId("indexList").on("change", lang.hitch(this, function (value) {
+
                         if (!this.shareMaskRange)
                             this.maskFunction(value);
                     }));
@@ -97,6 +98,8 @@ define([
                         }
                     }));
                     registry.byId("maskDialog").on("hide", lang.hitch(this, function () {
+                        if (registry.byId("markedAreas").checked)
+                            this.toolbarAreas.deactivate();
                         if (!this.noMinimizeDisplay)
                             domStyle.set("minimizeButton", "display", "block");
                         else
@@ -106,6 +109,10 @@ define([
                         if (value) {
                             this.polygons = new Polygon(new SpatialReference({wkid: 102100}));
                             this.toolbarAreas.activate(Draw.POLYGON);
+                            if (document.getElementsByClassName("tooltip")) {
+
+                                domStyle.set(document.getElementsByClassName("tooltip")[0], "visibility", "visible");
+                            }
                             domStyle.set(registry.byId("clipMask").domNode, "display", "inline-block");
                             registry.byId("clipMask").set("disabled", true);
                         } else {
@@ -265,6 +272,8 @@ define([
                                 this.chart.addAxis("y", {vertical: true, fixLower: "none", fixUpper: "none", titleOrientation: "axis", minorLabels: false, microTicks: false, majorLabels: false, minorTicks: false, majorTicks: false, stroke: "white", majorTick: {color: "white"}});
                                 this.chart.addAxis("x", {titleOrientation: "away", fixLower: "none", fixUpper: "none", minorLabels: false, microTicks: false, majorLabels: false, minorTicks: false, majorTicks: false, majorTick: {color: "white"}, stroke: "white"});
                                 this.chart.addSeries("Mask", this.dataIncrease, {stroke: {color: this.color, width: 0.5}, fill: this.color});
+                                //  this.chart.addSeries("Grey", [],{stroke: {color: "grey",width: 0.5},fill: "grey"});
+
                                 this.magnify = new Magnify(this.chart, "default");
                                 this.chart.render();
                             }
@@ -317,7 +326,7 @@ define([
                         var propMask = registry.byId("changeProp").get("value").split(",");
                         this.shareMaskRange = parseFloat(propMask[1]);
                         registry.byId("indexList").set("value", propMask[0]);
-
+                        //     registry.byId("maskSlider").set("value",parseFloat(propMask[1]));
                         registry.byId("changeProp").set("value", "");
                         this.color = this.shareColor[propMask[0]];
                     }
@@ -423,6 +432,13 @@ define([
                         }
                     } else
                         this.skipMaskFlag = false;
+                    if (registry.byId("markedAreas").checked) {
+                        this.toolbarAreas.activate(Draw.POLYGON);
+                        if (document.getElementsByClassName("tooltip")) {
+
+                            domStyle.set(document.getElementsByClassName("tooltip")[0], "visibility", "visible");
+                        }
+                    }
                 },
                 onClose: function () {
                     this.stateClosed = true;
@@ -461,7 +477,7 @@ define([
                         else
                             this.dataIncrease = this.value.slice(increaseLimit, this.value.length);
 
-
+                        // if(threshold <= this.max && threshold >= this.min)
                         this.chart.updateSeries("Mask", this.dataIncrease);
                         this.chart.render();
                     }
@@ -471,7 +487,6 @@ define([
                         this.sliderErrorFlag = true;
                 },
                 maskFunction: function (value) {
-
                     this.sliderErrorFlag = false;
                     if (value === "Custom") {
                         var A = "B" + (parseInt(registry.byId("bandA").get("value"))).toString();
@@ -568,9 +583,9 @@ define([
                     var args = {};
                     args.Method = 0;
                     if (value === "SAVI")
-                        args.BandIndexes = O + "+" + "(" + S + "*" + "(1.5*((" + A + "-" + B + ")/(" + A + "+" + B + " +15000))))";
+                        args.BandIndexes = O + "+" + "(" + S + "*" + "(1.5*((" + A + "-" + B + ")/(" + A + "+" + B + " +5000))))";
                     else
-                        args.BandIndexes = O + "+" + "(" + S + "*" + "((" + A + "-" + B + ")/(" + A + "+" + B + " -10000)))";
+                        args.BandIndexes = O + "+" + "(" + S + "*" + "((" + A + "-" + B + ")/(" + A + "+" + B + ")))";
                     raster.functionArguments = args;
 
 
@@ -579,7 +594,7 @@ define([
                         rasterNDVI.functionName = "BandArithmetic";
                         rasterNDVI.outputPixelType = "F32";
                         var argNDVI = {};
-                        argNDVI.BandIndexes = "(B5 - B4)/(B5 + B4 - 10000)";
+                        argNDVI.BandIndexes = "(B5 - B4)/(B5 + B4)";
                         argNDVI.Method = 0;
                         rasterNDVI.functionArguments = argNDVI;
 
@@ -587,7 +602,7 @@ define([
                         rasterNDWI.functionName = "BandArithmetic";
                         rasterNDWI.outputPixelType = "F32";
                         var argNDWI = {};
-                        argNDWI.BandIndexes = "(B3 - B6)/(B3 + B6 - 10000)";
+                        argNDWI.BandIndexes = "(B3 - B6)/(B3 + B6)";
                         argNDWI.Method = 0;
                         rasterNDWI.functionArguments = argNDWI;
 

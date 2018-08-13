@@ -274,7 +274,7 @@ define([
                             geometryType: "esriGeometryPoint",
                             returnGeometry: false,
                             returnFirstValueOnly: true,
-                            outFields: 'AcquisitionDate,OBJECTID,Name,Category,ProductName,CloudCover',
+                            outFields: 'acquisitiondate,objectid,name,category,productname,cloudcover',
                             pixelSize: [this.primaryLayer.pixelSizeX, this.primaryLayer.pixelSizeY],
                             mosaicRule: this.mosaic,
                             f: "json"
@@ -287,7 +287,7 @@ define([
                         var props = data.samples[0].attributes;
 
 
-                        html.set(this.identifytab, "<table style='border: 0px;width:100%;'><tr><td>Scene ID: <b>" + props.Name + "</b></td><td>Acquisition Date: <b>" + locale.format(new Date(props.AcquisitionDate), {selector: "date", formatLength: "long"}) + "</b></td></tr><tr><td>Cloud Cover: <b>" + (props.CloudCover * 100).toFixed(1) + "%</b></td></tr></table><hr>");
+                        html.set(this.identifytab, "<table style='border: 0px;width:100%;'><tr><td>Scene ID: <b>" + props.name + "</b></td><td>Acquisition Date: <b>" + locale.format(new Date(props.acquisitiondate), {selector: "date", formatLength: "long"}) + "</b></td></tr><tr><td>Cloud Cover: <b>" + (props.cloudcover * 100).toFixed(1) + "%</b></td></tr></table><hr>");
                         if (!this.centerFlag)
                             this.spectralprofiles(data, point);
                         else {
@@ -685,10 +685,10 @@ define([
                         this.xmax = result.histograms[0].max;
                         this.ymin = result.histograms[1].min;
                         this.ymax = result.histograms[1].max;
-                        document.getElementById("xmin").innerHTML = parseFloat((this.xmin - 5000) / 50000).toFixed(2);
-                        document.getElementById("xmax").innerHTML = parseFloat((this.xmax - 5000) / 50000).toFixed(2);
-                        document.getElementById("ymax").innerHTML = parseFloat((this.ymax - 5000) / 50000).toFixed(2);
-                        document.getElementById("ymin").innerHTML = parseFloat((this.ymin - 5000) / 50000).toFixed(2);
+                        document.getElementById("xmin").innerHTML = parseFloat(this.xmin / 10000).toFixed(2);
+                        document.getElementById("xmax").innerHTML = parseFloat(this.xmax / 10000).toFixed(2);
+                        document.getElementById("ymax").innerHTML = parseFloat(this.ymax / 10000).toFixed(2);
+                        document.getElementById("ymin").innerHTML = parseFloat(this.ymin / 10000).toFixed(2);
                     }));
                 },
                 eventsOnCanvas: function () {
@@ -815,10 +815,12 @@ define([
                     var stretch = new RasterFunction();
                     stretch.functionName = "Stretch";
                     var stretchArg = {};
-                    stretchArg.StretchType = 5;
+                    stretchArg.StretchType = 6;
                     stretchArg.DRA = true;
                     stretchArg.Min = 0;
                     stretchArg.Max = 255;
+                    stretchArg.MinPercent = 0.1;
+                    stretchArg.MaxPercent = 0.1;
                     stretchArg.Raster = extractBand1;
                     stretch.functionArguments = stretchArg;
                     stretch.outputPixelType = "U8";

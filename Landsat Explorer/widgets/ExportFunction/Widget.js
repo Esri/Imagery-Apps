@@ -23,16 +23,13 @@ define([
     "dojo/_base/lang",
     "dojo/dom",
     "esri/layers/RasterFunction",
-    "dojo/html",
-    "dijit/popup",
-    'dojo/dom-class',
+    "dojo/html", "dijit/popup", 'dojo/dom-class',
     "dojo/dom-construct",
     "dojo/dom-attr",
     "dojo/dom-style",
     "esri/toolbars/draw",
     "dojo/_base/connect",
-    "esri/Color",
-    "jimu/PanelManager",
+    "esri/Color", "jimu/PanelManager",
 ],
         function (
                 declare,
@@ -45,8 +42,12 @@ define([
                 dom,
                 RasterFunction,
                 html, popup, domClass,
+                /* ArcGISImageServiceLayer,
+                 ImageServiceParameters,Query,QueryTask,locale,*/
                 domConstruct, domAttr,
+                //strings, 
                 domStyle, Draw, connect, Color,
+                //domClass,SimpleMarkerSymbol,SimpleLineSymbol,
                 PanelManager) {
             var pm = PanelManager.getInstance();
             var clazz = declare([BaseWidget, _WidgetsInTemplateMixin], {
@@ -118,7 +119,7 @@ define([
                     if (registry.byId("timeDialog") && registry.byId("timeDialog").open)
                         registry.byId("timeDialog").hide();
 
-                    this.hideLoading();
+                    this.hideLoading();//domStyle.set("loadingExport","display","none");
                     var widthMax = this.map.width;
 
                     var width = (this.map.extent.xmax - this.map.extent.xmin);
@@ -157,7 +158,7 @@ define([
                     registry.byId("outputSp").set("value", wkid);
                     this.extentchangeHandler = this.map.on("extent-change", lang.hitch(this, this.updateValues));
 
-
+                    // setTimeout(this.tutorialExport,3000);
                 },
                 tutorialExport: function () {
                     if (registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && (registry.byId("tutorialStage").get("value") === "29")) {
@@ -196,7 +197,7 @@ define([
                     window.addEventListener("resize", lang.hitch(this, this.resizeExportWidget));
                     registry.byId("export").on("click", lang.hitch(this, this.exportFunction));
                     registry.byId("extent").on("change", lang.hitch(this, this.activatePolygon));
-
+                    //  registry.byId("outputSp").on("click", lang.hitch(this, this.tutorialExport));
                     registry.byId("outputSp").on("change", lang.hitch(this, this.tutorialExport));
                     if (this.map) {
 
@@ -274,7 +275,9 @@ define([
                 activatePolygon: function () {
                     if (registry.byId("extent").checked) {
                         this.toolbarForExport.activate(Draw.POLYGON);
-
+                        if (document.getElementsByClassName("tooltip")) {
+                            domStyle.set(document.getElementsByClassName("tooltip")[0], "visibility", "visible");
+                        }
                     } else {
                         this.toolbarForExport.deactivate();
                         for (var k in this.map.graphics.graphics)
@@ -315,7 +318,7 @@ define([
                 },
                 exportFunction: function () {
 
-                    this.showLoading();
+                    this.showLoading();//domStyle.set("loadingExport","display","block");
                     if (registry.byId("extent").checked)
                     {
                         var bbox = (this.geometry.xmin + ", " + this.geometry.ymin + ", " + this.geometry.xmax + ", " + this.geometry.ymax).toString();
@@ -329,12 +332,14 @@ define([
                         var width = (this.map.extent.xmax - this.map.extent.xmin);
                         var height = (this.map.extent.ymax - this.map.extent.ymin);
                     }
-                    if(this.map.getLayer("resultLayer"))
-                        var exportLayer = this.map.getLayer("resultLayer");
-                    else if(this.map.getLayer("primaryLayer"))
-                        var exportLayer = this.map.getLayer("primaryLayer");
-                    else if(this.map.getLayer("secondaryLayer"))
-                        var exportLayer = this.map.getLayer("secondaryLayer");
+                    for (var i = this.map.layerIds.length - 1; i >= 0; i--) {
+
+                        if ((this.map.getLayer(this.map.layerIds[i]).url).indexOf("landsat") !== -1) {
+                            var exportLayer = this.map.getLayer(this.map.layerIds[i]);
+
+                            break;
+                        }
+                    }
                     var pixelsize = parseFloat((registry.byId("pixelSize").get("value")).split(" ")[0]);
 
                     var widthMax = this.map.width;
@@ -350,7 +355,7 @@ define([
                     if ((width / pixelsize) > widthMax || (height / pixelsize) > widthMax) {
                         var size = "";
                         html.set(this.errorPixelSize, "PixelSize of export is restricted to " + ps.toFixed(3) + " for this extent.");
-                        this.hideLoading();
+                        this.hideLoading();// domStyle.set("loadingExport","display","none");
                     } else {
                         var size = (parseInt(width / ps)).toString() + ", " + (parseInt(height / ps)).toString();
                         html.set(this.errorPixelSize, "");
@@ -509,11 +514,7 @@ define([
                                     argsRemap.OutputValues = [1];
                                     argsRemap.NoDataRanges = [-1, maskSliderValue];
                                     var color = registry.byId("savePropAccess").get("value").split(",");
-
-
                                     var colorMask = [[1, parseInt(color[0]), parseInt(color[1]), parseInt(color[2])]];
-
-
                                     remap.functionArguments = argsRemap;
                                     remap.outputPixelType = 'U8';
                                     if (registry.byId("renderer").checked) {
@@ -524,9 +525,6 @@ define([
                                         argsColor.Colormap = colorMask;
                                         argsColor.Raster = remap;
                                         colormap.functionArguments = argsColor;
-
-
-
                                     } else
                                         var colormap = remap;
                                 }
@@ -552,11 +550,10 @@ define([
                                 var renderingRule = JSON.stringify(colormap.toJson());
                         } else
                             var renderingRule = null;
-
                         var format = "tiff";
                         var compression = "LZ77";
 
-
+                        //} 
                         if (exportLayer.mosaicRule !== null)
                             var mosaicRule = JSON.stringify(exportLayer.mosaicRule.toJson());
                         else
@@ -592,7 +589,7 @@ define([
 
                             domAttr.set("linkDownload", "target", "_self");
                             (dom.byId("linkDownload")).click();
-                            this.hideLoading();
+                            this.hideLoading();// domStyle.set("loadingExport","display","none");
                             if (registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && registry.byId("tutorialStage").get("value") === "31") {
 
 
@@ -601,7 +598,6 @@ define([
                                 tooltipTemp.set("content", "<p style='text-align:justify;'>You can also add or remove data from ArcGIS Online using the Add Data tool. <span style='color:orange;font-weight:bolder;'>Click <img src='./widgets/AddData/images/icon.png' height='15'/></span> to open the Add Data tool.</p>");
 
                                 popup.open({
-                                    // parent: registry.byId("Export"),
                                     popup: tooltipTemp,
                                     orient: ["after-centered"],
                                     around: document.getElementsByClassName("icon-node")[5],
@@ -611,7 +607,6 @@ define([
                                 });
                                 domStyle.set(tooltipTemp.connectorNode, "top", "0px");
                                 registry.byId("tutorialStage").set("value", "32");
-
                                 var y = document.getElementsByClassName("icon-node");
                                 y[7].style.pointerEvents = "none";
                                 y[7].click();

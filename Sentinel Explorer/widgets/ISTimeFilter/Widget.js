@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2017 Esri. All Rights Reserved.
+// Copyright (c) 2018 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -130,6 +130,21 @@ define([
                     registry.byId("imageDateSelector").on("change", lang.hitch(this, this.selectorChange));
                     registry.byId("cloudFilter").on("change", lang.hitch(this, this.timeSliderRefresh));
                     registry.byId("saveSceneBtn").on("click", lang.hitch(this, this.saveScene));
+                    registry.byId("fullAccessBtn").on("click", lang.hitch(this, function () {
+                        var request = new esriRequest({
+                            url: "https://sentinel.arcgis.com/arcgis/rest/services/Sentinel2/ImageServer",
+                            content: {
+                                "f": "json"
+                            },
+                            handleAs: "json",
+                            callbackParamName: "callback"
+                        });
+                        request.then(lang.hitch(this, function () {
+                            this.clear();
+                            html.set(this.pointgraph, "");
+                            this.timeSliderRefresh();
+                        }));
+                    }));
                     if (this.map) {
 
                         this.map.on("update-start", lang.hitch(this, this.showLoading));
@@ -137,6 +152,9 @@ define([
                         this.map.on("update-end", lang.hitch(this, this.timeUpdate));
                         this.toolbarTemporal = new Draw(this.map);
                         dojo.connect(this.toolbarTemporal, "onDrawEnd", lang.hitch(this, this.addGraphic));
+                    }
+                    if (this.map.useSecureService) {
+                        domStyle.set("fullAccess", "display", "none");
                     }
                 },
                 timeDisplayFormat: function () {
@@ -243,7 +261,7 @@ define([
                     domStyle.set(this.secondaryRange, "display", "none");
 
                     html.set(this.secondaryRange, "Comparison Date: <b>" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"}) + "</b>&nbsp;&nbsp;&nbsp;");
-                    this.intersectGeometry = this.orderedFeatures[this.slider.get("value")].geometry;
+                    this.intersectGeometry = this.lockId;//this.orderedFeatures[this.slider.get("value")].geometry;
                     dom.byId("dateSecondary").innerHTML = "&nbsp;&nbsp;Comparison Date:&nbsp;" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"});
 
 
@@ -273,9 +291,9 @@ define([
                         registry.byId("saveSceneBtn").onClick();
                         if (this.appScene2) {
 
-                            for (var f in this.dateobj) {
+                            for (var f in this.orderedDates) {
 
-                                if (this.appScene2 === this.orderedFeatures[f].attributes.Name)
+                                if (parseInt(this.appScene2) === this.orderedDates[f])
                                 {
 
                                     var ind = f;
@@ -311,6 +329,8 @@ define([
                         z[6].click();
                     else if (domClass.contains(z[7], "jimu-state-selected"))
                         z[7].click();
+                    else if (pm.getPanelById("_16_panel") && pm.getPanelById("_16_panel").state === "opened")
+                        pm.closePanel("_16_panel");
                     else if (pm.getPanelById("_22_panel") && pm.getPanelById("_22_panel").state === "opened")
                         pm.closePanel("_22_panel");
 
@@ -324,7 +344,6 @@ define([
                             this.saveValue = userDefinedVariables[2];
                         } else
                             this.appScene = userDefinedVariables[0];
-
                         this.changeValue = userDefinedVariables[3];
                         registry.byId("cloudFilter").set("value", userDefinedVariables[1]);
                         registry.byId("appSceneID").set("value", null);
@@ -499,7 +518,7 @@ define([
                     if (this.mosaicBackup) {
                         var mr = new MosaicRule(this.mosaicBackup);
                     } else {
-                        var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
+                        var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST", "where": "(datatype_format = 'Cloned') OR (datatype_format IS NULL)"});
                     }
 
                     registry.byId("currentOBJECTID").set("value", null);
@@ -524,10 +543,9 @@ define([
 
                 },
                 clear: function () {
-
                     dojo.style(dojo.byId("chartshow"), "display", "none");
-                    domStyle.set(dom.byId("cloudSelect"), "display", "block");
-
+                    domStyle.set(dom.byId("cloudSelect"), "display", "inline-block");
+                    domStyle.set("dateSelectorContainer", "display", "inline-block");
                     if (this.chart) {
                         dojo.empty("chartNode");
                         this.chart = null;
@@ -544,7 +562,7 @@ define([
                             if (this.mosaicBackup) {
                                 var mr = new MosaicRule(this.mosaicBackup);
                             } else {
-                                var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
+                                var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST", "where": "(datatype_format = 'Cloned') OR (datatype_format IS NULL)"});
                             }
                             this.primaryLayer.setMosaicRule(mr);
                             registry.byId("currentOBJECTID").set("value", null);
@@ -564,25 +582,25 @@ define([
                             }
                         }
                     } else {
-                        for (var f in this.dateobj) {
-                            if (this.dateobj[f].obj === this.lockId) {
-                                var sceneExtent = this.dateobj[f].geo;
-                                var mapExtent = extentInfo.extent;
-                                if (mapExtent.xmax < sceneExtent.xmin || mapExtent.xmin > sceneExtent.xmax || mapExtent.ymin > sceneExtent.ymax || mapExtent.ymax < sceneExtent.ymin) {
 
-                                    if (this.mosaicBackup) {
-                                        var mr = new MosaicRule(this.mosaicBackup);
-                                    } else {
-                                        var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
-                                    }
-                                    registry.byId("currentOBJECTID").set("value", null);
-                                    this.primaryLayer.setMosaicRule(mr);
-                                    this.timeSliderHide();
-                                    pm.closePanel('_32_panel');
+                        if (this.lockId) {
+                            var sceneExtent = this.lockId.getExtent();//this.dateobj[f].geo;
+                            var mapExtent = extentInfo.extent;
+                            if (mapExtent.xmax < sceneExtent.xmin || mapExtent.xmin > sceneExtent.xmax || mapExtent.ymin > sceneExtent.ymax || mapExtent.ymax < sceneExtent.ymin) {
 
+                                if (this.mosaicBackup) {
+                                    var mr = new MosaicRule(this.mosaicBackup);
+                                } else {
+                                    var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST", "where": "(datatype_format = 'Cloned') OR (datatype_format IS NULL)"});
                                 }
+                                registry.byId("currentOBJECTID").set("value", null);
+                                this.primaryLayer.setMosaicRule(mr);
+                                this.timeSliderHide();
+                                pm.closePanel('_32_panel');
+
                             }
                         }
+
                     }
                 },
                 refreshData: function () {
@@ -590,7 +608,8 @@ define([
 
                     this.primaryLayer = this.map.getLayer("primaryLayer");
                     this.mosaicBackup = this.primaryLayer.defaultMosaicRule;
-                    this.dateField = "AcquisitionDate";
+                    this.mosaicBackup.where = "(datatype_format = 'Cloned') OR (datatype_format IS NULL)";
+                    this.dateField = "acquisitiondate";
 
                 },
                 limitvalue: function (num)
@@ -637,10 +656,13 @@ define([
                         var point = evt;
                         var query = new Query();
                         query.geometry = point;
-                        query.outFields = ["AcquisitionDate", "OBJECTID", "Name", "Best"];
-                        query.where = "(Category = 1) AND (CloudCover <=" + registry.byId("cloudFilter").get("value") + ")";
+                        query.outFields = ["acquisitiondate", "objectid", "name", "best"];
+                        if (this.map.useSecureService)
+                            query.where = "(category = 1) AND (cloudcover <=" + registry.byId("cloudFilter").get("value") + ")";
+                        else
+                            query.where = "(category = 1) AND (cloudcover <=" + registry.byId("cloudFilter").get("value") + ") AND (datatype_format = 'Cloned')";
 
-                        query.orderByFields = ["AcquisitionDate"];
+                        query.orderByFields = ["acquisitiondate"];
                         query.returnGeometry = false;
                         var array = [], arrayId = [];
                         var queryTask = new QueryTask(this.config.urlSentinel);
@@ -649,27 +671,33 @@ define([
                             var data = result.features;
 
 
-                            if (data.length > 20)
-                                html.set(this.queryScenes, "Please wait. Querying best 20 out of " + data.length + " scenes to create profile. May take longer the first time.");
+                            if (data.length > 10)
+                                html.set(this.queryScenes, "Please wait. Querying best 10 out of " + data.length + " scenes to create profile. May take longer the first time.");
                             else
                                 html.set(this.queryScenes, "Please wait. Querying " + data.length + " scenes to create profile. May take longer the first time.");
                             registry.byId("waitDialog").show();
                             var prevIterationValue = 0;
                             this.lengthofsamples = data.length;
-                            var l = 0;
                             for (var i = 0; i < this.lengthofsamples; i++) {
+                                if (i === 0) {
+                                    distance.push({
+                                        objectId: data[i].attributes.objectid,
+                                        acqDate: data[i].attributes.acquisitiondate,
+                                        name: data[i].attributes.name
+                                    });
+                                } else {
+                                    if (locale.format(new Date(distance[distance.length - 1].acqDate), {selector: "date", datePattern: "dd/MM/yy"}) !== locale.format(new Date(data[i].attributes.acquisitiondate), {selector: "date", datePattern: "dd/MM/yy"})) {
+                                        distance.push({
+                                            objectId: data[i].attributes.objectid,
+                                            acqDate: data[i].attributes.acquisitiondate,
+                                            name: data[i].attributes.name
+                                        });
+                                    }
 
-                                distance.push({
-                                    objectId: data[i].attributes.OBJECTID,
-                                    acqDate: data[i].attributes.AcquisitionDate,
-                                    name: data[i].attributes.Name
-                                });
-
-
+                                }
                             }
-
-                            if (data.length > 20) {
-                                var limitSamples = data.length - 20;
+                            if (distance.length > 10) {
+                                var limitSamples = distance.length - 10;
                             } else
                             {
                                 var limitSamples = 0;
@@ -690,11 +718,10 @@ define([
 
                                 }
                             }
-
                             var noCurrentScene = null;
 
                             for (var a = 0; a < array.length; a++) {
-                                if (array[a].name === this.orderedFeatures[this.slider.get("value")].attributes.Name)
+                                if (array[a].acqDate === this.orderedDates[this.slider.get("value")])
                                 {
                                     noCurrentScene = false;
                                     break;
@@ -702,26 +729,9 @@ define([
                                     noCurrentScene = true;
                             }
 
-                            if (noCurrentScene) {
-                                array.push({
-                                    objectId: this.orderedFeatures[this.slider.get("value")].attributes.OBJECTID,
-                                    acqDate: this.orderedFeatures[this.slider.get("value")].attributes.AcquisitionDate,
-                                    name: this.orderedFeatures[this.slider.get("value")].attributes.Name
-                                });
-                                array.sort(function (a, b) {
-                                    return a.acqDate - b.acqDate;
-                                });
-                                for (var v = array.length - 1; v >= 0; v--) {
-                                    if (array[v].name === this.orderedFeatures[this.slider.get("value")].attributes.Name) {
 
-                                        array.splice(v + 1, 1);
-                                        break;
-                                    }
-                                }
-                                arrayId[v] = array[v].objectId;
-                            }
                             var mosaicLock = new MosaicRule({"mosaicMethod": "esriMosaicLockRaster", "ascending": true, "mosaicOperation": "MT_FIRST", "lockRasterIds": arrayId});
-                            mosaicLock = JSON.stringify(mosaicLock);
+                            mosaicLock = JSON.stringify(mosaicLock.toJson());
 
 
 
@@ -836,72 +846,81 @@ define([
                                     domStyle.set("timeDialog", "left", "160px");
 
                                 }
-
-                                this.chart = new Chart("chartNode");
-                                this.chart.addPlot("default", {
-                                    type: "Lines",
-                                    markers: true,
-                                    tension: "S",
-                                    shadows: {dx: 4, dy: 4}
-                                });
-                                this.chart.setTheme(theme);
-
-
-                                this.chart.addAxis("y", {vertical: true, fixLower: "major", fixUpper: "major", title: "Data Values", titleOrientation: "axis"});
-                                this.chart.addAxis("x", {labels: this.NDVIDates, labelSizeChange: true, title: "Acquisition Date", titleOrientation: "away", majorTickStep: 1, minorTicks: false});
-
-                                this.chart.addSeries("NDMI Moisture", this.NDMIValues, {stroke: {color: "#40a4df", width: 1.5}, fill: "#40a4df", hidden: true});
-                                this.chart.addSeries("Urban", this.UrbanValues, {stroke: {color: "indianred", width: 1.5}, fill: "indianred", hidden: true});
-                                this.chart.addSeries("NDVI Vegetation", this.NDVIValues, {stroke: {color: "forestgreen", width: 1.5}, fill: "forestgreen"});
-
+                                if (items.length === 1) {
+                                    document.getElementById("chartValues").innerHTML = "<table><tr><td>NDVI (Vegetation): </td><td><b>" + (this.NDVIValues[0].y).toFixed(2) + "</b></td></tr><tr><td>Urban: </td><td><b>" + (this.UrbanValues[0].y).toFixed(2) + "</b></td></tr><tr><td>NDMI (Moisture): </td><td><b>" + (this.NDMIValues[0].y).toFixed(2) + "</b></td></tr></table>";
+                                    domStyle.set("chartNode", "display", "none");
+                                    domStyle.set("legend", "display", "none");
+                                } else {
+                                    domStyle.set("chartNode", "display", "block");
+                                    domStyle.set("legend", "display", "block");
+                                    document.getElementById("chartValues").innerHTML = "";
+                                    this.chart = new Chart("chartNode");
+                                    this.chart.addPlot("default", {
+                                        type: "Lines",
+                                        markers: true,
+                                        tension: "S",
+                                        shadows: {dx: 4, dy: 4}
+                                    });
+                                    this.chart.setTheme(theme);
 
 
-                                this.toolTip = new Tooltip(this.chart, "default");
-                                this.magnify = new Magnify(this.chart, "default", {scale: 3});
-                                this.highLight = new Highlight(this.chart, "default");
-                                this.chart.render();
-                                if (!this.legend)
-                                    this.legend = new SelectableLegend({chart: this.chart, horizontal: true, outline: false}, "legend");
-                                else {
-                                    this.legend.set("params", {chart: this.chart, horizontal: true, outline: false});
-                                    this.legend.set("chart", this.chart);
-                                    this.legend.refresh();
-                                }
-                                this.legendNumber = parseInt((this.legend._cbs[0].id).split("Box_")[1]);
+                                    this.chart.addAxis("y", {vertical: true, fixLower: "major", fixUpper: "major", title: "Data Values", titleOrientation: "axis"});
+                                    this.chart.addAxis("x", {labels: this.NDVIDates, labelSizeChange: true, title: "Acquisition Date", titleOrientation: "away", majorTickStep: 1, minorTicks: false});
 
-                                for (var d = this.legendNumber; d < (this.legendNumber + 3); d++) {
-                                    on(document.getElementById("dijit_form_CheckBox_" + d), "click", lang.hitch(this, function (e) {
+                                    this.chart.addSeries("NDMI (Moisture)", this.NDMIValues, {stroke: {color: "#40a4df", width: 1.5}, fill: "#40a4df", hidden: true});
+                                    this.chart.addSeries("Urban", this.UrbanValues, {stroke: {color: "indianred", width: 1.5}, fill: "indianred", hidden: true});
+                                    this.chart.addSeries("NDVI (Vegetation)", this.NDVIValues, {stroke: {color: "forestgreen", width: 1.5}, fill: "forestgreen"});
 
-                                        if (document.getElementById("dijit_form_CheckBox_" + this.legendNumber).checked)
-                                            this.chart.fireEvent("NDMI Moisture", "onmouseover", this.prevMarker);
-                                        if (document.getElementById("dijit_form_CheckBox_" + (this.legendNumber + 1)).checked)
-                                            this.chart.fireEvent("Urban", "onmouseover", this.prevMarker);
-                                        if (document.getElementById("dijit_form_CheckBox_" + (this.legendNumber + 2)).checked)
-                                            this.chart.fireEvent("NDVI Vegetation", "onmouseover", this.prevMarker);
 
-                                    }));
-                                }
-                                if (!v) {
 
-                                    for (var a in this.NDVIData) {
-                                        if (this.NDVIData[a].name === this.orderedFeatures[this.slider.get("value")].attributes.Name)
-                                        {
-                                            var v = a;
-                                            ;
-                                            break;
+                                    this.toolTip = new Tooltip(this.chart, "default");
+                                    this.magnify = new Magnify(this.chart, "default", {scale: 3});
+                                    this.highLight = new Highlight(this.chart, "default");
+                                    this.chart.render();
+                                    if (!this.legend)
+                                        this.legend = new SelectableLegend({chart: this.chart, horizontal: true, outline: false}, "legend");
+                                    else {
+                                        this.legend.set("params", {chart: this.chart, horizontal: true, outline: false});
+                                        this.legend.set("chart", this.chart);
+                                        this.legend.refresh();
+                                    }
+                                    this.legendNumber = parseInt((this.legend._cbs[0].id).split("Box_")[1]);
+
+                                    for (var d = this.legendNumber; d < (this.legendNumber + 3); d++) {
+                                        on(document.getElementById("dijit_form_CheckBox_" + d), "click", lang.hitch(this, function (e) {
+
+                                            if (document.getElementById("dijit_form_CheckBox_" + this.legendNumber).checked)
+                                                this.chart.fireEvent("NDMI Moisture", "onmouseover", this.prevMarker);
+                                            if (document.getElementById("dijit_form_CheckBox_" + (this.legendNumber + 1)).checked)
+                                                this.chart.fireEvent("Urban", "onmouseover", this.prevMarker);
+                                            if (document.getElementById("dijit_form_CheckBox_" + (this.legendNumber + 2)).checked)
+                                                this.chart.fireEvent("NDVI Vegetation", "onmouseover", this.prevMarker);
+
+                                        }));
+                                    }
+                                    if (!v) {
+
+                                        for (var a in this.NDVIData) {
+                                            if (this.NDVIData[a].acqDate === this.orderedDates[this.slider.get("value")])
+                                            {
+                                                var v = a;
+                                                ;
+                                                break;
+                                            }
                                         }
                                     }
-                                }
-                                this.prevMarker = v;
-                                this.chart.fireEvent("NDVI Vegetation", "onmouseover", v);
-                                this.chart.connectToPlot("default", lang.hitch(this, this.highlightcurrent));
+                                    this.prevMarker = v;
+                                    this.chart.fireEvent("NDVI Vegetation", "onmouseover", v);
+                                    this.chart.connectToPlot("default", lang.hitch(this, this.highlightcurrent));
 
+
+
+                                    this.chart.connectToPlot("default", lang.hitch(this, this.clickdata));
+                                }
                                 domConstruct.destroy("chartDialog_underlay");
                                 domConstruct.destroy("timeDialog_underlay");
 
                                 this.seclayer = this.primaryLayer.url;
-
-                                this.chart.connectToPlot("default", lang.hitch(this, this.clickdata));
                                 domStyle.set("dropDownOption", "display", "none");
                                 domStyle.set("dateSelectorContainer", "display", "none");
                                 domStyle.set("slider", "display", "none");
@@ -928,7 +947,7 @@ define([
                 highlightcurrent: function (evt) {
                     if (evt.element === "marker" && evt.type === "onmouseout") {
 
-                        if (this.orderedFeatures[this.slider.get("value")].attributes.Name === this.NDVIData[evt.index].name) {
+                        if (this.orderedDates[this.slider.get("value")] === this.NDVIData[evt.index].acqDate) {
                             if (document.getElementById("dijit_form_CheckBox_" + this.legendNumber).checked)
                             {
                                 this.chart.fireEvent("NDMI Moisture", "onmouseover", evt.index);
@@ -955,9 +974,9 @@ define([
                     if (type2 === "onclick")
                     {
                         this.datesclick = (evt.x - 1);
-                        for (var g = 0; g < this.orderedFeatures.length; g++)
+                        for (var g = 0; g < this.orderedDates.length; g++)
                         {
-                            if (locale.format(new Date(this.orderedFeatures[g].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"}) === locale.format(new Date(this.NDVIData[this.datesclick].acqDate), {selector: "date", datePattern: "dd/MM/yy"}) && this.NDVIData[this.datesclick].name === this.orderedFeatures[g].attributes.Name)
+                            if (locale.format(new Date(this.orderedDates[g]), {selector: "date", datePattern: "dd/MM/yy"}) === locale.format(new Date(this.NDVIData[this.datesclick].acqDate), {selector: "date", datePattern: "dd/MM/yy"}))
                             {
                                 registry.byId("imageDateSelector").set("value", g);
                                 this.slider.set("value", g);
@@ -999,10 +1018,12 @@ define([
                     var extentnew = new Extent(xminnew, yminnew, xmaxnew, ymaxnew, extent.spatialReference);
                     var query = new Query();
                     query.geometry = extentnew;
-                    query.outFields = ["AcquisitionDate", "GroupName", "Best", "CloudCover", "Name"];
-
-                    query.where = "(Category = 1) AND (CloudCover <=" + registry.byId("cloudFilter").get("value") + ")";
-                    query.orderByFields = ["AcquisitionDate"];
+                    query.outFields = ["acquisitiondate", "groupname", "best", "cloudcover", "name"];
+                    if (this.map.useSecureService)
+                        query.where = "(category = 1) AND (cloudCover <=" + registry.byId("cloudFilter").get("value") + ")";
+                    else
+                        query.where = "(category = 1) AND (cloudCover <=" + registry.byId("cloudFilter").get("value") + ") AND (datatype_format = 'Cloned')";
+                    query.orderByFields = ["acquisitiondate"];
                     query.returnGeometry = true;
 
 
@@ -1013,35 +1034,27 @@ define([
                             html.set(this.cloudFilterError, "No scene.Select other option.");
                             html.set(this.temporalpro, "");
                             this.noSceneFlag = true;
-
                         } else {
                             html.set(this.cloudFilterError, "");
                             html.set(this.temporalpro, "Pick a point on the map to get the temporal profile for that point.");
                             this.noSceneFlag = false;
                         }
                         this.orderedFeatures = result.features;
-
-
-
-                        this.dateobj = [];
-                        for (var t = 0; t <= this.orderedFeatures.length - 1; t++)
-                        {
-                            this.dateobj.push({
-                                date: locale.format(new Date(this.orderedFeatures[t].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"}),
-                                obj: this.orderedFeatures[t].attributes.OBJECTID,
-                                geo: this.orderedFeatures[t].geometry.getExtent(),
-                                geoPolygon: this.orderedFeatures[t].geometry,
-                                Scene: this.orderedFeatures[t].attributes.Name
-                            });
-                        }
-
                         this.orderedDates = [];
                         for (var a in this.orderedFeatures) {
-                            this.orderedDates.push(this.orderedFeatures[a].attributes["AcquisitionDate"]);
+                            if (parseInt(a) < 1)
+                                this.orderedDates.push(this.orderedFeatures[a].attributes["acquisitiondate"]);
+                            else {
+                                var tempValue = locale.format(new Date(this.orderedDates[this.orderedDates.length - 1]), {selector: "date", formatLength: "short"});
+                                var tempCurrentValue = locale.format(new Date(this.orderedFeatures[a].attributes["acquisitiondate"]), {selector: "date", formatLength: "short"});
+                                if (tempValue !== tempCurrentValue)
+                                    this.orderedDates.push(this.orderedFeatures[a].attributes["acquisitiondate"]);
+
+                            }
                         }
 
 
-                        this.featureLength = this.orderedFeatures.length;
+                        this.featureLength = this.orderedDates.length;
 
                         var sliderNode = domConstruct.create("div", {}, this.timeSliderDiv, "first");
                         var rulesNode = domConstruct.create("div", {}, sliderNode, "first");
@@ -1082,6 +1095,7 @@ define([
                         this.slider.startup();
                         this.sliderRules.startup();
                         this.sliderLabels.startup();
+
                         registry.byId("imageDateSelector").removeOption(registry.byId("imageDateSelector").getOptions());
                         for (var v = this.orderedDates.length - 1; v >= 0; v--) {
                             registry.byId("imageDateSelector").addOption({label: locale.format(new Date(this.orderedDates[v]), {selector: "date", formatLength: "long"}), value: "" + v + ""});
@@ -1091,9 +1105,9 @@ define([
                         if (this.appScene) {
                             if (this.saveValue) {
 
-                                for (var f in this.dateobj) {
+                                for (var f in this.orderedDates) {
 
-                                    if (this.appScene === (this.orderedFeatures[f].attributes.Name))
+                                    if (parseInt(this.appScene) === this.orderedDates[f])
                                     {
 
                                         var ind = f;
@@ -1102,9 +1116,9 @@ define([
                                     }
                                 }
                             } else {
-                                for (var f in this.dateobj) {
+                                for (var f in this.orderedDates) {
 
-                                    if ((this.appScene) === this.orderedFeatures[f].attributes.Name)
+                                    if (parseInt(this.appScene) === this.orderedDates[f])
                                     {
                                         var ind = f;
                                         this.appScene = null;
@@ -1112,12 +1126,20 @@ define([
                                     }
                                 }
                             }
-
+                            if (!ind) {
+                                this.saveValue = false;
+                                this.changeOn = false;
+                                this.changeValue = false;
+                                html.set(this.errorDiv, "Access Denied. Please log in to ArcGIS Online to view the image.");
+                                setTimeout(lang.hitch(this, function () {
+                                    html.set(this.errorDiv, "");
+                                }), 5000);
+                            }
                         } else {
                             this.best = [];
                             for (var r = 0; r < this.orderedFeatures.length; r++)
                             {
-                                this.best.push(this.orderedFeatures[r].attributes.Best);
+                                this.best.push(this.orderedFeatures[r].attributes.best);
                             }
                             this.best.sort(function (a, b)
                             {
@@ -1128,28 +1150,38 @@ define([
 
                             for (var z in this.orderedFeatures)
                             {
-                                if (this.orderedFeatures[z].attributes.Best === index)
+                                if (this.orderedFeatures[z].attributes.best === index)
                                 {
-                                    var ind = z;
+                                    for (var x in this.orderedDates) {
+                                        if (this.orderedDates[x] === this.orderedFeatures[z].attributes.acquisitiondate) {
+                                            var ind = x;
+                                            break;
+                                        }
+                                    }
 
+                                    break;
                                 }
+
                             }
 
                         }
                         if (this.previousDateOnTimeSlider !== null) {
-                            for (var i in this.orderedFeatures) {
-                                if (this.orderedFeatures[i].attributes.AcquisitionDate === this.previousDateOnTimeSlider) {
-                                    ind = i;
+                            for (var i in this.orderedDates) {
+                                if (this.orderedDates[i] === this.previousDateOnTimeSlider) {
+                                    var ind = i;
                                 }
                             }
                         }
+                        if (!ind)
+                            ind = this.orderedDates.length - 1;
                         this.timeDisplayFormat2();
-                        registry.byId("imageDateSelector").set("value", ind);
-                        this.slider.set("value", ind);
-                        this.sliderChange();
-                        html.set(this.dateRange, "Image Date: <b>" + locale.format(new Date(this.orderedDates[ind]), {selector: "date", formatLength: "long"}) + "</b>");
-
-
+                        if (this.orderedDates[ind]) {
+                            registry.byId("imageDateSelector").set("value", ind);
+                            this.slider.set("value", ind);
+                            this.sliderChange();
+                            html.set(this.dateRange, "Image Date: <b>" + locale.format(new Date(this.orderedDates[ind]), {selector: "date", formatLength: "long"}) + "</b>");
+                        } else
+                            html.set(this.dateRange, "");
                     }), lang.hitch(this, function (error)
                     {
 
@@ -1157,7 +1189,7 @@ define([
                             this.best = [];
                             for (var r = 0; r < this.orderedFeatures.length; r++)
                             {
-                                this.best.push(this.orderedFeatures[r].attributes.Best);
+                                this.best.push(this.orderedFeatures[r].attributes.best);
                             }
                             this.best.sort(function (a, b)
                             {
@@ -1166,10 +1198,18 @@ define([
                             var index = this.best[0];
                             for (var z in this.orderedFeatures)
                             {
-                                if (this.orderedFeatures[z].attributes.Best === index)
+                                if (this.orderedFeatures[z].attributes.best === index)
                                 {
-                                    var ind = z;
+                                    for (var x in this.orderedDates) {
+                                        if (this.orderedDates[x] === this.orderedFeatures[z].attributes.acquisitiondate) {
+                                            var ind = x;
+                                            break;
+                                        }
+                                    }
+
+                                    break;
                                 }
+
                             }
                             this.timeDisplayFormat2();
                             this.hideLoading();
@@ -1178,6 +1218,7 @@ define([
                             this.sliderChange();
                             html.set(this.dateRange, "Image Date: <b>" + locale.format(new Date(this.orderedDates[ind]), {selector: "date", formatLength: "long"}) + "</b>");
                         } catch (e) {
+
                             this.timeDisplayFormat2();
                             this.hideLoading();
                             this.slider.set("value", 0);
@@ -1193,15 +1234,24 @@ define([
                     if (!domClass.contains(registry.byId("dropDownDateList").domNode, "dropDownSelected")) {
                         domStyle.set(this.dateRange, "display", "inline-block");
                         domStyle.set("dropDownOption", "display", "none");
-                        domStyle.set("slider", "display", "block");
-                        domStyle.set("slider2", "display", "block");
-                        domStyle.set("slider3", "display", "block");
+                        if (this.orderedFeatures.length <= 1) {
+                            domStyle.set("slider", "display", "none");
+                            domStyle.set("slider2", "display", "none");
+                            domStyle.set("slider3", "display", "none");
+                        } else {
 
+                            domStyle.set("slider", "display", "block");
+                            domStyle.set("slider2", "display", "block");
+                            domStyle.set("slider3", "display", "block");
+
+                        }
                     } else {
                         domStyle.set(this.dateRange, "display", "none");
+
                         domStyle.set("slider", "display", "none");
                         domStyle.set("slider2", "display", "none");
                         domStyle.set("slider3", "display", "none");
+
                         domStyle.set("dropDownOption", "display", "inline-block");
                     }
                 },
@@ -1217,85 +1267,76 @@ define([
 
                 },
                 sliderChange: function () {
-                    if (!domClass.contains(registry.byId("dropDownDateList").domNode, "dropDownSelected")) {
-                        this.primaryLayer = this.map.getLayer("primaryLayer");
+                    // if (!domClass.contains(registry.byId("dropDownDateList").domNode, "dropDownSelected")) {
+                    this.primaryLayer = this.map.getLayer("primaryLayer");
 
-                        this.previousDateOnTimeSlider = this.orderedFeatures[this.slider.get("value")].attributes.AcquisitionDate;
+                    this.previousDateOnTimeSlider = this.orderedDates[this.slider.get("value")];
 
-
-                        this.sliderValue = this.slider.get("value");
-                        if (this.sliderValue !== null) {
+                    var featureSelect = [];
+                    this.featureIds = [];
+                    this.sliderValue = this.slider.get("value");
+                    if (this.sliderValue !== null) {
+                        if (!domClass.contains(registry.byId("dropDownDateList").domNode, "dropDownSelected"))
                             registry.byId("imageDateSelector").set("value", this.sliderValue);
-                            var aqDate = this.orderedFeatures[this.slider.get("value")].attributes["AcquisitionDate"];
+                        var aqDate = this.orderedDates[this.slider.get("value")];
+                        if (aqDate)
                             html.set(this.dateRange, "Image Date: <b>" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"}) + "</b>");
-                            if (this.secondaryRange.innerHTML.includes("<b>") && this.dateRange.innerHTML.split("<b>")[1].split("</b>")[0] !== this.secondaryRange.innerHTML.split("<b>")[1].split("</b>")[0]) {
-                                domStyle.set(this.secondaryRange, "display", "inline-block");
-                                domStyle.set(this.dateRange, "font-size", "11px");
-                            } else {
-                                domStyle.set(this.secondaryRange, "display", "none");
-                                domStyle.set(this.dateRange, "font-size", "");
-                            }
-                            this.lockId = this.orderedFeatures[this.slider.get("value")].attributes.OBJECTID;
-                            var mr = new MosaicRule();
-                            mr.method = MosaicRule.METHOD_LOCKRASTER;
-                            mr.ascending = true;
-                            mr.operation = "MT_FIRST";
-                            mr.lockRasterIds = [this.orderedFeatures[this.sliderValue].attributes.OBJECTID];
-                            registry.byId("currentOBJECTID").set("value", this.orderedFeatures[this.sliderValue].attributes.AcquisitionDate);
-                            registry.byId("primarySceneId").set("value", this.orderedFeatures[this.sliderValue].attributes.Name)
-                            this.primaryLayer.setMosaicRule(mr);
-                            dom.byId("dateDisplay").innerHTML = "&nbsp;&nbsp;Imagery Date:&nbsp;" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"});
-                            if (this.map.getLayer("secondaryLayer")) {
-                                registry.byId("intersectingPolygon").set("value", JSON.stringify(geometryEngine.intersect(this.intersectGeometry, this.orderedFeatures[this.sliderValue].geometry)));
-                                var valuePolygn = JSON.parse(registry.byId("intersectingPolygon").get("value"));
-                                valuePolygn.cache = undefined;
-                                registry.byId("intersectingPolygon").set("value", JSON.stringify(valuePolygn));
-                            }
+                        if (this.secondaryRange.innerHTML.includes("<b>") && this.dateRange.innerHTML.split("<b>")[1].split("</b>")[0] !== this.secondaryRange.innerHTML.split("<b>")[1].split("</b>")[0]) {
+                            domStyle.set(this.secondaryRange, "display", "inline-block");
+                            domStyle.set(this.dateRange, "font-size", "11px");
+                        } else {
+                            domStyle.set(this.secondaryRange, "display", "none");
+                            domStyle.set(this.dateRange, "font-size", "");
+                        }
+                        for (var c in this.orderedFeatures) {
 
+                            var tempValue = locale.format(new Date(this.orderedDates[this.sliderValue]), {selector: "date", formatLength: "short"});
+                            var tempCurrentValue = locale.format(new Date(this.orderedFeatures[c].attributes["acquisitiondate"]), {selector: "date", formatLength: "short"});
 
+                            if (tempValue === tempCurrentValue) {
+                                featureSelect.push(this.orderedFeatures[c]);
+                                this.featureIds.push(this.orderedFeatures[c].attributes.objectid);
+
+                            }
 
                         }
+                        var geometry = [];
+                        for (var a in featureSelect) {
+                            geometry.push(featureSelect[a].geometry);
+                        }
+                        var combinedGeometry = geometryEngine.union(geometry);
+                        this.lockId = combinedGeometry;//this.orderedFeatures[this.slider.get("value")].attributes.OBJECTID;
+                        var mr = new MosaicRule();
+                        mr.method = MosaicRule.METHOD_LOCKRASTER;
+                        mr.ascending = true;
+                        mr.operation = "MT_FIRST";
+                        mr.lockRasterIds = this.featureIds;//[this.orderedFeatures[this.sliderValue].attributes.OBJECTID];
+                        registry.byId("currentOBJECTID").set("value", this.orderedDates[this.sliderValue]);
+                        registry.byId("primarySceneId").set("value", this.orderedDates[this.sliderValue]);//this.orderedFeatures[this.sliderValue].attributes.Name);
+                        this.primaryLayer.setMosaicRule(mr);
+                        dom.byId("dateDisplay").innerHTML = "&nbsp;&nbsp;Imagery Date:&nbsp;" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"});
+                        if (this.map.getLayer("secondaryLayer")) {
+                            registry.byId("intersectingPolygon").set("value", JSON.stringify(geometryEngine.intersect(this.intersectGeometry, combinedGeometry)));
+                            var valuePolygn = JSON.parse(registry.byId("intersectingPolygon").get("value"));
+                            valuePolygn.cache = undefined;
+                            registry.byId("intersectingPolygon").set("value", JSON.stringify(valuePolygn));
+                        }
+
+
+
                     }
+                    //}
                 },
                 selectorChange: function () {
                     if (domClass.contains(registry.byId("dropDownDateList").domNode, "dropDownSelected")) {
                         this.primaryLayer = this.map.getLayer("primaryLayer");
                         var selector = registry.byId("imageDateSelector");
-                        this.previousDateOnTimeSlider = this.orderedFeatures[selector.get("value")].attributes.AcquisitionDate;
+                        this.previousDateOnTimeSlider = this.orderedDates[selector.get("value")];
 
 
                         this.selectorValue = selector.get("value");
                         if (this.selectorValue !== null) {
                             this.slider.set("value", this.selectorValue);
-                            var aqDate = this.orderedFeatures[selector.get("value")].attributes["AcquisitionDate"];
-
-                            html.set(this.dateRange, "Image Date: <b>" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"}) + "</b>");
-                            if (this.secondaryRange.innerHTML.includes("<b>") && this.dateRange.innerHTML.split("<b>")[1].split("</b>")[0] !== this.secondaryRange.innerHTML.split("<b>")[1].split("</b>")[0]) {
-                                domStyle.set(this.secondaryRange, "display", "inline-block");
-                                domStyle.set(this.dateRange, "font-size", "11px");
-                            } else {
-                                domStyle.set(this.secondaryRange, "display", "none");
-                                domStyle.set(this.dateRange, "font-size", "");
-                            }
-                            this.lockId = this.orderedFeatures[selector.get("value")].attributes.OBJECTID;
-                            var mr = new MosaicRule();
-                            mr.method = MosaicRule.METHOD_LOCKRASTER;
-                            mr.ascending = true;
-                            mr.operation = "MT_FIRST";
-                            mr.lockRasterIds = [this.orderedFeatures[this.selectorValue].attributes.OBJECTID];
-                            registry.byId("currentOBJECTID").set("value", this.orderedFeatures[this.selectorValue].attributes.AcquisitionDate);
-                            registry.byId("primarySceneId").set("value", this.orderedFeatures[this.selectorValue].attributes.Name);
-                            this.primaryLayer.setMosaicRule(mr);
-                            dom.byId("dateDisplay").innerHTML = "&nbsp;&nbsp;Imagery Date:&nbsp;" + locale.format(new Date(aqDate), {selector: "date", formatLength: "long"});
-
-                            if (this.map.getLayer("secondaryLayer")) {
-                                registry.byId("intersectingPolygon").set("value", JSON.stringify(geometryEngine.intersect(this.intersectGeometry, this.orderedFeatures[this.selectorValue].geometry)));
-                                var valuePolygn = JSON.parse(registry.byId("intersectingPolygon").get("value"));
-                                valuePolygn.cache = undefined;
-                                registry.byId("intersectingPolygon").set("value", JSON.stringify(valuePolygn));
-                            }
-
-
                         }
                     }
                 },

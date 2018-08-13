@@ -17,8 +17,7 @@ define([
     'dojo/_base/declare',
     'dijit/_WidgetsInTemplateMixin',
     'dojo/text!./Widget.html',
-    'jimu/BaseWidget',
-    "./resourceLoad.js",
+    'jimu/BaseWidget', "./resourceLoad.js",
 ],
         function (
                 declare,
@@ -158,7 +157,6 @@ define([
                                         domStyle.set(tooltipTemp._popupWrapper, "display", "block");
                                     })
                                 });
-
                                 domStyle.set(tooltipTemp.connectorNode, "top", "0px");
                             }
 
@@ -170,6 +168,8 @@ define([
                         }
                     }));
                     registry.byId("changeDetectionDialog").on("hide", lang.hitch(this, function () {
+                        if (registry.byId("markedChangeAreas").checked)
+                            this.toolbarChangeAreas.deactivate();
                         if (!this.noMinimizeDisplay)
                             domStyle.set("minimizeChange", "display", "block");
                         else
@@ -324,6 +324,9 @@ define([
                         if (value) {
                             this.polygons = new Polygon(new SpatialReference({wkid: 102100}));
                             this.toolbarChangeAreas.activate(Draw.POLYGON);
+                            if (document.getElementsByClassName("tooltip")) {
+                                domStyle.set(document.getElementsByClassName("tooltip")[0], "visibility", "visible");
+                            }
                             domStyle.set(registry.byId("clipChange").domNode, "display", "inline-block");
                             registry.byId("clipChange").set("disabled", true);
                         } else {
@@ -443,7 +446,12 @@ define([
                 },
                 onOpen: function () {
                     this.stateClosed = false;
-
+                    if (registry.byId("markedChangeAreas").checked) {
+                        this.toolbarChangeAreas.activate(Draw.POLYGON);
+                        if (document.getElementsByClassName("tooltip")) {
+                            domStyle.set(document.getElementsByClassName("tooltip")[0], "visibility", "visible");
+                        }
+                    }
                     var x = document.getElementsByClassName("icon-node");
                     if (registry.byId("saveDialog") && registry.byId("saveDialog").open)
                         pm.closePanel("_20_panel");
@@ -626,10 +634,10 @@ define([
 
                     if (registry.byId("changeOptions").get("value") === "NDVI") {
                         var method = 0;
-                        var bandIndexes = "(B5 - B4)/(B5 + B4 - 10000)";
+                        var bandIndexes = "(B5 - B4)/(B5 + B4)";
                     } else {
                         var method = 0;
-                        var bandIndexes = "(1.5 * (B5 - B4))/(B5 + B4 +15000)";
+                        var bandIndexes = "(1.5 * (B5 - B4))/(B5 + B4 +5000)";
                     }
                     var layer = this.map.getLayer("primaryLayer");
                     var layer2 = this.map.getLayer("secondaryLayer");
@@ -710,7 +718,7 @@ define([
                     else
                         args1.Raster = "$" + this.array[0];
                     args1.Method = 0;
-                    args1.BandIndexes = "(B3-B6)/(B3+B6-10000)";
+                    args1.BandIndexes = "(B3-B6)/(B3+B6)";
                     raster1.outputPixelType = "F32";
                     raster1.functionArguments = args1;
 
@@ -723,7 +731,7 @@ define([
                     else
                         args2.Raster = "$" + this.array[1];
                     args2.Method = 0;
-                    args2.BandIndexes = "(B3-B6)/(B3+B6-10000)";
+                    args2.BandIndexes = "(B3-B6)/(B3+B6)";
                     raster2.functionArguments = args2;
                     raster2.outputPixelType = "F32";
 
@@ -778,7 +786,7 @@ define([
                     else
                         args1.Raster = "$" + this.array[0];
                     args1.Method = 0;
-                    args1.BandIndexes = "(B5 -B7)/(B5+B7 - 10000)";
+                    args1.BandIndexes = "(B5 -B7)/(B5+B7)";
                     raster1.outputPixelType = "F32";
                     raster1.functionArguments = args1;
 
@@ -790,7 +798,7 @@ define([
                     else
                         args12.Raster = "$" + this.array[0];
                     args12.Method = 0;
-                    args12.BandIndexes = "(B3-B6)/(B3+B6-10000)";
+                    args12.BandIndexes = "(B3-B6)/(B3+B6)";
                     raster12.outputPixelType = "F32";
                     raster12.functionArguments = args12;
 
@@ -824,7 +832,7 @@ define([
                     else
                         args2.Raster = "$" + this.array[1];
                     args2.Method = 0;
-                    args2.BandIndexes = "(B5 -B7)/(B5+B7 - 10000)";
+                    args2.BandIndexes = "(B5 -B7)/(B5+B7)";
                     raster2.functionArguments = args2;
                     raster2.outputPixelType = "F32";
 
@@ -838,7 +846,7 @@ define([
                     else
                         args22.Raster = "$" + this.array[1];
                     args22.Method = 0;
-                    args22.BandIndexes = "(B3-B6)/(B3+B6-10000)";
+                    args22.BandIndexes = "(B3-B6)/(B3+B6)";
                     raster22.outputPixelType = "F32";
                     raster22.functionArguments = args22;
 
@@ -915,10 +923,85 @@ define([
                     else
                         args1.Raster = "$" + this.array[0];
                     args1.Method = 0;
-                    args1.BandIndexes = "(((B6 - B5)/(B6 + B5 - 10000)) + ((B4 - B5)/(B5 + B4 - 10000)))";
+                    args1.BandIndexes = "(((B6 - B5)/(B6 + B5)) + ((B4 - B5)/(B5 + B4)))";
                     raster1.outputPixelType = "F32";
                     raster1.functionArguments = args1;
 
+                    var remapUrban = new RasterFunction();
+                    remapUrban.functionName = "Remap";
+                    var argsUrban = {};
+                    argsUrban.InputRanges = [0.05, 1];
+                    argsUrban.OutputValues = [0];
+                    argsUrban.AllowUnmatched = true;
+                    argsUrban.Raster = raster1;
+                    remapUrban.functionArguments = argsUrban;
+                    remapUrban.outputPixelType = "F32";
+
+                    var rasterNDVI = new RasterFunction();
+                    rasterNDVI.functionName = "BandArithmetic";
+                    rasterNDVI.outputPixelType = "F32";
+                    var argNDVI = {};
+                    argNDVI.BandIndexes = "(B5 - B4)/(B5 + B4)";
+                    argNDVI.Method = 0;
+                    if (layer.url === this.config.urlLandsatMS)
+                        argNDVI.Raster = "$" + layer.mosaicRule.lockRasterIds[0];
+                    else
+                        argNDVI.Raster = "$" + this.array[0];
+                    rasterNDVI.functionArguments = argNDVI;
+
+                    var remapNDVI = new RasterFunction();
+                    remapNDVI.functionName = "Remap";
+                    var argsNDVI = {};
+                    argsNDVI.InputRanges = [-1, 0.5, 0.5, 1];
+                    argsNDVI.OutputValues = [1, 0];
+                    argsNDVI.AllowUnmatched = true;
+                    argsNDVI.Raster = rasterNDVI;
+                    remapNDVI.functionArguments = argsNDVI;
+                    remapNDVI.outputPixelType = "F32";
+
+                    var arithmetic1 = new RasterFunction();
+                    arithmetic1.functionName = "Arithmetic";
+                    arithmetic1.outputPixelType = "F32";
+                    var arith1 = {};
+                    arith1.Raster = remapNDVI;
+                    arith1.Raster2 = remapUrban;
+                    arith1.Operation = 3;
+                    arith1.ExtentType = 1;
+                    arith1.CellsizeType = 0;
+                    arithmetic1.functionArguments = arith1;
+
+                    var rasterBare = new RasterFunction();
+                    rasterBare.functionName = "BandArithmetic";
+                    rasterBare.outputPixelType = "F32";
+                    var argBare = {};
+                    argBare.BandIndexes = "(B3 - B6)/(B3 + B6)";
+                    argBare.Method = 0;
+                    if (layer.url === this.config.urlLandsatMS)
+                        argBare.Raster = "$" + layer.mosaicRule.lockRasterIds[0];
+                    else
+                        argBare.Raster = "$" + this.array[0];
+                    rasterBare.functionArguments = argBare;
+
+                    var remapBare = new RasterFunction();
+                    remapBare.functionName = "Remap";
+                    var argsBare = {};
+                    argsBare.InputRanges = [-1, 0.1, 0.1, 1];
+                    argsBare.OutputValues = [1, 0];
+                    argsBare.AllowUnmatched = true;
+                    argsBare.Raster = rasterBare;
+                    remapBare.functionArguments = argsBare;
+                    remapBare.outputPixelType = "F32";
+
+                    var arithmetic12 = new RasterFunction();
+                    arithmetic12.functionName = "Arithmetic";
+                    arithmetic12.outputPixelType = "F32";
+                    var arith12 = {};
+                    arith12.Raster = remapBare;
+                    arith12.Raster2 = arithmetic1;
+                    arith12.Operation = 3;
+                    arith12.ExtentType = 1;
+                    arith12.CellsizeType = 0;
+                    arithmetic12.functionArguments = arith12;
 
                     raster2 = new RasterFunction();
                     raster2.functionName = "BandArithmetic";
@@ -929,9 +1012,110 @@ define([
                     else
                         args2.Raster = "$" + this.array[1];
                     args2.Method = 0;
-                    args2.BandIndexes = "(((B6 - B5)/(B6 + B5 - 10000)) + ((B4 - B5)/(B5 + B4 - 10000)))";
+                    args2.BandIndexes = "(((B6 - B5)/(B6 + B5)) + ((B4 - B5)/(B5 + B4)))";
                     raster2.functionArguments = args2;
                     raster2.outputPixelType = "F32";
+
+                    var remapUrban2 = new RasterFunction();
+                    remapUrban2.functionName = "Remap";
+                    var argsUrban2 = {};
+                    argsUrban2.InputRanges = [0.05, 1];
+                    argsUrban2.OutputValues = [0];
+                    argsUrban2.AllowUnmatched = true;
+                    argsUrban2.Raster = raster2;
+                    remapUrban2.functionArguments = argsUrban2;
+                    remapUrban2.outputPixelType = "F32";
+
+                    var rasterNDVI2 = new RasterFunction();
+                    rasterNDVI2.functionName = "BandArithmetic";
+                    rasterNDVI2.outputPixelType = "F32";
+                    var argNDVI2 = {};
+                    argNDVI2.BandIndexes = "(B5 - B4)/(B5 + B4)";
+                    argNDVI2.Method = 0;
+                    if (layer2.url === this.config.urlLandsatMS)
+                        argNDVI2.Raster = "$" + layer2.mosaicRule.lockRasterIds[0];
+                    else if (layer.url === this.config.urlLandsatMS)
+                        argNDVI2.Raster = "$" + this.array[0];
+                    else
+                        argNDVI2.Raster = "$" + this.array[1];
+                    rasterNDVI2.functionArguments = argNDVI2;
+
+                    var remapNDVI2 = new RasterFunction();
+                    remapNDVI2.functionName = "Remap";
+                    var argsNDVI2 = {};
+                    argsNDVI2.InputRanges = [-1, 0.5, 0.5, 1];
+                    argsNDVI2.OutputValues = [1, 0];
+                    argsNDVI2.AllowUnmatched = true;
+                    argsNDVI2.Raster = rasterNDVI2;
+                    remapNDVI2.functionArguments = argsNDVI2;
+                    remapNDVI2.outputPixelType = "F32";
+
+                    var arithmetic2 = new RasterFunction();
+                    arithmetic2.functionName = "Arithmetic";
+                    arithmetic2.outputPixelType = "F32";
+                    var arith2 = {};
+                    arith2.Raster = remapNDVI2;
+                    arith2.Raster2 = remapUrban2;
+                    arith2.Operation = 3;
+                    arith2.ExtentType = 1;
+                    arith2.CellsizeType = 0;
+                    arithmetic2.functionArguments = arith2;
+
+
+
+                    var rasterBare2 = new RasterFunction();
+                    rasterBare2.functionName = "BandArithmetic";
+                    rasterBare2.outputPixelType = "F32";
+                    var argBare2 = {};
+                    argBare2.BandIndexes = "(B3 - B6)/(B6 + B3)";
+                    argBare2.Method = 0;
+                    if (layer2.url === this.config.urlLandsatMS)
+                        argBare2.Raster = "$" + layer2.mosaicRule.lockRasterIds[0];
+                    else if (layer.url === this.config.urlLandsatMS)
+                        argBare2.Raster = "$" + this.array[0];
+                    else
+                        argBare2.Raster = "$" + this.array[1];
+
+
+                    rasterBare2.functionArguments = argBare2;
+
+                    var remapBare2 = new RasterFunction();
+                    remapBare2.functionName = "Remap";
+                    var argsBare2 = {};
+                    argsBare2.InputRanges = [-1, 0.1, 0.1, 1];
+                    argsBare2.OutputValues = [1, 0];
+
+                    argsBare2.AllowUnmatched = true;
+                    argsBare2.Raster = rasterBare2;
+                    remapBare2.functionArguments = argsBare2;
+                    remapBare2.outputPixelType = "F32";
+
+                    var arithmetic22 = new RasterFunction();
+                    arithmetic22.functionName = "Arithmetic";
+                    arithmetic22.outputPixelType = "F32";
+                    var arith22 = {};
+                    arith22.Raster = remapBare2;
+                    arith22.Raster2 = arithmetic2;
+                    arith22.Operation = 3;
+                    arith22.ExtentType = 1;
+                    arith22.CellsizeType = 0;
+                    arithmetic22.functionArguments = arith22;
+
+                    var composite = new RasterFunction();
+                    composite.functionName = "CompositeBand";
+                    var compositeArg = {};
+                    if (registry.byId("changeMode").get("value") === "Image") {
+                        if (this.primaryDate < this.secondaryDate)
+                            compositeArg.Rasters = [arithmetic12, arithmetic22, arithmetic12];
+                        else
+                            compositeArg.Rasters = [arithmetic22, arithmetic12, arithmetic22];
+
+                    } else {
+                        compositeArg.Rasters = [arithmetic12, arithmetic22];
+
+                    }
+                    composite.outputPixelType = "F32";
+                    composite.functionArguments = compositeArg;
 
                     var composite = new RasterFunction();
                     var compositeArg = {};
@@ -992,7 +1176,7 @@ define([
                         raster = stretch;
                         stretch.outputPixelType = "U8";
                     }
-
+                   
                     if (registry.byId("markedChangeAreas").checked && this.polygons && this.polygons.rings.length > 0) {
                         var rasterClip = new RasterFunction();
                         rasterClip.functionName = "Clip";
@@ -1049,10 +1233,7 @@ define([
                         this.changeDetectionLayer.on("load", lang.hitch(this, function () {
                             this.changeDetectionLayer.pixelType = "F32";
                         }));
-
-
-
-                        if (this.map.getLayer("resultLayer")) {
+                         if (this.map.getLayer("resultLayer")) {
                             this.map.getLayer("resultLayer").suspend();
                             this.map.removeLayer(this.map.getLayer("resultLayer"));
                         }
@@ -1201,7 +1382,6 @@ define([
                         this.changeIndexFlag = false;
                         this.skipRedrawLayer = false;
                     }
-
                     this.primaryDate = locale.format(new Date(parseInt(registry.byId("currentOBJECTID").get("value"))), {selector: "date", datePattern: "yyyy/MM/dd"});
                     this.secondaryDate = locale.format(new Date(parseInt(registry.byId("secondOBJECTID").get("value"))), {selector: "date", datePattern: "yyyy/MM/dd"});
                     if (this.primaryDate > this.secondaryDate)
@@ -1216,7 +1396,6 @@ define([
                     } else {
                         domStyle.set(this.areaValueLeft, "color", "magenta");
                         html.set(this.sliderValueLeft, "Area Decrease / Increase:");
-
                     }
                     if (changeOption === "BurnIndex")
                         this.changeInBurn();

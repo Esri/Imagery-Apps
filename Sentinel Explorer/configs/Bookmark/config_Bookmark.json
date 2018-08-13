@@ -1,0 +1,160 @@
+{
+    "bookmarks2D": [{
+            "displayName": "Palm Juemirah,Dubai,UAE",
+            "name": "Palm Juemirah,Dubai,UAE",
+            "extent": {
+                "type": "extent",
+                "xmin": 6130993.46914202,
+                "ymin": 2885440.4060643916,
+                "xmax": 6148335.119934196,
+                "ymax": 2894030.0171179264,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/Dubai.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        },{
+            "displayName": "Grand Canyon,Arizona,USA",
+            "name": "Grand Canyon,Arizona,USA",
+            "extent": {
+                "type": "extent",
+                "xmin": -12674353.194635943,
+                "ymin": 4269615.624276954,
+                "xmax": -12639669.89305159,
+                "ymax": 4286794.846384023,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/Arizona.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        },{
+            "displayName": "Suez Canal, Egypt",
+            "name": "Suez Canal, Egypt",
+            "extent": {
+                "type": "extent",
+                "xmin": 3599660.41525032,
+                "ymin": 3492828.9404425817,
+                "xmax": 3669027.0184190236,
+                "ymax": 3527187.3846567217,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/Egypt.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        },{
+            "displayName": "Chamonix, France",
+            "name": "Chamonix, France",
+            "extent": {
+                "type": "extent",
+                "xmin": 764474.8806987759,
+                "ymin": 5763087.37739702,
+                "xmax": 799158.1822831279,
+                "ymax": 5780266.59950409,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/France.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        },{
+            "displayName": "Douro River Valley, Portugal",
+            "name": "Douro River Valley, Portugal",
+            "extent": {
+                "type": "extent",
+                "xmin": -868674.230867029,
+                "ymin": 5030295.561510028,
+                "xmax": -851332.5800748531,
+                "ymax": 5038885.172563564,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/Portugal.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        },{
+            "displayName": "Cliffs of Moher , Ireland",
+            "name": "Cliffs of Moher , Ireland",
+            "extent": {
+                "type": "extent",
+                "xmin": -1067339.7968959576,
+                "ymin": 6967279.823848261,
+                "xmax": -851332.5800748531,
+                "ymax": 6984459.04595533,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/Ireland.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        },{
+            "displayName": "Lysefjord, Norway",
+            "name": "Lysefjord, Norway",
+            "extent": {
+                "type": "extent",
+                "xmin": 686588.2528708578,
+                "ymin": 8163841.803376605,
+                "xmax": 755954.8560395617,
+                "ymax": 8198200.247590746,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/Norway.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        },{
+            "displayName": "Plitvice Lakes National Park, Croatia",
+            "name": "Plitvice Lakes National Park, Croatia",
+            "extent": {
+                "type": "extent",
+                "xmin": 1690950.8194655967,
+                "ymin": 5585442.356762701,
+                "xmax": 1760317.4226343008,
+                "ymax": 5619800.800976842,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/Croatia.JPG",
+            "isInWebmap": false,
+            "isSaveLayers": false,
+            "layerOptions": {},
+            "_uID": 1
+        }],
+    "bookmarks3D": [],
+    "layout": {
+        "cards": true,
+        "list": false,
+        "defaultMode": "list"
+    },
+    "editable": false,
+    "syncMode": {
+        "webmap": false,
+        "custom": true
+    },
+    "isSaveLayerVisibility": false,
+    "flyTime": 3000
+}

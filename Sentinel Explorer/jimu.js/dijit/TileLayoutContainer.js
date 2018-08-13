@@ -57,6 +57,7 @@ function (declare, lang, html, _WidgetBase) {
     startup: function(){
       this.inherited(arguments);
       this.items.forEach(lang.hitch(this, function(item){
+          console.log(item);
         this._placeItem(item);
       }));
       this.resize();
@@ -163,10 +164,10 @@ function (declare, lang, html, _WidgetBase) {
       };
 
       itemStyle[window.isRTL? 'right': 'left'] =
-        ((this.hmargin + itemSize.width) * (col - 1)) + 'px';
+        ((5 + itemSize.width) * (col - 1)) + 'px';
 
       if (itemSize.width >= 0){
-        itemStyle.width = itemSize.width + 'px';
+        itemStyle.width = itemSize.width - 30+ 'px';
       }
       if (itemSize.height >= 0){
         itemStyle.height = itemSize.height + 'px';

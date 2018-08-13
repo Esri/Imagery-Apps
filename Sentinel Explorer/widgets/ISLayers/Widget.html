@@ -7,17 +7,27 @@
     <div data-dojo-type="dijit/Dialog" id="bandCombinationDialog" title="Choose Rendering" style="background-color: white;top: 20%;" data-dojo-props="focus:function(){}">
         <div style="display: inline-block;">
             <select data-dojo-type="dijit/form/Select" style="height: inherit;display: inline-block;" id="bandComboList" data-dojo-props="focus:function(){}">
-                <option value="Agriculture with DRA">Agriculture</option>
                 <option value="Natural Color with DRA">Natural Color</option>
+                <option value="Agriculture with DRA">Agriculture</option>
                 <option value="Color Infrared with DRA">Color Infrared</option>
                 <option value="Short-wave Infrared with DRA">Short-wave Infrared</option>
                 <option value="Geology with DRA">Geology</option>
                 <option value="Bathymetric with DRA">Bathymetric</option>
-                <option value="NDVI Colorized">Vegetation Index</option>
-                <option value="Normalized Difference Moisture Index Colorized">Moisture Index</option>
-                <option value="SAVI">Soil Adjusted Veg. Index - SAVI</option>
-                <option value="NDWI">Water Index</option>
-                <option value="NBR">Burn Index</option>
+                <option value="NDVI Colormap">Vegetation Index</option>
+                <option value="Normalized Burn Ratio">Normalized Burn Ratio</option>
+                <option value="Normalized Difference Built-Up Index (NDBI)">Built-Up Index</option>
+                <option value="NDVI Raw">NDVI Raw</option>
+                <option value="NDVI - VRE only Raw">NDVI - VRE only Raw</option>
+                 <!--<option value="NDVI - VRE only Colorized">NDVI - VRE only Colorized</option>-->
+                <option value="NDVI - with VRE Raw">NDVI - with VRE Raw</option>
+              <!--  <option value="NDVI - with VRE Colorized">NDVI - with VRE Colorized</option>-->
+                <option value="NDMI Colorized">NDMI Colorized</option>
+                <option value="NDWI Raw">NDWI Raw</option>
+                <option value="NDWI - with VRE Raw">NDWI - with VRE Raw</option>
+                <!--<option value="NDWI - with VRE Colorized">NDWI - with VRE Colorized</option>-->
+                <option value="SAVI">Custom SAVI</option>
+                <option value="NDWI">Custom Water Index</option>
+                <option value="NBR">Custom Burn Index</option>
                 <option value="Urban">Urban Index</option>
                 <option value="Build">Custom Bands</option>
                 <option value="Index">Custom Index</option>
@@ -45,7 +55,7 @@
                 <option value=6>VRE(6)</option>
                 <option value=7>VRE(7)</option>
                 <option value=8>NIR(8)</option>
-                <option value=9>VRE(8A)</option>
+                <option value=9>NarrowNIR(8A)</option>
                 <option value=10>Water Vapor(9)</option>
                 <option value=11>Cirrus(10)</option>
                 <option value=12 selected="selected">SWIR(11)</option>
@@ -61,7 +71,7 @@
                 <option value=6>VRE(6)</option>
                 <option value=7>VRE(7)</option>
                 <option value=8 selected="selected">NIR(8)</option>
-                <option value=9>VRE(8A)</option>
+                <option value=9>NarrowNIR(8A)</option>
                 <option value=10>Water Vapor(9)</option>
                 <option value=11>Cirrus(10)</option>
                 <option value=12>SWIR(11)</option>
@@ -76,7 +86,7 @@
                 <option value=6>VRE(6)</option>
                 <option value=7>VRE(7)</option>
                 <option value=8>NIR(8)</option>
-                <option value=9>VRE(8A)</option>
+                <option value=9>NarrowNIR(8A)</option>
                 <option value=10>Water Vapor(9)</option>
                 <option value=11>Cirrus(10)</option>
                 <option value=12>SWIR(11)</option>
@@ -138,7 +148,7 @@
                     <option value=6>VRE(6)</option>
                     <option value=7>VRE(7)</option>
                     <option value=8 selected="selected">NIR(8)</option>
-                    <option value=9>VRE(8A)</option>
+                    <option value=9>NarrowNIR(8A)</option>
                     <option value=10>Water Vapor(9)</option>
                     <option value=11>Cirrus(10)</option>
                     <option value=12>SWIR(11)</option>
@@ -152,7 +162,7 @@
                     <option value=6>VRE(6)</option>
                     <option value=7>VRE(7)</option>
                     <option value=8>NIR(8)</option>
-                    <option value=9>VRE(8A)</option>
+                    <option value=9>NarrowNIR(8A)</option>
                     <option value=10>Water Vapor(9)</option>
                     <option value=11>Cirrus(10)</option>
                     <option value=12>SWIR(11)</option>

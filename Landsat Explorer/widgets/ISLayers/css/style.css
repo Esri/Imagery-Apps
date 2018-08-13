@@ -24,6 +24,9 @@ background-color: white;
 .claro .dijitSelect {
     background-color: white;
 }
+.map .tooltip {
+    visibility: hidden;
+}
 #shareButton
 {
     border: 0px ;
@@ -89,7 +92,17 @@ background-color: white;
     width: 0px;
     height: 0px;
 }
+.changeHeading {
+     -webkit-animation-name: example-3;
 
+    -webkit-animation-duration: 4s;
+
+    animation-duration: 3s; /*changed duration to 3s*/
+
+    animation-name: changeColor;
+    animation-iteration-count: infinite;
+
+}
 
 .claro .dijitDialogCloseIcon {
     right: 2px;

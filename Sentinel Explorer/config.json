@@ -19,7 +19,7 @@
     "title": "Sentinel Explorer",
     "subtitle": "",
     "keepAppState": false,
-    "logo": "http://www.esri.com/favicon.ico",
+    "logo": "https://www.esri.com/favicon.ico",
     "geometryService": "http://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
     "links": [],
     "widgetOnScreen": {
@@ -172,10 +172,10 @@
             "maxZoom": 21,
             "minZoom": 1,
             "extent": {
-                "xmin": 564874.2500487214,
-                "ymin": 6810595.84447402,
-                "xmax": 583219.136837139,
-                "ymax": 6819519.867526303,
+                "xmin": 857960,
+                "ymin": 6197925,
+                "xmax": 879726,
+                "ymax": 6210193,
                 "spatialReference": {
                     "wkid": 102100
                 }
@@ -355,6 +355,35 @@
                 "visible": true,
                 "icon": "widgets/ExportFunction/images/icon.png"
             },
+             {
+                "widgets": [
+                    {
+                        "name": "Bookmark",
+                        "label": "Bookmarks",
+                        "version": "2.7",
+                        "icon": "widgets/Bookmark/images/icon.png",
+                        "uri": "widgets/Bookmark/Widget",
+                        "config": "configs/Bookmark/config_Bookmark.json",
+                        "index": 9,
+                        "id": "widgets/Bookmark/Widget_16"
+                    }
+                ],
+                "label": "Bookmarks",
+                "index": 10,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 350,
+                        "height": 300
+
+                    }
+                },
+                "id": "_16",
+                "visible": true,
+                "icon": "widgets/Bookmark/images/icon.png"
+            },
             {
                 "widgets": [
                     {
@@ -369,7 +398,7 @@
                     }
                 ],
                 "label": "About",
-                "index": 10,
+                "index": 11,
                 "panel": {
                     "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
                     "positionRelativeTo": "browser",
@@ -441,35 +470,7 @@
                 "visible": true,
                 "icon": "widgets/Mask/images/change.gif"
             },
-            {
-                "widgets": [
-                    {
-                        "name": "Story",
-                        "label": "Story Builder",
-                        "version": "1.1",
-                        "icon": "widgets/Story/images/icon.png",
-                        "uri": "widgets/Story/Widget",
-                        "index": 7,
-                        "id": "widgets/Story/Widget_60"
-                    }
-                ],
-                "label": "<b>Stories</b><br /><span style='font-size:85%;'>See example stories using imagery from the app.</span>",
-                "index": 8,
-                "panel": {
-                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
-                    "positionRelativeTo": "browser",
-                    "noOverlay": true,
-                    "position": {
-                        "width": 0,
-                        "height": 0,
-                        "left": 0,
-                        "bottom": 0
-                    }
-                },
-                "id": "_60",
-                "visible": true,
-                "icon": "widgets/Story/images/icon.png"
-            },
+           
             {
                 "widgets": [
                     {

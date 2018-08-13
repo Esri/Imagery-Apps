@@ -617,7 +617,6 @@ define(['dojo/_base/declare',
 
         tryLoadWidgetConfig: function(setting) {
           return this._tryLoadWidgetConfig(setting).then(lang.hitch(this, function(config) {
-              
             return this._upgradeWidgetConfig(setting, config).then(function(widgetConfig){
               setting.config = widgetConfig;
               return widgetConfig;
@@ -660,17 +659,14 @@ define(['dojo/_base/declare',
 
         _tryLoadWidgetConfig: function(setting) {
           var def = new Deferred();
-        
           //need load config first, because the template may be use the config data
           if (setting.config && lang.isObject(setting.config)) {
             //if widget is configurated in the app config.json, the i18n has beed processed
             def.resolve(setting.config);
-           
             return def;
           } else if (setting.config) {
             if(require.cache['url:' + setting.config]){
-               
-                    def.resolve(json.parse(require.cache['url:' + setting.config]));
+              def.resolve(json.parse(require.cache['url:' + setting.config]));
               return def;
             }
             var configFile = utils.processUrlInAppConfig(setting.config);
@@ -680,8 +676,7 @@ define(['dojo/_base/declare',
             configFileArray[configFileArray.length - 1] =
               encodeURIComponent(configFileArray[configFileArray.length - 1]);
             configFile = configFileArray.join('/');
-            
-                return xhr(configFile, {
+            return xhr(configFile, {
               handleAs: "json",
               headers: {
                 "X-Requested-With": null

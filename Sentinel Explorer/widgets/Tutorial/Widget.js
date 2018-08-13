@@ -193,7 +193,7 @@ define([
 
                     var x = document.getElementsByClassName("icon-node");
                     for (var a = 0; a < x.length; a++) {
-                        if (a !== 9) {
+                        if (a !== 8) {
                             x[a].style.pointerEvents = 'auto';
                         }
 

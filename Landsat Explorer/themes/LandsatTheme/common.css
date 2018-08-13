@@ -2,7 +2,7 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 @import url("panels/FoldablePanel/style.css");
 @import url("panels/DockablePanel/style.css");
-
+@import url("tooltipDialog.css");
 /********** styles for simple panel***********/
 /*.jimu-simple-panel{
   border-radius: 4px;

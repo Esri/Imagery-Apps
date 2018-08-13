@@ -15,13 +15,13 @@
 ///////////////////////////////////////////////////////////////////////////
 define([
     'dojo/_base/declare',
-    'dijit/_WidgetsInTemplateMixin',
+    'dijit/_WidgetsInTemplateMixin',"esri/IdentityManager","esri/layers/MosaicRule",
     'dojo/text!./Widget.html',
     'jimu/BaseWidget', "./resourceLoad.js", "dijit/TooltipDialog",
 ],
         function (
                 declare,
-                _WidgetsInTemplateMixin,
+                _WidgetsInTemplateMixin,IdentityManager,MosaicRule,
                 template,
                 BaseWidget, resourceLoad, TooltipDialog
                 ) {
@@ -75,21 +75,21 @@ define([
                     if (window.innerWidth < 620) {
                         domStyle.set("bandCombinationDialog", "font-size", "7px");
                         var headerCustom = domConstruct.toDom('<table id="headerTable" style="border: 0px;height: 40px;display: -webkit-inline-box;margin-left: 20px;">' +
-                                '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Sentinel Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Agriculture</div>' +
+                                '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Sentinel Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Natural Color</div>' +
                                 '<div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;" id="dateSecondary"></div><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateDisplay"></div></td></tr></table>' +
                                 '<div id="socialShortLinks" style="position: absolute;top:0px;right: 8px;display: block;margin-top: 8px;"><a id="userSignIn" target="_self" style="display:inline-block;height:22px;"><img id="signInThumbnail" src="./widgets/ISLayers/images/signIn.png" style="height: 22px;cursor:pointer;" alt="Sign In" /><span id="userName" style="color:white;cursor:pointer;font-size:' + fontsize2 + 'px;font-weight:400;font-family:sans-serif;vertical-align:super;">   Sign In</span></a>&nbsp;&nbsp;&nbsp;<a   id="facebook" target="_blank"><img id="facebookThumnail" src="./widgets/ISLayers/images/facebook.png" style="height: 25px;cursor:pointer;" alt="Facebook" /></a>&nbsp;&nbsp;<a  id="twitter" target="_blank"><img id="twitterThumbnail" src="./widgets/ISLayers/images/twitter.png" style="height: 25px;cursor:pointer;" alt="Twitter" /></a>&nbsp;&nbsp;<a  id="link" target="_self"><img id="linkThumbnail" src="./widgets/ISLayers/images/link.png" style="height: 25px;cursor:pointer;" alt="Link" /></a></div>');
 
                     } else if (window.innerWidth < 850) {
                         domStyle.set("bandCombinationDialog", "font-size", "8px");
                         var headerCustom = domConstruct.toDom('<table id="headerTable" style="border: 0px;height: 40px;display: -webkit-inline-box;margin-left: 20px;">' +
-                                '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Sentinel Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Agriculture</div></td>' +
+                                '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Sentinel Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Natural Color</div></td>' +
                                 '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;" id="dateSecondary"></div><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateDisplay"></div></td></tr></table>' +
                                 '<div id="socialShortLinks" style="position: absolute;top:0px;right: 8px;display: block;margin-top: 8px;"><a id="userSignIn" target="_self" style="display:inline-block;height:22px;"><img id="signInThumbnail" src="./widgets/ISLayers/images/signIn.png" style="height: 22px;cursor:pointer;" alt="Sign In" /><span id="userName" style="color:white;cursor:pointer;font-size:' + fontsize2 + 'px;font-weight:400;font-family:sans-serif;vertical-align:super;">   Sign In</span></a>&nbsp;&nbsp;&nbsp;<a   id="facebook" target="_blank"><img id="facebookThumnail" src="./widgets/ISLayers/images/facebook.png" style="height: 25px;cursor:pointer;" alt="Facebook" /></a>&nbsp;&nbsp;<a  id="twitter" target="_blank"><img id="twitterThumbnail" src="./widgets/ISLayers/images/twitter.png" style="height: 25px;cursor:pointer;" alt="Twitter" /></a>&nbsp;&nbsp;<a  id="link" target="_self"><img id="linkThumbnail" src="./widgets/ISLayers/images/link.png" style="height: 25px;cursor:pointer;" alt="Link" /></a></div>');
 
                     } else {
                         domStyle.set("bandCombinationDialog", "font-size", "12px");
                         var headerCustom = domConstruct.toDom('<table id="headerTable" style="border: 0px;height: 40px;display: -webkit-inline-box;margin-left: 20px;">' +
-                                '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Sentinel Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Agriculture</div></td>' +
+                                '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Sentinel Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Natural Color</div></td>' +
                                 '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;" id="dateSecondary"></div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateDisplay"></div></td></tr></table>' +
                                 '<div id="socialShortLinks" style="position: absolute;top:0px;right: 8px;display: block;margin-top: 8px;"><a id="userSignIn" target="_self" style="display:inline-block;height:22px;"><img id="signInThumbnail" src="./widgets/ISLayers/images/signIn.png" style="height: 22px;cursor:pointer;" alt="Sign In" /><span id="userName" style="color:white;cursor:pointer;font-size:' + fontsize2 + 'px;font-weight:400;font-family:sans-serif;vertical-align:super;">   Sign In</span></a>&nbsp;&nbsp;&nbsp;<a   id="facebook" target="_blank"><img id="facebookThumnail" src="./widgets/ISLayers/images/facebook.png" style="height: 25px;cursor:pointer;" alt="Facebook" /></a>&nbsp;&nbsp;<a  id="twitter" target="_blank"><img id="twitterThumbnail" src="./widgets/ISLayers/images/twitter.png" style="height: 25px;cursor:pointer;" alt="Twitter" /></a>&nbsp;&nbsp;<a  id="link" target="_self"><img id="linkThumbnail" src="./widgets/ISLayers/images/link.png" style="height: 25px;cursor:pointer;" alt="Link" /></a></div>');
                     }
@@ -176,7 +176,7 @@ define([
                         else if (pm.getPanelById("_19_panel") && pm.getPanelById("_19_panel").state === "opened")
                             var tempDialog = "Export";
                         else if (pm.getPanelById("_16_panel") && pm.getPanelById("_16_panel").state === "opened")
-                            var tempDialog = "Bookmarks";
+                            var tempDialog = "Bookmark";
                         else if (pm.getPanelById("_22_panel") && pm.getPanelById("_22_panel").state === "opened")
                             var tempDialog = "About";
                         if (tempDialog) {
@@ -217,6 +217,8 @@ define([
 
                                     if (pm.getPanelById("_22_panel") && pm.getPanelById("_22_panel").state === "opened")
                                         pm.closePanel("_22_panel");
+                                    if (pm.getPanelById("_16_panel") && pm.getPanelById("_16_panel").state === "opened")
+                                            pm.closePanel("_16_panel");
                                     if (domClass.contains(x[5], "jimu-state-selected"))
                                         pm.closePanel("_70_panel");
                                     if (domClass.contains(x[7], "jimu-state-selected"))
@@ -310,16 +312,17 @@ define([
 
                     var checkUrl = window.location.href;
                     var parameters = window.location.href.split("?");
-                    if (parameters[1] && parameters[1].includes("story="))
+                   /* if (parameters[1] && parameters[1].includes("story="))
                     {
                         this.storyModeOn = true;
                         this.storyId = parameters[1].split("=")[1];
 
                         document.getElementsByClassName("icon-node")[8].click();
-                    }
+                    }*/
                     if (!this.storyModeOn) {
                         var params = new ImageServiceParameters();
                         params.format = "jpgpng";
+                        params.mosaicRule =  new MosaicRule({"mosaicMethod":"esriMosaicAttribute","sortField":"Best","sortValue":"0","ascending":true,"mosaicOperation":"MT_FIRST", "where": "(datatype_format = 'Cloned') OR (datatype_format IS NULL)"});
                         var loadlayer = new ArcGISImageServiceLayer(this.config.layers["Agriculture with DRA"].url, {
                             imageServiceParameters: params,
                             id: "primaryLayer",
@@ -329,7 +332,7 @@ define([
                         this.map.addLayer(loadlayer, 1);
                         this.timebook();
                     }
-
+                    //"where":"(datatype_format = 'Cloned') OR (datatype_format IS NULL)"
                     registry.byId("bandCombinationDialog").connect(registry.byId("bandCombinationDialog"), "hide", lang.hitch(this, function (e) {
                         if (this.hideFlag)
                             this.multiARadio.click();
@@ -340,11 +343,11 @@ define([
                     var checkUrl = window.location.href;
                     var parameters = window.location.href.split("?");
                     if (parameters[1]) {
-                        if (parameters[1].includes("story="))
+                        /*if (parameters[1].includes("story="))
                         {
 
                             domStyle.set(dom.byId("bandCombination"), "display", "none");
-                        } else {
+                        } else {*/
 
                             domStyle.set(dom.byId("rendererInformation"), "display", "block");
 
@@ -390,7 +393,7 @@ define([
                                     registry.byId("changeProp").set("value", values[5] + "," + values[6] + "," + values[7] + "," + values[8] + "," + values[9]);
                                 this.map.setExtent(new Extent(this.appExtent));
 
-                            }
+                          //  }
                         }
                         if (typeof (history.pushState) !== "undefined") {
                             var changeUrl = parameters[0].split("index.html")[0];
@@ -403,6 +406,31 @@ define([
                         domStyle.set(dom.byId("rendererInformation"), "display", "block");
 
                     }
+                    IdentityManager.on("credential-create", lang.hitch(this, function(e) {
+                        
+                        if(e.credential.server.indexOf("arcgis.com") !== -1){
+                         if (document.getElementById("userName").innerHTML === "   Sign In") {
+                            this.portal = new arcgisPortal.Portal("http://www.arcgis.com");
+                            bundle.identity.lblItem = "Account";
+                        var tempText = (bundle.identity.info).split("access the item on");
+                        bundle.identity.info = tempText[0] + tempText[1];
+
+                        this.portal.signIn().then(lang.hitch(this, function (user) {
+
+                            document.getElementById("signInThumbnail").src = "./widgets/ISLayers/images/user.png";
+                            document.getElementById("userName").innerHTML = "   Sign Out";
+                        }));
+                        }
+                        this.map.useSecureService = true;
+                        if(document.getElementById("fullAccess"))
+                        domStyle.set("fullAccess","display","none");
+                    }
+                    }));
+                    IdentityManager.on("credentials-destroy", lang.hitch(this, function(e) {
+                        if(document.getElementById("fullAccess"))
+                        domStyle.set("fullAccess","display","inline-block");
+                        this.map.useSecureService = false;
+                    }));
                 },
                 shareClicked: function (socialMedium) {
                     if (!this.storyModeOn) {
@@ -472,35 +500,38 @@ define([
                         else
                             var shareUrl = appUrl + "?" + btoa(mapextent + "&" + renderingRule + "&" + mosaicRule + "&" + cloudFilter + "&" + secondaryLayer + "&" + changeIndex + "&" + thresholdValue + "&" + changeMode + "&" + negativeRange + "&" + differenceRange + "&" + changeMaskFlag + "&" + registry.byId("bandA").get("value") + "&" + registry.byId("bandB").get("value") + "&" + registry.byId("OffsetValue").get("value") + "&" + registry.byId("Scale").get("value") + "&" + registry.byId("colorRamp").get("value") + "&" + registry.byId("bandComboList").get("value"));
                     } else
-                        var shareUrl = "http://s3.eu-central-1.amazonaws.com/sentinel2explorer/index.html?story=" + this.storyId;
+                        var shareUrl = window.location.href + "?story=" + this.storyId;
 
                     if (socialMedium === "facebook")
                         var share = "http://www.arcgis.com/home/socialnetwork.html?n=fb&t=Sentinel Explorer" + "&u=" + shareUrl;
                     else if (socialMedium === "twitter")
                         var share = "http://www.arcgis.com/home/socialnetwork.html?n=tw&t=Sentinel Explorer" + "&u=" + shareUrl;
                     else
-                        var share = "http://api.bit.ly/v3/shorten?login=&apiKey=&longUrl=" + shareUrl + "&format=json"; //login and apikey for bitly
+                        var share = "https://arcg.is/prod/shorten";
                     if (socialMedium !== "link") {
                         domAttr.set(socialMedium, "href", share);
                     } else {
 
-                        var request = new XMLHttpRequest();
-                        request.responseType = "json";
-
-                        request.onreadystatechange = lang.hitch(this, function () {
-                            if (request.readyState === 4 && request.status === 200) {
-                                registry.byId("linkValue").set("value", request.response.data.url);
+                       var shortUrlRequest = esriRequest({
+                            url: share,
+                            content: {
+                                longUrl: shareUrl,
+                                format: "json"
+                            },
+                            handleAs: "json",
+                            callbackParamName: "callback"
+                        });
+                        shortUrlRequest.then(lang.hitch(this, function (response) {
+                            if (response && response.data && response.data.url) {
+                                registry.byId("linkValue").set("value", response.data.url);
                                 if (!registry.byId("linkDialog").open)
                                     registry.byId("linkDialog").show();
                                 domStyle.set("linkDialog", "right", "20px");
                                 domStyle.set("linkDialog", "top", "60px");
                                 domStyle.set("linkDialog", "left", "auto");
                                 domConstruct.destroy("linkDialog_underlay");
-
                             }
-                        });
-                        request.open("Get", share, true);
-                        request.send();
+                        }));
                     }
 
 
@@ -519,8 +550,9 @@ define([
                             document.getElementById("userName").innerHTML = "   Sign Out";
                         }));
                     } else {
-
+                        
                         this.portal.signOut();
+                        IdentityManager.destroyCredentials();
                         document.getElementById("signInThumbnail").src = "./widgets/ISLayers/images/signIn.png";
                         document.getElementById("userName").innerHTML = "   Sign In";
 
@@ -914,7 +946,7 @@ define([
                                     geometryType: "esriGeometryPoint",
                                     returnGeometry: false,
                                     sampleCount: 1,
-                                    outFields: "AcquisitionDate",
+                                    outFields: "acquisitiondate",
                                     f: "json"
                                 },
                                 handleAs: "json",
@@ -922,8 +954,8 @@ define([
                             });
 
                             getDate.then(lang.hitch(this, function (result) {
-                                if (result.samples && result.samples[0].attributes.AcquisitionDate) {
-                                    dom.byId("dateDisplay").innerHTML = "&nbsp;&nbsp;Imagery Date:&nbsp;" + locale.format(new Date(result.samples[0].attributes.AcquisitionDate), {selector: "date", formatLength: "long"});
+                                if (result.samples && result.samples[0].attributes.acquisitiondate) {
+                                    dom.byId("dateDisplay").innerHTML = "&nbsp;&nbsp;Imagery Date:&nbsp;" + locale.format(new Date(result.samples[0].attributes.acquisitiondate), {selector: "date", formatLength: "long"});
                                 }
                             }), lang.hitch(this, function () {
                                 this.hideLoading();
@@ -934,13 +966,7 @@ define([
 
                 },
                 timeClicked: function (layer) {
-                    /*   document.getElementsByClassName("icon-node")[8].addEventListener("click", lang.hitch(this, function(e){
-                     if(e.ctrlKey){
-                     this.allowUserToCreateStories = true;
-                     }else
-                     this.allowUserToCreateStories = false;
-                     
-                     }));*/
+                    
                     if (this.appRenderer) {
 
                         this.multiARadio.click();
@@ -1045,7 +1071,7 @@ define([
                             registry.byId("tutorialStage").set("value", "2");
 
                             on(dom.byId("continueComment"), "click", lang.hitch(this, this.continueTutorial));
-                        } else if (renderer === "NDVI Colorized" && tutorialStage === "3") {
+                        } else if (renderer === "NDVI Colormap" && tutorialStage === "3") {
 
                             tooltipTemp.set("content", "<p style='text-align: justify;'>NDVI is an index that indicates the presence of healthy, green vegetation (seen in green).<br /><div id='continueComment' style='font-weight: bolder; color:orange;cursor:pointer;'>Click here to continue.</div></p>");
                             popup.open({

@@ -338,7 +338,7 @@
                         "id": "widgets/ExportFunction/Widget_17"
                     }
                 ],
-                "label": "<b>Export</b><br /><span style='font-size:85%;'>Download the top layer as a png or tif image.</span>",
+                "label": "<b>Export</b><br /><span style='font-size:85%;'>Save the top layer as a local tif image.</span>",
                 "index": 7,
                 "panel": {
                     "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",

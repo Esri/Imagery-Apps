@@ -294,7 +294,7 @@ define([
                         }
                     }));
                     registry.byId("applyIndex").on("click", lang.hitch(this, function () {
-
+                        //     this.indexFunction(registry.byId("indexList1").get("value"));
                         this.indexFunction();
                     }));
                     registry.byId("bandComboList").on("change", lang.hitch(this, this.applyBandCombination));
@@ -493,28 +493,30 @@ define([
                     else if (socialMedium === "twitter")
                         var share = "http://www.arcgis.com/home/socialnetwork.html?n=tw&t=Landsat Explorer" + "&u=" + shareUrl;
                     else
-                        var share = "http://api.bit.ly/v3/shorten?login=&apiKey=&longUrl=" + shareUrl + "&format=json"; // provide login and apiKey for bitly
+                        var share = "https://arcg.is/prod/shorten";
                     if (socialMedium !== "link") {
                         domAttr.set(socialMedium, "href", share);
                     } else {
-
-                        var request = new XMLHttpRequest();
-                        request.responseType = "json";
-
-                        request.onreadystatechange = lang.hitch(this, function () {
-                            if (request.readyState === 4 && request.status === 200) {
-                                registry.byId("linkValue").set("value", request.response.data.url);
+                        var shortUrlRequest = esriRequest({
+                            url: share,
+                            content: {
+                                longUrl: shareUrl,
+                                format: "json"
+                            },
+                            handleAs: "json",
+                            callbackParamName: "callback"
+                        });
+                        shortUrlRequest.then(lang.hitch(this, function (response) {
+                            if (response && response.data && response.data.url) {
+                                registry.byId("linkValue").set("value", response.data.url);
                                 if (!registry.byId("linkDialog").open)
                                     registry.byId("linkDialog").show();
                                 domStyle.set("linkDialog", "right", "20px");
                                 domStyle.set("linkDialog", "top", "60px");
                                 domStyle.set("linkDialog", "left", "auto");
                                 domConstruct.destroy("linkDialog_underlay");
-
                             }
-                        });
-                        request.open("Get", share, true);
-                        request.send();
+                        }));
                     }
 
 
@@ -564,9 +566,9 @@ define([
                     var args = {};
                     args.Method = 0;
                     if (value === "SAVI")
-                        args.BandIndexes = O + "+" + "(" + S + "*" + "(1.5*((" + A + "-" + B + ")/(" + A + "+" + B + " +15000))))";
+                        args.BandIndexes = O + "+" + "(" + S + "*" + "(1.5*((" + A + "-" + B + ")/(" + A + "+" + B + " +5000))))";
                     else
-                        args.BandIndexes = O + "+" + "(" + S + "*" + "((" + A + "-" + B + ")/(" + A + "+" + B + " -10000)))";
+                        args.BandIndexes = O + "+" + "(" + S + "*" + "((" + A + "-" + B + ")/(" + A + "+" + B + ")))";
                     raster.functionArguments = args;
 
                     if (registry.byId("colorRamp").get("value") !== "custom" && registry.byId("colorRamp").get("value") !== "moisture") {
@@ -789,7 +791,7 @@ define([
 
                             args.Min = 0.0;
                             args.Max = 255.0;
-                            args.Statistics = [[5000, 25000, 10000, 1], [5000, 15000, 10000, 1], [5000, 15000, 10000, 1]];
+                            args.Statistics = [[0, 4000, 1000, 1], [0, 2000, 1000, 1], [0, 2000, 1000, 1]];
                             args.UseGamma = this.gvalue;
                             if (this.gvalue)
                             {
@@ -805,7 +807,7 @@ define([
 
                             args.Min = 0.0;
                             args.Max = 255.0;
-                            args.Statistics = [[5000, 10000, 7500, 1], [5000, 10000, 7500, 1], [5000, 10000, 7500, 1]];
+                            args.Statistics = [[0, 1000, 500, 1], [0, 1000, 500, 1], [0, 1000, 500, 1]];
                             args.UseGamma = this.gvalue;
                             if (this.gvalue)
                             {
@@ -822,7 +824,7 @@ define([
                             args.Min = 0.0;
                             args.Max = 255.0;
                             args.UseGamma = this.gvalue;
-                            args.Statistics = [[45000, 55000, 50000, 1], [45000, 55000, 50000, 1], [45000, 55000, 50000, 1]];
+                            args.Statistics = [[8000, 10000, 9000, 1], [8000, 10000, 9000, 1], [8000, 10000, 9000, 1]];
                             if (this.gvalue)
                             {
 
@@ -838,7 +840,7 @@ define([
                             args.Min = 0.0;
                             args.Max = 255.0;
                             args.UseGamma = this.gvalue;
-                            args.Statistics = [[50000, 55000, 52500, 1], [50000, 55000, 52500, 1], [50000, 55000, 52500, 1]];
+                            args.Statistics = [[9000, 10000, 9500, 1], [9000, 10000, 9500, 1], [9000, 10000, 9500, 1]];
                             if (this.gvalue)
                             {
 
@@ -854,7 +856,7 @@ define([
                             args.Min = 0.0;
                             args.Max = 255.0;
                             args.UseGamma = this.gvalue;
-                            args.Statistics = [[5000, 55000, 30000, 1], [5000, 55000, 30000, 1], [5000, 55000, 30000, 1]];
+                            args.Statistics = [[0, 10000, 5000, 1], [0, 10000, 5000, 1], [0, 10000, 5000, 1]];
                             if (this.gvalue)
                             {
 
@@ -880,7 +882,6 @@ define([
                         var tooltipTemp = registry.byId("tooltipDialogIntro");
 
                         tooltipTemp.set("content", "<p style='text-align: justify;'>This is a true-color image (similar to a photograph), created using the red, green, and blue satellite bands. Notice how much easier it was to find healthy vegetation using the color infrared view we saw a moment ago, compared to the true-color image here.<div id='continueComment' style='font-weight: bolder;color: orange;cursor:pointer;'>Click here to continue.</div></p>")
-
                         popup.open({
                             parent: registry.byId("bandCombinationDialog"),
                             popup: tooltipTemp,
@@ -990,7 +991,6 @@ define([
                             this.appStageHandler = null;
                         }
                         this.appRenderer = null;
-
                     }
 
                 },
@@ -1035,7 +1035,7 @@ define([
                 applyBandCombination: function () {
                     if (dom.byId("bandCombinationDialog_dropdown"))
                         domStyle.set("bandCombinationDialog_dropdown", "z-index", "1");
-
+                    //  html.set(this.descriptionRenderer, "");
                     domStyle.set("renderingInfo", "display", "none");
                     registry.byId("rendererInfoDialog").hide();
                     var renderer = registry.byId("bandComboList").get("value");
@@ -1048,8 +1048,9 @@ define([
                             popup.open({
                                 parent: registry.byId("bandCombinationDialog"),
                                 popup: tooltipTemp,
+                                // style:"z-index:1",
                                 orient: ["after-centered"],
-                                around: dom.byId("bandCombinationDialog"),
+                                around: dom.byId("bandCombinationDialog"), //dom.byId('bandComboList'), 
                                 onClose: lang.hitch(this, function () {
                                     domStyle.set(tooltipTemp._popupWrapper, "display", "block");
                                 })

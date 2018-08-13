@@ -88,7 +88,6 @@ function (declare, lang, array, html, dojoConfig, cookie,
         if (err) {
           throw Error(err);
         }
-        
         this.rawAppConfig = lang.clone(appConfig);
         AppStateManager.getInstance().setRawAppConfig(this.rawAppConfig);
         appConfig = this._upgradeAppConfig(appConfig);
@@ -137,7 +136,6 @@ function (declare, lang, array, html, dojoConfig, cookie,
           })).then(lang.hitch(this, function(appConfig) {
             this._processAfterTryLoad(appConfig);
             this.appConfig = appConfig;
-            
             if(appConfig.map.itemId){
               return appConfig;
             }else{
@@ -154,7 +152,6 @@ function (declare, lang, array, html, dojoConfig, cookie,
               });
             }
           })).then(lang.hitch(this, function(appConfig) {
-              
             return this.loadWidgetsManifest(appConfig);
           })).then(lang.hitch(this, function(appConfig) {
             //if it's an AGOL template app, the appConfig will have one property:_appData
@@ -175,10 +172,8 @@ function (declare, lang, array, html, dojoConfig, cookie,
               return appConfig;
             }
           })).then(lang.hitch(this, function(appConfig) {
-              
             return this.loadAndUpgradeAllWidgetsConfig(appConfig);
           })).then(lang.hitch(this, function(appConfig) {
-              
             this._configLoaded = true;
             this._setDocumentTitle(appConfig);
             return this.getAppConfig();
@@ -346,7 +341,6 @@ function (declare, lang, array, html, dojoConfig, cookie,
       } else{
         this.configFile = "config.json";
         return xhr(this.configFile, {handleAs: 'json'}).then(lang.hitch(this, function(appConfig){
-            
           tokenUtils.setPortalUrl(appConfig.portalUrl);
           if(appConfig.portalUrl){
             window.portalUrl = appConfig.portalUrl;
@@ -385,12 +379,10 @@ function (declare, lang, array, html, dojoConfig, cookie,
       var def = new Deferred(), defs = [];
 
       sharedUtils.visitElement(appConfig, lang.hitch(this, function(e){
-          
         if(!e.uri){
           return;
         }
         var upgradeDef = this.widgetManager.tryLoadWidgetConfig(e);
-        
         defs.push(upgradeDef);
       }));
       all(defs).then(lang.hitch(this, function(){
@@ -816,7 +808,6 @@ function (declare, lang, array, html, dojoConfig, cookie,
         }));
       }else{
         sharedUtils.visitElement(config, lang.hitch(this, function(e){
-            
           if(!e.widgets && e.uri){
             defs.push(loadWidgetManifest(this.widgetManager, e));
           }

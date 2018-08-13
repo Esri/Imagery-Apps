@@ -1,6 +1,6 @@
 define({
   root: ({
-    _themeLabel: "Landsat Theme",
+    _themeLabel: "Foldable Theme",
     _layout_default: "Default Layout",
     _layout_layout1: "Layout 1"
   }),

@@ -1,1 +1,44 @@
-{}
+{
+    "layers" : {
+        "Agriculture" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "Agriculture with DRA"
+        },
+        "Color Infrared" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "Color Infrared with DRA"
+        },
+        "Short-wave Infrared" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "Short-wave Infrared with DRA"
+        },
+        "Natural Color" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
+            "rasterFunction" : "Landsat PS Enhanced_DRA"
+        },
+        "Bathymetric" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "Bathymetric with DRA"
+        },
+        "NDVI Colorized" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "NDVI Colorized"
+        },
+        "Panchromatic with DRA" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/Pan/ImageServer",
+            "rasterFunction" : "Panchromatic with DRA"
+        },
+        "Geology" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "Geology with DRA"
+        },
+        "BurnIndex" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "Normalized Difference Moisture Index Colorized"
+        },
+        "Moisture Index" : {
+            "url" : "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+            "rasterFunction" : "Normalized Difference Moisture Index Colorized"
+        }
+    }
+}

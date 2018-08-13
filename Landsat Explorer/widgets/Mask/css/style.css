@@ -47,7 +47,7 @@
 }
 
 #maskDialog .dijitDialogCloseIcon:before {
-  content: url("../../../jimu.js/css/images/btn_sub.png");
+  content: url("http://landsatexplorer.esri.com/jimu.js/css/images/btn_sub.png");
 }
 
 

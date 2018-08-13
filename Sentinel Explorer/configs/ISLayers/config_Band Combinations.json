@@ -1,84 +1,149 @@
 {
     "layers": {
         "Agriculture with DRA": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "rasterFunction": "Agriculture with DRA",
-            "description": "<p style='text-align:justify;'>Bands shortwave IR-1, near-IR, blue (11, 8a, 2) with dynamic range adjustement applied on apparent reflectance. Vigorous veg. is bright green, stressed veg. dull green and bare areas as brown.</p>",
+            "description": "<p style='text-align:justify;'>Bands shortwave IR-1, near-IR, blue (11, 8, 2) with dynamic range adjustment applied. Vigorous veg. is bright green, stressed veg. dull green and bare areas as brown.</p>",
             "name": "Agriculture"
         },
         "Color Infrared with DRA": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "rasterFunction": "Color Infrared with DRA",
-            "description": "<p style='text-align:justify;'>Bands near-infrared, red, green (8a, 4, 3) with dynamic range adjustement applied on apparent reflectance. Healthy vegetation is bright red while stressed vegetation is dull red.</p>",
+            "description": "<p style='text-align:justify;'>Bands near-infrared, red, green (8,4,3) with dynamic range adjustment applied. Healthy vegetation is bright red while stressed vegetation is dull red.</p>",
             "name": "Color Infrared"
-
         },
         "Short-wave Infrared with DRA": {
-            "url": "",
+               "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "rasterFunction": "Short-wave Infrared with DRA",
-            "description": "<p style='text-align:justify;'>Bands shortwave infrared2, shortwave infrared1, red (12, 11, 4) with dynamic range adjustment applied on apparent reflectance.</p>",
+            "description": "<p style='text-align:justify;'>Bands shortwave infrared-2, shortwave infrared-1, red (12, 11, 4) with dynamic range adjustment applied.</p>",
             "name": "Short-wave Infrared"
         },
         "Natural Color with DRA": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "rasterFunction": "Natural Color with DRA",
-            "description": "<p style='text-align:justify;'>Natural Color bands red, green, blue (4, 3, 2) displayed with dynamic range adjustement applied on apparent reflectance.</p>",
+            "description": "<p style='text-align:justify;'>Natural Color bands red, green, blue (4, 3, 2) displayed with dynamic range adjustment applied.</p>",
             "name": "Natural Color"
         },
         "Bathymetric with DRA": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "rasterFunction": "Bathymetric with DRA",
-            "description": "<p style='text-align:justify;'>Bands red, green, coastal/aerosol(4, 3, 1) with Dynamic Range Adjustment applied on apparent reflectance.</p>",
+            "description": "<p style='text-align:justify;'>Bands red, green, coastal/aerosol(4, 3, 1) with dynamic range adjustment applied. Useful bathymetric mapping applicaitons.</p>",
             "name": "Bathymetric"
         },
-        "NDVI Colorized": {
-            "url": "",
-            "rasterFunction": "NDVI Colorized",
-            "description": "<p style='text-align:justify;'>Normalized difference vegetation index (NDVI) with color map. Dark green is thick vigorous vegetation and brown represents sparse vegetation.</p>",
+        "NDMI Colorized": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDMI Colorized",
+            "description": "<p style='text-align:justify;'>Normalized Difference Moisture Index with color map. Wetlands and moist areas appear blue whereas dry areas are represented by deep yellow and brown color.</p>",
+            "name": "NDMI Colorized"
+        },
+        "NDVI Raw": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDVI Raw",
+            "description": "<p style='text-align:justify;'>Normalized difference vegetation index (NDVI) computed as (b8 - b4) / (b8 + b4).</p>",
+            "name": "NDVI Raw"
+        },
+        "NDVI Colormap": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDVI Colormap",
+            "description": "<p style='text-align:justify;'>Normalized difference vegetation index (NDVI) with colormap. Green represents vigorous vegetation and purple represents sparse vegetation.</p>",
             "name": "Vegetation Index"
         },
         "Geology with DRA": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "rasterFunction": "Geology with DRA",
-            "description": "<p style='text-align:justify;'>Bands shortwave IR-1, near-IR, blue (12, 11, 2) with dynamic range adjustement applied on apparent reflectance. Vigorous veg. is bright green, stressed veg. dull green and bare areas as brown.</p>",
+            "description": "<p style='text-align:justify;'>Bands shortwave IR-2, shortwave IR-1, blue (12, 11, 2) with dynamic range adjustment applied. Vigorous veg. is bright green, stressed veg. dull green and bare areas as brown.</p>",
             "name": "Geology"
         },
-        "Normalized Difference Moisture Index Colorized": {
-            "url": "",
-            "rasterFunction": "Normalized Difference Moisture Index Colorized",
+        "NDMI Colorized": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDMI Colorized",
             "description": "<p style='text-align:justify;'>Normalized Difference Moisture Index with color map. Wetlands and moist areas are blues, and dry areas in deep yellow and brown.</p>",
             "name": "Moisture Index"
         },
+        "Normalized Burn Ratio": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "Normalized Burn Ratio",
+            "description": "<p style='text-align:justify;'>To detect burned areas, the NBR Raw index is the most appropriate choice. It highlights burnt areas in large fire zones greater than 500 acres. Create pre- and post-fire NBR images, subtract the post-fire image from the pre-fire image to create a differenced (or delta) NBR image that indicates burn severity.It is computed as NIR(Band08)-SWIR(Band12)/NIR(Band08)+SWIR(Band12)</p>",
+            "name": "Normalized Burn Ratio"
+        },
+        "Normalized Difference Built-Up Index (NDBI)": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "Normalized Difference Built-Up Index (NDBI)",
+            "description": "<p style='text-align:justify;'>To detect burned areas, the NBR Raw index is the most appropriate choice. It highlights burnt areas in large fire zones greater than 500 acres. Create pre- and post-fire NBR images, subtract the post-fire image from the pre-fire image to create a differenced (or delta) NBR image that indicates burn severity.It is computed as NIR(Band08)-SWIR(Band12)/NIR(Band08)+SWIR(Band12).</p>",
+            "name": "Built-Up Index"
+        },
+        "NDVI - VRE only Raw": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDVI - VRE only Raw",
+            "description": "<p style='text-align:justify;'>The NDVI - VRE only Raw (NDVI705) is most appropriate for usage with very high spectral resolution reflectance data, e.g. data from hyperspectral sensors. This index is a modification of the broadband NDVI, from which it differs by using bands along the red edge, instead of the main absorption and reflectance peaks. The NDVI705 capitalizes on the sensitivity of the vegetation red edge to small changes in canopy foliage content, gap fraction, and senescence. Applications include precision agriculture, forest monitoring, and vegetation stress detection.It is computed as VegetationRedEdge(Band06)-VegetationRedEdge(Band05)/VegetationRedEdge(Band06)+VegetationRedEdge(Band05)</p>",
+            "name": "NDVI - VRE only Raw"
+        },
+		"NDVI - VRE only Colorized": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDVI - VRE only Colorized",
+            "description": "<p style='text-align:justify;'>NDVI - VRE only (NDVI705) with colormap. Green represents vigorous vegetation and purple represents sparse vegetation.It is most appropriate for usage with very high spectral resolution reflectance data, e.g. data from hyperspectral sensors. This index is a modification of the broadband NDVI, from which it differs by using bands along the red edge, instead of the main absorption and reflectance peaks and capitalizes on the sensitivity of the vegetation red edge to small changes in canopy foliage content, gap fraction, and senescence. Applications include precision agriculture, forest monitoring, and vegetation stress detection.It is computed as VegetationRedEdge(Band06)-VegetationRedEdge(Band05)/VegetationRedEdge(Band06)+VegetationRedEdge(Band05)</p>",
+            "name": "NDVI - VRE only Colorized"
+		},
+		"NDVI - with VRE Raw": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDVI - with VRE Raw",
+            "description": "<p style='text-align:justify;'>NDVI - with VRE Raw (NDRE-Normalized Difference Red Edge) is a better indicator of vegetation health/vigor than NDVI for mid to late season crops that have accumulated high levels of chlorophyll in their leaves because red-edge light is more translucent to leaves than red light and so it is less likely to be completely absorbed by a canopy. It is more suitable than NDVI for intensive management applications throughout the growing season because NDVI often loses sensitivity after plants accumulate a critical level of leaf cover or chlorophyll content. It is computed as NIR(Band08)-VegetationRedEdge(Band05)/NIR(Band08)+VegetationRedEdge(Band05).</p>",
+            "name": "NDVI - with VRE Raw"
+        },
+        "NDWI Raw": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDWI Raw",
+            "description": "<p style='text-align:justify;'>The NDWI index is most appropriate for water body mapping. The water body has strong absorbability and low radiation in the range from visible to infrared wavelengths. The index uses the green and Near Infra-red bands of remote sensing images based on this phenomenon. The NDWI can enhance the water information effectively in most cases. It is sensitive to built-up land and often results in over-estimated water bodies.It is computed as Green(Band03)-NIR(Band08)/ Green(Band03)+NIR(Band08).</p>",
+            "name": "Water Index"
+        },
+        "NDWI - with VRE Raw": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDWI - with VRE Raw",
+            "description": "<p style='text-align:justify;'>It is computed as Green(Band03)-VegetationRedEdge(Band05)/Green(Band03)+VegetationRedEdge(Band05).</p>",
+            "name": "NDWI - with VRE Raw"
+        },
+		 "NDWI - with VRE Colorized": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDWI - with VRE Colorized",
+            "description": "<p style='text-align:justify;'>NDWI - with VRE with color map. Wetlands and moist areas are blues, and dry areas in deep yellow and brown.It is most appropriate for water body mapping. The water body has strong absorbability and low radiation in the range from visible to infrared wavelengths. The index uses the green and Near Infra-red bands of remote sensing images based on this phenomenon. The NDWI can enhance the water information effectively in most cases. It is sensitive to built-up land and often results in over-estimated water bodies.It is computed as Green(Band03)-NIR(Band08)/ Green(Band03)+NIR(Band08).</p>",
+            "name": "NDWI - with VRE Colorized"
+        },
+        "NDVI - with VRE Colorized": {
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
+            "rasterFunction": "NDVI - with VRE Colorized",
+            "description": "<p style='text-align:justify;'>NDVI - with VRE (NDRE) with colormap. Green represents vigorous vegetation and purple represents sparse vegetation.Also called as NDRE(Normalized Difference Red Edge) is a better indicator of vegetation health/vigor than NDVI for mid to late season crops that have accumulated high levels of chlorophyll in their leaves because red-edge light is more translucent to leaves than red light and so it is less likely to be completely absorbed by a canopy. It is more suitable than NDVI for intensive management applications throughout the growing season because NDVI often loses sensitivity after plants accumulate a critical level of leaf cover or chlorophyll content. It is computed as NIR(Band08)-VegetationRedEdge(Band05)/NIR(Band08)+VegetationRedEdge(Band05).</p>",
+            "name": "NDVI - with VRE Colorized"
+        },
         "Index": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "name": "Custom Index"
         },
         "NDVI": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "name": "NDVI"
         },
         "NBR": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "name": "Burn Index"
         },
         "Urban": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "name": "Urban Index"
         },
         "NDWI": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "name": "Water Index"
         },
         "SAVI": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "name": "SAVI"
         },
         "NDMI": {
-            "url": "",
+            "url": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
             "name": "Moisture"
         }
     },
-    "sentinelUrl": "",
+    "sentinelUrl": "https://utility.arcgis.com/usrsvcs/servers/d064db2829494467a193bccba23321f6/rest/services/Sentinel2/ImageServer",
     "colormap": [[0, 190, 232, 255],
         [1, 190, 232, 255],
         [2, 190, 232, 255],

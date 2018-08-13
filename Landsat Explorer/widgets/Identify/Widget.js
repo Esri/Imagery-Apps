@@ -21,14 +21,13 @@ define([
     'dojo/_base/declare',
     'dijit/_WidgetsInTemplateMixin',
     'dojo/text!./Widget.html',
-    'jimu/BaseWidget', "./resourceLoad.js"
-
+    'jimu/BaseWidget', "./resourceLoad.js", "dojo/i18n!esri/nls/jsapi",
 ],
         function (
                 declare,
                 _WidgetsInTemplateMixin,
                 template,
-                BaseWidget, resourceLoad
+                BaseWidget, resourceLoad, bundle
                 ) {
             var resource = new resourceLoad({resource: "identify"});
             var plugins = resource.load("identify");
@@ -105,7 +104,7 @@ define([
                     domConstruct.place('<img id="loadingsp" style="position: absolute;top:0;bottom: 0;left: 0;right: 0;margin:auto;z-index:100;" src="' + require.toUrl('jimu') + '/images/loading.gif">', this.map.container);
                     domConstruct.place('<img id="loadingsp1" style="position: absolute;top:0;bottom: 0;left: 0;right: 0;margin:auto;z-index:100;" src="' + require.toUrl('jimu') + '/images/loading.gif">', "chartDialog1");
                     this.hideLoading();
-                    domConstruct.place('<img id="markerPixel" style="display:none;position: absolute;z-index:100;" src="./widgets/Identify/images/marker.png">', "canvasContainer");
+                    domConstruct.place('<img id="markerPixel" style="display:none;position: absolute;z-index:100;top:75px;left:75px;" src="./widgets/Identify/images/marker.png">', "canvasContainer");
                     this.pointTooltip = new tooltip({
                         connectId: ["markerPixel"]
                     });
@@ -174,10 +173,7 @@ define([
                     this.refreshData();
                     this.centerFlag = true;
                     this.checkSecondaryAndPrimary(this.map.extent.getCenter());
-
-
                     this.toolbarIdentify.activate(Draw.POINT);
-
                 },
                 autoresize: function ()
                 {
@@ -202,7 +198,7 @@ define([
                             break;
                         }
                     }
-
+                    // this.autoTurnOff = true;
                     registry.byId("markedAreasScatter").set("checked", false);
 
                     this.toolbarIdentify.deactivate();
@@ -220,7 +216,7 @@ define([
                     domStyle.set("onlyidentify", "display", "block");
                     domStyle.set("identifysp", "display", "none");
                     domStyle.set("scatterPlotContainer", "display", "none");
-                    this.hideLoading();
+                    this.hideLoading();// domStyle.set("loadingsp1", "display", "none");
                     domStyle.set("loadingsp", "display", "none");
                     connect.publish("identify", [{idenstatus: "close"}]);
                 },
@@ -345,7 +341,7 @@ define([
                             }
                             domStyle.set("chartDialog1", "top", "100px");
                             domStyle.set("chartDialog1", "left", "160px");
-
+                            //  domStyle.set("chartDialog1", "top", (this.h + "px"));
                             domStyle.set("loadingsp", "display", "none");
                             domConstruct.destroy("chartDialog1_underlay");
                         }
@@ -354,7 +350,7 @@ define([
                         html.set(this.identifytab, "");
                         html.set(this.noinfo, "No Information available");
                         domStyle.set("identifysp", "display", "none");
-
+                        //domStyle.set("onlyidentify", "display", "none");
                         domStyle.set("loadingsp", "display", "none");
 
                         registry.byId("chartDialog1").show();
@@ -378,8 +374,8 @@ define([
                         }
                     }
                     var normalizedValues = [];
-                    for (a in values) {
-                        normalizedValues[a] = (values[a] - 5000) / (50000);
+                    for (a = 0;a<values.length - 1;a++) {
+                        normalizedValues[a] = (values[a]) / (10000);
                     }
                     this.chartData = [];
                     for (a in normalizedValues) {
@@ -388,7 +384,7 @@ define([
                                     y: normalizedValues[a]});
                     }
 
-                    var normalizedValues1 = this.config.cloud;
+                    var normalizedValues1 = this.config.a;
                     this.chartData1 = [];
                     for (b in normalizedValues1)
                     {
@@ -402,7 +398,7 @@ define([
 
 
 
-                    var normalizedValues2 = this.config.snow;
+                    var normalizedValues2 = this.config.b;
                     this.chartData2 = [];
                     for (b in normalizedValues2)
                     {
@@ -414,7 +410,7 @@ define([
                         );
                     }
 
-                    var normalizedValues3 = this.config.desert;
+                    var normalizedValues3 = this.config.c;
                     this.chartData3 = [];
                     for (b in normalizedValues3)
                     {
@@ -426,7 +422,7 @@ define([
                         );
                     }
 
-                    var normalizedValues4 = this.config.drygrass;
+                    var normalizedValues4 = this.config.d;
                     this.chartData4 = [];
                     for (b in normalizedValues4)
                     {
@@ -438,7 +434,7 @@ define([
                         );
                     }
 
-                    var normalizedValues5 = this.config.concrete;
+                    var normalizedValues5 = this.config.e;
                     this.chartData5 = [];
                     for (b in normalizedValues5)
                     {
@@ -450,7 +446,7 @@ define([
                         );
                     }
 
-                    var normalizedValues6 = this.config.lushgrass;
+                    var normalizedValues6 = this.config.f;
                     this.chartData6 = [];
                     for (b in normalizedValues6)
                     {
@@ -462,7 +458,7 @@ define([
                         );
                     }
 
-                    var normalizedValues7 = this.config.urban;
+                    var normalizedValues7 = this.config.g;
                     this.chartData7 = [];
                     for (b in normalizedValues7)
                     {
@@ -474,7 +470,7 @@ define([
                         );
                     }
 
-                    var normalizedValues10 = this.config.water;
+                    var normalizedValues10 = this.config.j;
                     this.chartData10 = [];
                     for (b in normalizedValues10)
                     {
@@ -486,7 +482,7 @@ define([
                         );
                     }
 
-                    var normalizedValues9 = this.config.forest;
+                    var normalizedValues9 = this.config.h;
                     this.chartData9 = [];
                     for (b in normalizedValues9)
                     {
@@ -498,7 +494,7 @@ define([
                         );
                     }
 
-                    var normalizedValues8 = this.config.rock;
+                    var normalizedValues8 = this.config.i;
                     this.chartData8 = [];
                     for (b in normalizedValues8)
                     {
@@ -585,7 +581,6 @@ define([
                     }
 
 
-
                     domStyle.set("chartDialog1", "top", "100px");
                     domStyle.set("chartDialog1", "left", "160px");
                     domStyle.set("identifysp", "display", "block");
@@ -594,7 +589,6 @@ define([
                     if (registry.byId("tooltipDialogIntro") && registry.byId("tooltipDialogIntro").state === "open" && registry.byId("tutorialStage").get("value") === "9") {
                         var tooltipTemp = registry.byId("tooltipDialogIntro");
                         popup.close(tooltipTemp);
-
                         tooltipTemp.set("content", "<p style='text-align: justify;'>Note which land cover class matches the point you clicked. How closely do the spectral profile of the selected point (in red) and the spectral profile of the land cover class match?</p><div id='continueComment' style='font-weight:bolder;color:orange;cursor:pointer;'>Click here to continue.</div>");
                         popup.open({
                             parent: registry.byId("chartDialog1"),
@@ -610,7 +604,6 @@ define([
                         on(dom.byId("continueComment"), "click", lang.hitch(this, function () {
                             var tooltipTemp = registry.byId("tooltipDialogIntro");
                             popup.close(tooltipTemp);
-
                             tooltipTemp.set("content", "<p style='text-align:justify;'>The <span style='font-weight: bolder;color:orange;'>Identify</span> tool will also generate a scatter plot of the pixel values for the current image extent.<br/>Click<span style='font-weight: bolder;color: orange;'> Scatter Plot.</span></p>");
                             popup.open({
                                 parent: registry.byId("chartDialog1"),
@@ -623,7 +616,6 @@ define([
                             });
                             domStyle.set(tooltipTemp.connectorNode, "top", "0px");
                             registry.byId("tutorialStage").set("value", "38");
-
                         }));
                     }
 
@@ -715,10 +707,10 @@ define([
                         this.xmax = result.histograms[0].max;
                         this.ymin = result.histograms[1].min;
                         this.ymax = result.histograms[1].max;
-                        document.getElementById("xmin").innerHTML = parseFloat((this.xmin - 5000) / 50000).toFixed(2);
-                        document.getElementById("xmax").innerHTML = parseFloat((this.xmax - 5000) / 50000).toFixed(2);
-                        document.getElementById("ymax").innerHTML = parseFloat((this.ymax - 5000) / 50000).toFixed(2);
-                        document.getElementById("ymin").innerHTML = parseFloat((this.ymin - 5000) / 50000).toFixed(2);
+                        document.getElementById("xmin").innerHTML = parseFloat((this.xmin) / 10000).toFixed(2);
+                        document.getElementById("xmax").innerHTML = parseFloat((this.xmax) / 10000).toFixed(2);
+                        document.getElementById("ymax").innerHTML = parseFloat((this.ymax) / 10000).toFixed(2);
+                        document.getElementById("ymin").innerHTML = parseFloat((this.ymin) / 10000).toFixed(2);
                     }));
                 },
                 eventsOnCanvas: function () {
@@ -900,11 +892,9 @@ define([
 
                         this.xBand = pixelData.pixelBlock.pixels[0];
                         this.yBand = pixelData.pixelBlock.pixels[1];
-
                         if (!pixelData.pixelBlock.mask) {
                             pixelData.pixelBlock.mask = new Uint8Array(this.xBand.length);
                         }
-
                         var x, y;
                         this.coordinates = [];
 
@@ -1142,6 +1132,10 @@ define([
                                 this.polygons = null;
                                 this.polygons = new Polygon(new SpatialReference({wkid: 102100}));
                                 this.toolbarAreas.activate(Draw.POLYGON);
+                                if (document.getElementsByClassName("tooltip")) {
+
+                                    domStyle.set(document.getElementsByClassName("tooltip")[0], "visibility", "visible");
+                                }
                                 for (var k = this.map.graphics.graphics.length - 1; k >= 0; k--)
                                 {
                                     if (this.map.graphics.graphics[k].geometry.type === "polygon") {

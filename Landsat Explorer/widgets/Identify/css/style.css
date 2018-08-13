@@ -2,24 +2,24 @@
     visibility: hidden;
 }
 @-moz-document url-prefix() {
-    #chartDialog1
-    {
-        width : 530px;
-
-    }
-    #chartshow1 {
-        display: block;
-    }
+#chartDialog1
+{
+    width : 530px;
+                      
+}
+#chartshow1 {
+    display: block;
+}
 }
 .claro .dijitDialogPaneContent
 {
     height: auto;
-
+    
 }
 #scatterPlot,#clipScatter,#resetScatter 
 {
-    cursor: pointer;
-    padding: 5px 10px;
+  cursor: pointer;
+   padding: 5px 10px;
     text-align: center;
     background: #fff;
     border: 1px solid #ddd;
@@ -44,8 +44,8 @@
 }
 #identifyButton
 {
-    cursor: pointer;
-    padding: 5px 10px;
+  cursor: pointer;
+   padding: 5px 10px;
     text-align: center;
     background: #fff;
     border: 1px solid #ddd;
