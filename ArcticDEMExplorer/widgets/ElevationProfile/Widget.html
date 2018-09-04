@@ -1,0 +1,34 @@
+<div>
+    <div  data-dojo-type="dijit/Dialog" id="DialogElevation" title="Measure" style="background-color: white;">
+        <div data-dojo-attach-point="errorHandlerElevation" style="color: #0080C0;"></div>
+    </div>
+    <div data-dojo-type="dijit/Dialog" id="chartDialogElevation" title="Elevation Profile" style="background-color: white;">
+        <div style="color:#0080C0;">Mode:&nbsp;&nbsp;&nbsp;
+            <select id="mode" data-dojo-type="dijit/form/Select" style="width:100px;height:12px;color: black;">
+                <option value="profile" selected='selected'>Elevation profile</option>
+                <!--<option value="compare" >Compare</option>-->
+                <option value="distance">Distance</option>
+                <option value="area">Area</option>
+            </select>
+            <div id="adUnit" style="display: none;">
+                <label for="measureUnits">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unit:
+                </label>
+                <select data-dojo-type="dijit/form/Select" style="width: 95px;display : inline-block; height: 21px;color: black;" id="measureUnits">
+                    <!--<option value="esriInches">Inch</option>-->
+                    <option value="esriFeet">Feet</option>
+                    <option value="esriYards">Yard</option>
+                    <option value="esriMiles">Mile</option>
+                    <!--<option value="esriMillimeters">Millimeters</option>
+                    <option value="esriCentimeters">Centimeters</option>
+                    <option value="esriDecimeters">Decimeters</option>-->
+                    <option value="esriMeters">Meter</option>
+                    <option value="esriKilometers" selected="selected">Kilometer</option>
+                </select>&nbsp;
+            </div>
+        </div><br />
+        <div id="chartNodeElevation"></div>
+        <div data-dojo-attach-point="areaDistance" style="color: #0080C0;"></div>
+    </div> 
+
+</div>
+

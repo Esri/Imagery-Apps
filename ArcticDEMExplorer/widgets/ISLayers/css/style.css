@@ -1,0 +1,101 @@
+.esriLegendServiceLabel {
+    font-size: 14px;
+}
+.esriLegendLayer{
+    font-size: 12px;
+}
+.red{
+    background-image: url(../images/red.png);
+}
+.LayerSwipe .vertical {
+    width: 1px !important;
+}
+#buildDialog_underlay {
+    visibility: hidden;
+}
+#statsDialog_underlay {
+    visibility: hidden;
+}
+
+#contourDialog_underlay {
+    visibility: hidden;
+}
+#changeDetectionDialog_underlay {
+    visibility: hidden;
+}
+#elevationFillDialog_underlay {
+    visibility: hidden;
+}
+.claro .dijitButton {
+  margin: 0;
+  margin-left: 5px;
+}
+#zfactorDiv {
+    position: absolute;
+    bottom: 45px;
+    right: 5px;
+    background: whitesmoke;
+    border-radius: 5px;
+    border: 0px;
+    padding: 5px;
+   display: none;
+}
+#apply, #reset, #applyHillshadeFill, #applyMeasurement, #getStatsBtn
+{
+    border: 0px ;
+    padding: 5px 10px 5px 10px;
+  color: white;
+  -moz-border-radius: 2px;
+ 
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: #007AC2;
+  -webkit-transition: border .15s ease-in-out;
+  -moz-transition: border .15s ease-in-out;
+  transition: border .15s ease-in-out;
+}
+#zfactorBtn {
+    border: 0px ;
+    padding: 5px 10px 5px 10px;
+  color: white;
+  -moz-border-radius: 2px;
+ 
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: #0080C0;
+  -webkit-transition: border .15s ease-in-out;
+  -moz-transition: border .15s ease-in-out;
+  transition: border .15s ease-in-out;
+  opacity: 1;
+}
+#zfactorBtn:hover {
+    opacity: 0.5;
+    
+}
+#zfactor .dijitButton .dijitButtonNode {
+    border: 0px;
+    border-radius: 0px;
+}
+
+.claro .dijitButton .dijitButtonNode {
+    padding: 0px;
+}
+.colorHeadings {
+    font-size: medium;
+    font-weight: normal;
+    color: #0080C0;
+    float: left;
+}
+.smallfonts {
+    color:#0080C0;float: right; font-size: xx-small;
+}
+.mediumfonts {
+   color: #0080C0; float: right;font-size: medium; font-weight: normal;
+}
+.hr{
+    color: #0080C0;
+    background-color: #0080C0;
+    height: 1px;
+}

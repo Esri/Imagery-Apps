@@ -1,0 +1,27 @@
+.esriLegendServiceLabel {
+    font-size: 14px;
+}
+.esriLegendLayer{
+    font-size: 12px;
+}
+.red{
+    background-image: url(../images/red.png);
+}
+.LayerSwipe .vertical {
+    width: 1px !important;
+}
+#export
+{
+     border: 0px;
+  padding: 5px 10px 5px 10px;
+  color: white;
+  -moz-border-radius: 4px;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color:#007AC2 ;
+  -webkit-transition: border .15s ease-in-out;
+  -moz-transition: border .15s ease-in-out;
+  transition: border .15s ease-in-out;
+}

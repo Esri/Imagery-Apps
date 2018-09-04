@@ -1,18 +1,20 @@
 # Imagery Explorer Apps
 
-This repository contains the source code for the Landsat Explorer and Sentinel Explorer imagery apps. These web apps include a variety of tools to explore and analyze Esri's [Landsat](http://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b) and Sentinel-2 image services. 
+This repository contains the source code for the Landsat Explorer, Sentinel Explorer, and Arctic DEM Explorer imagery apps. These web apps include a variety of tools to explore and analyze Esri's [Landsat](http://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b), [Sentinel-2](https://www.arcgis.com/home/item.html?id=fd61b9e0c69c4e14bebd50a9a968348c), and [Arctic DEM](http://www.arcgis.com/home/item.html?id=db38a951a2b643478a942ab22cd78fc6), image services. 
 
-The source code in this repo serves as an open-source template that can be customized and expanded as needed.
-  
+The source code in this repo provides open-source templates that can be customized and expanded as needed.
+
+![App](https://github.com/ArcGIS/Imagery-Apps/blob/master/changeDetection1.jpg)?  
+
 [View Landsat Explorer live](http://landsatexplorer.esri.com/)
-
-![App](https://github.com/ArcGIS/Imagery-Apps/blob/master/changeDetection1.jpg)?
+[View Sentinel Explorer live](http://sentinel2explorer.esri.com/)
+[View Arctic DEM Explorer live](http://arcticdemapp.s3-website-us-west-2.amazonaws.com/explorer/)
 
 ## Features
 
 Features of the apps include the following, which can serve as a model for features in your own app.
 
-* Visualize imagery using different band combinations and indexes
+* Visualize imagery using different band combinations, indexes, or other raster function templates
 * Filter imagery (by date, cloud cover, etc.)
 * Compare images from different dates using a swipe tool
 * Generate masks based on a variety of indexes

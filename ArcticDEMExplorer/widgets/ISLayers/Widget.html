@@ -1,0 +1,140 @@
+<div>
+    <div class="layer-item" id="Hillshade Gray" data-dojo-attach-point="multiBRadio" data-tooltip="<span class='tooltip-title has-margin'>Hillshade</span> on Arctic Elevation">
+        <img src="widgets/ISLayers/images/Hillshade.png"/>
+
+    </div>
+    <div class="layer-item" id="Hillshade Multidirectional" data-dojo-attach-point="multiFRadio" data-tooltip="<span class='tooltip-title has-margin'>Multi-Directional Hillshade</span> on Arctic Elevation">
+        <img src="widgets/ISLayers/images/MDHS.png"/>
+    </div>
+    <div class="layer-item" id="Hillshade Elevation Tinted" data-dojo-attach-point="multiCRadio" data-tooltip="<span class='tooltip-title has-margin'>Elevation Tinted Hillshade</span> on Arctic Elevation">
+        <img src="widgets/ISLayers/images/ElevationTinted.png"/>
+    </div>
+    <div class="layer-item" id="Slope Map" data-dojo-attach-point="slopeRadio" data-tooltip="<span class='tooltip-title has-margin'>SlopeMap</span> on Arctic Elevation">
+        <img src="widgets/ISLayers/images/Slopemap.png"/>
+    </div>
+    <div class="layer-item" id="Aspect Map" data-dojo-attach-point="multiERadio" data-tooltip="<span class='tooltip-title has-margin'>AspectMap</span> on Arctic Elevation">
+        <img src="widgets/ISLayers/images/Aspect.png"/>
+    </div>
+    <div class="layer-item" id="GreyHillshadeStretched" data-dojo-attach-point="multiARadio" data-tooltip="<span class='tooltip-title has-margin'>Hillshade</span> Stretched">
+        <img src="widgets/ISLayers/images/HillshadeStretched.png"/>
+    </div>
+    <div class="layer-item" id="Contour 25" data-dojo-attach-point="contourRadio" data-tooltip="<span class='tooltip-title has-margin'>Contour</span> on ArcticElevation">
+        <img src="widgets/ISLayers/images/Contour.png"/>
+    </div>
+
+    <div class="layer-item" id="Natural Color with DRA" data-dojo-attach-point="multiDRadio" data-tooltip="<span class='tooltip-title has-margin'>Landsat</span> Natural Color">
+        <img src="widgets/ISLayers/images/svg/naturalColorPansharpened24.svg"/>
+
+    </div>
+    <div class="layer-item" id="Build" data-dojo-attach-point="buildRadio" data-tooltip="<span class='tooltip-title has-margin'>Landsat</span> Build your own bands">
+        <img src="widgets/ISLayers/images/svg/buildYourOwn24.svg"/>
+
+    </div>
+
+    <div data-dojo-type="dijit/Dialog" id="buildDialog" title="Build Your Own" style="background-color: white;width:440px;top: 580px;">
+        <div>
+            <label for='bnd1' style ='color : #0080C0;'>RGB Composite: </label>
+            <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bnd1">
+                <option value="1">Coastal(1)</option>
+                <option value="2">Blue(2)</option>
+                <option value="3">Green(3)</option>
+                <option value="4">Red(4)</option>
+                <option value="5">NIR(5)</option>
+                <option value="6">SWIR1(6)</option>
+                <option value="7">SWIR2(7)</option>
+                <option value="8">Cirrus(8)</option>
+            </select>
+            &nbsp;&nbsp;    
+            <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bnd2">
+                <option value="1">Coastal(1)</option>
+                <option value="2">Blue(2)</option>
+                <option value="3">Green(3)</option>
+                <option value="4">Red(4)</option>
+                <option value="5">NIR(5)</option>
+                <option value="6">SWIR1(6)</option>
+                <option value="7">SWIR2(7)</option>
+                <option value="8">Cirrus(8)</option>
+            </select>
+            &nbsp;&nbsp;    <select data-dojo-type="dijit/form/Select" style="width: 95px; height: inherit;" id="bnd3">
+                <option value="1">Coastal(1)</option>
+                <option value="2">Blue(2)</option>
+                <option value="3">Green(3)</option>
+                <option value="4">Red(4)</option>
+                <option value="5">NIR(5)</option>
+                <option value="6">SWIR1(6)</option>
+                <option value="7">SWIR2(7)</option>
+                <option value="8">Cirrus(8)</option>
+            </select>
+
+        </div>
+        <br />
+
+        <div style="color: #0080C0; width: 90px;display : inline-block; ">Stretch:</div>
+
+        <select data-dojo-type="dijit/form/Select" style="width: 95px;display : inline-block; height: inherit;" id="stretchoptions">
+            <option value="none">Fixed</option>
+            <option value="standard">2 Std.Dev</option>
+            <option value="standard1">3 Std.Dev</option>
+            <option value="clip">2% Clip</option>
+            <option value="clip1">0.5% Clip</option>
+            <option value="clip2">0.1% Clip</option>
+            <option value='full'>Full</option>
+            <option value="dark">Dark</option>
+            <option value="vdark">VDark</option>
+            <option value="light">Light</option>
+            <option value="vlight">VLight</option>
+        </select>
+
+        &nbsp;&nbsp;  
+        <div style="display: inline-block; width: 95px;"> 
+            <div style="color: #0080C0;display : inline-block; float: right;">Gamma:</div></div>
+
+        &nbsp;&nbsp; 
+        <select data-dojo-type="dijit/form/Select"  style="height: inherit;width: 95px;" id="gammaoptions">
+            <option value="1">0.3</option>
+            <option value="2">0.5</option>
+            <option value="3">0.8</option>
+            <option value="4">1</option>
+            <option value="5">1.4</option>
+            <option value="6">2</option>
+            <option value="7">4</option>
+        </select>
+
+        <br />
+        <br />
+        <div>
+            <button data-dojo-type="dijit/form/Button"  id="apply" type="button">Apply</button>
+            <button data-dojo-type="dijit/form/Button" id="reset"  type="button">Reset</button> 
+
+        </div>
+    </div>
+    <div data-dojo-type="dijit/Dialog" id="contourDialog" title="Contour Properties" style="background-color: white;">
+        <div style="color: #0080C0;">Contour Interval:&nbsp;&nbsp;&nbsp;
+            <select data-dojo-type="dijit/form/Select" style="width: 95px;display : inline-block;height: 20px;float: right;" id="contourIntervalOptions">
+                <option value=0>Dynamic</option>
+                <option value=1.01>1m</option>
+                <option value=5.01>5m</option>
+                <option value=10.01>10m</option>
+                <option value=25.01 selected="selected">25m</option>
+                <option value=50.01>50m</option>
+                <option value=100.01>100m</option>
+                <option value=500.01>500m</option>
+            </select></div> 
+        <br />
+        <input data-dojo-type="dijit/form/CheckBox"  id="smoothContour"/> <label for="smoothContour">Smooth Contour</label>
+    </div>
+
+    <div data-dojo-type="dijit/Dialog" id="linkDialog" title="Share Link" style="background-color: white;">
+        <input type="text" data-dojo-type="dijit/form/TextBox" id="linkValue" style="width: 200px;;height: 30px;right: 10px; top: 130px;" />
+    </div>
+    <div data-dojo-type="dijit/Dialog" id="activateDialog" title="Notification" style="background-color: white;">
+        <div style="color: #0080C0;" data-dojo-attach-point="zoomNoti">Please zoom in to see selected renderer.</div>
+    </div>
+    <input  type="text" data-dojo-type="dijit/form/TextBox" id="currentDate" style="display: none;"/>
+    <input  type="text" data-dojo-type="dijit/form/TextBox" id="savedScene" style="display: none;"/>
+    <input  type="text" data-dojo-type="dijit/form/TextBox" id="savedSceneDetails" style="display: none;"/>
+    <input data-dojo-type="dijit/form/TextBox" id="appSceneID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="landsatSceneID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="arcticSceneID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="savedSceneID" style="display: none;" />
+</div>

@@ -1,0 +1,19 @@
+#chartDialogElevation_underlay {
+    visibility: hidden;
+}
+@-moz-document url-prefix() {
+#chartDialog1
+{
+    width : 530px;
+                      
+}
+#chartshowElevation {
+    display: inline-block;
+}
+}
+.claro .dijitDialogPaneContent
+{
+ height: "auto";   
+    
+}
+

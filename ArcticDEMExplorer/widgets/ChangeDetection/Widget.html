@@ -1,0 +1,21 @@
+<div>
+<div data-dojo-type="dijit/Dialog" id="changeDetectionDialog" title="Change Detection" style="background-color: white;">
+    <div data-dojo-attach-point="errorHandler" style="color: #0080C0;"></div>
+    <div id="stretchValue" style="display: none;">
+        <label for="inputRanges" style="color: #0080C0;">Display Range:&nbsp;</label>
+        <select data-dojo-type="dijit/form/Select" style="width: 95px;height: 21px;" id="inputRanges">
+            <option value=200>-200 to 200</option>
+            <option value=100>-100 to 100</option>
+            <option value=50 >-50 to 50</option>
+            <option value=20>-20 to 20</option>
+            <option value=15 selected="selected">-15 to 15</option>
+            <option value=10>-10 to 10</option>
+            <option value=5>-5 to 5</option>
+        </select><br /><br />
+    </div>
+    <div id="stats" style="display: none;">
+        <div class="mediumfonts" style="float: left;display: block;" data-dojo-attach-point="fromToDate"></div>
+    </div>
+    <div data-dojo-attach-point="statsText" style="color: #0080C0;"></div>
+</div>
+</div>

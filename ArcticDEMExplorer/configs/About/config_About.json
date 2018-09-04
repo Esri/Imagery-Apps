@@ -1,0 +1,5 @@
+{
+	"about": {
+		"aboutContent": "<p>This web application enables the investigation into a collection of Arctic DEMs. These are primarily created by the Polar Geospatial Center covering the majority of the Arctic. These are preliminary datasets and have yet to be cleaned up and corrected. Additionally large collections of Multispectral Landsat data collected for the Arctic are also accessible. These services are temporal and the app provides tools to review how Arctic has changed over time.<br /><br />For more information on these dataset <a href='http://goto.arcgisonline.com/group/ArcticMaps' target='_blank'>click here</a>.</p>"
+	}
+}

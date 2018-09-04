@@ -1,0 +1,42 @@
+<div>
+
+    <div data-dojo-type="dijit/Dialog" id="chartDialog1" title="Identify" style="background-color: white;">
+        <div data-dojo-attach-point="identifytab" style="color: #0080C0;"></div><hr />
+        <div id="onlyidentify" style ="display:block;">
+
+            <!--<input data-dojo-type="dijit/form/CheckBox"  id="type1" value="spectral1" /> <label for="type1">Show Spectral Profile</label>-->
+            <div data-dojo-attach-point="pointPickerText" style="float: left;color: #0080C0;"></div>
+            <br />
+        </div>
+        <div style="display: block;" id="footprintIdentify">
+            <input data-dojo-type="dijit/form/CheckBox"  id="footprintId"/> <label for="footprintId">FootPrint</label>
+        </div>
+        <div id="identifysp" style ="display: none;">
+            <div style="width:100%;">
+                <input data-dojo-type="dijit/form/CheckBox" checked id="type" value="spectral" /> <label for="type">Show Spectral Profile</label>
+                <div id="typical" style="float:right; color: #0080C0; display: none;">Typical Spectral Profiles</div>
+                <br />
+                <div>
+
+                    <div id="chartshow1" style="display: none;">
+                        <br />
+                        <div>
+                            <div id="chartNode1" style="float:left; width: 390px; height: 270px;"></div>
+                            <div id="legend1" style="float:right;"></div>
+
+                        </div>
+                        <div style="float: left;color: #0080C0;">Pick Point on map to reset spectral profile.</div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div data-dojo-attach-point="noinfo" style="color: #0080C0;">
+        </div>
+    </div>
+    <div data-dojo-type="dijit/Dialog" id="downloadDialog" title="Download" style="background-color: white;">
+        Click Ok to download the DEM.<br/>
+        <button type="button" id="ok" data-dojo-type="dijit/form/Button" style="margin-left: 40%;">Ok</button>
+        <a href="none" download id="linkDownload" style="display: none;">ExportImage</a>
+    </div>
+</div>
+
