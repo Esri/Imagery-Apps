@@ -1,0 +1,458 @@
+{
+    "theme": {
+        "name": "LandsatTheme",
+        "styles": [
+            "default",
+            "black",
+            "blue",
+            "cyan",
+            "green",
+            "purple",
+            "red",
+            "yellow"
+        ],
+        "version": "2.3"
+    },
+    "portalUrl": "http://www.arcgis.com",
+    "appId": "",
+    "authorizedCrossOriginDomains": [],
+    "title": "Earth Observation Explorer",
+    "subtitle": "",
+    "keepAppState": false,
+    "logo": "https://www.esri.com/favicon.ico",
+    "geometryService": "http://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
+    "links": [],
+    "widgetOnScreen": {
+        "panel": {
+            "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+            "positionRelativeTo": "browser",
+            "position": {
+                "top": 0,
+                "left": 10,
+                "height": 140,
+                "width": 80
+            }
+        },
+        "widgets": [
+            {
+                "uri": "themes/LandsatTheme/widgets/HeaderController/Widget",
+                "position": {
+                    "left": 0,
+                    "width": 95,
+                    "top": 40,
+                    "bottom": 0,
+                    "relativeTo": "browser"
+                },
+                "version": "2.3"
+
+            },
+            {
+                "uri": "widgets/Scalebar/Widget",
+                "position": {
+                    "left": 10,
+                    "bottom": 10,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_Scalebar_Widget_2",
+                "name": "Scalebar"
+            },
+            {
+                "uri": "widgets/Search/Widget",
+                "position": {
+                    "left": 60,
+                    "top": 20,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_Search_Widget_3",
+                "name": "Search"
+            },
+            {
+                "uri": "widgets/Coordinate/Widget",
+                "position": {
+                    "left": 160,
+                    "bottom": 5,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_Coordinate_Widget_4",
+                "name": "Coordinate"
+            },
+            {
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "position": {
+                        "top": 40,
+                        "left": 0,
+                        "height": 0,
+                        "width": 0
+                    }
+                },
+                "placeholderIndex": 1,
+                "id": "_8",
+                "position": {
+                    "left": 0,
+                    "bottom": 0
+                },
+                "positionRelativeTo": "browser",
+                "name": "ISHeader",
+                "label": "Header",
+                "version": "",
+                "icon": "//:0",
+                "id": "_8",
+                "uri": "widgets/ISHeader/Widget",
+                "config": "configs/ISHeader/config_ISHeader.json",
+                "openAtStart": true
+            },
+            {
+                "uri": "widgets/OverviewMap/Widget",
+                "position": {
+                    "right": 0,
+                    "top": 0,
+                    "zIndex": 1,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_OverviewMap_Widget_10",
+                "name": "OverviewMap"
+            },
+            {
+                "position": {
+                    "left": 20,
+                    "top": 140,
+                    "width": 200,
+                    "height": 200
+
+                },
+                "placeholderIndex": 1,
+                "id": "_29",
+                "name": "BasemapGallery",
+                "label": "Basemap Gallery",
+                "version": "1.4",
+                "uri": "widgets/BasemapGallery/Widget",
+                "config": "widgets/BasemapGallery/config.json"
+            },
+            {
+                "uri": "widgets/HomeButton/Widget",
+                "position": {
+                    "left": 20,
+                    "top": 95,
+                    "relativeTo": "map"
+                },
+                "version": "2.3",
+                "id": "widgets_HomeButton_Widget_11",
+                "name": "HomeButton"
+            }
+
+
+
+
+
+        ],
+        "panel": {
+            "uri": "jimu/OnScreenWidgetPanel",
+            "position": {
+                "relativeTo": "map"
+            }
+        }
+    },
+    "map": {
+        "3D": false,
+        "2D": true,
+        "position": {
+            "top": 40,
+            "right": 10,
+            "bottom": 10,
+            "left": 95
+        },
+        "itemId": "d5e02a0c1f2b4ec399823fdd3c2fdebd",
+        "mapOptions": {
+            "maxZoom": 21,
+            "minZoom": 1,
+            "extent": {
+                "xmin": -13084166.864489116,
+                "ymin": 4018683.4495148524,
+                "xmax": -13014800.261320412,
+                "ymax": 4053806.2640118436,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            }
+        },
+        "id": "map",
+        "portalUrl": "http://www.arcgis.com"
+    },
+    "widgetPool": {
+        "panel": {
+            "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+            "positionRelativeTo": "map",
+            "noOverlay": false,
+            "position": {
+                "left": 0,
+                "bottom": 0,
+                "width": 0,
+                "height": 0
+            }
+        },
+        
+        "groups": [
+            {
+                "widgets": [
+                    {
+                        "name": "ISImageExplorer",
+                        "label": "Explore Imagery",
+                        "version": "",
+                        "icon": "widgets/ISImageExplorer/images/icon.png",
+                        "uri": "widgets/ISImageExplorer/Widget",
+                        "config": "configs/ISImageExplorer/config_ISImageExplorer.json",
+                        "index": 2,
+                        "id": "widgets/ISImageExplorer/Widget_15"
+                    }
+                ],
+                "label": "<b>Explore Imagery</b><br /><span style='font-size:85%;'>Explore and perform operations</span>",
+                "index": 0,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 400,
+                        "height": 400,
+                        "left": 155,
+                        "top": 70
+                    }
+                },
+                "id": "_32",
+                "visible": true,
+                "icon": "widgets/ISImageExplorer/images/icon.png",
+                "openAtStart": false
+
+            }, 
+            
+            {
+                "widgets": [
+                    {
+                        "name": "ISImageCompare",
+                        "label": "Compare Imagery",
+                        "version": "",
+                        "icon": "widgets/ISImageCompare/images/icon.png",
+                        "uri": "widgets/ISImageCompare/Widget",
+                        "config": "configs/ISImageCompare/config_ISImageCompare.json",
+                        "index": 2,
+                        "id": "widgets/ISImageCompare/Widget_150"
+                    }
+                ],
+                "label": "<b>Compare Imagery</b><br /><span style='font-size:85%;'>Compare images and perform change detection</span>",
+                "index": 1,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 400,
+                        "height": 400,
+                        "left": 155,
+                        "top": 70
+                    }
+                },
+                "id": "_323",
+                "visible": true,
+                "icon": "widgets/ISImageCompare/images/icon.png"
+
+            }, 
+            {
+                "widgets": [
+                    {
+                        "name": "SpectralIndexLibrary",
+                        "label": "Spectral Index Library",
+                        "version": "",
+                        "icon": "widgets/SpectralIndexLibrary/images/spectral.png",
+                        "uri": "widgets/SpectralIndexLibrary/Widget",
+                        
+                        "index": 2,
+                        "id": "widgets/SpectralIndexLibrary/Widget_255"
+                    }
+                ],
+                "label": "<b>Spectral Index Library</b><br /><span style='font-size:85%;'>Apply one of the spectral indices</span>",
+                "index": 2,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 400,
+                        "height": 400,
+                        "left": 800,
+                        "top": 235
+                    }
+                },
+                "id": "_333",
+                "visible": true,
+                "icon": "widgets/SpectralIndexLibrary/images/spectral.png"
+
+            },
+            {
+                "widgets": [
+                    {
+                        "name": "ISImageExport",
+                        "label": "Image Export",
+                        "version": "",
+                        "icon": "widgets/ISImageExport/images/icon.png",
+                        "uri": "widgets/ISImageExport/Widget",
+                        "config": "configs/ISImageExport/config_ISImageExport.json",
+                        "index": 2,
+                        "id": "widgets/ISImageExport/Widget_155"
+                    }
+                ],
+                "label": "<b>Image Export</b><br /><span style='font-size:85%;'>Export image to disk or portal</span>",
+                "index": 3,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 400,
+                        "height": 400,
+                        "left": 155,
+                        "top": 70
+                    }
+                },
+                "id": "_325",
+                "visible": true,
+                "icon": "widgets/ISImageExport/images/icon.png"
+
+            }, 
+             {
+                "widgets": [
+                    {
+                        "name": "Bookmark",
+                        "label": "Bookmarks",
+                        "version": "2.7",
+                        "icon": "widgets/Bookmark/images/icon.png",
+                        "uri": "widgets/Bookmark/Widget",
+                        "config": "configs/Bookmark/config_Bookmark.json",
+                        "index": 9,
+                        "id": "widgets/Bookmark/Widget_16"
+                    }
+                ],
+                "label": "Bookmarks",
+                "index": 9,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 350,
+                        "height": 300
+
+                    }
+                },
+                "id": "_16",
+                "visible": true,
+                "icon": "widgets/Bookmark/images/icon.png"
+            },
+            {
+                "widgets": [
+                    {
+                        "name": "About",
+                        "label": "About",
+                        "version": "1.1",
+                        "icon": "null",
+                        "uri": "widgets/About/Widget",
+                        "config": "configs/About/config_About.json",
+                        "index": 9,
+                        "id": "widgets/About/Widget_16"
+                    }
+                ],
+                "label": "About",
+                "index": 11,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 350,
+                        "height": 300
+
+                    }
+                },
+                "id": "_22",
+                "visible": true,
+                "icon": "null"
+            }, {
+                "widgets": [
+                    {
+                        "name": "AddData",
+                        "label": "Add Data from ArcGIS Online",
+                        "version": "2.1",
+                        "icon": "widgets/AddData/images/icon.png",
+                        "uri": "widgets/AddData/Widget",
+                        "config": "widgets/AddData/config.json",
+                        "index": 4,
+                        "id": "widgets/AddData/Widget_16"
+                    }
+                ],
+                "label": "Add Data from ArcGIS Online",
+                "index": 5,
+                "panel": {
+                    "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+                    "positionRelativeTo": "browser",
+                    "noOverlay": true,
+                    "position": {
+                        "width": 400,
+                        "height": 400
+
+                    }
+                },
+                "id": "_70",
+                "visible": true,
+                "icon": "widgets/AddData/images/icon.png"
+            }
+
+        ]
+    },
+    "mobileLayout": {
+        "widgetOnScreen": {
+            "widgets": {
+                "widgets/Scalebar/Widget": {
+                    "position": {
+                        "left": 7,
+                        "bottom": 40
+                    },
+                    "version": "1.4"
+                },
+                "widgets/Coordinate/Widget": {
+                    "position": {
+                        "left": 7,
+                        "bottom": 17
+                    },
+                    "version": "1.4"
+                }
+            }
+        }
+    },
+    "loadingPage": {
+        "backgroundColor": "#151e27",
+        "backgroundImage": {
+            "visible": false
+        },
+        "loadingGif": {
+            "visible": true,
+            "uri": "configs/loading/images/loading.gif",
+            "width": 58,
+            "height": 29
+        }
+    },
+    "wabVersion": "2.3",
+    "isTemplateApp": true,
+    "isWebTier": false,
+    "httpProxy": {
+        "useProxy": true,
+        "alwaysUseProxy": false,
+        "url": "",
+        "rules": []
+        
+    }
+}

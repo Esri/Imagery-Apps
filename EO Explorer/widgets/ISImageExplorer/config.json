@@ -1,0 +1,13 @@
+{
+    "operationalLayers": [],
+    "autoRefresh": true,
+    "comparisonLayer": null,
+    "display": "both",
+    "distinctImages": true,
+    "searchExtent": 15,
+    "showFootprint": false,
+    "showRange": true,
+    "showRendering": true,
+    "zoomLevel": 8,
+    "defaultLayer": null
+}

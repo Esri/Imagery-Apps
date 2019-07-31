@@ -30,11 +30,12 @@ define(["dojo/_base/declare",
     "./search/SearchPane",
     "./search/AddFromUrlPane",
     "./search/AddFromFilePane",
-    "./search/LayerListPane"
+    "./search/LayerListPane",
+    "esri/IdentityManager",
   ],
   function(declare, lang, on, aspect, Deferred, domClass, portalUrlUtils, portalUtils,
     tokenUtils, BaseWidget, arcgisPortal,registry,dom, popup,domStyle, TabContainer3, _WidgetsInTemplateMixin, SearchContext,
-    util, SearchPane, AddFromUrlPane, AddFromFilePane, LayerListPane) {
+    util, SearchPane, AddFromUrlPane, AddFromFilePane, LayerListPane, IdentityManager) {
     return declare([BaseWidget, _WidgetsInTemplateMixin], {
 
       name: "AddData",
@@ -53,6 +54,7 @@ define(["dojo/_base/declare",
       },
 
       startup: function() {
+        IdentityManager.useSignInPage = false;
         if (this._started) {
           return;
         }

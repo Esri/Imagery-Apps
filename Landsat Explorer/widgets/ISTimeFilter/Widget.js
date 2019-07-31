@@ -843,7 +843,7 @@ define([
                                     var swir1 = plot[5];
 
                                     var ndmi = ((nir - swir1) / (nir + swir1));
-                                    var urban = (((swir1 - nir) / (swir1 + nir)) - ((nir - red) / (red + nir))) / 2;
+                                    var urban = ((swir1 - nir) / (swir1 + nir)) - ((nir - red) / (red + nir));
 
                                     ndmi = this.limitvalue(ndmi);
 
@@ -902,7 +902,7 @@ define([
                                     });
                                 }
                                 html.set(this.temporalpro, "");
-
+                                this.clear();
                                 html.set(this.pointgraph, "Pick a point on the map to reset location.<br /> Pick a point on the graph to set image date.");
                                 dojo.style(dojo.byId("chartshow"), "display", "block");
                                 domStyle.set(dom.byId("cloudSelect"), "display", "none");

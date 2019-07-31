@@ -1,0 +1,40 @@
+{
+    "bookmarks2D": [{
+            "name": "Rome",
+            "extent": {
+               "xmin": 1355017.7555713237, "ymin": 5127578.415424264, "xmax": 1424384.3587400278, "ymax": 5162892.322491967,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+           "thumbnail": "images/rome.jpg"
+        }, {
+            "name": "Florence",
+            "extent": {
+               "xmin": 1235002.509312661, "ymin": 5420579.378570885, "xmax": 1269685.8108970127, "ymax": 5438236.332104738,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "thumbnail": "images/florence.jpg"
+        },{
+		"name": "Naples",
+		"extent": {
+			"xmin": 1577631.8070885695, "ymin": 4983381.766964616, "xmax": 1594973.4578807454, "ymax": 4992210.243731542,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+               "thumbnail": "images/naples.jpg"
+	}, {
+		"name": "Venice",
+		"extent": {
+			"xmin": 1363527.579541652, "ymin": 5686423.953609939, "xmax": 1380869.230333828, "ymax": 5695252.430376864,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "thumbnail": "images/venice.jpg"
+	}],
+	"flyTime": 3000
+}

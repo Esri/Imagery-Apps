@@ -13,7 +13,7 @@
         ],
         "version": "2.3"
     },
-    "portalUrl": "http://www.arcgis.com",
+    "portalUrl": "https://www.arcgis.com",
     "appId": "",
     "authorizedCrossOriginDomains": [],
     "title": "Landsat Explorer",
@@ -167,7 +167,7 @@
             "bottom": 10,
             "left": 95
         },
-        "itemId": "",
+        "itemId": "d5e02a0c1f2b4ec399823fdd3c2fdebd",
         "mapOptions": {
             "maxZoom": 21,
             "minZoom": 1,

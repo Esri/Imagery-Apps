@@ -84,6 +84,7 @@ function (declare, lang, array, html, dojoConfig, cookie,
     loadConfig: function () {
       console.time('Load Config');
       return this._tryLoadConfig().then(lang.hitch(this, function(appConfig) {
+        
         var err = this.checkConfig(appConfig);
         if (err) {
           throw Error(err);
@@ -103,6 +104,7 @@ function (declare, lang, array, html, dojoConfig, cookie,
             return this.getAppConfig();
           }));
         }else{
+          //appConfig.portalUrl = "https://www.arcgis.com";
           tokenUtils.setPortalUrl(appConfig.portalUrl);
           arcgisUtils.arcgisUrl = portalUrlUtils.getBaseItemUrl(appConfig.portalUrl);
           return this._proesssWebTierAndSignin(appConfig).then(lang.hitch(this, function() {

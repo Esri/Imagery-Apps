@@ -1,0 +1,5 @@
+{
+	"about": {
+		"aboutContent": "<p id='aboutText' style='text-align: justify;'>Created for you to visualize our planet and understand how the Earth has changed over time, Esri's Earth Observation Explorer provides the power of Sentinel-2 and Landsat satellites, which gather data beyond what the eye can see. Use this app to draw on the different bands of Sentinel-2 and Landsat to better explore the planet's geology, vegetation, agriculture, and cities. Additionally, access the Sentinel-2 and Landsat archives to visualize how the Earth's surface has changed over time.<br /><br/>For information on Esri's full imagery capabilities, visit <a target='_blank' href='http://www.esri.com/imagery'>http://www.esri.com/imagery</a>.<br/><br />To build your own web app like Earth Observation Explorer, visit <a target='_blank' href='http://developers.arcgis.com'>http://developers.arcgis.com</a>.<br /><br />For more info about this app, or setting up an app like this in your own infrastructure, contact Esri <a target='_blank' href='http://www.esri.com'>http://www.esri.com.</a></p>"
+	}
+}

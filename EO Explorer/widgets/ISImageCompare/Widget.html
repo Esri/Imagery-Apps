@@ -1,0 +1,491 @@
+<div id="compareViewerNode">
+    <div class="widgetContainer" id="compareWidget">
+
+        <div id="doubleImageViewer">
+            <input type="radio" data-dojo-type="dijit/form/RadioButton" name="layers" checked id="leftLayer" value="left" />
+            <label for="leftLayer" style="margin-right: 10px;">${nls.leftImage} </label>
+
+            <img id="swapLayerIcon" src='./widgets/ISImageCompare/images/swap.png' style="display: inline-block;vertical-align: bottom;cursor:pointer;padding-left:10px;"
+                height='13' />
+            <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'swapLayerIcon',position:['after']">
+                Click to swap between left and right layers
+            </div>
+
+            <input id="rightLayer" data-dojo-type="dijit/form/RadioButton" name="layers" value="right" type="radio"
+                style="margin-left: 10px;" />
+            <label for="rightLayer">${nls.rightImage} </label>
+            <br /><br />
+
+            <div id="leftLayerDiv">
+                <label for="leftLayerSelector">${nls.layer}: </label><select id="leftLayerSelector" data-dojo-type="dijit/form/Select"></select>
+                <img id="sensorInfoLeft" src='./widgets/ISHeader/images/info.png' style="display: inline-block;vertical-align: bottom;cursor:pointer;margin-left: 5px;"
+                        height='17' />
+                        <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'sensorInfoLeft',position:['after']">
+                            Click to know more about the sensor
+                        </div>
+
+                <div id="leftRenderer" style="display: none;"><br><label for="leftLayerRenderer">${nls.rendering}:
+                    </label><select id="leftLayerRenderer" data-dojo-type="dijit/form/Select"></select>
+
+                    <img id="renderingInfoLeft" src='./widgets/ISHeader/images/info.png' style="display: inline-block;vertical-align: bottom;cursor:pointer;margin-left: 5px;"
+                        height='17' />
+                    <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'renderingInfoLeft',position:['after']">
+                        Click to know more about the renderer
+                    </div>
+
+                </div>
+
+                <div id="buildExtensionLeft" style="display: none;">
+                    <br />
+
+                    <label for='bnd1Left' style='color : #0080C0;'>RGB Composite: </label>
+                    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd1Left">
+                    </select>
+
+                    &nbsp;&nbsp;
+                    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd2Left">
+                    </select>
+
+                    &nbsp;&nbsp; <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd3Left">
+                    </select>
+
+
+                    <br /><br />
+
+                    <label for="stretchoptionsLeft" style="color: #0080C0;">Stretch:</label>
+                    <select data-dojo-type="dijit/form/Select" style="display : inline-block; height: inherit;" id="stretchoptionsLeft">
+                        <option value="none">Fixed</option>
+                        <option value="standard">2 Std.Dev</option>
+                        <option value="standard1">3 Std.Dev</option>
+                        <option value="clip">2% Clip</option>
+                        <option value="clip1">0.5% Clip</option>
+                        <option value="clip2">0.1% Clip</option>
+                        <option value='full'>Full</option>
+                        <option value="dark">Dark</option>
+                        <option value="vdark">VDark</option>
+                        <option value="light">Light</option>
+                        <option value="vlight">VLight</option>
+                    </select>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="gammaoptionsLeft" style="color: #0080C0;">Gamma:</label>
+                    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="gammaoptionsLeft">
+                        <option value="1">0.3</option>
+                        <option value="2">0.5</option>
+                        <option value="3">0.8</option>
+                        <option value="4">1</option>
+                        <option value="5">1.4</option>
+                        <option value="6">2</option>
+                        <option value="7">4</option>
+                    </select>
+
+                    <br />
+                    <br />
+                    <div style="margin-left: 31%;">
+                        <button data-dojo-type="dijit/form/Button" id="applyLeft" type="button">${nls.apply}</button>
+                        <button data-dojo-type="dijit/form/Button" id="resetLeft" type="button">${nls.reset}</button>
+                    </div>
+                </div>
+
+                <div style="display: none;color: indianred;" id='formulaLeft'>Offset + Scale * ((A-B)/(A+B))</div>
+                <div id="indexExtensionLeft" style="display: none;">
+                    <br />
+
+                    <div id="indexBandsLeft" style="/*display:none;*/">
+                        <label for="bandALeft" style="color: #0080C0;">Band A: </label>
+                        <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandALeft">
+                        </select>
+
+                        <label for="bandBLeft" style="color: #0080C0;">Band B: </label>
+                        <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandBLeft">
+                        </select>
+                        <br /><br /></div>
+                    <label for="OffsetValue" style="color: #0080C0;">Offset: </label><input data-dojo-type="dijit/form/TextBox"
+                        style="width: 50px;" id="OffsetValueLeft" value=0 />
+                    <label for="Scale" style="color: #0080C0;">Scale: </label><input data-dojo-type="dijit/form/TextBox"
+                        style="width: 50px;" id="ScaleLeft" value=5 />
+
+                    <label for="colorRamp" style="color: #0080C0;">Renderer: </label><select data-dojo-type="dijit/form/Select"
+                        id="colorRampLeft" style="display: inline-block;height: inherit;">
+                        <option value="Yellow to Red">Yellow to Red</option>
+                        <option value="Red to Green">Red to Green</option>
+                        <option value="Green to Blue">Green to Blue</option>
+                        <option value="Cyan to Purple">Cyan to Purple</option>
+                        <option value="Black to White">Black to White</option>
+                        <option value="Precipitation" selected='selected'>Precipitation</option>
+                        <option value="Prediction">Prediction</option>
+                        <option value="Spectrum-Full Bright">Spectrum</option>
+                        <option value="custom">NDVI Colorized</option>
+                        <option value="moisture">Moisture</option>
+
+                    </select><br /><br />
+
+                    <button data-dojo-type="dijit/form/Button" id="applyIndexLeft" style="margin-left: 40%;">${nls.apply}</button>
+                </div>
+
+
+
+
+                <div id="imageSelectCheckBoxLeft" style="display: none;">
+                    <br />
+                    <input data-dojo-type="dijit/form/CheckBox" id="imageSelectorLeft" /> <label for="imageSelector" id="messageLeft">${nls.searchImages}</label>
+                </div>
+
+                <div id="selectorDivLeft" style="display:none;">
+                    <div>
+
+                        <br />
+
+                        <div id="imageRangeLeft" style="display:inline-block"></div>
+                        
+                    </div>
+                    <div>
+                        <br />
+                        <div id="imageSelectContainerLeft" style="float:left;display:none;margin-right: 5px;">
+                            <button data-dojo-type="dijit/form/Button" type="button" id="dropDownImageListLeft"><img
+                                    alt="Show images in drop down list." src="./widgets/ISImageCompare/images/dropdownlist.png"
+                                    id="switchDisplayImageLeft" class="iconHeight" /></button>
+                        </div>
+                        <div style="float:right;display:inline-block;">
+                            <button data-dojo-type="dijit/form/Button" type="button" id="refreshImageSliderBtnLeft"><img
+                                    id="refreshIconLeft" alt="Refresh Button" src="./widgets/ISImageCompare/images/refresh.png"
+                                    class="iconHeight" /></button>
+                        </div>
+                        <div id="dropDownOptionLeft" style="display: none;">
+                            <select id="imageSelectorDropDownLeft" data-dojo-type="dijit/form/Select" style="/*width :50px;height: 12px;*/"></select>
+                        </div>
+
+                        <div id='imageSliderDivLeft'>
+                        </div>
+                    </div>
+
+                    <div id="cloudSelectLeft" style="display:block;margin-top: 20px;">
+
+                        Cloud Filter:
+                        <select id="cloudFilterLeft" data-dojo-type="dijit/form/Select" style="width :50px;height: 12px;">
+                            <option value=0>0% Cloud</option>
+                            <option value=0.02>2% Cloud</option>
+                            <option value=0.05>5% Cloud</option>
+                            <option value=0.10 selected="selected">10% Cloud</option>
+                            <option value=0.25>25% Cloud</option>
+                            <option value=0.50>50% Cloud</option>
+                            <option value=1>All</option>
+                        </select>
+                    </div>                   
+                </div>
+                <div id="errorDivLeft" style="color: #ee0000;"></div>
+            </div>
+
+            <div id="rightLayerDiv" style="display: none;">
+
+                <label for="rightLayerSelector">${nls.layer}: </label><select id="rightLayerSelector" data-dojo-type="dijit/form/Select"></select>
+                <img id="sensorInfoRight" src='./widgets/ISHeader/images/info.png' style="display: inline-block;vertical-align: bottom;cursor:pointer;margin-left: 5px;"
+                        height='17' />
+                    <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'sensorInfoRight',position:['after']">
+                        Click to know more about the sensor.
+                    </div>
+
+                <div id="rightRenderer" style="display: none;"><br><label for="rightLayerRenderer">${nls.rendering}:
+                    </label><select id="rightLayerRenderer" data-dojo-type="dijit/form/Select"></select>
+
+                    <img id="renderingInfoRight" src='./widgets/ISHeader/images/info.png' style="display: inline-block;vertical-align: bottom;cursor:pointer;margin-left: 5px;"
+                        height='17' />
+                    <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'renderingInfoRight',position:['after']">
+                        Click to know more about the renderer.
+                    </div>
+                </div>
+
+                <div id="buildExtensionRight" style="display: none;">
+                    <br />
+
+                    <label for='bnd1Right' style='color : #0080C0;'>RGB Composite: </label>
+                    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd1Right">
+                    </select>
+
+                    &nbsp;&nbsp;
+                    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd2Right">
+                    </select>
+
+                    &nbsp;&nbsp; <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd3Right">
+                    </select>
+
+
+                    <br /><br />
+
+                    <label for="stretchoptionsRight" style="color: #0080C0;">Stretch:</label>
+                    <select data-dojo-type="dijit/form/Select" style="display : inline-block; height: inherit;" id="stretchoptionsRight">
+                        <option value="none">Fixed</option>
+                        <option value="standard">2 Std.Dev</option>
+                        <option value="standard1">3 Std.Dev</option>
+                        <option value="clip">2% Clip</option>
+                        <option value="clip1">0.5% Clip</option>
+                        <option value="clip2">0.1% Clip</option>
+                        <option value='full'>Full</option>
+                        <option value="dark">Dark</option>
+                        <option value="vdark">VDark</option>
+                        <option value="light">Light</option>
+                        <option value="vlight">VLight</option>
+                    </select>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="gammaoptionsRight" style="color: #0080C0;">Gamma:</label>
+                    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="gammaoptionsRight">
+                        <option value="1">0.3</option>
+                        <option value="2">0.5</option>
+                        <option value="3">0.8</option>
+                        <option value="4">1</option>
+                        <option value="5">1.4</option>
+                        <option value="6">2</option>
+                        <option value="7">4</option>
+                    </select>
+
+                    <br />
+                    <br />
+                    <div style="margin-left: 31%;">
+                        <button data-dojo-type="dijit/form/Button" id="applyRight" type="button">${nls.apply}</button>
+                        <button data-dojo-type="dijit/form/Button" id="resetRight" type="button">${nls.reset}</button>
+                    </div>
+                </div>
+
+                <div style="display: none;color: indianred;" id='formulaRight'>Offset + Scale * ((A-B)/(A+B))</div>
+                <div id="indexExtensionRight" style="display: none;">
+                    <br />
+
+                    <div id="indexBandsRight" style="/*display:none;*/">
+                        <label for="bandARight" style="color: #0080C0;">Band A: </label>
+                        <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandARight">
+                        </select>
+
+                        <label for="bandBRight" style="color: #0080C0;">Band B: </label>
+                        <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandBRight">                       
+                        </select>
+                        <br /><br /></div>
+                    <label for="OffsetValue" style="color: #0080C0;">Offset: </label><input data-dojo-type="dijit/form/TextBox"
+                        style="width: 50px;" id="OffsetValueRight" value=0 />
+                    <label for="Scale" style="color: #0080C0;">Scale: </label><input data-dojo-type="dijit/form/TextBox"
+                        style="width: 50px;" id="ScaleRight" value=5 />
+
+                    <label for="colorRamp" style="color: #0080C0;">Renderer: </label><select data-dojo-type="dijit/form/Select"
+                        id="colorRampRight" style="display: inline-block;height: inherit;">
+                        <option value="Yellow to Red">Yellow to Red</option>
+                        <option value="Red to Green">Red to Green</option>
+                        <option value="Green to Blue">Green to Blue</option>
+                        <option value="Cyan to Purple">Cyan to Purple</option>
+                        <option value="Black to White">Black to White</option>
+                        <option value="Precipitation" selected='selected'>Precipitation</option>
+                        <option value="Prediction">Prediction</option>
+                        <option value="Spectrum-Full Bright">Spectrum</option>
+                        <option value="custom">NDVI Colorized</option>
+                        <option value="moisture">Moisture</option>
+
+                    </select><br /><br />
+
+                    <button data-dojo-type="dijit/form/Button" id="applyIndexRight" style="margin-left: 40%;">${nls.apply}</button>
+                </div>
+
+
+
+                <div id="imageSelectCheckBoxRight" style="display: none;">
+                    <br />
+                    <input data-dojo-type="dijit/form/CheckBox" id="imageSelectorRight" /> <label for="imageSelector" id="messageRight">${nls.searchImages}</label>
+                </div>
+
+                <div id="selectorDivRight" style="display:none;">
+                    <div>
+                        <br />
+
+                        <div id="imageRangeRight" style="display:inline-block"></div>
+                        
+                    </div>
+                    <div>
+                        <br />
+                        <div id="imageSelectContainerRight" style="float:left;display:none;margin-right: 5px;">
+                            <button data-dojo-type="dijit/form/Button" type="button" id="dropDownImageListRight"><img
+                                    alt="Show images in drop down list." src="./widgets/ISImageCompare/images/dropdownlist.png"
+                                    id="switchDisplayImageRight" class="iconHeight" /></button>
+
+                        </div>
+
+                        <div style="float:right;display:inline-block;">
+                            <button data-dojo-type="dijit/form/Button" type="button" id="refreshImageSliderBtnRight"><img
+                                    id="refreshIconRight" alt="Refresh Button" src="./widgets/ISImageCompare/images/refresh.png"
+                                    class="iconHeight" /></button>
+                        </div>
+
+                        <div id="dropDownOptionRight" style="display: none;">
+                            <select id="imageSelectorDropDownRight" data-dojo-type="dijit/form/Select" style="/*width :50px;height: 12px;*/"></select>
+                        </div>
+
+                        <div id='imageSliderDivRight'>
+                        </div>
+                    </div>
+
+                    <div id="cloudSelectRight" style="display:block;margin-top: 20px;">
+
+                        Cloud Filter:
+                        <select id="cloudFilterRight" data-dojo-type="dijit/form/Select" style="width :50px;height: 12px;">
+                            <option value=0>0% Cloud</option>
+                            <option value=0.02>2% Cloud</option>
+                            <option value=0.05>5% Cloud</option>
+                            <option value=0.10 selected="selected">10% Cloud</option>
+                            <option value=0.25>25% Cloud</option>
+                            <option value=0.50>50% Cloud</option>
+                            <option value=1>All</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div id="errorDivRight" style="color: #ee0000;"></div>
+            </div>
+            <!-- <br /> -->
+            <span id="sentinelTemporal" style="color: #ee0000;font-size: 11px;display: none;">${nls.sentinelTemporal}</span>
+            <div id="errorSwipeDiv" style="color: #ee0000;"></div>
+        </div>
+        <div data-dojo-type="dijit/Dialog" id="rendererInfoDialogCompare" title="" style="background-color: #00304d;border-radius: 5px;"
+            data-dojo-props="focus:function(){}">
+            <div id="renderDescriptionCompare" data-dojo-attach-point="descriptionRendererCompare" style="max-height: 300px;max-width: 400px;overflow: auto;font-size:11px;"></div>
+        </div>
+        <div data-dojo-type="dijit/Dialog" id="sensorInfoDialogCompare" title="" style="background-color: #00304d;border-radius: 5px;"
+            data-dojo-props="focus:function(){}">
+            <div id="sensorDescriptionCompare" data-dojo-attach-point="descriptionSensorCompare" style="max-height: 300px;max-width: 400px;overflow: auto;font-size:11px;"></div>
+        </div>
+
+        <hr />
+        <div id="activateChange">
+            <input data-dojo-type="dijit/form/CheckBox" id="changeDetectioCheckBox" /> <label for="changeDetection">${nls.changeDetectionCheckbox}</label>
+            <br />
+        </div>
+        <i id="itals" style="font-size: 11px; color: #ee0000;">${nls.sameSensorRule}</i>
+        
+
+        <div id="changeTemplate" style="display: none;">
+            <div id="errorDivChange" style="color: #ee0000;"></div>
+
+            <hr>
+
+
+            <div style="display: inline-block;">${nls.changeMethodText}: </div><select autofocus="autofocus" id="methodChange"
+                data-dojo-type="dijit/form/Select">
+            </select>
+            <br />
+            <div id="changeMode" style="display:none;margin-top: 5px;">
+                <div style="display: inline-block;">${nls.mode}: </div><select id="changeModeList" data-dojo-type="dijit/form/Select">
+                    <option value="image">${nls.mode1}</option>
+                    <option value="mask">${nls.mode2}</option>
+                    <option value="threshold">${nls.mode3}</option>
+                </select>
+            </div>
+            <!-- <button id="advanceIndexBtn" class="titleHeader" role="button">
+                    <span class="titleLabel">${nls.indexText}</span>
+                    <span class="launchpad-icon-arrow-right listExpandBtn"></span>
+                </button> -->
+            <div id="bandInputsChange" style="display: none;">
+                <table style="border: 0 solid transparent;">
+                    <tr>
+                        <td>
+                            <div id="bandName1Change" style="display: inline-block;"></div>
+                        </td>
+                        <td><select data-dojo-type="dijit/form/Select" id="band1Change">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="bandName2Change" style="display: inline-block;"></div>
+                        </td>
+                        <td><select data-dojo-type="dijit/form/Select" id="band2Change">
+                            </select></td>
+                    </tr>
+                </table>
+            </div>
+            <input id="aoiExtentChange" data-dojo-type="dijit/form/CheckBox" /><label for="aoiExtentChange">${nls.extent}</label>
+            <div style="display: flex;justify-content: center;margin: 1em 0px;">
+                <button data-dojo-type="dijit/form/Button" type="button" id="changeApply">${nls.apply}</button>
+                <button data-dojo-type="dijit/form/Button" type="button" id="changeClear">${nls.clear}</button>
+            </div>
+            <div id="updateChangeLayer">${nls.updateResult}</div>
+            <div id="changeSettingsDiv" style="display: none;">
+                <div id="maskRangeSpinners" style="display: none;">
+
+                    <div style="vertical-align: top;display: inline-block;width: 20%;">${nls.positive}: </div>
+                    <div id="positiveRange" style="width:300px;display: inline-block;" data-dojo-type="dijit/form/HorizontalSlider"
+                        data-dojo-props="value:0.15,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true">
+                        <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" count="6" style="height:5px;color:#27b2cf"></div>
+                        <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray">
+                            <li>0</li>
+                            <li>0.2</li>
+                            <li>0.4</li>
+                            <li>0.6</li>
+                            <li>0.8</li>
+                            <li>1</li>
+                        </ol>
+                    </div><br />
+                    <div style="vertical-align: top;display: inline-block;margin-top: 5px;width: 20%;">${nls.negative}:
+                    </div>
+                    <div id="negativeRange" style="width:300px;display: inline-block;margin-top: 5px;" data-dojo-type="dijit/form/HorizontalSlider"
+                        data-dojo-props="value:-0.15,minimum: -1,maximum:0,intermediateChanges:true,showButtons:true">
+                        <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" count="6" style="height:5px;color:#27b2cf"></div>
+                        <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray">
+                            <li>-1</li>
+                            <li>-0.8</li>
+                            <li>-0.6</li>
+                            <li>-0.4</li>
+                            <li>-0.2</li>
+                            <li>0</li>
+                        </ol>
+                    </div>
+                </div>
+                <div id="thresholdRangeSpinners" style="display: none;">
+
+                    <div style="vertical-align: top;display: inline-block;">${nls.threshold}: </div>
+                    <div id="thresholdValue" style="width:300px;display: inline-block;" data-dojo-type="dijit/form/HorizontalSlider"
+                        data-dojo-props="value:0,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true">
+                        <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" count="6" style="height:5px;color:#27b2cf"></div>
+                        <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray">
+                            <li>0</li>
+                            <li>0.2</li>
+                            <li>0.4</li>
+                            <li>0.6</li>
+                            <li>0.8</li>
+                            <li>1</li>
+                        </ol>
+                    </div><br />
+                    <div style="vertical-align: top;display: inline-block;margin-top: 5px;">${nls.difference}:
+                    </div>
+                    <div id="differenceValue" style="width:300px;display: inline-block;margin-top: 5px;" data-dojo-type="dijit/form/HorizontalSlider"
+                        data-dojo-props="value:0,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true">
+                        <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" count="6" style="height:5px;color:#27b2cf"></div>
+                        <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray">
+                            <li>0</li>
+                            <li>0.2</li>
+                            <li>0.4</li>
+                            <li>0.6</li>
+                            <li>0.8</li>
+                            <li>1</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div id="areaValueContainerChange" style="margin-top: 8px;display:none;">
+                <div id="areaValueLabelChange" style="display: inline-block;">${nls.areaText}:</div>&nbsp;&nbsp;<div id="areaValueChange"
+                    style="font-weight: bolder;color: magenta; display: inline-block;"></div>
+            </div>
+
+            <div id="changeNode" style="display: none;"></div>
+
+            <div id="transparencySliderChange" style="display: none;margin: 1em 0 2.5em 0;">
+                <div style="vertical-align: top;display: inline-block;">${nls.transparency}: </div>
+                <div id="resultOpacityChange" data-dojo-attach-point="transparency" style="width:150px;display:inline-block;width: -moz-available;"
+                    data-dojo-type="dijit/form/HorizontalSlider" data-dojo-props="value:0,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true">
+                    <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" style="height:0.5em;"></div>
+                    <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration" style="height:0.5em;font-size:65%;color:gray;">
+                        <li>0%</li>
+                        <li>50%</li>
+                        <li>100%</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

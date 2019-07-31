@@ -1,0 +1,80 @@
+<div style="width:100%;height:100%;">
+
+    <div class="settings-section" data-dojo-attach-point="settingSection">
+        <table id="setting-table" class="setting-table input-table" cellspacing="0">
+            <tr>
+                <td class="first">${nls.viewerChooser}:</td>
+                <td class="second"><input name="viewerType" data-dojo-attach-point="singleViewerSelector"
+                        data-dojo-type="dijit/form/RadioButton" checked value="single">
+                    ${nls.singleImage}</td>
+                <td class="second"><input name="viewerType" data-dojo-attach-point="doubleViewerSelector"
+                        data-dojo-type="dijit/form/RadioButton" value="double">
+                    ${nls.doubleImage}</td>
+            </tr>
+            <tr>
+                <td id="defLayer" class="first">${nls.defaultLayer}:</td>
+                <td class="second"><select id="defaultLayer" data-dojo-type='dijit/form/Select' style="width: 50px;margin-left: 10px;"></select></td>
+            </tr>
+            <tr style="display: none;" id="doubleSelective">
+                <td class="first">${nls.secondaryLayer}:</td>
+                <td class="second"><select id="secondaryLayer" data-dojo-type='dijit/form/Select' style="width: 50px;margin-left: 10px;"></select></td>
+            </tr>
+            <tr>
+                <td class="first" style="line-height: 20px;">${nls.sliderDisplay}:</td>
+                <td class="second"><select id="userInterfaceOption" data-dojo-type='dijit/form/Select' style="width: 50px;margin-left: 10px;">
+                        <option value="slider">${nls.slider}</option>
+                        <option value="dropdown">${nls.dropdown}</option>
+                        <option value="both">${nls.both}</option>
+                    </select></td>
+            </tr>
+
+            <tr>
+                <td class="first">${nls.minZoom}:</td>
+                <td class="second">
+                    <div data-dojo-attach-point="selectorZoomLevelInput" data-dojo-type="dijit/form/NumberSpinner"
+                        data-dojo-props="value:8,constraints:{min:0,max:23,places:0},style:{width:'100px',marginLeft:'10px'}"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="third" style="line-height: 20px; font-size: small;" colspan="3">${nls.minZoomHelp}</td>
+            </tr>
+
+            <tr>
+                <td class="first">${nls.screenExtent} (%):</td>
+                <td class="second">
+                    <div data-dojo-attach-point="selectorSearchExtentInput" data-dojo-type="dijit/form/NumberSpinner"
+                        data-dojo-props="value:75,constraints:{min:0,max:100,places:0},style:{width:'100px',marginLeft:'10px'}"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="first"><input data-dojo-attach-point="listImagesSeparate" data-dojo-type="dijit/form/CheckBox" /></td>
+                <td class="second" colspan="3">${nls.separateImage}</td>
+            </tr>
+
+            <tr>
+                <td class="first"><input data-dojo-attach-point="selectorAutoRefresh" data-dojo-type="dijit/form/CheckBox" /></td>
+                <td class="second" colspan="3">${nls.autoRefresh}</td>
+            </tr>
+
+            <tr>
+                <td class="first"><input data-dojo-attach-point="selectorShowFootprint" data-dojo-type="dijit/form/CheckBox" /></td>
+                <td class="second" colspan="3">${nls.footprint}</td>
+            </tr>
+
+            <tr>
+                <td class="first"><input data-dojo-attach-point="selectorShowRange" data-dojo-type="dijit/form/CheckBox" /></td>
+                <td class="second" colspan="3">${nls.range}</td>
+            </tr>
+
+            <tr>
+                <td class="first"><input data-dojo-attach-point="selectorShowRendering" data-dojo-type="dijit/form/CheckBox" /></td>
+                <td class="second" colspan="3">${nls.rendering}</td>
+            </tr>
+            <tr>
+                <td class="third" colspan="3" style="line-height: 20px; padding-top: 30px; width: 915px;">${nls.chooseLayerMessage}</td>
+            </tr>
+        </table>
+    </div>
+</div>

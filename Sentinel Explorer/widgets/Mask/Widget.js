@@ -292,6 +292,11 @@ define([
                     this.polygons.addRing(geometry.rings[0]);
                 },
                 onOpen: function () {
+                    if (this.map.useSecureService === true) {
+                        this.config.urlSentinel = "https://sentinel.arcgis.com/arcgis/rest/services/Sentinel2/ImageServer";
+                    } else {
+                        this.config.urlSentinel = "https://utility.arcgis.com/usrsvcs/servers/d70ebb358d28463a99e574d56265dd95/rest/services/Sentinel2/ImageServer";
+                    }
                     this.stateClosed = false;
 
                     if (registry.byId("changeProp").get("value")) {

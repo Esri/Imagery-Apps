@@ -1,0 +1,28 @@
+{
+    "MS_696": 
+    
+        {
+          "id": "MS_696",
+          "dateField": "AcquisitionDate",
+          "objectID": "OBJECTID",
+          "category": "Category",
+          "title": "Multispectral Landsat",
+          "imageSelector": true,
+          "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
+        },
+        
+      
+      "Sentinel2_2553": 
+    
+       
+        {
+          "id": "Sentinel2_2553",
+          "dateField": "acquisitiondate",
+          "objectID": "objectid",
+          "category": "category",
+          "title": "Sentinel-2 Views",
+          "imageSelector": true,
+          "url": "https://utility.arcgis.com/usrsvcs/servers/d70ebb358d28463a99e574d56265dd95/rest/services/Sentinel2/ImageServer"
+        }
+      
+}

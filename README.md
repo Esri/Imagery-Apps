@@ -1,6 +1,6 @@
 # Imagery Explorer Apps
 
-This repository contains the source code for the [Landsat Explorer](http://landsatexplorer.esri.com/), [Sentinel Explorer](http://sentinel2explorer.esri.com/), and [Arctic DEM Explorer](http://arcticdemapp.s3-website-us-west-2.amazonaws.com/explorer/) imagery apps. These web apps include a variety of tools to explore and analyze Esri's [Landsat](http://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b), [Sentinel-2](https://www.arcgis.com/home/item.html?id=fd61b9e0c69c4e14bebd50a9a968348c), and [Arctic DEM](http://www.arcgis.com/home/item.html?id=db38a951a2b643478a942ab22cd78fc6) image services. 
+This repository contains the source code for [Landsat Explorer](https://livingatlas2.arcgis.com/landsatexplorer/), [Sentinel Explorer](https://livingatlas2.arcgis.com/sentinel2explorer/), [EO Explorer](https://livingatlas2.arcgis.com/eoexplorer/), and [Arctic DEM Explorer](http://arcticdemapp.s3-website-us-west-2.amazonaws.com/explorer/) imagery apps. These web apps include a variety of tools to explore and analyze Esri's [Landsat](http://www.arcgis.com/home/item.html?id=d9b466d6a9e647ce8d1dd5fe12eb434b), [Sentinel-2](https://www.arcgis.com/home/item.html?id=fd61b9e0c69c4e14bebd50a9a968348c), and [Arctic DEM](http://www.arcgis.com/home/item.html?id=db38a951a2b643478a942ab22cd78fc6) image services. 
 
 The source code in this repo provides open-source templates that can be customized and expanded as needed.
 

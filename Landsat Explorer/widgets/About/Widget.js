@@ -15,96 +15,93 @@
 ///////////////////////////////////////////////////////////////////////////
 
 define(['dojo/_base/declare',
-    'dojo/_base/lang',
-    'dojo/_base/html',
-    'dojo/on',
-    'dojo/json',
-    'dojo/query',
-    'dojo/cookie',
-    'dijit/_WidgetsInTemplateMixin',
-    'jimu/BaseWidget',
-    "dojo/_base/connect",
-    "jimu/PanelManager",
-    "dijit/registry",
-    "esri/layers/MosaicRule",
-      "dojo/dom-style",
-  ],
-  function(declare, lang, html, on, dojoJson, query, cookie, _WidgetsInTemplateMixin, BaseWidget, connect,PanelManager, registry, MosaicRule,domStyle) {
+  'dojo/_base/lang',
+  'dojo/_base/html',
+  'dojo/on',
+  'dojo/json',
+  'dojo/query',
+  'dojo/cookie',
+  'dijit/_WidgetsInTemplateMixin',
+  'jimu/BaseWidget',
+  "dojo/_base/connect",
+  "jimu/PanelManager",
+  "dijit/registry",
+  "esri/layers/MosaicRule",
+  "dojo/dom-style",
+],
+  function (declare, lang, html, on, dojoJson, query, cookie, _WidgetsInTemplateMixin, BaseWidget, connect, PanelManager, registry, MosaicRule, domStyle) {
     var pm = PanelManager.getInstance();
-      var clazz = declare([BaseWidget, _WidgetsInTemplateMixin], {
+    var clazz = declare([BaseWidget, _WidgetsInTemplateMixin], {
       baseClass: 'jimu-widget-about',
       // clasName: 'esri.widgets.About',
 
       _hasContent: null,
-a:null,
-      postCreate: function() {
+      a: null,
+      postCreate: function () {
         this.inherited(arguments);
-        window.addEventListener("resize",lang.hitch(this,this.resizeAbout));
+        window.addEventListener("resize", lang.hitch(this, this.resizeAbout));
         this._hasContent = this.config.about && this.config.about.aboutContent;
-    
-    
-         
-},
+      },
 
-      startup: function() {
+      startup: function () {
         this.inherited(arguments);
         this.resizeAbout();
         this.resize();
       },
-onOpen: function(){
-    if(registry.byId("bandCombinationDialog") && registry.byId("bandCombinationDialog").open)
-                    registry.byId("bandCombinationDialog").hide();
-     if(registry.byId("maskDialog") && registry.byId("maskDialog").open)
-                    registry.byId("maskDialog").hide();
-                if(registry.byId("changeDetectionDialog") && registry.byId("changeDetectionDialog").open)
-                    registry.byId("changeDetectionDialog").hide();
-                 if(registry.byId("timeDialog") && registry.byId("timeDialog").open)
-                    registry.byId("timeDialog").hide();
-     connect.subscribe("layerOpen", lang.hitch(this, function (flag) {
-                        
-                        if (flag.flag){
-                          
-                          pm.closePanel('_22_panel');
-                    
-                        }   }));
-    
-},resizeAbout: function(){
-     
-     
-  if(window.innerWidth < 620){
-      domStyle.set("About","font-size","7px");
-      domStyle.set("About","width","220px");
-      domStyle.set("About","height","140px");
-    document.getElementById("About").childNodes[3].style.height="88px";
-    
-  } else if(window.innerWidth < 850){
-      domStyle.set("About","font-size","8px");
-      domStyle.set("About","width","270px");
-      domStyle.set("About","height","225px");
-      document.getElementById("About").childNodes[3].style.height="175px";
-    
-  } else if(window.innerWidth < 1200){
-      domStyle.set("About","font-size","9px");
-      domStyle.set("About","width","300px");
-      domStyle.set("About","height","230px");
-      document.getElementById("About").childNodes[3].style.height="180px";
-    
-  } else {
-      domStyle.set("About","font-size","12px");
-      domStyle.set("About","width","350px");
-      domStyle.set("About","height","300px");
-     document.getElementById("About").childNodes[3].style.height="250px";
-     
-  } 
- domStyle.set("About","left","160px");
-      domStyle.set("About","top","100px");
-  
-},
-      resize: function() {
+
+      onOpen: function () {
+        if (registry.byId("bandCombinationDialog") && registry.byId("bandCombinationDialog").open)
+          registry.byId("bandCombinationDialog").hide();
+        if (registry.byId("maskDialog") && registry.byId("maskDialog").open)
+          registry.byId("maskDialog").hide();
+        if (registry.byId("changeDetectionDialog") && registry.byId("changeDetectionDialog").open)
+          registry.byId("changeDetectionDialog").hide();
+        if (registry.byId("timeDialog") && registry.byId("timeDialog").open)
+          registry.byId("timeDialog").hide();
+        connect.subscribe("layerOpen", lang.hitch(this, function (flag) {
+
+          if (flag.flag) {
+            pm.closePanel('_22_panel');
+          }
+        }));
+
+      }, 
+      
+      resizeAbout: function () {
+        if (window.innerWidth < 620) {
+          domStyle.set("About", "font-size", "7px");
+          domStyle.set("About", "width", "220px");
+          domStyle.set("About", "height", "140px");
+          document.getElementById("About").childNodes[3].style.height = "88px";
+
+        } else if (window.innerWidth < 850) {
+          domStyle.set("About", "font-size", "8px");
+          domStyle.set("About", "width", "270px");
+          domStyle.set("About", "height", "225px");
+          document.getElementById("About").childNodes[3].style.height = "175px";
+
+        } else if (window.innerWidth < 1200) {
+          domStyle.set("About", "font-size", "9px");
+          domStyle.set("About", "width", "300px");
+          domStyle.set("About", "height", "230px");
+          document.getElementById("About").childNodes[3].style.height = "180px";
+
+        } else {
+          domStyle.set("About", "font-size", "12px");
+          domStyle.set("About", "width", "350px");
+          domStyle.set("About", "height", "300px");
+          document.getElementById("About").childNodes[3].style.height = "250px";
+
+        }
+        domStyle.set("About", "left", "160px");
+        domStyle.set("About", "top", "100px");
+
+      },
+      resize: function () {
         this._resizeContentImg();
       },
 
-      _resizeContentImg: function() {
+      _resizeContentImg: function () {
         var customBox = html.getContentBox(this.customContentNode);
 
         if (this._hasContent) {
@@ -124,10 +121,10 @@ onOpen: function(){
             }
           }
           html.place(aboutContent, this.customContentNode);
-         
+
         }
       }
-      
+
     });
     return clazz;
   });

@@ -36,6 +36,7 @@ define([
     "jimu/PanelManager",
      "esri/request",
  "dijit/form/SimpleTextarea",
+ "esri/IdentityManager"
  
 
 ],
@@ -53,7 +54,8 @@ domClass, locale,popup,
                 domConstruct,arcgisPortal,bundle,
                  domStyle,
                  connect,PanelManager,esriRequest,
-                SimpleTextarea
+                SimpleTextarea,
+                IdentityManager
                  ) {
            var pm = PanelManager.getInstance();
           var clazz = declare([BaseWidget, _WidgetsInTemplateMixin], {
@@ -66,6 +68,7 @@ domClass, locale,popup,
             secondMosaic: null,
             startup: function () {
               this.inherited(arguments);
+              IdentityManager.useSignInPage = false;
             domConstruct.place('<img id="loadingSave" style="position: absolute;top:0;bottom: 0;left: 0;right: 0;margin:auto;z-index:100;" src="' + require.toUrl('jimu') + '/images/loading.gif">', this.domNode);
              this.hideLoading();
             },

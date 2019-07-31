@@ -16,7 +16,7 @@
         "Short-wave Infrared with DRA": {
             "url": "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
             "rasterFunction": "Short-wave Infrared with DRA",
-            "description": "<p style='text-align:justify;'>This band combination (7,6,4) is useful for studying vegetation health and stress, change detection, disturbed soils, soil type, and camouflage detection. This band combination gives results similar to traditional false color infrared photography, which adds a near infrared (NIR) band and drops the visible blue band. Vegetation in the NIR band is highly reflective due to chlorophyll, and a NIR composite vividly shows vegetation in various shades of red. Urban areas are cyan blue, and soils vary from dark to light browns. Ice, snow, and clouds are white or light cyan. Coniferous trees will appear darker red than hardwoods. Generally, deep red hues indicate broad leaf and/or healthier vegetation while lighter reds signify grasslands or sparsely vegetated areas.  Water appears very dark, due to the absorption of energy in the visible red and near IR bands.</p>",
+            "description": "<p style='text-align:justify;'>The band combination (7,6,4) is useful for visualizing urban environments. This band combination makes use of both the SWIR bands (SWIR-2, SWIR-1), and displays vegetation in various shades of green. Urban areas are shades of cyan blue, and soils vary from dark to light browns. Ice, snow, and clouds are dark blue. Generally, deep green hues indicate dense vegetation while lighter greens signify sparsely vegetated areas. Water appears dark, due to the absorption of energy in the visible red and infrared bands.</p>",
             "name": "Short-wave Infrared"
         },
         "Pansharpened Enhanced with DRA": {
@@ -28,7 +28,7 @@
         "Bathymetric with DRA": {
             "url": "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
             "rasterFunction": "Bathymetric with DRA",
-            "description": "<p style='text-align:justify;'>This band combination (4,3,1) maximizes light penetration into clear water and approximates a natural looking image over land. This band combination maximizes light penetration into clear water and approximates a natural looking image over land.  Bands 1 and 2 can penetrate clear, sunlit water to about 30 meters and can identify features in shallow water, depending on the type and color of the features, and the water depth. It ca be used to quantify suspended sediments in water, map sediment transport paths, and aid dredging programs.</p>",
+            "description": "<p style='text-align:justify;'>This band combination (4,3,1) maximizes light penetration into clear water and approximates a natural looking over land. Bands 1 and 2 can penetrate clear, sunlit water to about 30 meters and can identify features in shallow water, depending on the type and color of the features, and the water depth. It can be used to quantify suspended sediments in water, map sediment transport paths, and aid dredging programs.</p>",
             "name": "Bathymetric"
         },
         "NDVI Colorized": {
@@ -40,13 +40,13 @@
         "Panchromatic with DRA": {
             "url": "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/Pan/ImageServer",
             "rasterFunction": "Panchromatic with DRA",
-            "description": "<p style='text-align:justify;'>Sharper image in black and white.</p>",
+            "description": "<p style='text-align:justify;'>This band produces 15m panchromatic images (0.5-0.68  µm) which are sharper images in black and white.</p>",
             "name": "Panchromatic"
         },
         "Geology with DRA": {
             "url": "http://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
             "rasterFunction": "Geology with DRA",
-            "description": "<p style='text-align:justify;'>Geologic features are emphasized.</p>",
+            "description": "<p style='text-align:justify;'>The band combination (7,6,2) enables easier visualization and extraction of delineation of major structural features like thrust faults and folds, textural characteristics of igneous and sedimentary rocks, and for lithological and geological mapping like recognizing hydrothermal altered rocks, etc. Additionally, various band combinations like 4,3,2 ; 7,6,5; 7,5,2; 7,4,2 etc. can also be used to determine specific geological features.</p>",
             "name": "Geology"
         },
         "BurnIndex": {
