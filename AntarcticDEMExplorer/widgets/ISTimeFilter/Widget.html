@@ -1,0 +1,71 @@
+<div>
+    <div data-dojo-type="dijit/Dialog" id="waitDialog" title="Time Line" style="background-color: white;width:440px;">
+        <div data-dojo-attach-point="queryScenes" style="color: #0080C0;">Querying xxx scenes to create temporal profile</div>
+    </div>
+    <div data-dojo-type="dijit/Dialog" id="userInfoDialog" title="Comments" style="background-color: white;">
+        <label for="userInfo" style="color: #0080C0;">Comment:&nbsp;&nbsp;</label> <input data-dojo-type="dijit/form/TextBox" id="userInfo" style="width: 300px;height: 150px;" />
+   <br /><br />
+   <button data-dojo-type="dijit/form/Button" type="button" id="updateFeature" style="margin-left: 40%;">Update</button>
+        </div>
+     <div data-dojo-type="dijit/Dialog" id="timeDialog" title="Time Line" style="background-color: white;width:440px;">
+    <div id="access" style="display:none;">
+        <div style="float: left;color: #0080C0;">Zoom in to activate  Time Line .</div>
+    </div>
+     <div id="timeError" style="display:block;">
+        <div style="float: left;color: #0080C0;">First turn on Landsat layer.</div>
+    </div>   
+   
+    <div data-dojo-attach-point="filterDiv" style="display:none;">
+        <div>
+            Image Date: 
+            <div data-dojo-attach-point="dateRange" style="display:inline-block"></div>
+          
+        </div>
+        <div>
+            <br />
+            <div  style="float:right;display:inline-block;">
+            
+                <button data-dojo-type="dijit/form/Button" type="button" id="refreshTimesliderBtn"><img src="widgets/ISTimeFilter/images/refresh.png" height="15"/></button>
+                <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'refreshTimesliderBtn',position:['below']">
+                    Refresh available dates based on current extent
+                </div>
+               
+            </div>
+            <div data-dojo-attach-point='timeSliderDiv'>
+            </div>
+           
+               <div data-dojo-attach-point="pointgraph" style="color: #0080C0;">
+    </div>
+             <br />
+              <div id="cloudSelect" style="display: none;">
+                   Cloud Filter: 
+                    <select id="cloudFilter" data-dojo-type="dijit/form/Select" style="width :50px;height: 12px;">
+                        <option value=0>0% Cloud</option>
+                        <option value=0.02>2% Cloud</option>
+                        <option value=0.05>5% Cloud</option>
+                        <option value=0.10 selected="selected">10% Cloud</option>
+                        <option value=0.25>25% Cloud</option>
+                        <option value=0.50>50% Cloud</option>
+                        <option value=1>All</option>
+                    </select></div>
+           <div style="display: inline-block;" id="footprint1">
+                <input data-dojo-type="dijit/form/CheckBox"  id="footprint"/> <label for="footprint">FootPrint</label>
+               &nbsp;&nbsp;&nbsp; <input data-dojo-type="dijit/form/CheckBox"  id="allfootprint"/> <label for="allfootprint">All FootPrints</label>
+                
+     </div>
+                <div data-dojo-attach-point="temporalpro" style="color: #0080C0;">
+    </div>
+            <div id="chartshow" style="display : none;float:left;">
+        <div id="chartNode" style="width: 390px; height: 270px;"></div>
+        <div id="legend" style="margin-left: 140px;"></div>
+     
+    </div>
+        </div>
+       
+    </div>
+    <div>
+  
+        <div data-dojo-attach-point="errorDiv" style="color:red;"></div>
+    </div>
+  </div>
+</div>

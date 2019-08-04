@@ -1,0 +1,390 @@
+{  
+   "theme":{  
+      "name":"LandsatTheme",
+      "styles":[  
+         "default",
+         "simpleblue",
+         "purple",
+         "red"
+      ],
+      "version":"1.1"
+   },
+   "portalUrl":"http://esri.maps.arcgis.com",
+   "title":"Antarctic REMA Explorer",
+   "subtitle":"",
+   "logo":"images/app-logo.png",
+   "geometryService":"http://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
+   "links":[  
+
+   ],
+   "widgetOnScreen":{ 
+   	  "panel":{  
+         "uri":"themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+         "positionRelativeTo":"browser",
+         "position":{  
+            "top":0,
+            "left":10,
+            "bottom":210,
+            "width": 80
+         }
+      },
+
+      "widgets":[  
+         {  
+            "uri": "themes/LandsatTheme/widgets/HeaderController/Widget",
+	        "positionRelativeTo": "browser",
+	        "position": {
+	          "left": 0,
+	          "width": 95,
+	          "bottom": 10,
+	          "height": 240
+	        },
+            "version":"1.1"
+         },
+         {  
+            "uri":"widgets/HomeButton/Widget",
+            "position":{  
+               "left":20,
+               "top":95
+            },
+            "version":"1.1",
+            "id":"widgets/HomeButton/Widget_4",
+            "positionRelativeTo":"map",
+            "name":"HomeButton",
+            "label":"Home Button"
+         },
+         {  
+            "uri":"widgets/Scalebar/Widget",
+            "position":{  
+               "left":10,
+               "bottom":10
+            },
+            "version":"1.1",
+            "id":"widgets/Scalebar/Widget_5",
+            "positionRelativeTo":"map",
+            "name":"Scalebar",
+            "label":"Scalebar",
+            "config":"configs/Scalebar/config_Scalebar.json"
+         },
+         {  
+            "uri":"widgets/Coordinate/Widget",
+            "position":{  
+               "left":160,
+               "bottom":5
+            },
+            "version":"1.1",
+            "id":"widgets/Coordinate/Widget_7",
+            "positionRelativeTo":"map",
+            "name":"Coordinate",
+            "label":"Coordinate"
+         },
+         {  
+         	"panel":{  
+		         "uri":"themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+		         "positionRelativeTo":"browser",
+		         "position":{  
+		            "top":30,
+		            "left":0,
+		            "bottom":250,
+		            "width": 95
+		         }
+		      },
+            "placeholderIndex":1,
+            "id":"_8",
+            "positionRelativeTo":"map",
+            "name":"ISLayers",
+            "label":"Band Combinations",
+            "version":"",
+            "uri":"widgets/ISLayers/Widget",
+            "config":"configs/ISLayers/config_Band Combinations.json",
+            "openAtStart": true
+         },
+         {  
+            "uri":"widgets/OverviewMap/Widget",
+            "position":{  
+               "right":0,
+               "top":0
+            },
+            "version":"1.1",
+            "id":"widgets/OverviewMap/Widget_11",
+            "positionRelativeTo":"map",
+            "name":"OverviewMap",
+            "label":"Overview Map"
+         },
+        
+         {
+             "uri": "widgets/Geocoder/Widget",
+                "position": {
+                    "left": 60,
+                    "top": 20
+                },
+                "positionRelativeTo": "map",
+                  "name": "Geocoder",
+                "label": "Geocoder",
+                "version": "1.1"
+            }
+      ],
+      "panel":{  
+         "uri":"jimu/PreloadWidgetIconPanel",
+         "positionRelativeTo":"map"
+      }
+   },
+   "map":{  
+      "3D":false,
+      "2D":true,
+      "position":{  
+         "top":30,
+         "right":10,
+         "bottom":10,
+         "left":95
+      },
+      
+      "itemId":"6553466517dd4d5e8b0c518b8d6b64cb",
+      "mapOptions": {
+        "lods":[{"level":0,"scale":902590245.28771,"resolution":238810.813354},
+                {"level":1,"scale":451295122.643855,"resolution":119405.406677},
+                {"level":2,"scale":225647561.321927,"resolution":59702.7033384999},
+                {"level":3,"scale":112823780.660964,"resolution":29851.3516692501},
+                {"level":4,"scale":56411890.330482,"resolution":14925.675834625},
+                {"level":5,"scale":28205945.165241,"resolution":7462.83791731252},
+                {"level":6,"scale":14102972.582621,"resolution":3731.41895865639},
+                {"level":7,"scale":7051486.29131,"resolution":1865.70947932806},
+                {"level":8,"scale":3525743.145655,"resolution":932.854739664032},
+                {"level":9,"scale":1762871.572828,"resolution":466.427369832148},
+                {"level":10,"scale":881435.786414,"resolution":233.213684916074},
+                {"level":11,"scale":440717.893207,"resolution":116.606842458037},
+                {"level":12,"scale":220358.946603,"resolution":58.3034212288862},
+                {"level":13,"scale":110179.473302,"resolution":29.1517106145754},
+                {"level":14,"scale":55089.7365,"resolution":14.575855267335537},
+                {"level":15,"scale":27544.8682,"resolution":7.287927620438577},
+                {"level":16,"scale":13772.4341,"resolution":3.6439638102192884},
+                {"level":17,"scale":6886.21706,"resolution":1.8219819077554826},
+                {"level":18,"scale":3443.10853,"resolution":0.91099095},
+                {"level":19,"scale":1721.55426,"resolution":0.45549548},
+                {"level":20,"scale":860.777132,"resolution":0.22774774}],
+            "extent":{
+         "xmin": -6071520.742554906,
+                "ymin": -3549067.6990747834,
+                "xmax": 7473530.077367318,
+                "ymax": 3570479.6740413615,
+                "spatialReference": {
+                    "wkid": 3031
+                }
+      }
+    },
+
+      
+      "id":"map",
+      "portalUrl":"http://www.arcgis.com"
+   },
+   "widgetPool":{  
+      "panel":{  
+         "uri":"themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+         "positionRelativeTo":"map",
+         "noOverlay": false,
+         "position":{  
+            "left":0,
+            "bottom":0,
+            "width": 0,
+            "height": 0
+         }
+      },
+      "widgets":[
+       
+         
+      ],
+
+      "groups": [
+{
+     "widgets": [
+         {
+            "name":"Identify",
+            "label":"Identify",
+            "version":"",
+            "icon":"configs/Identify/identify24.svg",
+            "uri":"widgets/Identify/Widget",
+            "config":"configs/Identify/config_Identify.json",
+            "index":2,
+            "id":"widgets/Identify/Widget_14"
+         }
+        ],
+           "label":"Identify",
+            "id": "_30",
+        "index": 2,
+         "icon":"configs/Identify/identify24.svg"
+},
+{
+     "widgets": [
+         {  
+             "name":"ElevationProfile",
+            "label":"Measure",
+            "version":"1.3",
+            "icon":"widgets/ElevationProfile/images/icon.png",
+            "uri":"widgets/ElevationProfile/Widget",
+            "config":"configs/ElevationProfile/config_ElevationProfile.json",
+            "index":3,
+            "id":"widgets/ElevationProfile/Widget_18"
+         }
+        ],
+           "label":"Measure",
+        "index": 3,
+       "icon":"widgets/ElevationProfile/images/icon.png"
+},
+{
+     "widgets": [
+         {
+            "name":"ChangeDetection",
+            "label":"Measure Change",
+            "version":"",
+            "icon":"widgets/ChangeDetection/images/change.png",
+            "uri":"widgets/ChangeDetection/Widget",
+            "config":"configs/ChangeDetection/config_ChangeDetection.json",
+            "index":1,
+            "id":"widgets/ChangeDetection/Widget_14"
+         }
+        ],
+         "label": "Measure Change",
+         "visible": false,
+         "id": "_27",
+        "index": 1,
+        "icon":"widgets/ChangeDetection/images/change.png"
+},
+      {
+         
+        "widgets": [
+          {  
+            "name":"ISTimeFilter",
+            "label":"Time Line",
+            "version":"",
+            "icon":"configs/ISTimeFilter/time24.svg",
+            "uri":"widgets/ISTimeFilter/Widget",
+            "config":"configs/ISTimeFilter/config_Time .json",
+            "index":0,
+            "id":"widgets/ISTimeFilter/Widget_15"
+         }
+        ],
+        "label": "Time Control",
+        "index": 0,
+         "id": "_32",
+         "visible": true,
+        "panel": {
+          "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+          "positionRelativeTo": "map",
+          "noOverlay": false,
+          "position": {
+            "width": 440,
+            "height":"auto",
+            "left": 60,
+            "top": 75
+          }
+        }
+       
+         
+      }, {
+        "widgets": [
+          {  
+            "name":"ExportFunction",
+            "label":"Export",
+            "version":"",
+            "icon":"widgets/ExportFunction/images/icon.png",
+            "uri":"widgets/ExportFunction/Widget",
+            "config":"configs/ExportFunction/config_ExportFunction.json",
+            "index":4,
+            "id":"widgets/ExportFunction/Widget_19"
+         }
+        ],
+        "label": "Export",
+         "id": "_33",
+        "index": 4,
+        "panel": {
+          "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+          "positionRelativeTo": "map",
+          "noOverlay": true,
+          "position": {
+            "width": 420,
+            "height":150,
+            "left": 160,
+            "top": 75
+          }
+        }
+       
+         
+      },
+
+
+      {
+        "widgets": [
+          {  
+            "name":"Bookmarks",
+            "label":"Bookmarks",
+            "version":"1.1",
+            "icon":"configs/Bookmark/bookmark.png",
+            "uri":"widgets/Bookmark/Widget",
+            "index":5,
+            "id":"widgets/Bookmark/Widget_17"
+         }
+        ],
+        "label": "Bookmarks",
+        "index": 5,
+        "panel": {
+          "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+          "positionRelativeTo": "browser",
+          "noOverlay": true,
+          "position": {
+            "width": 350,
+            "height": 350,
+            "left": 160,
+            "top": 75
+          }
+        },
+        "id": "_19",
+        "visible": true,
+        "icon":"configs/Bookmark/bookmark.png"
+      },
+
+      {
+        "widgets": [
+          {  
+            "name":"About",
+            "label":"About",
+            "version":"1.1",
+            "icon":"null",
+            "uri":"widgets/About/Widget",
+            "config":"configs/About/config_About.json",
+            "index":6,
+            "id":"widgets/About/Widget_16"
+         }
+        ],
+        "label": "About",
+        "index": 6,
+        "panel": {
+          "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+          "positionRelativeTo": "browser",
+          "noOverlay" : true,
+          "position": {
+            "width": 350,
+            "height" : 160,
+            "left": 160,
+            "top": 75
+           
+          }
+        },
+        "id": "_22",
+        "visible": true,
+        "icon": "null"
+      }
+
+    ]
+   },
+   "wabVersion":"1.1",
+   "isWebTier":false,
+   "httpProxy":{  
+      "useProxy":true,
+      "alwaysUseProxy":false,
+      "url":"",
+      "rules":[  
+
+      ]
+   },
+   "appId":""
+}

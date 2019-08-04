@@ -1,0 +1,75 @@
+{
+    "bookmarks2D": [{
+            "name": "Mount Vinson",
+            "extent": {
+                "xmin": -1367717.3246414433,
+                "ymin": 83847.62941504862,
+                "xmax": -1319908.5192335397,
+                "ymax": 109209.6176497292,
+                "spatialReference": {
+                    "wkid": 3031
+                }
+            },
+            "layer": "Hillshade Gray",
+            "description": "Mount Vinson is the highest peak in Antarctica, at 4,892 metres (16,050 ft). It lies in the north part of Vinson Massif’s summit plateau in the south portion of the main ridge of the Sentinel Range about 2 kilometres (1.2 mi) north of Hollister Peak.It was first climbed in 1966. An expedition in 2001 was the first to climb via the Eastern route, and also took GPS measurements of the height of the peak.As of February 2010, 1,400 climbers have attempted to reach the top of Mount Vinson.",
+            "thumbnail": "images/Mount_Vinson.jpg"
+        }, {
+            "name": "McMurdo Station",
+            "extent": {
+                "xmin": 281528.44935218635,
+                "ymin": -1302333.250376521,
+                "xmax": 329337.25476008997,
+                "ymax": -1276971.2621418403,
+                "spatialReference": {
+                    "wkid": 3031
+                }
+            },
+            "layer": "Multi-Directional Hillshade",
+            "description": "McMurdo Station is a U.S. Antarctic research center on the south tip of Ross Island, which is in the New Zealand-claimed Ross Dependency on the shore of McMurdo Sound in Antarctica. It is operated by the United States through the United States Antarctic Program, a branch of the National Science Foundation. The station is the largest community in Antarctica, capable of supporting up to 1,258 residents, and serves as the United States Antarctic science facility.",
+            "thumbnail": "images/McMurdo_Station.jpg"
+            
+        },{
+		"name": "Fimbulheimen Mountain Range",
+		"extent": {
+			"xmin": 167900.77313185722,
+			"ymin": 1939313.9725943848,
+			"xmax": 263518.3839472306,
+			"ymax": 1990037.949063516,
+			"spatialReference": {
+				"wkid": 3031
+			}
+		},
+                "layer": "Slope Degrees Map",
+                "description": "Fimbulheimen is a mountain range in Queen Maud Land. It stretches from Jutulstraumen by 1° west of Carsten Borchgrevink Ice at 18° east, about 200 km from the ice edge. A number of smaller ranges and mountain areas constitutes Fimbulheimen, from west to east",
+		"thumbnail": "images/Fimbulheimen_Mountain_Range.jpg"
+	}, {
+		"name": "Mount Erebus",
+		"extent": {
+			"xmin": 285319.2088756801,
+			"ymin": -1338781.835096698,
+			"xmax": 333128.01428358373,
+			"ymax": -1313419.8468620174,
+			"spatialReference": {
+				"wkid": 3031
+			}
+		},
+                "layer": "Aspect Map",
+                "description": "Mount Erebus is the second highest volcano in Antarctica and the southernmost active volcano on earth. It is the sixth highest ultra mountain on an island. With a summit elevation of 3,794 metres (12,448 ft), it is located on Ross Island, which is also home to three inactive volcanoes, Mount Terror, Mount Bird, and Mount Terra Nova. The volcano has been active since c. 1.3 million years ago.",
+		"thumbnail": "images/Mount_Erebus.jpg"
+	}, {
+		"name": "Canada Glacier",
+		"extent": {
+			"xmin": 368033.9154769614,
+			"ymin": -1308310.9614168825,
+			"xmax": 405668.7738803782,
+			"ymax": -1288662.7084626588,
+			"spatialReference": {
+				"wkid": 3031
+			}
+		},
+                "layer": "Hillshade Elevation Tinted",
+                "description": "Canada Glacier is a glacier flowing south-east into the northern side of Taylor Valley in Victoria Land, Antarctica. It is in the Ross Dependency.The glacier was discovered and named in the course of the Terra Nova Expedition (1910–1913).",
+		"thumbnail": "images/Canada_Glacier.jpg"
+	}],
+	"flyTime": 3000
+}

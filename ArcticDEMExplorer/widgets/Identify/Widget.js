@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2018 Esri. All Rights Reserved.
+// Copyright (c) 2013 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -105,15 +105,20 @@ define([
                 levelzoom: null,
                 startup: function () {
                     this.inherited(arguments);
+
                     domConstruct.place('<img id="loadingIdentify" style="position: absolute;top:0;bottom: 0;left: 0;right: 0;margin:auto;z-index:100;" src="' + require.toUrl('jimu') + '/images/loading.gif">', this.map.container);
+                    // domStyle.set("loadingsp","display","block");
+
+
+
                 },
                 onOpen: function () {
                     if (registry.byId("buildDialog") && registry.byId("buildDialog").open)
                         registry.byId("buildDialog").hide();
-                    if (registry.byId("changeDetectionDialog") && registry.byId("changeDetectionDialog").open)
+if (registry.byId("changeDetectionDialog") && registry.byId("changeDetectionDialog").open)
                         registry.byId("changeDetectionDialog").hide();
-                    if (registry.byId("timeDialog") && registry.byId("timeDialog").open)
-                        registry.byId("timeDialog").hide();
+                    if(registry.byId("timeDialog") && registry.byId("timeDialog").open)
+                       registry.byId("timeDialog").hide();
                     if (registry.byId("contourDialog") && registry.byId("contourDialog").open)
                         registry.byId("contourDialog").hide();
                     connect.publish("identify", [{idenstatus: "open"}]);
@@ -125,7 +130,7 @@ define([
                     this.centerFlag = true;
                     this.identifypara(centerPoint);
                     this.toolbarIdentify.activate(Draw.POINT);
-
+                 
                 },
                 autoresize: function ()
                 {
@@ -154,7 +159,7 @@ define([
                     registry.byId("chartDialog1").hide();
                     domStyle.set("loadingIdentify", "display", "none");
                     connect.publish("identify", [{idenstatus: "close"}]);
-
+                   
                     this.toolbarIdentify.deactivate();
                 },
                 addGraphic: function (geometry) {
@@ -241,7 +246,7 @@ define([
                             this.mosaic = JSON.stringify(layerCheck.mosaicRule.toJson());
                         else
                             this.mosaic = null;
-                        if (layerCheck.url !== this.config.urlLandsatMS && layerCheck.mosaicRule && layerCheck.mosaicRule.method === "esriMosaicLockRaster") {
+                        if (layerCheck.url !== this.config.urlms && layerCheck.mosaicRule && layerCheck.mosaicRule.method === "esriMosaicLockRaster") {
                             var query = new Query();
                             query.where = "OBJECTID = " + layerCheck.mosaicRule.lockRasterIds[0];
                             query.outFields = ["GroupName"];
@@ -252,7 +257,7 @@ define([
                                 query2.where = "GroupName = '" + queryResult.features[0].attributes.GroupName + "'";
                                 query2.outFields = ["OBJECTID"];
                                 query2.returnGeometry = false;
-                                var queryTask2 = new QueryTask(this.config.urlLandsatMS);
+                                var queryTask2 = new QueryTask(this.config.urlms);
                                 queryTask2.execute(query2, lang.hitch(this, function (queryResult2) {
                                     var array = [queryResult2.features[0].attributes.OBJECTID];
                                     this.mosaic = {"mosaicMethod": "esriMosaicLockRaster", "ascending": true, "lockRasterIds": array, "mosaicOperation": "MT_FIRST"};
@@ -260,13 +265,15 @@ define([
 
 
                                     var request5 = esriRequest({
-                                        url: this.config.urlLandsatMS + "/getSamples",
+                                        url: this.config.urlms + "/getSamples",
                                         content: {
                                             geometry: JSON.stringify((point.toJson())),
                                             geometryType: "esriGeometryPoint",
                                             returnGeometry: false,
+                                            // returnCatalogItems: true,
                                             returnFirstValueOnly: true,
                                             outFields: 'AcquisitionDate,OBJECTID,GroupName,Category,ProductName,WRS_Path,WRS_Row,SunAzimuth,SunElevation,CloudCover,LowPS',
+                                            // pixelSize: [this.primaryLayer.pixelSizeX, this.primaryLayer.pixelSizeY],
                                             mosaicRule: this.mosaic,
                                             f: "json"
                                         },
@@ -308,13 +315,15 @@ define([
                             }));
                         } else {
                             var request2 = esriRequest({
-                                url: this.config.urlLandsatMS + "/getSamples",
+                                url: this.config.urlms + "/getSamples",
                                 content: {
                                     geometry: JSON.stringify((point.toJson())),
                                     geometryType: "esriGeometryPoint",
                                     returnGeometry: false,
+                                    // returnCatalogItems: true,
                                     returnFirstValueOnly: true,
                                     outFields: 'AcquisitionDate,OBJECTID,GroupName,Category,ProductName,WRS_Path,WRS_Row,SunAzimuth,SunElevation,CloudCover,LowPS',
+                                    // pixelSize: [this.primaryLayer.pixelSizeX, this.primaryLayer.pixelSizeY],
                                     mosaicRule: this.mosaic,
                                     f: "json"
                                 },
@@ -331,14 +340,14 @@ define([
                             if (this.map.getLayer("resultLayer")) {
                                 var upperScene = parseInt(registry.byId("currentDate").get("value"));
                                 var belowScene = parseInt(registry.byId("savedSceneDetails").get("value").split(",")[1]);
-
-                                if (locale.format(new Date(upperScene), {selector: "date", datePattern: "yyyy/MM/dd"}) < locale.format(new Date(belowScene), {selector: "date", datePattern: "yyyy/MM/dd"}))
-                                    html.set(this.identifytab, "Change in height: " + (-1 * (parseFloat(data.value)).toFixed(2)));
-                                else
-                                    html.set(this.identifytab, "Change in height: " + (parseFloat(data.value)).toFixed(2));
+                               
+                                if(locale.format(new Date(upperScene), {selector: "date", datePattern: "yyyy/MM/dd"}) < locale.format(new Date(belowScene), {selector: "date", datePattern: "yyyy/MM/dd"}))
+                                html.set(this.identifytab, "Change in height: " + ( -1 * (parseFloat(data.value)).toFixed(2)));
+                            else
+                                html.set(this.identifytab, "Change in height: " + (parseFloat(data.value)).toFixed(2));
                                 html.set(this.pointPickerText, "Pick point on the map to get change in height.");
                                 domStyle.set("footprintIdentify", "display", "none");
-                                domStyle.set("onlyidentify", "display", "block");
+                                 domStyle.set("onlyidentify", "display", "block");
                                 if (this.centerFlag)
                                     this.centerFlag = false;
                             } else if (this.map.getLayer("primaryLayer"))
@@ -346,7 +355,7 @@ define([
                                 var heightValue = data.processedValues[0].split(" ");
 
                                 var request3 = esriRequest({
-                                    url: this.config.urlElevation + "/getSamples",
+                                    url: this.config.urlElevationPGC + "/getSamples",
                                     content: {
                                         geometry: JSON.stringify((point.toJson())),
                                         geometryType: "esriGeometryPoint",
@@ -372,10 +381,11 @@ define([
                                     }));
                                     domStyle.set("footprintIdentify", "display", "block");
                                 }), lang.hitch(this, function (error) {
+                                    //    domStyle.set("loadingsp", "display", "none");
                                     html.set(this.identifytab, "");
                                     this.centerFlag = false;
                                     html.set(this.noinfo, "No Information available");
-                                    domStyle.set(dom.byId("onlyidentify"), "display", "none");
+                                   domStyle.set(dom.byId("onlyidentify"), "display", "none");
                                     domStyle.set(dom.byId("identifysp"), "display", "none");
                                     domStyle.set("loadingIdentify", "display", "none");
                                     registry.byId("chartDialog1").show();
@@ -385,7 +395,10 @@ define([
                                 domStyle.set(dom.byId("identifysp"), "display", "none");
                                 domStyle.set(dom.byId("onlyidentify"), "display", "block");
                                 html.set(this.noinfo, "");
+                                //    dojo.style(dojo.byId("chartDialog1"), "top", (this.h + "px"));
                                 html.set(this.pointPickerText, "Pick point on the map to get height.");
+                                // registry.byId("chartDialog1").show();
+                                //  domConstruct.destroy("chartDialog1_underlay");
                                 domStyle.set("footprintIdentify", "display", "none");
                                 if (this.centerFlag)
                                     this.centerFlag = false;
@@ -648,6 +661,10 @@ define([
                         domStyle.set(dom.byId("identifysp"), "display", "block");
                         registry.byId("type").set("checked", "true");
                         html.set(this.noinfo, "");
+                        //dojo.style(dojo.byId("chartDialog1"),"top","350px");
+                        //dojo.style(dojo.byId("chartDialog1"), "top", (this.h + "px"));
+                        // dojo.style(dojo.byId("chartDialog1"),"width",(this.w+"px"));
+                        // dojo.style(dojo.byId("onlyidentify"), "display", "none");
                         this.chart = new Chart("chartNode1");
                         this.chart.addPlot("default", {
                             type: "Lines",
@@ -695,7 +712,7 @@ define([
                         domStyle.set("chartDialog1", "top", "75px");
                         html.set(this.noinfo, "");
                         domStyle.set(dom.byId("identifysp"), "display", "block");
-
+                       
 
                         domStyle.set("onlyidentify", "display", "none");
 
@@ -728,7 +745,7 @@ define([
                         }
                     }));
 
-                    if (this.map.layerIds) {
+                    
 
                         this.primaryLayer = this.map.getLayer("primaryLayer");
 
@@ -740,7 +757,7 @@ define([
                             this.bandNames1 = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR 1", "SWIR 2", "Cirrus"];
 
                             this.bandPropMean = [440, 480, 560, 655, 865, 1610, 2200, 1370];
-
+                            
 
 
                         } catch (e)
@@ -748,7 +765,7 @@ define([
 
                         }
 
-                    }
+                    
 
                 },
                 postCreate: function () {
@@ -775,9 +792,9 @@ define([
                         query.where = "(Category=1) AND (GroupName = '" + this.groupName + "')";
                         query.returnGeometry = true;
                         if (this.map.getLayer("primaryLayer"))
-                            var url = this.config.urlElevation;
+                            var url = this.config.urlElevationPGC;
                         else if (this.map.getLayer("landsatLayer"))
-                            var url = this.config.urlLandsatMS;
+                            var url = this.config.urlms;
                         var queryTask = new QueryTask(url);
                         queryTask.execute(query, lang.hitch(this, function (result) {
 

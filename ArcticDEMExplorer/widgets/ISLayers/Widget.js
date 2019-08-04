@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2018 Esri. All Rights Reserved.
+// Copyright (c) 2013 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ define([
     'dijit/_WidgetsInTemplateMixin',
     'dojo/text!./Widget.html',
     'jimu/BaseWidget',
-    "dojo/on", "esri/request",
+    "dojo/on","esri/request",
     "dojo/_base/lang",
     'dojo/dom-class', "esri/tasks/query",
     "esri/tasks/QueryTask",
@@ -56,7 +56,7 @@ define([
                 _WidgetsInTemplateMixin,
                 template,
                 BaseWidget,
-                on, esriRequest,
+                on,esriRequest,
                 lang,
                 domClass, Query, QueryTask,
                 RasterFunction,
@@ -103,7 +103,9 @@ define([
                 cloudFilter: null,
                 startup: function () {
                     this.inherited(arguments);
-                    this.socialLink = domConstruct.toDom('<div style="position: absolute;top:20px;right: 5px;display: block;"><a   id="facebook" target="_blank"><img id="facebookThumnail" src="http://arcticdemapp.s3-website-us-west-2.amazonaws.com/explorer/widgets/ISLayers/images/facebook.png" style="height: 30px;width:30px;" alt="Facebook" /></a><br /><a  id="twitter" target="_blank"><img id="twitterThumbnail" src="http://arcticdemapp.s3-website-us-west-2.amazonaws.com/explorer/widgets/ISLayers/images/twitter.png" style="height: 30px;width:30px;" alt="Twitter" /></a><br /><a   id="link" target="_self"><img id="linkThumbnail" src=" http://arcticdemapp.s3-website-us-west-2.amazonaws.com/explorer/widgets/ISLayers/images/link.png" style="height: 30px;width:30px;" alt="Link" /></a></div>');
+                    var headerCustom = domConstruct.toDom('<div style="font-size: 19px; position: absolute; left: 20px; color: white; font-weight: bold;background-color: transparent;">'+this.appConfig.title+'</div>');
+                    domConstruct.place(headerCustom, "jimu-layout-manager", "after");
+                    this.socialLink = domConstruct.toDom('<div style="position: absolute;top:20px;right: 5px;display: block;"><a   id="facebook" target="_blank"><img id="facebookThumnail" src="widgets/ISLayers/images/facebook.png" style="height: 30px;width:30px;" alt="Facebook" /></a><br /><a  id="twitter" target="_blank"><img id="twitterThumbnail" src="widgets/ISLayers/images/twitter.png" style="height: 30px;width:30px;" alt="Twitter" /></a><br /><a   id="link" target="_self"><img id="linkThumbnail" src="widgets/ISLayers/images/link.png" style="height: 30px;width:30px;" alt="Link" /></a></div>');
                     domConstruct.place(this.socialLink, this.map.container);
 
                     domConstruct.place('<img id="loadingLayer" style="position: absolute;top:0;bottom: 0;left: 0;right: 0;margin:auto;z-index:100;" src="' + require.toUrl('jimu') + '/images/loading.gif">', this.map.container);
@@ -139,8 +141,9 @@ define([
                 },
                 postCreate: function () {
                     this.createZFactorSlider();
+                    this.addVectorLayers();
                     var raster = new RasterFunction();
-                    raster.functionName = this.config.rasterFunctions.hillshade;
+                    raster.functionName = "Hillshade Gray";
                     this.greyHillshadeStretched = new RasterFunction();
                     this.greyHillshadeStretched.functionName = "Stretch";
                     var stretchArg = {};
@@ -152,12 +155,13 @@ define([
                     stretchArg.Raster = raster;
                     this.greyHillshadeStretched.functionArguments = stretchArg;
                     this.own(
-                            on(this.multiERadio, "click", lang.hitch(this, this.domSelection, this.config.rasterFunctions.aspect, this.multiERadio)),
-                            on(this.multiBRadio, "click", lang.hitch(this, this.domSelection, this.config.rasterFunctions.hillshade, this.multiBRadio)),
-                            on(this.slopeRadio, "click", lang.hitch(this, this.domSelection, this.config.rasterFunctions.slope, this.slopeRadio)),
-                            on(this.multiDRadio, "click", lang.hitch(this, this.populateLandsatService, this.config.rasterFunctions.landsatPansharpened, this.multiDRadio)),
-                            on(this.multiFRadio, "click", lang.hitch(this, this.domSelection, this.config.rasterFunctions.multiDirectionalHillshade, this.multiFRadio)),
+                            on(this.multiERadio, "click", lang.hitch(this, this.domSelection, "Aspect Map", this.multiERadio)),
+                            on(this.multiBRadio, "click", lang.hitch(this, this.domSelection, "Hillshade Gray", this.multiBRadio)),
+                            on(this.slopeRadio, "click", lang.hitch(this, this.domSelection, "Slope Map", this.slopeRadio)),
+                            on(this.multiDRadio, "click", lang.hitch(this, this.populateLandsatService, "Pansharpened Enhanced with DRA", this.multiDRadio)),
+                            on(this.multiFRadio, "click", lang.hitch(this, this.domSelection, "Hillshade Multidirectional", this.multiFRadio)),
                             on(this.multiARadio, "click", lang.hitch(this, this.domSelection, "GreyHillshadeStretched", this.multiARadio)),
+                            on(this.vectorRadio, "click", lang.hitch(this, this.turnOnOffVectorLayers)),
                             on(this.contourRadio, "click", lang.hitch(this, function () {
 
                                 if (domClass.contains(this.contourRadio, "selected")) {
@@ -180,12 +184,12 @@ define([
                                     domStyle.set("contourDialog", "top", "75px");
                                     domConstruct.destroy("contourDialog_underlay");
                                     if (registry.byId("smoothContour").checked)
-                                        this.addContourLayer(this.config.rasterFunctions.smoothContour);
+                                        this.addContourLayer("Contour Smoothed 25");
                                     else
-                                        this.addContourLayer(this.config.rasterFunctions.contour);
+                                        this.addContourLayer("Contour 25");
                                 }
                             })),
-                            on(this.multiCRadio, "click", lang.hitch(this, this.domSelection, this.config.rasterFunctions.tintedHillshade, this.multiCRadio)),
+                            on(this.multiCRadio, "click", lang.hitch(this, this.domSelection, "Hillshade Elevation Tinted", this.multiCRadio)),
                             on(this.buildRadio, "click", lang.hitch(this, function () {
                                 if (this.layerflag) {
                                     if (!this.buildFlag) {
@@ -213,15 +217,15 @@ define([
 
                     registry.byId("smoothContour").on("change", lang.hitch(this, function () {
                         if (registry.byId("smoothContour").checked)
-                            this.addContourLayer(this.config.rasterFunctions.smoothContour);
+                            this.addContourLayer("Contour Smoothed 25");
                         else
-                            this.addContourLayer(this.config.rasterFunctions.contour);
+                            this.addContourLayer("Contour 25");
                     }));
                     registry.byId("contourIntervalOptions").on("change", lang.hitch(this, function () {
                         if (registry.byId("smoothContour").checked)
-                            this.addContourLayer(this.config.rasterFunctions.smoothContour);
+                            this.addContourLayer("Contour Smoothed 25");
                         else
-                            this.addContourLayer(this.config.rasterFunctions.contour);
+                            this.addContourLayer("Contour 25");
                     }));
 
                     registry.byId('reset').on("click", lang.hitch(this, this.reset1));
@@ -229,7 +233,18 @@ define([
                     this.map.on("update-end", lang.hitch(this, this.hideLoading));
                     this.map.on("update-end", lang.hitch(this, this.timebook));
                     this.map.on("layer-add-result", lang.hitch(this, this.timeClicked));
-
+                    this.map.on("extent-change", lang.hitch(this, function (value) {
+                        var primary = this.map.getLayer("primaryLayer");
+                        if(domClass.contains(this.vectorRadio,"selected") && this.map.getLayer("labelLayer")) {
+                        if (value.lod.level < 9) {
+                            if (this.map.getLayer("labelLayer").visible)
+                                this.map.getLayer("labelLayer").hide();
+                        } else {
+                            if (!this.map.getLayer("labelLayer").visible)
+                                this.map.getLayer("labelLayer").show();
+                        }
+                    }
+                    }));
                     new Tooltip({
                         connectId: [this.domNode],
                         selector: ".layer-item",
@@ -238,7 +253,31 @@ define([
                             return matchedNode.getAttribute("data-tooltip");
                         }
                     });
+                    domClass.add(this.vectorRadio,"selected");
+                },
+                addVectorLayers: function() {
+                     var oceanLayer = new ArcGISTiledMapServiceLayer(this.config.oceanReferenceLayer, {
+                         id: "oceanLayer",
+                        visible: true
+                     });
+                     this.map.addLayer(oceanLayer);
+                     if(window.window.location.href.indexOf("http://") !== -1) {
+                     var mapServiceLayer = new ArcGISDynamicMapServiceLayer(this.config.mapLayer, {
+                        id: "labelLayer",
+                        visible: this.map.getLevel() < 9 ? false: true
+                    });
+                    mapServiceLayer.on("load", lang.hitch(this, function () {
+                        mapServiceLayer.copyright = "PGC, Esri";
+                    }));
 
+                    this.map.addLayer(mapServiceLayer); 
+                     }
+                    var graticuleLayer = new ArcGISDynamicMapServiceLayer(this.config.graticuleLayer, {
+                         id: "graticuleLayer",
+                        visible: true
+                     });
+                     graticuleLayer.setImageFormat("png32");
+                     this.map.addLayer(graticuleLayer);
                 },
                 createZFactorSlider: function () {
                     var node = domConstruct.toDom('<div id="zfactorDiv">Shading Factor:<span style="font-weight:bold; color:black;margin-left:3px;" id="zfactorValue">1.0</span><button data-dojo-type="dijit/form/Button"  id="zfactorBtn" type="button">Apply</button><br />' +
@@ -260,15 +299,15 @@ define([
                         }));
                         registry.byId("zfactorBtn").on("click", lang.hitch(this, function (value) {
                             var factor = registry.byId("zfactorSlider") ? parseFloat(registry.byId("zfactorSlider").get("value")) : 1.0;
-                            factor = Math.pow(1.5, factor) - 0.5;
+                            factor = Math.pow(1.5,factor) - 0.5;
                             var rasterFunction = new RasterFunction();
                             rasterFunction.functionName = this.selectedRadio.id;
                             var args = {};
                             if (this.selectedRadio.id === "Hillshade Gray") {
-                                args[this.config.rasterFunctionArgumentsVariableNames.hillshadeZFactor] = factor;
+                                args.ZFactor_201637_125527_313 = factor;
                                 rasterFunction.functionArguments = args;
                             } else if (this.selectedRadio.id === "Hillshade Multidirectional") {
-                                args[this.config.rasterFunctionArgumentsVariableNames.multiDirectionalHillshadeZFactor] = factor;
+                                args.ZFactor = factor;
                             }
                             rasterFunction.functionArguments = args;
                             if (this.map.getLayer("primaryLayer"))
@@ -400,7 +439,7 @@ define([
                             var cloudFilter = "";
                         }
                         if (landsatLayer.renderingRule) {
-                            if (landsatLayer.renderingRule.functionName === this.config.rasterFunctions.landsatPansharpened) {
+                            if (landsatLayer.renderingRule.functionName === "Pansharpened Enhanced with DRA") {
                                 var domLandsatClick = "Natural Color with DRA";
                                 var band1 = "";
                                 var band2 = "";
@@ -451,9 +490,9 @@ define([
                     var zfactor = registry.byId("zfactorSlider").get("value");
                     var shareUrl = appUrl + "?" + btoa(mapextent + "&" + contourMosaicRule + "&" + mosaicRule + "&" + mosaicRuleLandsat + "&" + renderingRule + "&" + domLandsatClick + "&" + band1 + "&" + band2 + "&" + band3 + "&" + stretch + "&" + gamma + "&" + domClickContour + "&" + contourInterval + "&" + smoothContour + "&" + cloudFilter + "&" + savedMosaicRule + "&" + zfactor);
                     if (socialMedium === "facebook")
-                        var share = "http://www.arcgis.com/home/socialnetwork.html?n=fb&t=" + "&u=" + shareUrl;
+                        var share = "https://www.arcgis.com/home/socialnetwork.html?n=fb&t=" + "&u=" + shareUrl;
                     else if (socialMedium === "twitter")
-                        var share = "http://www.arcgis.com/home/socialnetwork.html?n=tw&t=ArcticDEM Explorer" + "&u=" + shareUrl;
+                        var share = "https://www.arcgis.com/home/socialnetwork.html?n=tw&t=ArcticDEM Explorer" + "&u=" + shareUrl;
                     else
                         var share = "https://arcg.is/prod/shorten";
                     if (socialMedium !== "link") {
@@ -538,7 +577,7 @@ define([
 
                     if (domClass.contains(radio, "selected")) {
                         domClass.remove(radio, "selected");
-
+                       
                         if (this.map.getLayer("primaryLayer")) {
                             if (this.map.getLayer("primaryLayer").updating)
                                 this.map.getLayer("primaryLayer").suspend();
@@ -569,8 +608,8 @@ define([
                     var arguments = {};
                     if (registry.byId("contourIntervalOptions").get("value") !== "0")
                     {
-                        arguments[this.config.rasterFunctionArgumentsVariableNames.contourInterval] = parseFloat(registry.byId("contourIntervalOptions").get("value"));
-                        arguments[this.config.rasterFunctionArgumentsVariableNames.contourIntervalSelector] = 1;
+                        arguments.Interval = parseFloat(registry.byId("contourIntervalOptions").get("value"));
+                        arguments.IntervalSelector = 1;
                     }
                     rasterFunction.functionArguments = arguments;
                     if (this.map.getLayer("contourLayer")) {
@@ -605,7 +644,7 @@ define([
                         else if (this.map.getLayer("primaryLayer"))
                             this.map.addLayer(contourLayer, 2);
                         else if (this.map.getLayer("landsatLayer"))
-                            this.map.addLayer(contourLayer, 1);
+                            this.map.addLayer(contourLayer, 2);
                         else
                             this.map.addLayer(contourLayer, 1);
                     }
@@ -859,7 +898,6 @@ define([
                     this.band3 = registry.byId("bnd3").get("value");
                     this.gamma = this.gammaval;
                     this.saveRenderingRule = abc;
-                    //this.primaryLayer.refresh();
                     this.layerflag = false;
 
                 },
@@ -905,15 +943,15 @@ define([
                             domStyle.set("zfactorDiv", "display", "block");
                             var args = {};
                             var factor = registry.byId("zfactorSlider") ? parseFloat(registry.byId("zfactorSlider").get("value")) : 1.0;
-                            factor = Math.pow(1.5, factor) - 0.5;
-                            args[this.config.rasterFunctionArgumentsVariableNames.hillshadeZFactor] = factor;
+                            factor = Math.pow(1.5,factor) - 0.5;
+                            args.ZFactor_201637_125527_313 = factor;
                             rasterFunction.functionArguments = args;
                         } else if (renderer === "Hillshade Multidirectional") {
                             var factor = registry.byId("zfactorSlider") ? parseFloat(registry.byId("zfactorSlider").get("value")) : 1.0;
-                            factor = Math.pow(1.5, factor) - 0.5;
+                            factor = Math.pow(1.5,factor) - 0.5;
                             domStyle.set("zfactorDiv", "display", "block");
                             var args = {};
-                            args[this.config.rasterFunctionArgumentsVariableNames.multiDirectionalHillshadeZFactor] = factor;
+                            args.ZFactor = factor;
                             rasterFunction.functionArguments = args;
                         }
 
@@ -929,7 +967,7 @@ define([
                         var params = new ImageServiceParameters();
                         params.renderingRule = rasterFunction;
                         params.format = "jpgpng";
-
+                        
                         var elevationLayer = new ArcGISImageServiceLayer(this.config.urlElevation, {
                             id: "primaryLayer",
                             visible: true,
@@ -970,7 +1008,7 @@ define([
 
                         var params = new ImageServiceParameters();
                         var rasterFunction = new RasterFunction();
-                        if (renderer === this.config.rasterFunctions.landsatPansharpened) {
+                        if (renderer === "Pansharpened Enhanced with DRA") {
                             rasterFunction.functionName = renderer;
                             if (registry.byId("buildDialog").open)
                                 registry.byId("buildDialog").hide();
@@ -1008,6 +1046,25 @@ define([
 
                         }
 
+                    }
+                },
+                turnOnOffVectorLayers: function() {
+                    if (domClass.contains(this.vectorRadio, "selected")) {
+                        domClass.remove(this.vectorRadio, "selected");
+                        if(this.map.getLayer("oceanLayer"))
+                        this.map.getLayer("oceanLayer").hide();
+                    if(this.map.getLayer("graticuleLayer"))
+                        this.map.getLayer("graticuleLayer").hide();
+                        if(this.map.getLayer("labelLayer"))
+                        this.map.getLayer("labelLayer").hide();
+                    } else {
+                        domClass.add(this.vectorRadio, "selected");
+                        if(this.map.getLayer("oceanLayer"))
+                        this.map.getLayer("oceanLayer").show();
+                    if(this.map.getLayer("graticuleLayer"))
+                        this.map.getLayer("graticuleLayer").show();
+                        if(this.map.getLayer("labelLayer") && this.map.getLevel() >=9)
+                        this.map.getLayer("labelLayer").show();
                     }
                 },
                 showLoading: function () {

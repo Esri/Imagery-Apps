@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2018 Esri. All Rights Reserved.
+// Copyright (c) 2013 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ define([
     'dojo/text!./Widget.html',
     'jimu/BaseWidget',
     "dojo/on",
-    "dijit/registry", "dojo/dom-class",
+    "dijit/registry","dojo/dom-class",
     "dojo/_base/lang",
     "dojo/html",
     "dojo/dom",
@@ -79,7 +79,7 @@ define([
                 template,
                 BaseWidget,
                 on,
-                registry, domClass,
+                registry,domClass,
                 lang,
                 html,
                 dom,
@@ -108,21 +108,21 @@ define([
                 arcticFlag: null,
                 extentChangeHandler: null,
                 refreshHandlerTime: null,
-                noMinimizeDisplay: true,
+                noMinimizeDisplay:true,
                 startup: function () {
                     this.inherited(arguments);
-                    var headerCustom = domConstruct.toDom('<div id="minimizeTimeButton" style="background-color: black; border-radius: 4px;height: 30px;width:30px;position: absolute;top:180px;left: 20px;display: none;cursor:pointer;"><a   id="timeMinimize" target="_blank"><img id="timeThumnail" src="widgets/ISLayers/images/svg/time24.svg" style="height: 20px;margin:5px;" alt="Time" /></a></div>');
+                    var headerCustom = domConstruct.toDom('<div id="minimizeTimeButton" style="background-color: black; border-radius: 4px;height: 30px;width:30px;position: absolute;top:180px;left: 20px;display: none;cursor:pointer;"><a   id="timeMinimize" target="_blank"><img id="timeThumnail" src="widgets/ISTimeFilter/images/icon.png" style="height: 20px;margin:5px;" alt="Time" /></a></div>');
                     domConstruct.place(headerCustom, this.map.container);
                     domConstruct.place('<img id="loadingtime" style="position: absolute;top:0;bottom: 0;left: 0;right: 0;margin:auto;z-index:100;" src="' + require.toUrl('jimu') + '/images/loading.gif">', "timeDialog");
-                    on(dom.byId("timeMinimize"), "click", lang.hitch(this, lang.hitch(this, function () {
-                        domStyle.set("minimizeTimeButton", "display", "none");
-
-                        this.noMinimizeDisplay = true;
-                        this.onOpen();
-                    })));
+                    on(dom.byId("timeMinimize"), "click", lang.hitch(this, lang.hitch(this,function(){
+                      domStyle.set("minimizeTimeButton","display","none");
+                    
+                      this.noMinimizeDisplay = true;
+                      this.onOpen();
+                  })));
                 },
                 postCreate: function () {
-                    connect.subscribe("refreshTime", lang.hitch(this, function (flag) {
+ connect.subscribe("refreshTime", lang.hitch(this, function (flag) {
                         if (flag.flag) {
                             this.clear();
                             html.set(this.pointgraph, "");
@@ -130,9 +130,9 @@ define([
                             connect.publish("refreshTime", [{flag: false}]);
                         }
                     }));
-                    registry.byId("refreshTimesliderBtn").on("click", lang.hitch(this, function () {
+                    registry.byId("refreshTimesliderBtn").on("click", lang.hitch(this,function(){
                         this.clear();
-                        html.set(this.pointgraph, "");
+                        html.set(this.pointgraph,"");
                         this.timeSliderRefresh();
                     }));
                     registry.byId("cloudFilter").on("change", lang.hitch(this, this.timeSliderRefresh));
@@ -251,6 +251,7 @@ define([
                     else if (this.map.getLayer("landsatLayer"))
                         this.temporalprofLandsat(geometry);
                 },
+               
                 onOpen: function () {
                     if (registry.byId("buildDialog") && registry.byId("buildDialog").open)
                         registry.byId("buildDialog").hide();
@@ -259,21 +260,21 @@ define([
                     if (registry.byId("contourDialog") && registry.byId("contourDialog").open)
                         registry.byId("contourDialog").hide();
                     var x = document.getElementsByClassName("icon-node");
-                    if (domClass.contains(x[2], "jimu-state-selected"))
-                        x[2].click();
-                    else if (domClass.contains(x[3], "jimu-state-selected"))
-                        x[3].click();
-                    else if (domClass.contains(x[4], "jimu-state-selected"))
-                        x[4].click();
-                    else if (domClass.contains(x[5], "jimu-state-selected"))
-                        x[5].click();
-                    else if (domClass.contains(x[6], "jimu-state-selected"))
-                        x[6].click();
-
+                    if(domClass.contains(x[2],"jimu-state-selected"))
+                    x[2].click();
+                    else if(domClass.contains(x[3],"jimu-state-selected"))
+                    x[3].click();
+                    else if(domClass.contains(x[4],"jimu-state-selected"))
+                    x[4].click();
+                    else if(domClass.contains(x[5],"jimu-state-selected"))
+                    x[5].click();
+                    else if(domClass.contains(x[6],"jimu-state-selected"))
+                    x[6].click();
+                    
                     connect.publish("timeopen", [{time: "open"}]);
                     if (registry.byId("appSceneID").get("value")) {
                         var userDefinedVariables = (registry.byId("appSceneID").get("value")).split(";");
-
+                       
 
                         if (userDefinedVariables[1] === "true")
                         {
@@ -293,33 +294,36 @@ define([
                         } else {
 
                             this.appScene = userDefinedVariables[3];
+                           /* var x = document.getElementsByClassName("icon-node jimu-state-selected");
+                            x[0].click();*/
                         }
+                        // registry.byId("cloudFilter").set("value", userDefinedVariables[1]); 
                         registry.byId("appSceneID").set("value", null);
                     }
                     this.extentChangeHandler = this.map.on("extent-change", lang.hitch(this, this.extentChange));
 
                     this.autoresize();
                     dojo.connect(registry.byId("timeDialog"), "hide", lang.hitch(this, function (e) {
-                        if (this.noMinimizeDisplay) {
-                            if (domStyle.get("minimizeTimeButton", "display") === "none")
-                                domStyle.set("minimizeTimeButton", "display", "block");
-                            this.toolbarTemporal.deactivate();
-
+                         if(this.noMinimizeDisplay){  
+                        if(domStyle.get("minimizeTimeButton","display") === "none")
+                           domStyle.set("minimizeTimeButton", "display","block");
+                    this.toolbarTemporal.deactivate();
+                       
                             if (this.refreshHandlerTime)
                             {
                                 this.refreshHandlerTime.remove();
                                 this.refreshHandlerTime = null;
                             }
                             html.set(this.pointgraph, "");
-                            this.clear();
+                        this.clear();
 
-                            this.item = false;
-                            if (this.slider) {
-                                domStyle.set("slider", "display", "block");
-                                domStyle.set("slider2", "display", "block");
-                                domStyle.set("slider3", "display", "block");
-                            }
-
+                        this.item = false;
+                        if(this.slider){
+                        domStyle.set("slider", "display", "block");
+                        domStyle.set("slider2", "display", "block");
+                        domStyle.set("slider3", "display", "block");
+                    }
+                           
                         }
                     }));
 
@@ -372,7 +376,8 @@ define([
                     this.h = this.map.height;
                     this.h = (parseInt((this.h / 5.5))).toString();
                 },
-                onClose: function () {
+               
+                onClose: function() {
                     this.toolbarTemporal.deactivate();
                     for (var a in this.map.graphics.graphics) {
                         if (this.map.graphics.graphics[a].geometry.type === "point" && this.map.graphics.graphics[a].symbol && this.map.graphics.graphics[a].symbol.color.r === 255) {
@@ -381,52 +386,52 @@ define([
                         }
                     }
                     html.set(this.pointgraph, "");
-                    this.clear();
+                        this.clear();
 
-                    connect.publish("timeopen", [{time: "close"}]);
-                    this.item = false;
+                        connect.publish("timeopen", [{time: "close"}]);
+                        this.item = false;
                     domStyle.set("loadingtime", "display", "none");
                     if (this.extentChangeHandler)
-                    {
-                        this.extentChangeHandler.remove();
-                        this.extentChangeHandler = null;
+                            {
+                                this.extentChangeHandler.remove();
+                                this.extentChangeHandler = null;
 
-                    }
-                    this.previousDateOnTimeSlider = null;
-                    this.previousDateOnTimeSliderLandsat = null;
-                    if (this.refreshHandlerTime)
-                    {
-                        this.refreshHandlerTime.remove();
-                        this.refreshHandlerTime = null;
-                    }
-                    if (registry.byId("timeDialog").open) {
-                        this.noMinimizeDisplay = false;
+                            }
+                            this.previousDateOnTimeSlider = null;
+                            this.previousDateOnTimeSliderLandsat = null;
+                            if (this.refreshHandlerTime)
+                            {
+                                this.refreshHandlerTime.remove();
+                                this.refreshHandlerTime = null;
+                            }
+                              if(registry.byId("timeDialog").open){
+                         this.noMinimizeDisplay = false;
+                       
+                            registry.byId("timeDialog").hide();
+                            this.noMinimizeDisplay = true;
+                        }
+                         if(domStyle.get("minimizeTimeButton","display")=== "block")
+                            domStyle.set("minimizeTimeButton","display","none");
+                            domStyle.set(this.filterDiv, "display", "none");
 
-                        registry.byId("timeDialog").hide();
-                        this.noMinimizeDisplay = true;
-                    }
-                    if (domStyle.get("minimizeTimeButton", "display") === "block")
-                        domStyle.set("minimizeTimeButton", "display", "none");
-                    domStyle.set(this.filterDiv, "display", "none");
-
-                    if (this.mosaicBackup) {
-                        var mr = new MosaicRule(this.mosaicBackup);
-                    } else {
-                        var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
-                    }
-
-                    this.timeSliderHide();
-                    this.noMinimizeDisplay = true;
+                            if (this.mosaicBackup) {
+                                var mr = new MosaicRule(this.mosaicBackup);
+                            } else {
+                                var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
+                            }
+                            
+                            this.timeSliderHide();
+                    this.noMinimizeDisplay = true;        
                     if (this.map.getLayer("primaryLayer"))
-                    {
-                        this.primaryLayer = this.map.getLayer("primaryLayer");
-                        this.primaryLayer.setMosaicRule(mr);
-                    }
-                    if (this.map.getLayer("landsatLayer")) {
-                        this.primaryLayer = this.map.getLayer("landsatLayer");
-                        this.primaryLayer.setMosaicRule(mr);
-                    }
-                    if (dom.byId("slider"))
+                            {
+                                this.primaryLayer = this.map.getLayer("primaryLayer");
+                                this.primaryLayer.setMosaicRule(mr);
+                            }
+                            if (this.map.getLayer("landsatLayer")) {
+                                this.primaryLayer = this.map.getLayer("landsatLayer");
+                                this.primaryLayer.setMosaicRule(mr);
+                            }
+                           if (dom.byId("slider"))
                         domStyle.set("slider", "display", "block");
                     if (dom.byId("slider2"))
                         domStyle.set("slider2", "display", "block");
@@ -465,23 +470,22 @@ define([
                             } else {
                                 var mr = new MosaicRule({"mosaicMethod": "esriMosaicAttribute", "sortField": "Best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
                             }
-                            if (this.primaryLayer)
-                                this.primaryLayer.setMosaicRule(mr);
+                            if(this.primaryLayer)
+                            this.primaryLayer.setMosaicRule(mr);
 
                         } else {
-                            if (this.extentChangeHandler) {
-                                domStyle.set(this.filterDiv, "display", "block");
-                                domStyle.set("access", "display", "none");
-                                if (this.chart) {
-                                    this.clear();
-                                }
-                                html.set(this.pointgraph, "");
-                                if (!this.slider) {
-                                    this.timeSliderShow();
-                                } else {
-                                    this.timeSliderRefresh();
-                                }
+                            if(this.extentChangeHandler) {
+                            domStyle.set(this.filterDiv, "display", "block");
+                            domStyle.set("access", "display", "none");
+                            if(this.chart){
+                            this.clear();
+                        }  html.set(this.pointgraph, "");
+                            if (!this.slider) {
+                                this.timeSliderShow();
+                            } else {
+                                this.timeSliderRefresh();
                             }
+                        }
                         }
                     } else {
                         if (this.object) {
@@ -495,7 +499,7 @@ define([
                         var mapExtent = extentInfo.extent;
 
 
-
+                        if(sceneExtent) {
                         if (mapExtent.xmax < sceneExtent.xmin || mapExtent.xmin > sceneExtent.xmax || mapExtent.ymin > sceneExtent.ymax || mapExtent.ymax < sceneExtent.ymin) {
 
                             if (this.mosaicBackup) {
@@ -508,18 +512,20 @@ define([
                             pm.closePanel('_32_panel');
 
                         }
-
+                    }
 
                     }
                 },
                 refreshData: function () {
                     connect.subscribe("layerOpen", lang.hitch(this, function (flag) {
-
+                       
                         if (flag.flag) {
+                         //  if(registry.byId("timeDialog") && registry.byId("timeDialog").open)
+                      // registry.byId("timeDialog").hide();
                             flag.flag = false;
                         }
                     }));
-
+                   
                     if (this.map.getLayer("primaryLayer"))
                         this.primaryLayer = this.map.getLayer("primaryLayer");
                     else if (this.map.getLayer("landsatLayer"))
@@ -543,252 +549,252 @@ define([
                 temporalprof: function (evt)
                 {
 
-
+                    
                     this.noMinimizeDisplay = false;
                     registry.byId("timeDialog").hide();
-                    this.noMinimizeDisplay = true;
-
+this.noMinimizeDisplay = true;
+                    
                     this.item = true;
                     this.primaryLayer = this.map.getLayer("primaryLayer");
-
+                    
                     var point = evt;
 
                     var query = new Query();
                     query.geometry = point;
                     query.outFields = ["AcquisitionDate", "OBJECTID", "GroupName", "Category", "CenterX", "CenterY", "LowPS"];
                     query.where = "Category=1";
-                    var queryTask = new QueryTask(this.config.urlElevation);
+                    var queryTask = new QueryTask(this.config.urlElevationPGC);
                     query.orderByFields = ["AcquisitionDate"];
                     query.returnGeometry = false;
                     queryTask.execute(query, lang.hitch(this, function (result) {
-                        if (result.features.length > 0) {
-                            html.set(this.queryScenes, "Querying " + result.features.length + " scenes to create profile. May take longer first time.");
-                            registry.byId("waitDialog").show();
-                            var arrayIds = [];
-                            var data = [], distance = [];
-                            for (var a = 0; a < result.features.length; a++) {
-                                if (a === 0)
-                                {
-                                    data.push(result.features[a]);
-                                    var k = 0;
-                                } else {
-                                    if (locale.format(new Date(data[k].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"}) === locale.format(new Date(result.features[a].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"}) && data[k].attributes.LowPS !== result.features[a].attributes.LowPS) {
-                                        if (result.features[a].attributes.LowPS < data[k].attributes.LowPS) {
-                                            data[k] = result.features[a];
-                                        }
-                                    } else {
-                                        data.push(result.features[a]);
-                                        k++;
+                        if(result.features.length >0) {
+                        html.set(this.queryScenes, "Querying " + result.features.length + " scenes to create profile. May take longer first time.");
+                        registry.byId("waitDialog").show();
+                        var arrayIds = [];
+                        var data = [], distance = [];
+                        for (var a = 0; a < result.features.length; a++) {
+                            if (a === 0)
+                            {
+                                data.push(result.features[a]);
+                                var k = 0;
+                            } else {
+                                if (locale.format(new Date(data[k].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"}) === locale.format(new Date(result.features[a].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"}) && data[k].attributes.LowPS !== result.features[a].attributes.LowPS) {
+                                    if (result.features[a].attributes.LowPS < data[k].attributes.LowPS) {
+                                        data[k] = result.features[a];
                                     }
+                                } else {
+                                    data.push(result.features[a]);
+                                    k++;
                                 }
                             }
+                        }
 
 
-                            this.lengthofsamples = data.length;
-                            for (var i = 0; i < this.lengthofsamples; i++) {
+                        this.lengthofsamples = data.length;
+                        for (var i = 0; i < this.lengthofsamples; i++) {
 
-                                distance.push({
-                                    dist: Math.sqrt(Math.pow((data[i].attributes.CenterX - evt.x), 2) + Math.pow((data[i].attributes.CenterY - evt.y), 2)),
-                                    objectId: data[i].attributes.OBJECTID,
-                                    acqDate: data[i].attributes.AcquisitionDate,
-                                    name: data[i].attributes.GroupName
+                            distance.push({
+                                dist: Math.sqrt(Math.pow((data[i].attributes.CenterX - evt.x), 2) + Math.pow((data[i].attributes.CenterY - evt.y), 2)),
+                                objectId: data[i].attributes.OBJECTID,
+                                acqDate: data[i].attributes.AcquisitionDate,
+                                name: data[i].attributes.GroupName
+                            });
+
+                        }
+                        distance.sort(function (a, b) {
+                            return a.dist - b.dist;
+                        });
+                        if (distance.length > 20) {
+                            for (var a = 0; a < 20; a++) {
+                                arrayIds[a] = distance[a].objectId;
+
+                            }
+                        } else {
+                            for (var a = 0; a < distance.length; a++) {
+                                arrayIds[a] = distance[a].objectId;
+                            }
+                        }
+
+
+                        var mosaic = {"mosaicMethod": "esriMosaicLockRaster", "ascending": true, "mosaicOperation": "MT_FIRST", "lockRasterIds": arrayIds};
+
+                        var request = esriRequest({
+                            url: this.config.urlElevationPGC + "/getSamples",
+                            content: {
+                                geometry: JSON.stringify(point),
+                                geometryType: "esriGeometryPoint",
+                                returnGeometry: false,
+                                returnFirstValueOnly: false,
+                                outFields: 'AcquisitionDate,Name,GroupName,Category,OBJECTID',
+                                mosaicRule: JSON.stringify(mosaic),
+                                f: "json"
+                            },
+                            handleAs: "json",
+                            callbackParamName: "callback"
+                        });
+                        request.then(lang.hitch(this, function (data) {
+                            if(data.samples.length > 1) {
+                            var items = data.samples;
+                            var normalizedValues = [], normalizedValues1 = [];
+                            var itemInfo = [];
+                            for (var a in items) {
+                                normalizedValues.push(
+                                        {y: parseFloat(items[a].value),
+                                            tooltip: (parseFloat(items[a].value)).toFixed(3) + ", " + locale.format(new Date(items[a].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"})});
+                                normalizedValues1[a] = parseFloat(items[a].value);
+                                itemInfo.push({
+                                    acqDate: items[a].attributes.AcquisitionDate,
+                                    objid: items[a].attributes.OBJECTID,
+                                    values: normalizedValues[a],
+                                    name: items[a].attributes.GroupName
+                                });
+                            }
+
+                            var byDate = itemInfo.slice(0);
+
+                            byDate.sort(function (a, b) {
+                                return a.acqDate - b.acqDate;
+                            });
+                            this.ElevationData = byDate;
+                            this.ElevationDates = [];
+                            this.ElevationValues = [];
+                            for (var a = 0; a < this.ElevationData.length; a++) {
+                                this.ElevationDates.push({
+                                    text: locale.format(new Date(this.ElevationData[a].acqDate), {selector: "date", datePattern: "dd/MM/yy"}),
+                                    value: parseInt(a) + 1
+                                });
+
+                                this.ElevationValues.push({
+                                    y: this.ElevationData[a].values.y,
+                                    tooltip: this.ElevationData[a].values.tooltip
                                 });
 
                             }
-                            distance.sort(function (a, b) {
-                                return a.dist - b.dist;
+                            normalizedValues1.sort(function (a, b) {
+                                return a - b;
                             });
-                            if (distance.length > 20) {
-                                for (var a = 0; a < 20; a++) {
-                                    arrayIds[a] = distance[a].objectId;
-
-                                }
-                            } else {
-                                for (var a = 0; a < distance.length; a++) {
-                                    arrayIds[a] = distance[a].objectId;
-                                }
-                            }
-
-
-                            var mosaic = {"mosaicMethod": "esriMosaicLockRaster", "ascending": true, "mosaicOperation": "MT_FIRST", "lockRasterIds": arrayIds};
-
-                            var request = esriRequest({
-                                url: this.config.urlElevation + "/getSamples",
-                                content: {
-                                    geometry: JSON.stringify(point),
-                                    geometryType: "esriGeometryPoint",
-                                    returnGeometry: false,
-                                    returnFirstValueOnly: false,
-                                    outFields: 'AcquisitionDate,Name,GroupName,Category,OBJECTID',
-                                    mosaicRule: JSON.stringify(mosaic),
-                                    f: "json"
-                                },
-                                handleAs: "json",
-                                callbackParamName: "callback"
-                            });
-                            request.then(lang.hitch(this, function (data) {
-                                if (data.samples.length > 1) {
-                                    var items = data.samples;
-                                    var normalizedValues = [], normalizedValues1 = [];
-                                    var itemInfo = [];
-                                    for (var a in items) {
-                                        normalizedValues.push(
-                                                {y: parseFloat(items[a].value),
-                                                    tooltip: (parseFloat(items[a].value)).toFixed(3) + ", " + locale.format(new Date(items[a].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"})});
-                                        normalizedValues1[a] = parseFloat(items[a].value);
-                                        itemInfo.push({
-                                            acqDate: items[a].attributes.AcquisitionDate,
-                                            objid: items[a].attributes.OBJECTID,
-                                            values: normalizedValues[a],
-                                            name: items[a].attributes.GroupName
-                                        });
-                                    }
-
-                                    var byDate = itemInfo.slice(0);
-
-                                    byDate.sort(function (a, b) {
-                                        return a.acqDate - b.acqDate;
-                                    });
-                                    this.ElevationData = byDate;
-                                    this.ElevationDates = [];
-                                    this.ElevationValues = [];
-                                    for (var a = 0; a < this.ElevationData.length; a++) {
-                                        this.ElevationDates.push({
-                                            text: locale.format(new Date(this.ElevationData[a].acqDate), {selector: "date", datePattern: "dd/MM/yy"}),
-                                            value: parseInt(a) + 1
-                                        });
-
-                                        this.ElevationValues.push({
-                                            y: this.ElevationData[a].values.y,
-                                            tooltip: this.ElevationData[a].values.tooltip
-                                        });
-
-                                    }
-                                    normalizedValues1.sort(function (a, b) {
-                                        return a - b;
-                                    });
-                                    html.set(this.temporalpro, "");
-                                    html.set(this.pointgraph, "Pick point on map to reset location.<br /> Pick point on graph to set image date");
-                                    domStyle.set("chartshow", "display", "block");
-
-
-                                    if (!registry.byId("timeDialog").open)
-                                    {
-                                        registry.byId("timeDialog").show();
-                                        domStyle.set("timeDialog", "left", "160px");
-                                        domStyle.set("timeDialog", "top", "75px");
-                                        registry.byId("waitDialog").hide();
-                                    }
-                                    // domStyle.set("timeDialog", "top", (this.h + "px"));
-                                    this.chart = new Chart("chartNode");
-                                    this.chart.addPlot("default", {
-                                        type: "Lines",
-                                        tension: "S",
-                                        markers: true,
-                                        shadows: {dx: 4, dy: 4}
-                                    });
-                                    this.chart.addPlot("other", {type: "Lines", vAxis: "other y"});
-                                    this.chart.setTheme(theme);
-
-
-                                    this.count = 1;
-
-                                    this.chart.addAxis("y", {vertical: true, fixLower: "major", fixUpper: "major", title: "Elevation Values", titleOrientation: "axis"});
-                                    this.chart.addAxis("x", {labels: this.ElevationDates, labelSizeChange: true, title: "Acquisition Date", titleOrientation: "away", majorTickStep: 1, minorTicks: false});
-                                    this.chart.addAxis("other y", {vertical: true, leftBottom: false, min: 0, max: (normalizedValues1[normalizedValues1.length - 1] - normalizedValues1[0])});
-
-                                    this.chart.addSeries("Height Index", this.ElevationValues);
-
-
-
-                                    this.toolTip = new Tooltip(this.chart, "default");
-                                    this.magnify = new Magnify(this.chart, "default");
-
-                                    this.chart.render();
-
-
-                                    domConstruct.destroy("timeDialog_underlay");
-
-
-                                    this.chart.connectToPlot("default", lang.hitch(this, this.clickdata));
-
-                                } else {
-                                    if (data.samples.length === 1) {
-
-                                        html.set(this.pointgraph, "Elevation: <b>" + parseFloat((data.samples[0].value).split(" ")[0]).toFixed(1) + "m</b><br />Acquisition Date: <b>" + locale.format(new Date(data.samples[0].attributes.AcquisitionDate), {selector: "date", formatLength: "long"}) + "</b>");
-
-                                    } else
-                                        html.set(this.pointgraph, "No elevation data available for this location.");
-                                    html.set(this.temporalpro, "");
-                                    if (!registry.byId("timeDialog").open) {
-                                        registry.byId("timeDialog").show();
-                                        domStyle.set("timeDialog", "left", "160px");
-                                        domStyle.set("timeDialog", "top", "75px");
-                                    }
-                                    registry.byId("waitDialog").hide();
-                                    domConstruct.destroy("timeDialog_underlay");
-                                }
-                                domStyle.set("slider", "display", "none");
-                                domStyle.set("slider2", "display", "none");
-                                domStyle.set("slider3", "display", "none");
-                                domStyle.set("loadingtime", "display", "none");
-                            }), lang.hitch(this, function (error) {
-                                domStyle.set("loadingtime", "display", "none");
-                                html.set(this.pointgraph, "No elevation data available for this location.");
-                                html.set(this.temporalpro, "");
-                                if (!registry.byId("timeDialog").open) {
-                                    registry.byId("timeDialog").show();
-                                    domStyle.set("timeDialog", "left", "160px");
-                                    domStyle.set("timeDialog", "top", "75px");
-                                }
-                                registry.byId("waitDialog").hide();
-                                domConstruct.destroy("timeDialog_underlay");
-                            }));
-
-                        } else {
-                            domStyle.set("slider", "display", "none");
-                            domStyle.set("slider2", "display", "none");
-                            domStyle.set("slider3", "display", "none");
-                            domStyle.set("loadingtime", "display", "none");
-                            html.set(this.pointgraph, "No elevation data available for this location.");
                             html.set(this.temporalpro, "");
-                            if (!registry.byId("timeDialog").open) {
+                            html.set(this.pointgraph, "Pick point on map to reset location.<br /> Pick point on graph to set image date");
+                            domStyle.set("chartshow", "display", "block");
+
+
+                            if (!registry.byId("timeDialog").open)
+                            {
+                                registry.byId("timeDialog").show();
+                                domStyle.set("timeDialog", "left", "160px");
+                                domStyle.set("timeDialog", "top", "75px");
+                                registry.byId("waitDialog").hide();
+                            }
+                            // domStyle.set("timeDialog", "top", (this.h + "px"));
+                            this.chart = new Chart("chartNode");
+                            this.chart.addPlot("default", {
+                                type: "Lines",
+                                tension: "S",
+                                markers: true,
+                                shadows: {dx: 4, dy: 4}
+                            });
+                            this.chart.addPlot("other", {type: "Lines", vAxis: "other y"});
+                            this.chart.setTheme(theme);
+
+
+                            this.count = 1;
+
+                            this.chart.addAxis("y", {vertical: true, fixLower: "major", fixUpper: "major", title: "Elevation Values", titleOrientation: "axis"});
+                            this.chart.addAxis("x", {labels: this.ElevationDates, labelSizeChange: true, title: "Acquisition Date", titleOrientation: "away", majorTickStep: 1, minorTicks: false});
+                            this.chart.addAxis("other y", {vertical: true, leftBottom: false, min: 0, max: (normalizedValues1[normalizedValues1.length - 1] - normalizedValues1[0])});
+
+                            this.chart.addSeries("Height Index", this.ElevationValues);
+
+
+
+                            this.toolTip = new Tooltip(this.chart, "default");
+                            this.magnify = new Magnify(this.chart, "default");
+
+                            this.chart.render();
+
+                           
+                            domConstruct.destroy("timeDialog_underlay");
+
+
+                            this.chart.connectToPlot("default", lang.hitch(this, this.clickdata));
+
+                            }else {
+                                if(data.samples.length === 1){
+                      
+                                html.set(this.pointgraph,"Elevation: <b>"+parseFloat((data.samples[0].value).split(" ")[0]).toFixed(1)+"m</b><br />Acquisition Date: <b>"+locale.format(new Date(data.samples[0].attributes.AcquisitionDate), {selector: "date", formatLength: "long"})+"</b>");
+                                
+                            }else
+                                html.set(this.pointgraph,"No elevation data available for this location.");
+                             html.set(this.temporalpro, "");
+                              if (!registry.byId("timeDialog").open){
                                 registry.byId("timeDialog").show();
                                 domStyle.set("timeDialog", "left", "160px");
                                 domStyle.set("timeDialog", "top", "75px");
                             }
                             registry.byId("waitDialog").hide();
-                            domConstruct.destroy("timeDialog_underlay");
+                               domConstruct.destroy("timeDialog_underlay");
+                            }
+                             domStyle.set("slider", "display", "none");
+                            domStyle.set("slider2", "display", "none");
+                            domStyle.set("slider3", "display", "none");
+                            domStyle.set("loadingtime", "display", "none");
+                        }), lang.hitch(this, function (error) {
+                            domStyle.set("loadingtime", "display", "none");
+                             html.set(this.pointgraph,"No elevation data available for this location.");
+                             html.set(this.temporalpro, "");
+                              if (!registry.byId("timeDialog").open){
+                                registry.byId("timeDialog").show();
+                                domStyle.set("timeDialog", "left", "160px");
+                                domStyle.set("timeDialog", "top", "75px");
+                            }
+                            registry.byId("waitDialog").hide();
+                               domConstruct.destroy("timeDialog_underlay");
+                        }));
+
+                        }else{
+                               domStyle.set("slider", "display", "none");
+                            domStyle.set("slider2", "display", "none");
+                            domStyle.set("slider3", "display", "none");
+                            domStyle.set("loadingtime", "display", "none");
+                         html.set(this.pointgraph,"No elevation data available for this location.");
+                             html.set(this.temporalpro, "");
+                              if (!registry.byId("timeDialog").open){
+                                registry.byId("timeDialog").show();
+                                domStyle.set("timeDialog", "left", "160px");
+                                domStyle.set("timeDialog", "top", "75px");
+                            }
+                            registry.byId("waitDialog").hide();
+                               domConstruct.destroy("timeDialog_underlay");
                         }
                     }), lang.hitch(this, function (error) {
                         domStyle.set("loadingtime", "display", "none");
-                        html.set(this.pointgraph, "No elevation data available for this location.");
-                        html.set(this.temporalpro, "");
-                        if (!registry.byId("timeDialog").open) {
-                            registry.byId("timeDialog").show();
-                            domStyle.set("timeDialog", "left", "160px");
-                            domStyle.set("timeDialog", "top", "75px");
-                        }
-                        registry.byId("waitDialog").hide();
-                        domConstruct.destroy("timeDialog_underlay");
+                         html.set(this.pointgraph,"No elevation data available for this location.");
+                             html.set(this.temporalpro, "");
+                              if (!registry.byId("timeDialog").open){
+                                registry.byId("timeDialog").show();
+                                domStyle.set("timeDialog", "left", "160px");
+                                domStyle.set("timeDialog", "top", "75px");
+                            }
+                            registry.byId("waitDialog").hide();
+                               domConstruct.destroy("timeDialog_underlay");
                     }));
-
+                   
 
                 },
                 temporalprofLandsat: function (evt)
                 {
 
 
-
+                    
                     this.noMinimizeDisplay = false;
                     registry.byId("timeDialog").hide();
-                    this.noMinimizeDisplay = true;
-
+this.noMinimizeDisplay = true;
+                    
                     this.item = true;
 
 
                     this.primaryLayer = this.map.getLayer("landsatLayer");
-
+                   
                     var point = evt;
                     var query = new Query();
                     query.geometry = point;
@@ -799,7 +805,7 @@ define([
                     query.orderByFields = ["AcquisitionDate"];
                     query.returnGeometry = false;
                     var array = [], arrayId = [];
-                    var queryTask = new QueryTask(this.config.urlLandsatMS);
+                    var queryTask = new QueryTask(this.config.msurl);
                     var distance = [];
                     queryTask.execute(query, lang.hitch(this, function (result) {
 
@@ -811,6 +817,7 @@ define([
                         var prevIterationValue = 0;
                         this.lengthofsamples = data.length;
                         for (var i = 0; i < this.lengthofsamples; i++) {
+                            //   if((locale.format(new Date(data[i].attributes.AcquisitionDate), {selector: "date", datePattern: "yyyy/MM/dd"}) > this.config.OldestDate) &&(locale.format(new Date(data[i].attributes.AcquisitionDate), {selector: "date", datePattern: "yyyy/MM/dd"}) < this.config.LatestDate)){
                             if (data[i].attributes.GroupName.slice(0, 3) !== "LC8") {
                                 array.push({
                                     objectId: data[i].attributes.OBJECTID,
@@ -831,7 +838,7 @@ define([
                             }
                             //  }
                         }
-                        if (this.primaryLayer.url !== this.config.urlLandsatMS) {
+                        if (this.primaryLayer.url !== this.config.msurl) {
                             arrayId.splice(0, array.length);
                             array.splice(0, array.length);
                         }
@@ -885,7 +892,7 @@ define([
 
                         var normPoint = point.normalize();
                         var request1 = esriRequest({
-                            url: this.config.urlLandsatMS + "/getSamples",
+                            url: this.config.msurl + "/getSamples",
                             content: {
                                 geometry: JSON.stringify(point.toJson()),
                                 geometryType: "esriGeometryPoint",
@@ -993,6 +1000,7 @@ define([
                                 domStyle.set("timeDialog", "left", "160px");
                                 domStyle.set("timeDialog", "top", "75px");
                             }
+                            //  domStyle.set("timeDialog", "top", (this.h + "px"));
                             this.chart = new Chart("chartNode");
                             this.chart.addPlot("default", {
                                 type: "Lines",
@@ -1043,7 +1051,7 @@ define([
                         domStyle.set("loadingtime", "display", "none");
                     }));
 
-
+                    
                 },
                 clickdata: function (evt)
                 {
@@ -1087,7 +1095,7 @@ define([
                     var query = new Query();
                     query.geometry = extentnew;
                     query.outFields = ["AcquisitionDate", "GroupName", "Best", "LowPS", "Name"];
-                    if (this.primaryLayer.url === this.config.urlElevation) {
+                    if (this.primaryLayer.url === this.config.urlElevationPGC) {
                         query.where = "Category = 1";
                         domStyle.set("cloudSelect", "display", "none");
                     } else {
@@ -1105,7 +1113,9 @@ define([
 
                         this.dateobj = [];
                         this.orderedFeatures1 = [];
+                        //  this.orderedFeatures1 =result.features;
                         for (var a = 0; a < result.features.length; a++) {
+                            //   if((locale.format(new Date(result.features[a].attributes.AcquisitionDate), {selector: "date", datePattern: "yyyy/MM/dd"}) > this.config.OldestDate) && (locale.format(new Date(result.features[a].attributes.AcquisitionDate), {selector: "date", datePattern: "yyyy/MM/dd"}) < this.config.LatestDate)){
                             if (this.orderedFeatures1.length === 0)
                             {
                                 this.orderedFeatures1.push(result.features[a]);
@@ -1122,7 +1132,7 @@ define([
                             }
                             //  }
                         }
-                        for (var t = 0; t <= this.orderedFeatures1.length - 1; t++) {
+                        for (var t = 0; t <= this.orderedFeatures1.length - 1; t++){
                             this.dateobj.push({
                                 date: locale.format(new Date(this.orderedFeatures1[t].attributes.AcquisitionDate), {selector: "date", datePattern: "dd/MM/yy"}),
                                 obj: this.orderedFeatures1[t].attributes.OBJECTID,
@@ -1240,8 +1250,11 @@ define([
                             }
                         }
                         this.slider.set("value", ind);
+
+                        // this.sliderChange();
                         html.set(this.dateRange, locale.format(new Date(this.orderedDates[ind]), {selector: "date", formatLength: "long"}) + "        Pixel Size: " + Math.round(this.orderedFeatures1[ind].attributes.LowPS) + "m");
                         html.set(this.temporalpro, "Pick point on map to get temporal profile for that point");
+                        //domStyle.set("loadingtime", "display", "none");
                     }), lang.hitch(this, function (error)
                     {
                         domStyle.set("loadingtime", "display", "none");
@@ -1266,6 +1279,8 @@ define([
 
                 },
                 sliderChange: function () {
+
+
                     if (this.map.getLayer("primaryLayer")) {
                         this.primaryLayer = this.map.getLayer("primaryLayer");
                         this.previousDateOnTimeSlider = this.orderedDates[this.slider.get("value")];
@@ -1289,11 +1304,18 @@ define([
                         mr.ascending = true;
                         mr.operation = "MT_FIRST";
                         mr.lockRasterIds = this.object;
+                        //   this.primaryLayer = this.map.getLayer("primaryLayer");
                         this.primaryLayer.setMosaicRule(mr);
+                       /* if(this.this.map.getLayer("cacheLayer").visible)
+                        this.map.getLayer("cacheLayer").hide();
+                    if(!this.map.getLayer("primaryLayer").visible)
+                        this.map.getLayer("primaryLayer").show();*/
                         if (this.arcticFlag) {
                             this.appScene = this.appScene1;
                             this.appScene1 = null;
-                            dom.byId(this.arcticFlag).click();
+                          /*  var x = document.getElementsByClassName("icon-node jimu-state-selected");
+                            x[0].click();
+                            */dom.byId(this.arcticFlag).click();
                             this.arcticFlag = null;
                         } else if (this.contourFlag) {
 

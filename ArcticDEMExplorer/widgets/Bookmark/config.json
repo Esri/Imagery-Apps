@@ -1,0 +1,81 @@
+{
+    "bookmarks2D": [{
+            "name": "Hubbard Glacier",
+            "extent": {
+                "xmin": 2618658.664654379, "ymin": -1347777.7094403203, "xmax": 2621965.561816955, "ymax": -1346030.4287907826,
+                "spatialReference": {
+                    "wkid": 5936
+                }
+            },
+            "layer": "Hillshade Gray",
+            "description": "",
+            "thumbnail": "images/Hubbard.JPG"
+        }, {
+            "name": "Mendenhall Glacier",
+            "extent": {
+               "xmin": 2955094.3805272304, "ymin": -1457343.8413404073, "xmax": 2958401.2776898067, "ymax": -1455596.5606908696,
+                "spatialReference": {
+                    "wkid": 5936
+                }
+            },
+            "layer": "Slope Map",
+            "description": "",
+            "thumbnail": "images/Mendenhall.JPG"
+        },{
+		"name": "Columbia Glacier",
+		"extent": {
+			"xmin": 2170033.1628758227, "ymin": -1260214.730947088, "xmax": 2183260.751506919, "ymax": -1253225.6083590873,
+			"spatialReference": {
+				"wkid": 5936
+			}
+		},
+                "layer": "Hillshade Elevation Tinted",
+                "description": "",
+		"thumbnail": "images/Columbia.JPG"
+	}, {
+		"name": "Matanuska Glacier",
+		"extent": {
+			"xmin": 2121233.3595023234, "ymin": -1195191.1161325348, "xmax": 2127847.153817871, "ymax": -1191696.5548385347,
+			"spatialReference": {
+				"wkid": 5936
+			}
+		},
+                "layer": "Aspect Map",
+                "description": "",
+		"thumbnail": "images/Matanuska.JPG"
+	}, {
+		"name": "Margerie Glacier",
+		"extent": {
+			"xmin": 2776612.092280672, "ymin": -1444156.7932553068, "xmax": 2789839.680911768, "ymax": -1437167.670667306,
+			"spatialReference": {
+				"wkid": 5936
+			}
+		},
+                "layer": "Hillshade Multidirectional",
+                "description": "",
+		"thumbnail": "images/Margerie.JPG"
+	}, {
+		"name": "Worthington Glacier",
+		"extent": {
+			 "xmin": 2238586.7919829846, "ymin": -1260199.8768511314, "xmax": 2245200.5862985323, "ymax": -1256705.3155571313,
+			"spatialReference": {
+				"wkid": 5936
+			}
+		},
+                "layer": "Hillshade Gray",
+                "description": "",
+		"thumbnail": "images/Worthington.JPG"
+	}, {
+		"name": "Ruth Glacier",
+		"extent": {
+			"xmin": 1962920.902660007, "ymin": -1081213.4114492019, "xmax": 1969534.696975555, "ymax": -1077718.8501552017,
+			"spatialReference": {
+				"wkid":5936
+			}
+		},
+                "layer": "Hillshade Elevation Tinted",
+                "description": "",
+		"thumbnail": "images/Ruth.JPG"
+	}],
+	"flyTime": 3000
+}

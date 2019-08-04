@@ -1,0 +1,56 @@
+/*.jimu-widget-geocoder{
+  width: 225px;
+  height: 30px;
+  background-color: rgba(72, 85, 102, 0.5);
+  border-radius: 5px;
+}
+.jimu-widget-geocoder .simpleGeocoder .esriGeocoder {
+  border: 1px solid #666;
+  opacity: 0.9;
+}
+.jimu-widget-geocoder .simpleGeocoder .esriGeocoderResults{
+  border: 1px solid #666;
+}
+.esriPopup .titlePane {
+	background-color: #5491B8;
+	border-color: #777777;
+}
+.esriPopup .sizer {
+	width: 400px;
+}*/
+.arcgisSearch {
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.25);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.25);
+    -webkit-transition: border-radius 0.2s ease;
+    -moz-transition: border-radius 0.2s ease;
+    -o-transition: border-radius 0.2s ease;
+    -ms-transition: border-radius 0.2s ease;
+    transition: border-radius 0.2s ease;
+}
+.arcgisSearch .searchBtn {
+    padding: 6px 6px;
+    border: 0px solid;
+    height: 18px;
+    width: 10px;
+    line-height: 18px;
+}
+.arcgisSearch .searchIcon {
+    width: 10px;
+    height: 10px;
+    line-height: 18px;
+    font-size: 13px;
+}
+.arcgisSearch .searchGroup .searchInput {
+    width: 175px;
+    border: 0px solid;
+    height: 18px;
+    line-height: 18px;
+}
+.arcgisSearch .searchClear {
+    top: 1px;
+    width: 15px;
+    height: 28px;
+}
+.arcgisSearch .searchClose, .arcgisSearch .searchSpinner {
+line-height: 30px;
+}

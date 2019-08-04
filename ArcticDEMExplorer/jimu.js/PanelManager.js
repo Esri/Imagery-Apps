@@ -41,7 +41,6 @@ function (declare, lang, array, html, baseFx, Deferred, on, aspect, require, uti
       // summary: 
       //    show panel depends on the config object(widget/group's config)
       var def = new Deferred();
-      console.log(config);
       require([config.panel.uri], lang.hitch(this, function(Panel){
         var pid = config.id + '_panel',  panel = this.getPanelById(pid);
         if(panel){

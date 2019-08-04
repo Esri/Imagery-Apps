@@ -1,0 +1,5 @@
+{
+	"about": {
+		"aboutContent": "<p style='text-align:justify;'>This web application enables the investigation and exploration of the REMA (Reference Elevation Model for Antarctica). The DEM are created by the Polar Geospatial Center covering the majority of the Antarctic, but using DigitalGlobe World View imagery. Additionally large collections of Multispectral Landsat data collected for the Antarctic are also accessible.<br />For more information on these dataset <a href='https://goto.arcgisonline.com/group/AntarcticMaps' target='_blank'>click here</a>.</p>"
+	}
+}

@@ -1,0 +1,25 @@
+{
+ "spatialReferences": [
+   
+     {
+      "wkid": "4326",
+      "label": "GCS_WGS_1984",
+      "outputUnit": "DECIMAL_DEGREES",
+      "transformationWkid": "",
+      "transformationLabel": "Transformation Name",
+      "transformForward": false,
+      "options": {
+        "sameSRWithMap": false,
+        "isGeographicCS": true,
+        "isGeographicUnit": true,
+        "isProjectedCS": false,
+        "isProjectUnit": false,
+        "spheroidCS": 4326,
+        "defaultUnit": "Degree",
+        "unitRate": 1
+      }
+    }
+  ],
+  "decimalPlaces": 5,
+  "addSeparator": true
+}

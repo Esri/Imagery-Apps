@@ -1,0 +1,16 @@
+<div>
+    <label for="pixelSize">Pixel Size:&nbsp;</label>
+    <input type="text" id="pixelSize" data-dojo-type="dijit/form/TextBox" style="width: 100px;"/>
+    <div data-dojo-attach-point="errorPixelSize" style="color: #0080C0;"></div>
+    <br /><label for="outputSp">Output SpatialReference:&nbsp;</label>
+    <select data-dojo-type="dijit/form/Select" style="height: 21px;" id="outputSp">
+        <option value=3412>Sea Ice Polar Stereographic South(3412)</option>
+        <option value=3031>Antarctic Polar Stereographic(3031)</option>
+        <option value=102021>South Pole Stereographic(102021)</option>
+    </select>
+    <br /><br />
+    <input data-dojo-type="dijit/form/CheckBox"  id="renderer"/> <label for="renderer">Current Renderer</label>
+    <input data-dojo-type="dijit/form/CheckBox"  id="extent" style="margin-left: 29px;"/> <label for="extent">Define Extent</label>
+    <br /><br/>
+    <button data-dojo-type="dijit/form/Button"  id="export" type="button" style="margin-left: 40%;">Export</button>
+</div>

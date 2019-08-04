@@ -1,0 +1,8 @@
+{
+"urlLandsatPS": "https://landsat3.arcgis.com/arcgis/rest/services/Landsat/Arctic_PS/ImageServer",
+"urlLandsatMS": "https://landsat3.arcgis.com/arcgis/rest/services/Landsat/Arctic_MS/ImageServer",
+"urlElevation": "https://elevation2.arcgis.com/arcgis/rest/services/Polar/ArcticDEM/ImageServer",
+"mapLayer": "http://arcticgeoservices.org/arcgis/rest/services/public/Arctic_Field_Research_Site_Names/MapServer",
+"graticuleLayer": "https://gis.ngdc.noaa.gov/arcgis/rest/services/arctic_ps/graticule/MapServer",
+"oceanReferenceLayer": "https://services.arcgisonline.com/arcgis/rest/services/Polar/Arctic_Ocean_Reference/MapServer"
+}

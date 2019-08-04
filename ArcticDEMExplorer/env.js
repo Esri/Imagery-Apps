@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright  2018 Esri. All Rights Reserved.
+// Copyright ? 2014 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ var
 
   allCookies,
   
-deployVersion = '1.0';
+deployVersion = '3.0';
 // console.time('before map');
 
 (function(global){
@@ -86,7 +86,7 @@ deployVersion = '1.0';
   //////Replace the following line with the jsapi you prefer after download the app,
   //////including the comment
 
-  apiUrl = "//js.arcgis.com/3.25";
+  apiUrl = "//js.arcgis.com/3.23";
 
   //////////////////////////////////////////////////////////////
   allCookies = getAllCookies();
@@ -96,11 +96,11 @@ deployVersion = '1.0';
     if (queryObject.apiurl) {
       apiUrl = queryObject.apiurl;
     } else if (isXT) {
-      apiUrl = '//js.arcgis.com/3.25';
+      apiUrl = '//js.arcgis.com/3.23';
     } else {
       var portalUrl = getPortalUrlFromLocation();
       if (portalUrl.indexOf('arcgis.com') > -1) {
-        apiUrl = '//js.arcgis.com/3.25';
+        apiUrl = '//js.arcgis.com/3.23';
       } else {
         apiUrl = portalUrl + 'jsapi/jsapi/';
       }

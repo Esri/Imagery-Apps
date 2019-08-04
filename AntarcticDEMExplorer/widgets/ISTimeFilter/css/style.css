@@ -1,0 +1,84 @@
+.claro .dijitSlider .dijitSliderProgressBarH, .claro .dijitSlider .dijitSliderLeftBumper {
+    background-color: #fff;
+}
+#chartDialog_underlay {
+    visibility: hidden;
+}
+#timeDialog_underlay {
+    visibility: hidden;
+}
+#timeDialog .dijitDialogCloseIcon:before {
+    content: url("../../../jimu.js/css/images/btn_sub.png");
+}
+ #chartshow {
+  margin-top: 10px;
+}
+
+#chartNode {
+ /* margin-right: 15px;*/
+}
+#legend .dijitCheckBox {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+#legend .dojoxLegendIcon {
+  margin-right: 5px;
+}
+
+.claro .dijitButton {
+  margin: 0;
+  margin-left: 0px;
+}
+
+.claro .dijitButton .dijitButtonNode {
+ border: 1px solid transparent;
+  padding: 2px 4px 4px 4px;
+  color: #000000;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+  -webkit-transition: border .15s ease-in-out;
+  -moz-transition: border .15s ease-in-out;
+  transition: border .15s ease-in-out;
+}
+
+.claro .dijitButtonHover .dijitButtonNode {
+  border-color: #d8d8d8;
+}
+.dijitButton #refreshTimesliderBtn_label {
+  font-family: "landsat";
+/*  -moz-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;*/
+}
+
+.dijitButton #refreshTimesliderBtn_label:before {
+  content: "h";
+  font-size: 14px;
+  color: #007ac2;
+}
+
+.dijitButton #refreshTimesliderBtn_label img {
+  display: none;
+}
+
+.dijitButtonHover #refreshTimesliderBtn_label {
+/*  -moz-transform: rotate(-360deg);
+  -webkit-transform: rotate(-360deg);
+  transform: rotate(-360deg);*/
+}
+
+.claro .jimu-widget-header-controller .icon-node .jimu-state-selected{
+      background-color: #007ac2;
+  color: #fff;
+}
+
+.claro .dijitDialogPaneContent
+{
+    height: auto;
+   
+}

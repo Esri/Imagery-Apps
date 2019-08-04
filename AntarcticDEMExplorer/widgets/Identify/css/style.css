@@ -1,0 +1,18 @@
+#chartDialog1_underlay {
+    visibility: hidden;
+}
+@-moz-document url-prefix() {
+#chartDialog1
+{
+    width : 530px;
+                      
+}
+#chartshow1 {
+    display: block;
+}
+}
+.claro .dijitDialogPaneContent
+{
+    height: auto;
+    
+}

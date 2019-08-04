@@ -8,6 +8,6 @@
  "j" :  [0.1225,0.0997,0.0663,0.0375,0.07786,0.01908,0.00878,0.00064],
  "i" :  [0.13328,0.11964,0.11348,0.12786,0.15856,0.20198,0.16054,0.00244],
  "h" :  [0.09838,0.0769,0.06862,0.03962,0.31248,0.12792,0.0514,0.00182],
- "urlElevation" : "http://elevation2.arcgis.com/arcgis/rest/services/Polar/ArcticDEM/ImageServer",
- "urlLandsatMS": "http://landsat3.arcgis.com/arcgis/rest/services/Landsat/Arctic_MS/ImageServer"
+ "urlElevationPGC" : "https://elevation2.arcgis.com/arcgis/rest/services/Polar/ArcticDEM/ImageServer",
+ "urlms": "https://landsat3.arcgis.com/arcgis/rest/services/Landsat/Arctic_MS/ImageServer"
  }

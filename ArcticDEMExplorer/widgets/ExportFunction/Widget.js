@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2018 Esri. All Rights Reserved.
+// Copyright (c) 2013 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -89,9 +89,17 @@ define([
                         registry.byId("contourDialog").hide();
                     connect.publish("exportOpen", {"flag": "open"});
                     
-                    var exportLayer = this.map.getLayer(this.map.layerIds[this.map.layerIds.length - 1]);
+                     if(this.map.getLayer("contourLayer"))
+                    var exportLayer = this.map.getLayer("contourLayer");
+                else if(this.map.getLayer("resultLayer"))
+                    var exportLayer = this.map.getLayer("resultLayer");
+                else if(this.map.getLayer("primaryLayer"))
+                    var exportLayer = this.map.getLayer("primaryLayer");
+                else if(this.map.getLayer("landsatLayer"))
+                    var exportLayer = this.map.getLayer("landsatLayer");   
                     domStyle.set("loadingExport", "display", "none");
-                    if (exportLayer.url === this.config.urlElevation) {
+                    if(exportLayer) {
+                    if (exportLayer.url === this.config.urlElevationPGC) {
                         var widthMax = 4000;
                     } else
                         var widthMax = 2000;
@@ -109,6 +117,7 @@ define([
                     var ps = Math.max(psx, psy);
                     ps = ps + 0.001;
                     registry.byId("pixelSize").set("value", ps.toFixed(3));
+                }
                 },
                 postCreate: function () {
 
@@ -216,11 +225,18 @@ define([
                         var width = (this.map.extent.xmax - this.map.extent.xmin);
                         var height = (this.map.extent.ymax - this.map.extent.ymin);
                     }
-                    var exportLayer = this.map.getLayer(this.map.layerIds[this.map.layerIds.length - 1]);
-                    
+                    if(this.map.getLayer("contourLayer"))
+                    var exportLayer = this.map.getLayer("contourLayer");
+                else if(this.map.getLayer("resultLayer"))
+                    var exportLayer = this.map.getLayer("resultLayer");
+                else if(this.map.getLayer("primaryLayer"))
+                    var exportLayer = this.map.getLayer("primaryLayer");
+                else if(this.map.getLayer("landsatLayer"))
+                    var exportLayer = this.map.getLayer("landsatLayer");    
                    
+                   if(exportLayer) {
                     var pixelsize = registry.byId("pixelSize").get("value");
-                    if (exportLayer.url === this.config.urlElevation) {
+                    if (exportLayer.url === this.config.urlElevationPGC) {
                         var widthMax = 4000;
                     } else
                         var widthMax = 2000;
@@ -253,20 +269,18 @@ define([
                                     var renderingRule = JSON.stringify(exportLayer.renderingRule.toJson());
                             }else
                                 var renderingRule = null;
-                        if (registry.byId("renderer").checked) {
-                            var format = "jpg";
-                            var compression = "";
-                           
-                        } else {
-                            var format = "tiff";
-                            var compression = "LZ77";
-                         //   var renderingRule = '{"rasterFunction": "None"}';
+                        if (!registry.byId("renderer").checked) {
+                     
+                            var renderingRule = '{"rasterFunction": "None"}';
                         }
+                           var format = "tiff";
+                            var compression = "LZ77";
+                         
                         if (exportLayer.mosaicRule && exportLayer.visible)
                             var mosaicRule = JSON.stringify(exportLayer.mosaicRule.toJson());
                         else
                             var mosaicRule = null;
-                        if (exportLayer.url === this.config.urlElevation)
+                        if (exportLayer.url === this.config.urlElevationPGC)
                         {
                             var band = 0;
                             var noData = -9999;
@@ -295,15 +309,31 @@ define([
 
                         layersRequest.then(lang.hitch(this, function (data) {
 
-                            domAttr.set("linkDownload", "href", data.href);
+                             var request2 = esri.request({
+                                    url: data.href,
+                                    content: {
+                                    },
+                                    handleAs: "blob",
+                                    callbackParamName: "callback"
+                                });
 
-                            domAttr.set("linkDownload", "target", "_self");
-                            (dom.byId("linkDownload")).click();
-                            domStyle.set("loadingExport", "display", "none");
+                                request2.then(lang.hitch(this, function (response) {
+                                    domAttr.set("linkDownload", "target", "_self");
+
+                                    domAttr.set("linkDownload", "href", URL.createObjectURL(response));
+                                    (document.getElementById("linkDownload")).click();
+
+                                    domStyle.set("loadingExport", "display", "none");
+                                }), lang.hitch(this, function (error) {
+                                    console.log(error);
+                                    
+                                    domStyle.set("loadingExport", "display", "none");
+                                }));
                         }), lang.hitch(this, function (error) {
                             domStyle.set("loadingExport", "display", "none");
                         }));
                     }
+                }
                 },
                 showLoading: function () {
                     domStyle.set("loadingExport", "display", "block");

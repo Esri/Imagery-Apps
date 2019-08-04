@@ -18,8 +18,8 @@ define([
     'dojo/_base/declare',
     'dojo/_base/array',
     'jimu/BaseWidget',
-    "esri/dijit/Geocoder",
-    'dojo/_base/html',
+    "esri/dijit/Search",
+    'dojo/_base/html',"dojo/dom-style",
     'dojo/on',
     'dojo/_base/lang',
     'dojo/Deferred',
@@ -35,7 +35,7 @@ define([
   ],
   function(
     declare, array, BaseWidget, Geocoder,
-    html, on, lang, Deferred, all,
+    html,domStyle, on, lang, Deferred, all,
     portalUtils, Message, usng, esriRequest, Extent, Graphic, Point, SpatialReference) {
     var clazz = declare([BaseWidget], {
 
@@ -43,7 +43,12 @@ define([
       baseClass: 'jimu-widget-geocoder',
       defaultGeocodeUrl: "arcgis.com/arcgis/rest/services/World/GeocodeServer",
       lastMgrsResult: null,
-
+      defaultExtent: new Extent({"xmin": -1647720.5069000013,
+              "ymin": -2101522.3853999963,
+              "xmax": 5476281.493099999,
+              "ymax": 5505635.614600004,
+              "spatialReference": {"wkid": 5936}
+      }),
       postCreate: function() {
         this.inherited(arguments);
       },
@@ -57,16 +62,20 @@ define([
         this._getGeocoders(this.appConfig.portalUrl).then(lang.hitch(this, function() {
           var json = this.config.geocoder;
           json.map = this.map;
+          json.autoNavigate = false;
           json.geocoders[0].placeholder = "Find a place";
-          
+          json.geocoders[0].searchExtent = this.defaultExtent;
+          json.enableHighlight = false;
           var geocoder = new Geocoder(json);
-          this.own(on(geocoder, 'select', lang.hitch(this, "findComplete")));
-          this.own(on(geocoder, "auto-complete", lang.hitch(this, "onFindResults")));
-          this.own(on(geocoder, "find-results", lang.hitch(this, "onFindResults")));
+          this.own(on(geocoder, 'select-result', lang.hitch(this, "findComplete")));
+          this.own(on(geocoder, "suggest-results", lang.hitch(this, "onFindResults")));
+          this.own(on(geocoder, "search-results", lang.hitch(this, "onFindResults")));
+          domStyle.set(this.domNode,"width","256px");
+          domStyle.set(this.domNode,"height","30px");
           html.place(geocoder.domNode, this.domNode);
           geocoder.startup();
         }), lang.hitch(this, function(err) {
-          console.error(err);
+          
         }));
       },
 
@@ -191,6 +200,7 @@ define([
 
       onFindResults: function(results) {
         //Check to see if the user typed an MGRS or USNG string
+        if(results.results)
         this.lastMgrsResult = this.lookupMgrs(results.results.value);
         if (null !== this.lastMgrsResult) {
           // Get reference ellipsoid coordinates of the current coordinate system
@@ -215,14 +225,14 @@ define([
           results.results.results.unshift(resultObject);
         }
       },
-
+      
       findComplete: function(response) {
         var geocoder = response.target;
-        geocoder.autoNavigate = true;
+       // geocoder.autoNavigate = true;
         var feature = null;
         var extent = null;
         var content = null;
-
+         
         if (response && response.result) {
           //Use the actual geocode result
           feature = response.result.feature;
@@ -236,13 +246,16 @@ define([
           content = this.lastMgrsResult.text;
         }
 
-        if (feature) {
+        if (feature && this.defaultExtent.contains(feature.geometry)) {
           this.map.infoWindow.setTitle("Location");
           this.map.infoWindow.setContent(content || null);
           this.map.infoWindow.show(feature.geometry);
-        } else if (extent) {
           this.map.setExtent(extent);
-        }
+        } else if (extent && this.defaultExtent.contains(extent)) {
+          this.map.setExtent(extent);
+            }
+                
+        
 
         /**
          * For MGRS, where we manually center the map, we have to center it after

@@ -1,0 +1,6 @@
+{
+    
+    "urlElevationPGC" : "https://elevation2.arcgis.com/arcgis/rest/services/Polar/AntarcticDEM/ImageServer",
+    "msurl": "https://landsat3.arcgis.com/arcgis/rest/services/Landsat/Antarctic_MS/ImageServer"
+    
+}

@@ -1,18 +1,21 @@
 <div>
-    <label for="pixelSize">Pixel Size:&nbsp;</label>
-    <input type="text" id="pixelSize" data-dojo-type="dijit/form/TextBox" style="width: 100px;"/>
-    <div data-dojo-attach-point="errorPixelSize" style="color: #0080C0;"></div>
-    <br /><label for="outputSp">Output SpatialReference:&nbsp;</label>
-    <select data-dojo-type="dijit/form/Select" style="height: 21px;" id="outputSp">
-        <option value=5936>Alaska Polar Stereographic(5936)</option>
-        <option value=3413>Sea Ice Polar Stereographic North(3413)</option>
-        <option value=3995>Arctic Polar Stereographic(3995)</option>
-        <option value=102018>North Pole Stereographic(102018)</option>
-    </select>
-    <br /><br />
-    <input data-dojo-type="dijit/form/CheckBox"  id="renderer"/> <label for="renderer">Current Renderer</label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input data-dojo-type="dijit/form/CheckBox"  id="extent"/> <label for="extent">Define Extent</label>
-    <br /><br/>
+   
+        
+        <label for="pixelSize">Pixel Size:&nbsp;</label>
+        <input type="text" id="pixelSize" data-dojo-type="dijit/form/TextBox" style="width: 100px;"/>
+        <div data-dojo-attach-point="errorPixelSize" style="color: #0080C0;"></div>
+        <br /><label for="outputSp">Output SpatialReference:&nbsp;</label>
+        <select data-dojo-type="dijit/form/Select" style="height: 21px;" id="outputSp">
+            <option value=5936>Alaska Polar Stereographic(5936)</option>
+            <option value=3413>Sea Ice Polar Stereographic North(3413)</option>
+            <option value=3995>Arctic Polar Stereographic(3995)</option>
+            <option value=102018>North Pole Stereographic(102018)</option>
+        </select>
+        <br /><br />
+         <input data-dojo-type="dijit/form/CheckBox"  id="renderer"/> <label for="renderer">Current Renderer</label>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <input data-dojo-type="dijit/form/CheckBox"  id="extent"/> <label for="extent">Define Extent</label>
+   <!-- </div>-->
+   <br /><br/>
     <button data-dojo-type="dijit/form/Button"  id="export" type="button" style="margin-left: 40%" >Export</button>
 </div>
