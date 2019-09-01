@@ -503,8 +503,9 @@ define([
                         var shareUrl = appUrl + "?" + btoa(mapextent + "&" + renderingRule + "&" + mosaicRule + "&" + cloudFilter + "&" + seasonFilter + "&" + secondaryLayer + "&" + changeIndex + "&" + thresholdValue + "&" + changeMode + "&" + negativeRange + "&" + differenceRange + "&" + changeMaskFlag + "&" + registry.byId("bnd1").get("value") + "&" + registry.byId("bnd2").get("value") + "&" + registry.byId("bnd3").get("value") + "&" + registry.byId("stretchoptions").get("value") + "&" + registry.byId("gammaoptions").get("value"));
                     else
                         var shareUrl = appUrl + "?" + btoa(mapextent + "&" + renderingRule + "&" + mosaicRule + "&" + cloudFilter + "&" + seasonFilter + "&" + secondaryLayer + "&" + changeIndex + "&" + thresholdValue + "&" + changeMode + "&" + negativeRange + "&" + differenceRange + "&" + changeMaskFlag + "&" + registry.byId("bandA").get("value") + "&" + registry.byId("bandB").get("value") + "&" + registry.byId("OffsetValue").get("value") + "&" + registry.byId("Scale").get("value") + "&" + registry.byId("colorRamp").get("value") + "&" + registry.byId("bandComboList").get("value"));
-                } else
-                    var shareUrl = "http://landsatexplorer.esri.com/index.html?story=" + this.storyId;
+                } else {
+                    var shareUrl = window.location.href + "?story=" + this.storyId;
+                }
 
                 if (socialMedium === "facebook")
                     var share = "http://www.arcgis.com/home/socialnetwork.html?n=fb&t=" + "&u=" + shareUrl;

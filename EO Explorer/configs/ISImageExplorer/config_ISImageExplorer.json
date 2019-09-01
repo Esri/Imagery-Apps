@@ -8,7 +8,7 @@
       "category": "Category",
       "title": "Landsat",
       "imageSelector": true,
-      "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
+      "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
     },
     {
       "id": "Sentinel2_2553",
@@ -53,21 +53,21 @@
   "forest": [0.1150, 0.0852, 0.0640, 0.0406, 0.0763, 0.2183, 0.2730, 0.2763, 0.3115, 0.0974, 0.0011, 0.0820, 0.0315],
   "water": [0.1231, 0.0959, 0.0776, 0.0612, 0.0509, 0.0301, 0.0285, 0.0223, 0.0190, 0.0059, 0.0006, 0.0044, 0.0037],
 
-  "a" :  [0.88802,0.90596,0.88938,0.91148,0.93778,0.5457,0.37914,0.00936],
-  "b" :  [1.00000,1.00000,1.00000,1.00000,0.99766,0.09434,0.09942,0.08252],
-  "c" :  [0.17706,0.18228,0.2431,0.37778,0.48144,0.58394,0.53018,0.00208],
-  "d" :  [0.13158,0.12318,0.14104,0.2288,0.3176,0.38448,0.32216,0.00166],
-  "e" :  [0.21304,0.20938,0.21138,0.22594,0.24366,0.24868,0.22404,0.00142],
-  "f" :  [0.124,0.1081,0.10306,0.10386,0.3045,0.24492,0.15402,0.00132],
-  "g" :  [0.14642,0.12864,0.11496,0.10828,0.21502,0.17398,0.12308,0.00098],
-  "j" :  [0.1225,0.0997,0.0663,0.0375,0.07786,0.01908,0.00878,0.00064],
-  "i" :  [0.13328,0.11964,0.11348,0.12786,0.15856,0.20198,0.16054,0.00244],
-  "h" :  [0.09838,0.0769,0.06862,0.03962,0.31248,0.12792,0.0514,0.00182],
+  "a" :  [0.88802,0.90596,0.88938,0.91148,0.93778,0.5457,0.37914,0.00936, 0, 0, 0],
+  "b" :  [1.00000,1.00000,1.00000,1.00000,0.99766,0.09434,0.09942,0.08252, 0, 0, 0],
+  "c" :  [0.17706,0.18228,0.2431,0.37778,0.48144,0.58394,0.53018,0.00208, 0, 0, 0],
+  "d" :  [0.13158,0.12318,0.14104,0.2288,0.3176,0.38448,0.32216,0.00166, 0, 0, 0],
+  "e" :  [0.21304,0.20938,0.21138,0.22594,0.24366,0.24868,0.22404,0.00142, 0, 0, 0],
+  "f" :  [0.124,0.1081,0.10306,0.10386,0.3045,0.24492,0.15402,0.00132, 0, 0, 0],
+  "g" :  [0.14642,0.12864,0.11496,0.10828,0.21502,0.17398,0.12308,0.00098, 0, 0, 0],
+  "j" :  [0.1225,0.0997,0.0663,0.0375,0.07786,0.01908,0.00878,0.00064, 0, 0, 0],
+  "i" :  [0.13328,0.11964,0.11348,0.12786,0.15856,0.20198,0.16054,0.00244, 0, 0, 0],
+  "h" :  [0.09838,0.0769,0.06862,0.03962,0.31248,0.12792,0.0514,0.00182, 0, 0, 0],
 
   "urlSentinel": "https://utility.arcgis.com/usrsvcs/servers/d70ebb358d28463a99e574d56265dd95/rest/services/Sentinel2/ImageServer",
-  "urlLandsatMS" : "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
-  "urlLandsatPS": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
-  "urlLandsatPan" : "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/Pan/ImageServer",
+  "urlLandsatMS" : "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+  "urlLandsatPS": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
+  "urlLandsatPan" : "https://landsat.arcgis.com/arcgis/rest/services/Landsat/Pan/ImageServer",
   
 
   "renderInfo": {
@@ -256,55 +256,55 @@
         "description":"<p style='text-align:justify;'>Default rendering.</p>"
       },
       "Agriculture with DRA": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "Agriculture with DRA",
         "description": "<p style='text-align:justify;'>This band combination (6,5,2) is good for agricultural studies. In this band combination, vigorous vegetation appears bright green, healthy vegetation appears as a darker green, while stressed vegetation appears dull green. Coniferous forests appear as a dark, rich green while deciduous forests appear as a bright green. Sparsely vegetated and bare areas appear brown and mauve.</p>",
         "name": "Agriculture"
       },
       "Color Infrared with DRA": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "Color Infrared with DRA",
         "description": "<p style='text-align:justify;'>This band combination (5,4,3) gives results similar to traditional false color infrared photography. This band combination gives results similar to traditional false color infrared photography, which adds a near infrared (NIR) band and drops the visible blue band. Vegetation in the NIR band is highly reflective due to chlorophyll, and a NIR composite vividly shows vegetation in various shades of red. Urban areas are cyan blue, and soils vary from dark to light browns. Ice, snow, and clouds are white or light cyan. Coniferous trees will appear darker red than hardwoods. Generally, deep red hues indicate broad leaf and/or healthier vegetation while lighter reds signify grasslands or sparsely vegetated areas. Water appears very dark, due to the absorption of energy in the visible red and near IR bands.</p>",
         "name": "Color Infrared"
       },
       "Short-wave Infrared with DRA": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "Short-wave Infrared with DRA",
         "description": "<p style='text-align:justify;'>The band combination (7,6,4) is useful for visualizing urban environments. This band combination makes use of both the SWIR bands (SWIR-2, SWIR-1), and displays vegetation in various shades of green. Urban areas are shades of cyan blue, and soils vary from dark to light browns. Ice, snow, and clouds are dark blue. Generally, deep green hues indicate dense vegetation while lighter greens signify sparsely vegetated areas. Water appears dark, due to the absorption of energy in the visible red and infrared bands.</p>",
         "name": "Short-wave Infrared"
       },
       "Natural Color with DRA": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
         "rasterFunction": "Pansharpened Enhanced with DRA",
         "description": "<p style='text-align:justify;'>This band combination (4,3,2) approximates the spectral range of vision of the human eye, and has been pansharpened using the 15m panchromatic band. Here the 30m natural color imagery has been pansharpened using the 15m panchromatic band in order to achieve better imagery resolution. This Landsat band combination is well suited for broad-based analysis of both terrestrial and underwater features, and for urban studies. This true-color composite approximates the range of vision for the human eye, and hence these images appear to be close to what we would expect to see in a normal photograph. Natural color images tend to have low contrast and are somewhat hazy in appearance. This is because blue light is more susceptible than other bandwidths to scattering by the atmosphere, however, it penetrates clear water deeper than the other bands, and is well suited to analysis of underwater features, Healthy vegetation is green, recently cleared fields are very light, unhealthy vegetation is brown and yellow, roads are gray, and shorelines are white.</p>",
         "name": "Natural Color"
       },
       "Bathymetric with DRA": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "Bathymetric with DRA",
         "description": "<p style='text-align:justify;'>This band combination (4,3,1) maximizes light penetration into clear water and approximates a natural looking over land. Bands 1 and 2 can penetrate clear, sunlit water to about 30 meters and can identify features in shallow water, depending on the type and color of the features, and the water depth. It can be used to quantify suspended sediments in water, map sediment transport paths, and aid dredging programs.</p>",
         "name": "Bathymetric"
       },
       "NDVI Colorized": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "NDVI Colorized",
         "description": "<p style='text-align:justify;'>Vegetation Index is used to measure and monitor the vigor of vegetation on Earth, such as plant growth, vegetation cover, and biomass production.  Vegetation Index is a compilation of visible and near infrared regions of the electromagnetic spectrum. The image service is colorized with a color ramp that ranges from brown to green.  Very low values of NDVI (0.1 and below, which is displayed as light brown) correspond to barren areas of rock, sand, or snow.  Moderate values (0.2 to 0.3, displayed as light green) represent shrub and grassland, while high values (0.6 to 0.9, displayed as dark green) indicate temperate and tropical rainforest.</p>",
         "name": "Vegetation Index"
       },
       "Panchromatic with DRA": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/Pan/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/Pan/ImageServer",
         "rasterFunction": "Panchromatic with DRA",
         "description": "<p style='text-align:justify;'>This band produces 15m panchromatic images (0.5-0.68  µm) which are sharper images in black and white.</p>",
         "name": "Panchromatic"
       },
       "Geology with DRA": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "Geology with DRA",
         "description": "<p style='text-align:justify;'>The band combination (7,6,2) enables easier visualization and extraction of delineation of major structural features like thrust faults and folds, textural characteristics of igneous and sedimentary rocks, and for lithological and geological mapping like recognizing hydrothermal altered rocks, etc. Additionally, various band combinations like 4,3,2 ; 7,6,5; 7,5,2; 7,4,2 etc. can also be used to determine specific geological features.</p>",
         "name": "Geology"
       },      
       "Normalized Difference Moisture Index Colorized": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "Normalized Difference Moisture Index Colorized",
         "description": "<p style='text-align:justify;'>The Normalized Difference Moisture Index estimates levels of moisture in vegetation. Wetlands and other vegetated areas with high levels of moisture appear as blue whereas deserts appear as tan to brown.</p>",
         "name": "Moisture Index"
@@ -349,36 +349,36 @@
       },
 
       "BurnIndex": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "rasterFunction": "Normalized Difference Moisture Index Colorized"
     },
     
     "Index": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "description": "Custom Index"
     },
     "Build": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "description": "Custom Band"
     },
     "NBR": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "name": "Burn Index"
     },
     "Urban": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "name": "Urban Index"
     },
     "NDWI": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "name": "Water Index"
     },
     "SAVI": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "name": "SAVI"
     },
     "NDMI": {
-        "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+        "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
         "name": "Moisture"
     }
       

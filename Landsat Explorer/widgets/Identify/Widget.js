@@ -61,7 +61,7 @@ define([
                 levelzoom: null,
                 clickX: [],
                 clickY: [],
-                bandNames: ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR_1", "SWIR_2", "Cirrus"],
+                bandNames: ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR_1", "SWIR_2", "Cirrus", "QA", "Thermal Infrared1", "Thermal Infrared2"],
                 myColor: {
                     colors: {
                         background: new Color([0, 0, 0, 0]),
@@ -1049,7 +1049,7 @@ define([
                 refreshData: function () {
 
                     if (this.map.layerIds) {
-                        this.bandNames1 = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR 1", "SWIR 2", "Cirrus"];
+                        this.bandNames1 = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR 1", "SWIR 2", "Cirrus", "QA", "Thermal Infrared1", "Thermal Infrared2"];
                     }
 
                 },

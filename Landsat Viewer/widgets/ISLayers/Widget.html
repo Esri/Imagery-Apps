@@ -1,0 +1,132 @@
+<div>
+   <div class="layer-item" id="Agriculture with DRA" data-dojo-attach-point="multiARadio" data-tooltip="<span class='tooltip-title has-margin'>Agriculture</span> Agriculture is bright green">
+      <img src="widgets/ISLayers/images/svg/agriculture24.svg"/>
+      <!-- <span>Agriculture</span> -->
+    </div>
+
+    <div class="layer-item" id="Pansharpened Enhanced with DRA" data-dojo-attach-point="multiDRadio" data-tooltip="<span class='tooltip-title has-margin'>Natural Color</span> Sharper image in Natural Color">
+      <img src="widgets/ISLayers/images/svg/naturalColorPansharpened24.svg"/>
+      <!-- <span>Natural Color</span> -->
+    </div>
+
+    <div class="layer-item" id="Color Infrared with DRA" data-dojo-attach-point="multiBRadio" data-tooltip="<span class='tooltip-title has-margin'>Color Infrared</span> Healthy vegetation is bright red">
+      <img src="widgets/ISLayers/images/svg/colorInfrared24.svg"/>
+      <!-- <span>Color Infrared</span> -->
+    </div>
+   
+    <div class="layer-item" id="Short-wave Infrared with DRA" data-dojo-attach-point="multiCRadio" data-tooltip="<span class='tooltip-title has-margin'>SWIR</span> Rock formations are emphasized">
+      <img src="widgets/ISLayers/images/svg/shortwaveInfrared24.svg"/>
+      <!-- <span>SWIR</span> -->
+    </div>
+
+    <div class="layer-item" id="Geology with DRA" data-dojo-attach-point="geoRadio" data-tooltip="<span class='tooltip-title has-margin'>Geology</span> Geologic features are emphasized">
+      <img src="widgets/ISLayers/images/svg/geology24.svg"/>
+      <!-- <span>Geology</span> -->
+    </div>
+
+    <div class="layer-item" id="Bathymetric with DRA" data-dojo-attach-point="multiERadio" data-tooltip="<span class='tooltip-title has-margin'>Bathymetric</span> Underwater features are more visible">
+      <img src="widgets/ISLayers/images/svg/bathymetry24.svg"/>
+      <!-- <span>Bathymetric</span> -->
+    </div>
+
+    <div class="layer-item" id="Panchromatic with DRA" data-dojo-attach-point="pancRadio" data-tooltip="<span class='tooltip-title has-margin'>Panchromatic</span> Sharper image in black &amp; white">
+      <img src="widgets/ISLayers/images/svg/panchromatic24.svg"/>
+      <!-- <span>Panchromatic</span> -->
+    </div>
+
+    <div class="layer-item" id="NDVI Colorized" data-dojo-attach-point="multiFRadio" data-tooltip="<span class='tooltip-title has-margin'>Vegetation Index</span> Healthy vegetation is dark green">
+      <img src="widgets/ISLayers/images/svg/vegetationIndex24.svg"/>
+      <!-- <span>Vegetation Index</span> -->
+    </div>
+
+    <div class="layer-item" id="Normalized Difference Moisture Index Colorized" data-dojo-attach-point="moiRadio" data-tooltip="<span class='tooltip-title has-margin'>Moisture Index</span> Moisture-rich areas are bright blue">
+      <img src="widgets/ISLayers/images/svg/moistureIndex24.svg"/>
+      <!-- <span>Moisture Index</span> -->
+    </div>
+    <div class="layer-item" id="Build" data-dojo-attach-point="buildRadio" data-tooltip="<span class='tooltip-title has-margin'>Build</span> Build Your Own">
+      <img src="widgets/ISLayers/images/svg/buildYourOwn24.svg"/>
+      <!-- <span>Moisture Index</span> -->
+    </div>
+   
+  
+    <div data-dojo-type="dijit/Dialog" id="buildDialog" title="Build Your Own" style="background-color: white;border-radius: 10px;position: fixed;">
+    <div>
+   
+   <label for='bnd1' style ='color : #0080C0;'>RGB Composite: </label>
+    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd1">
+        <option value="1">Coastal(1)</option>
+            <option value="2">Blue(2)</option>
+            <option value="3">Green(3)</option>
+            <option value="4">Red(4)</option>
+            <option value="5">NIR(5)</option>
+            <option value="6">SWIR1(6)</option>
+            <option value="7">SWIR2(7)</option>
+            <option value="8">Cirrus(8)</option>
+    </select>
+    &nbsp;&nbsp;    
+    <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd2">
+            <option value="1">Coastal(1)</option>
+            <option value="2">Blue(2)</option>
+            <option value="3">Green(3)</option>
+            <option value="4">Red(4)</option>
+            <option value="5">NIR(5)</option>
+            <option value="6">SWIR1(6)</option>
+            <option value="7">SWIR2(7)</option>
+            <option value="8">Cirrus(8)</option>
+        </select>
+    &nbsp;&nbsp;    <select data-dojo-type="dijit/form/Select" style=" height: inherit;" id="bnd3">
+            <option value="1">Coastal(1)</option>
+            <option value="2">Blue(2)</option>
+            <option value="3">Green(3)</option>
+            <option value="4">Red(4)</option>
+            <option value="5">NIR(5)</option>
+            <option value="6">SWIR1(6)</option>
+            <option value="7">SWIR2(7)</option>
+            <option value="8">Cirrus(8)</option>
+        </select>
+    
+    </div>
+    <br />
+  
+    <div style="color: #0080C0;display : inline-block; ">Stretch:</div>
+  <!--  <label for="stretchoptions" style="color: #0080C0; width: 150px;">Stretch: </label>-->
+    <select data-dojo-type="dijit/form/Select" style="display : inline-block; height: inherit;" id="stretchoptions">
+        <option value="none">Fixed</option>
+        <option value="standard">2 Std.Dev</option>
+        <option value="standard1">3 Std.Dev</option>
+        <option value="clip">2% Clip</option>
+        <option value="clip1">0.5% Clip</option>
+        <option value="clip2">0.1% Clip</option>
+        <option value='full'>Full</option>
+        <option value="dark">Dark</option>
+        <option value="vdark">VDark</option>
+        <option value="light">Light</option>
+        <option value="vlight">VLight</option>
+    </select>
+
+   &nbsp;&nbsp;  
+   <div style="display: inline-block;"> 
+       <div style="color: #0080C0;display : inline-block;">Gamma:</div></div>
+   <!-- <label for="gammaoptions" style="color: #0080C0;">Gamma: </label>-->
+   &nbsp;&nbsp; 
+    <select data-dojo-type="dijit/form/Select"  style="height: inherit;" id="gammaoptions">
+        <option value="1">0.3</option>
+        <option value="2">0.5</option>
+        <option value="3">0.8</option>
+        <option value="4">1</option>
+        <option value="5">1.4</option>
+        <option value="6">2</option>
+        <option value="7">4</option>
+    </select>
+   
+    <br />
+    <br />
+    <div>
+    <button data-dojo-type="dijit/form/Button"  id="apply" style='margin-left: 35%;' type="button">Apply</button>
+    <button data-dojo-type="dijit/form/Button" id="reset"  type="button">Reset</button> 
+   
+    </div>
+    </div>
+    <input data-dojo-type="dijit/form/TextBox" id="appSceneID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="lockedSceneName" style="display: none;" />
+</div>

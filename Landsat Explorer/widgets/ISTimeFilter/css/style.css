@@ -28,7 +28,7 @@
     margin-left: 0px;
 }
 #timeDialog .dijitDialogCloseIcon:before {
-    content: url("http://landsatexplorer.esri.com/jimu.js/css/images/btn_sub.png");
+    content: url("../../../jimu.js/css/images/btn_sub.png");
 }
 
 #saveSceneBtn, #refreshTimesliderBtn, #dropDownDateList{

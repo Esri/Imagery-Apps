@@ -8,7 +8,7 @@
           "category": "Category",
           "title": "Multispectral Landsat",
           "imageSelector": true,
-          "url": "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
+          "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
         },
         
       

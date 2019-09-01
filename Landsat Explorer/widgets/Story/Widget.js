@@ -300,8 +300,9 @@ define([
                   domStyle.set(registry.byId("titleStep").domNode,"width",(0.32*window.innerWidth)+"px");
                 },
                 loadAppStories: function(id){
+                    var url = window.location.href;
                     
-                   window.open("http://landsatexplorer.esri.com/index.html?story="+id,"_blank");
+                   window.open(url + "?story="+id, "_blank");
                 },
                 getStoryForUpdate: function(id){
                        this.updateMode = id;

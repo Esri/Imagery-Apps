@@ -1,13 +1,13 @@
-@import url("http://js.arcgis.com/3.17/dojox/form/resources/FileUploader.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/TextColor.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/editorPlugins.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/PasteFromWord.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/Preview.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/InsertEntity.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/FindReplace.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/InsertAnchor.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/Smiley.css");
-@import url("http://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/LocalImage.css");
+@import url("https://js.arcgis.com/3.17/dojox/form/resources/FileUploader.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/TextColor.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/editorPlugins.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/PasteFromWord.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/Preview.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/InsertEntity.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/FindReplace.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/InsertAnchor.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/Smiley.css");
+@import url("https://js.arcgis.com/3.17/dojox/editor/plugins/resources/css/LocalImage.css");
 .esriLegendServiceLabel {
     font-size: 14px;
 }

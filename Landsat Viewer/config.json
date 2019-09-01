@@ -1,0 +1,294 @@
+{  
+   "theme":{  
+      "name":"LandsatTheme",
+      "styles":[  
+         "default",
+         "simpleblue",
+         "purple",
+         "red"
+      ],
+      "version":"1.1"
+   },
+   "portalUrl":"http://esri.maps.arcgis.com",
+   "title":"Landsat App",
+   "subtitle":"",
+   "logo":"images/app-logo.png",
+   "geometryService":"http://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
+   "links":[  
+
+   ],
+   "widgetOnScreen":{ 
+   	  "panel":{  
+         "uri":"themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+         "positionRelativeTo":"browser",
+         "position":{  
+            "top":0,
+            "left":10,
+            "bottom":210,
+            "width": 80
+         }
+      },
+
+      "widgets":[  
+         {  
+            "uri": "themes/LandsatTheme/widgets/HeaderController/Widget",
+	        "positionRelativeTo": "browser",
+	        "position": {
+	          "left": 0,
+	          "width": 95,
+	          "bottom": 10,
+	          "height": 200
+	        },
+            "version":"1.1"
+         },
+         {  
+            "uri":"widgets/HomeButton/Widget",
+            "position":{  
+               "left":20,
+               "top":95
+            },
+            "version":"1.1",
+            "id":"widgets/HomeButton/Widget_4",
+            "positionRelativeTo":"map",
+            "name":"HomeButton",
+            "label":"Home Button"
+         },
+         {  
+            "uri":"widgets/Scalebar/Widget",
+            "position":{  
+               "left":10,
+               "bottom":10
+            },
+            "version":"1.1",
+            "id":"widgets/Scalebar/Widget_5",
+            "positionRelativeTo":"map",
+            "name":"Scalebar",
+            "label":"Scalebar",
+            "config":"configs/Scalebar/config_Scalebar.json"
+         },
+         {  
+            "uri":"widgets/Coordinate/Widget",
+            "position":{  
+               "left":160,
+               "bottom":5
+            },
+            "version":"1.1",
+            "id":"widgets/Coordinate/Widget_7",
+            "positionRelativeTo":"map",
+            "name":"Coordinate",
+            "label":"Coordinate"
+         },
+         {  
+         	"panel":{  
+		         "uri":"themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+		         "positionRelativeTo":"browser",
+		         "position":{  
+		            "top":0,
+		            "left":0,
+		            "bottom":210,
+		            "width": 95
+		         }
+		      },
+            "placeholderIndex":1,
+            "id":"_8",
+            "positionRelativeTo":"map",
+            "name":"ISLayers",
+            "label":"Band Combinations",
+            "version":"",
+            "icon":"configs\\ISLayers\\icon_Band Combinations.jpeg",
+            "uri":"widgets/ISLayers/Widget",
+            "config":"configs/ISLayers/config_Band Combinations.json",
+            "openAtStart": true
+         },
+         {  
+            "uri":"widgets/OverviewMap/Widget",
+            "position":{  
+               "right":0,
+               "top":0
+            },
+            "version":"1.1",
+            "id":"widgets/OverviewMap/Widget_11",
+            "positionRelativeTo":"map",
+            "name":"OverviewMap",
+            "label":"Overview Map"
+         },
+         {  
+            "uri":"widgets/MyLocation/Widget",
+            "position":{  
+               "left":20,
+               "top":140
+            },
+            "version":"1.1",
+            "id":"widgets/MyLocation/Widget_12",
+            "positionRelativeTo":"map",
+            "name":"MyLocation",
+            "label":"My Location"
+         },
+         {
+             "uri": "widgets/Geocoder/Widget",
+                "position": {
+                    "left": 60,
+                    "top": 20
+                },
+                "positionRelativeTo": "map",
+                  "name": "Geocoder",
+                "label": "Geocoder",
+                "version": "1.1"
+            }
+      ],
+      "panel":{  
+         "uri":"jimu/PreloadWidgetIconPanel",
+         "positionRelativeTo":"map"
+      }
+   },
+   "map":{  
+      "3D":false,
+      "2D":true,
+      "position":{  
+         "top":10,
+         "right":10,
+         "bottom":10,
+         "left":95
+      },
+      "itemId":"12ac4cf094394d238c66b776a3f76c4a",
+      "mapOptions": {
+        "maxZoom" : 14,
+        "minZoom" : 4
+    },
+
+      
+      "id":"map",
+      "portalUrl":"http://esri.maps.arcgis.com"
+   },
+   "widgetPool":{  
+      "panel":{  
+         "uri":"themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+         "positionRelativeTo":"map",
+         "noOverlay": false,
+         "position":{  
+            "left":0,
+            "bottom":0,
+            "width": 0,
+            "height": 0
+         }
+      },
+      "widgets":[
+         {
+            "name":"Identify",
+            "label":"Identify",
+            "version":"",
+            "icon":"configs/Identify/identify24.svg",
+            "uri":"widgets/Identify/Widget",
+            "config":"configs/Identify/config_Identify.json",
+            "index":1,
+            "id":"widgets/Identify/Widget_14"
+         }
+      ],
+
+      "groups": [
+
+      {
+        "widgets": [
+          {  
+            "name":"ISTimeFilter",
+            "label":"Time Line",
+            "version":"",
+            "icon":"configs/ISTimeFilter/time24.svg",
+            "uri":"widgets/ISTimeFilter/Widget",
+            "config":"configs/ISTimeFilter/config_Time .json",
+            "index":2,
+            "id":"widgets/ISTimeFilter/Widget_15"
+         }
+        ],
+        "label": "Time",
+        "index": 0,
+        "panel": {
+          "uri": "themes/LandsatTheme/panels/SimpleBorderPanel/Panel",
+          "positionRelativeTo": "map",
+          "noOverlay": false,
+          "position": {
+            "width": 440,
+            "height":"auto",
+            "left":155,
+            "top": 70
+          }
+        }
+       
+         
+      },
+
+
+      {
+        "widgets": [
+          {  
+            "name":"Bookmarks",
+            "label":"Bookmarks",
+            "version":"1.1",
+            "icon":"configs/Bookmark/bookmark.png",
+            "uri":"widgets/Bookmark/Widget",
+            "index":3,
+            "id":"widgets/Bookmark/Widget_17"
+         }
+        ],
+        "label": "Bookmarks",
+        "index": 3,
+        "panel": {
+          "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+          "positionRelativeTo": "browser",
+          "noOverlay": true,
+          "position": {
+            "width": 350,
+            "height": 350,
+            "left":140,
+            "bottom": 30
+          }
+        },
+        "id": "_19",
+        "visible": true,
+        "icon":"configs/Bookmark/bookmark.png"
+      },
+
+      {
+        "widgets": [
+          {  
+            "name":"About",
+            "label":"About - Landsat on AWS App - V2.0",
+            "version":"1.1",
+            "icon":"null",
+            "uri":"widgets/About/Widget",
+            "config":"configs/About/config_About.json",
+            "index":0,
+            "id":"widgets/About/Widget_16"
+         }
+        ],
+        "label": "About",
+        "index": 4,
+        "panel": {
+          "uri": "themes/LandsatTheme/panels/DialogPanel/Panel",
+          "positionRelativeTo": "browser",
+          "noOverlay" : true,
+          "position": {
+            "width": 430,
+            "height" : 380
+           
+          }
+        },
+        "id": "_22",
+        "visible": true,
+        "icon": "null"
+      }
+
+    ]
+   },
+   "wabVersion":"1.1",
+   "isWebTier":false,
+   "httpProxy":{  
+      "useProxy":true,
+      "alwaysUseProxy":false,
+      "url":"",
+      "rules":[  
+
+      ]
+   },
+   "appId":""
+}

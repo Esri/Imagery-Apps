@@ -113,7 +113,7 @@ define([
                 var params = new ImageServiceParameters();
                 params.format = "jpgpng";
                 //params.mosaicRule = new MosaicRule({"mosaicMethod":"esriMosaicAttribute", "sortField":"Best", "sortValue":"0", "ascending":true, "mosaicOperation":"MT_FIRST"});
-                var landsat = new ArcGISImageServiceLayer("https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer", {
+                var landsat = new ArcGISImageServiceLayer("https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer", {
                     id: "MS_696",
                     title: "Landsat",
                     imageServiceParameters: params                  

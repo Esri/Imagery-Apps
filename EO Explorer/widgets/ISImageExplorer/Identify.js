@@ -360,8 +360,8 @@ define([
                     this.cloudcover = "CloudCover";
                     this.sunElevation = "SunElevation";
                     this.sunAzimuth = "SunAzimuth";
-                    this.bandNames = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR_1", "SWIR_2", "Cirrus"];
-                    this.bandNames1 = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR 1", "SWIR 2", "Cirrus"];
+                    this.bandNames = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR_1", "SWIR_2", "Cirrus", "QA", "Thermal Infrared1", "Thermal Infrared2"];
+                    this.bandNames1 = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR 1", "SWIR 2", "Cirrus", "QA", "Thermal Infrared1", "Thermal Infrared2"];
                     if (registry.byId("xBand").options.length > 0) {
                         for (var i = 0; i < registry.byId("xBand").options.length; i++) {
                             registry.byId("xBand").removeOption(registry.byId("xBand").getOptions());
@@ -1298,8 +1298,8 @@ define([
                         this.bandNames = ["Coastal", "Blue", "Green", "Red", "VRE", "VRE", "VRE", "NIR", "VRE", "Water_Vapor", "Cirrus", "SWIR_1", "SWIR_2"];
                     }
                     else {
-                        this.bandNames1 = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR 1", "SWIR 2", "Cirrus"];
-                        this.bandNames = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR_1", "SWIR_2", "Cirrus"];
+                        this.bandNames1 = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR 1", "SWIR 2", "Cirrus", "QA", "Thermal Infrared1", "Thermal Infrared2"];
+                        this.bandNames = ["Coastal", "Blue", "Green", "Red", "NIR", "SWIR_1", "SWIR_2", "Cirrus", "QA", "Thermal Infrared1", "Thermal Infrared2"];
                     }
                 }
 

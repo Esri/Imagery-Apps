@@ -1,0 +1,228 @@
+{
+    "bookmarks2D": [{
+            "name": "Suez Canal",
+            "extent": {
+                "xmin": 3574327,
+                "ymin": 3554693,
+                "xmax": 3622521,
+                "ymax": 3579421,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "layer": "Agriculture with DRA",
+            "description": "The Suez Canal is a waterway through Egypt linking the Mediterranean and Red Sea. An second 35km long shipping lane was constructed in 1year and complete in July 2015.",
+            "thumbnail": "images/Suezcanal.jpg"
+        }, {
+            "name": "Cambridge Gulf",
+            "extent": {
+                "xmin": 14267401,
+                "ymin": -1717449,
+                "xmax": 14333072,
+                "ymax": -1658107,
+                "spatialReference": {
+                    "wkid": 102100
+                }
+            },
+            "layer": "Agriculture with DRA",
+            "description": "Cambridge Gulf is on an isolated stretch of the north coast of Western Australia. Mangroves thrive in this region that experiences wide tidal flows of 23-30 feet.",
+            "thumbnail": "images/CambridgeGulf.jpg"
+        },{
+		"name": "Eye of the Sahara",
+		"extent": {
+			"xmin": -1329191,
+			"ymin": 2357087,
+			"xmax": -1216294,
+			"ymax": 2459104,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Geology with DRA",
+                "description": "The Richat Structure of central Mauritania is also known as the Eye of the Sahara. It is a prominent geologic feature in the Sahara desert, likely an eroded dome.",
+		"thumbnail": "images/EyeOfSahara.jpg"
+	}, {
+		"name": "Gosses Bluff",
+		"extent": {
+			"xmin": 14681943,
+			"ymin": -2795259,
+			"xmax": 14812294,
+			"ymax": -2677469,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Geology with DRA",
+                "description": "In this image, the circular ring of hills is part of a unique and spectacular geological structure known as Gosses Bluff. Gosses Bluff was formed some 142 million years ago due to the impact of an asteroid or comet up to 1.2 miles (2 kilometers) in diameter. The central ring of hills is approximately 3 miles (5 kilometers) in diameter and rises 200 meters above the plain. It is surrounded by a circular drainage system 15 miles (24 kilometers) in diameter that marks the outer ring of the crater. Gosses Bluff has been the subject of intensive geological and geophysical scientific study and is deeply significant to the Western Arrernte Aboriginal people who own the Tnorala Conservation Reserve that contains the crater.",
+		"thumbnail": "images/GossesBluff.jpg"
+	}, {
+		"name": "Exumas",
+		"extent": {
+			"xmin": -8459279,
+			"ymin": 2674254,
+			"xmax": -8426230,
+			"ymax": 2704118,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Bathymetric with DRA",
+                "description": "The Exumas are an archipelago of 365 cays and islands, beginning just 35 miles southeast of Nassau. In clear water, Landsat sensors can penetrate nearly 100 feet (30m).",
+		"thumbnail": "images/Exumas.jpg"
+	}, {
+		"name": "Beijing",
+		"extent": {
+			"xmin": 12926833,
+			"ymin": 4829795,
+			"xmax": 12979121,
+			"ymax": 4877044,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Agriculture with DRA",
+                "description": "Beijing, China. The Forbidden City is visible in the center of the image. The dense city of Beijing gradually gives way to more open land uses, such as the golf courses that ring the city.",
+		"thumbnail": "images/Beijing.jpg"
+	}, {
+		"name": "Mexico City",
+		"extent": {
+			"xmin": -11060995,
+			"ymin": 2180427,
+			"xmax": -11004015,
+			"ymax": 2231916,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Short-wave Infrared with DRA",
+                "description": "Mexico City, the capital city of Mexico, is situated on a highland plateau that is 1.5 miles above sea level (7,350 feet). The greater Mexico City area is home to over 21 million people.",
+		"thumbnail": "images/MexicoCity.jpg"
+	}, {
+		"name": "Central Saudi Arabia",
+		"extent": {
+			"xmin": 4904015,
+			"ymin": 2929169,
+			"xmax": 5032662,
+			"ymax": 3045418,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Agriculture with DRA",
+                "description": "Center-pivot irrigation agriculture in Saudi Arabia is used to grow crops such as wheat. The irrigation systems extend beyond the image areas throughout the Buradah-Riyadh region of Saudi Arabia.",
+		"thumbnail": "images/CentralSaudiArabia.jpg"
+	}, {
+		"name": "Bahr al Milh",
+		"extent": {
+			"xmin": 4820947,
+			"ymin": 3810047,
+			"xmax": 4904543,
+			"ymax": 3885587,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Bathymetric with DRA",
+                "description": "Bahr al Milh is a salt sea in Iraq, fed by the Euphrates River via canal. Water levels of the shallow lake vary with the seasons; however, levels have been drastically low in the past decade.",
+		"thumbnail": "images/BahrAlMilh.jpg"
+	}, {
+		"name": "Bay of Gibraltar",
+		"extent": {
+			"xmin": -622804,
+			"ymin": 4302570,
+			"xmax": -584476,
+			"ymax": 4337204,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Agriculture with DRA",
+                "description": "The Bay of Gibraltar, or Bay of Algeciras, is located in Spain at the southern end of the Iberian Peninsula and opens to the south into the Strait of Gibraltar and the Mediterranean Sea. The narrow peninsula on the east side of the bay is Gibraltar, which is a territory of Great Britain. The shoreline is densely populated and includes two major ports, one Spanish and one British. In these images, ships can be seen in and around this busy bay.",
+		"thumbnail": "images/BayOfGibraltar.jpg"
+	}, {
+		"name": "Lake Chilwa",
+		"extent": {
+			"xmin": 3926337,
+			"ymin": -1762777,
+			"xmax": 4024496,
+			"ymax": -1674077,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Agriculture with DRA",
+                "description": "Malawi - Lake Chilwa is a shallow, enclosed saline lake located along the East African Rift Valley in southern Malawi, near its border with Mozambique. This lake experiences high water level fluctuation, as it is strongly influenced by rainfall and summer evaporation patterns. In recent years, Lake Chilwa has been shrinking. Because the basin is an important source of local rice and fish production, the current drying trend is a potential food security concern.",
+		"thumbnail": "images/LakeChilwa.jpg"
+	}, {
+		"name": "Cuesta del Viento Reservoir",
+		"extent": {
+			"xmin": -7706516,
+			"ymin": -3544145,
+			"xmax": -7670955,
+			"ymax": -3512011,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Agriculture with DRA",
+                "description": "Argentina - The Cuesta del Viento Reservoir formed behind a large dam that was constructed on the Jachal River in 1997-1998 in the northeastern San Juan Province of Argentina. Surrounded by spectacular mountains, the reservoir controls the flow of streams from snowmelt of the Andes Mountains and provides a source of irrigation for fruit plantations and other crops. The reservoir has also become a popular destination for windsurfing and kitesurfing because of the consistent afternoon winds that reach 34-46 mph (55-74 kph). These powerful winds are caused by the daily flow of air currents that travel out of the eastern Andes Mountains and converge in the river valley.",
+		"thumbnail": "images/CuestaDelVientoReservoir.jpg"
+	}, {
+		"name": "Andasol Solar Power Station",
+		"extent": {
+			"xmin": -348356,
+			"ymin": 4462741,
+			"xmax": -329952,
+			"ymax": 4479371,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Pansharpened Enhanced with DRA",
+                "description": "Spain - The large rectangular features are stations that use a very different technology compared to traditional photovoltaic solar panel collection systems. These parabolic trough power plants absorb the sun energy during the day, store it within a heat reservoir of molten salt, and then create electricity through the use of thermal turbines.",
+		"thumbnail": "images/AndasolSolarPowerStation.jpg"
+	}, {
+		"name": "Cubbie Station",
+		"extent": {
+			"xmin": 16417544,
+			"ymin": -3396638,
+			"xmax": 16543919,
+			"ymax": -3282442,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Agriculture with DRA",
+                "description": "Australia - Cubbie Station is a privately-held irrigation project along the Culgoa River in southern Queensland, Australia. Once grazing land, the area was converted to cotton production in the 1980s, and water storage dams were built during rapid expansion in the 1990s. The project covers about 240,000 acres of the floodplain.",
+		"thumbnail": "images/CubbieStation.jpg"
+	}, {
+		"name": "New Islands",
+		"extent": {
+			"xmin": 6109312,
+			"ymin": 2862550,
+			"xmax": 6165761,
+			"ymax": 2913559,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Pansharpened Enhanced with DRA",
+                "description": "Dubai, United Arab Emirates - In 2001, artificial archipelagos began to take shape along the shoreline of Dubai. The Palm Jebel Ali and smaller Palm Jumeirah are two 'Palm Islands' that can be seen in the 2012 imagery. North from the Palm Islands is a group of smaller islands, created in the rough shape of a world map. Known as 'The World', this small area has created an additional 144 miles of shoreline.",
+		"thumbnail": "images/NewIslands.jpg"
+	}, {
+		"name": "Chilean Volcanoes",
+		"extent": {
+			"xmin": -7733874,
+			"ymin": -3087466,
+			"xmax": -7586066,
+			"ymax": -2953902,
+			"spatialReference": {
+				"wkid": 102100
+			}
+		},
+                "layer": "Agriculture with DRA",
+                "description": "Chile - On the border between Chile and the Catamarca province of Argentina lies a vast field of currently dormant volcanoes. Over time, these volcanoes have laid down a crust of magma roughly 2 miles (3.5 kilometers) thick. It is tinged with a patina of various colors that can indicate both the age and mineral content of the original lava flows.",
+		"thumbnail": "images/ChileanVolcanoes.jpg"
+	}],
+	"flyTime": 3000
+}

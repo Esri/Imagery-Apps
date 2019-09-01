@@ -1,0 +1,6 @@
+{
+    
+    "urlLandsatPS": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
+    "urlLandsatPan": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/Pan/ImageServer",
+    "urlLandsatMS": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
+}
