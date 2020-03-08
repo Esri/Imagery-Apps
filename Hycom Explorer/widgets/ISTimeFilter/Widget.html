@@ -1,0 +1,64 @@
+<div>
+    <div data-dojo-type="dijit/Dialog" id="timeDialog" title="Time Selector" style="background-color: white;width:400px;" data-dojo-props="focus:function(){}">
+        
+    
+    <div data-dojo-attach-point="filterDiv" style="display:none;">
+        <div>
+            
+            <div data-dojo-attach-point="secondaryRange" style="display:inline-block;font-size: 11px;"></div><div data-dojo-attach-point="dateRange" style="display:inline-block;"></div>
+              <button data-dojo-type="dijit/form/Button" type="button" id="saveSceneBtn" style="float: right;"><img id='savePushDownImage' src="./widgets/ISTimeFilter/images/down.png" height="15"/></button>
+                <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'saveSceneBtn',position:['below']">
+                    Set Current as Secondary Layer.
+                </div><br />
+        </div>
+        <div>
+            <br />
+         
+           <div style="float:left;display:inline-block;margin-right: 5px;">
+               <button data-dojo-type="dijit/form/Button" type="button" id="playBtn"><img src="images/play.png" height="15"/></button>
+            <button data-dojo-type="dijit/form/Button" type="button" id="pauseBtn" style="display: none;"><img src="images/Stop.png" height="15"/></button>
+           </div>
+             <div  style="float:right;display:inline-block;">
+                <button data-dojo-type="dijit/form/Button" type="button" id="refreshTimesliderBtn"><img src="./widgets/ISTimeFilter/images/refresh.png" height="15"/></button>
+                <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'refreshTimesliderBtn',position:['below']">
+                    Refresh available dates based on current extent
+                </div>
+            </div>
+           
+            <div data-dojo-attach-point='timeSliderDiv'>
+            </div>
+            <div data-dojo-attach-point="timeSortDiv" id="timeSortDivContainer">
+            <br /><label for="timeSort">Filter: </label>
+                
+         <select data-dojo-type="dijit/form/Select" id="timeSort" style="height: 15px;">
+             <option value="t000">One per day</option>
+             <option value="all">All</option>
+         </select>
+            </div>
+                      <div data-dojo-attach-point="pointgraph" style="color: #0080C0;">
+    </div>
+ <div id="chartshow" style="display : none;float:left;">
+        <div id="chartNode" style="width: 390px; height: 270px;"></div>
+        
+      
+    </div>
+              
+    </div>
+            
+            <div id="savedNoti" data-dojo-attach-point="temporalpro" style="color: #0080C0;margin-top: 5px;">
+    </div>
+        </div>
+        
+    
+        
+
+        <div data-dojo-attach-point="errorDiv" style="color:red;"></div>
+ 
+       
+    
+   
+           
+   
+   
+    </div>
+</div>

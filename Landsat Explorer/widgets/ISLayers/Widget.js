@@ -82,15 +82,15 @@ define([
                 } else if (window.innerWidth < 850) {
                     domStyle.set("bandCombinationDialog", "font-size", "8px");
                     var headerCustom = domConstruct.toDom('<table id="headerTable" style="border: 0px;height: 40px;display: -webkit-inline-box;margin-left: 20px;">' +
-                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Landsat Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Agriculture</div></td>' +
-                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;" id="dateSecondary"></div><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateDisplay"></div></td></tr></table>' +
+                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;width:max-content;">Landsat Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;width:max-content;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Agriculture</div></td>' +
+                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;width: max-content;" id="dateSecondary"></div><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;width: max-content;" id="dateDisplay"></div></td></tr></table>' +
                         '<div id="socialShortLinks" style="position: absolute;top:0px;right: 8px;display: block;margin-top: 8px;"><a id="userSignIn" target="_self" style="display:inline-block;height:22px;"><img id="signInThumbnail" src="./widgets/ISLayers/images/signIn.png" style="height: 22px;cursor:pointer;" alt="Sign In" /><span id="userName" style="color:white;cursor:pointer;font-size:' + fontsize2 + 'px;font-weight:400;font-family:sans-serif;vertical-align:super;">   Sign In</span></a>&nbsp;&nbsp;&nbsp;<a   id="facebook" target="_blank"><img id="facebookThumnail" src="./widgets/ISLayers/images/facebook.png" style="height: 25px;cursor:pointer;" alt="Facebook" /></a>&nbsp;&nbsp;<a  id="twitter" target="_blank"><img id="twitterThumbnail" src="./widgets/ISLayers/images/twitter.png" style="height: 25px;cursor:pointer;" alt="Twitter" /></a>&nbsp;&nbsp;<a  id="link" target="_self"><img id="linkThumbnail" src="./widgets/ISLayers/images/link.png" style="height: 25px;cursor:pointer;" alt="Link" /></a></div>');
 
                 } else {
                     domStyle.set("bandCombinationDialog", "font-size", "12px");
                     var headerCustom = domConstruct.toDom('<table id="headerTable" style="border: 0px;height: 40px;display: -webkit-inline-box;margin-left: 20px;">' +
-                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Landsat Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Agriculture</div></td>' +
-                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;" id="dateSecondary"></div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateDisplay"></div></td></tr></table>' +
+                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;width:max-content;">Landsat Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;width:max-content;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Agriculture</div></td>' +
+                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;width: max-content;" id="dateSecondary"></div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;width: max-content;" id="dateDisplay"></div></td></tr></table>' +
                         '<div id="socialShortLinks" style="position: absolute;top:0px;right: 8px;display: block;margin-top: 8px;"><a id="userSignIn" target="_self" style="display:inline-block;height:22px;"><img id="signInThumbnail" src="./widgets/ISLayers/images/signIn.png" style="height: 22px;cursor:pointer;" alt="Sign In" /><span id="userName" style="color:white;cursor:pointer;font-size:' + fontsize2 + 'px;font-weight:400;font-family:sans-serif;vertical-align:super;">   Sign In</span></a>&nbsp;&nbsp;&nbsp;<a   id="facebook" target="_blank"><img id="facebookThumnail" src="./widgets/ISLayers/images/facebook.png" style="height: 25px;cursor:pointer;" alt="Facebook" /></a>&nbsp;&nbsp;<a  id="twitter" target="_blank"><img id="twitterThumbnail" src="./widgets/ISLayers/images/twitter.png" style="height: 25px;cursor:pointer;" alt="Twitter" /></a>&nbsp;&nbsp;<a  id="link" target="_self"><img id="linkThumbnail" src="./widgets/ISLayers/images/link.png" style="height: 25px;cursor:pointer;" alt="Link" /></a></div>');
                 }
                 domConstruct.place(headerCustom, "jimu-layout-manager", "after");
@@ -112,9 +112,11 @@ define([
                 if (window.innerWidth < 1150) {
                     var fontsize = (22 / window.innerWidth) * (window.innerWidth - 170);
                     var fontsize2 = 0.636 * fontsize;
+                    var tablewidth = 10;
                 } else {
                     var fontsize = 22;
                     var fontsize2 = 14;
+                    var tablewidth = 15;
                 }
                 document.getElementById("userName").style.fontSize = fontsize2 + "px";
                 var appName = document.getElementById("appName")
@@ -131,8 +133,10 @@ define([
                 var row = table.insertRow(0);
                 row.style = "height:40px";
                 var cell = row.insertCell(0);
+                //cell.style = "width:"+ tablewidth + "rem";
                 cell.innerHTML = appName.outerHTML;
                 var cell1 = row.insertCell(1);
+                //cell1.style =  "width:"+ (tablewidth + 2) + "rem";
                 domStyle.set("rendererInfoDialog", "top", "110px");
                 domStyle.set("rendererInfoDialog", "left", 170 + document.getElementById("bandCombinationDialog").offsetWidth + "px");
                 if (window.innerWidth < 620) {
@@ -271,9 +275,9 @@ define([
                             this.applyBandCombination();
                         }
                     }))
-
-
+                    
                 );
+                
                 registry.byId("colorRamp").on("change", lang.hitch(this, function (value) {
                     if (value !== "custom" && value !== "moisture") {
                         registry.byId("Scale").set("value", 5);

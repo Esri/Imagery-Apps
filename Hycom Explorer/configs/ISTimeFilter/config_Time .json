@@ -1,0 +1,41 @@
+{
+    "hycomUrl" : "https://utility.arcgis.com/usrsvcs/servers/dad1b980b240496a96fa0ef3d64a1634/rest/services/HYCOM/ImageServer",
+     "uvUrl": "https://utility.arcgis.com/usrsvcs/servers/0ac71a7f6d5843c889788e87f185caf1/rest/services/HYCOM_UV/ImageServer",
+    
+    "Sea Water Temperature Celsius": "Water Temperature (Celsius)",
+    "Sea Surface Elevation Meters": "Sea Surface Elevation (m)",
+    "Sea Water Temperature Fahrenheit": "Water Temperature (Celsius)",
+    "Sea Surface Elevation Feet":"Sea Surface Elevation (m)",
+    "Eastward Sea Water Velocity (u)":"Eastward Sea Water Velocity (u)",
+"Northward Sea Water Velocity (v)":"Northward Sea Water Velocity (v)",
+   "Sea Water Salinity" :"Sea Water Salinity (PSS)",
+"Ocean Current Velocity (UV)":"Ocean Current Velocity (UV)",
+"Contour Water Temperature": "Water Temperature (Celsius)",
+"Contour Sea Surface Elevation":"Sea Surface Elevation (m)",
+
+"units" :{
+    "Sea Water Temperature Celsius": "Celsius",
+ "Sea Surface Elevation Meters": "m",
+ "Sea Water Temperature Fahrenheit": "Fahrenheit",
+"Sea Surface Elevation Feet": "ft",
+"Eastward Sea Water Velocity (u)": "m/s",
+"Northward Sea Water Velocity (v)": "m/s",
+"Sea Water Salinity":"PSS"
+},
+"min": {
+     "Sea Water Temperature Celsius": 2,
+    "Sea Surface Elevation Meters": -2,
+    "Eastward Sea Water Velocity (u)":-3,
+"Northward Sea Water Velocity (v)":-3,
+   "Sea Water Salinity" :1
+
+},
+"max": {
+     "Sea Water Temperature Celsius": 34,
+    "Sea Surface Elevation Meters": 3,
+    "Eastward Sea Water Velocity (u)":3,
+"Northward Sea Water Velocity (v)":3,
+   "Sea Water Salinity" :40
+}
+    
+}

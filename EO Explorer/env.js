@@ -72,7 +72,7 @@ var
         allCookies,
         //This version number will be appended to URL to avoid cache.
         //The reason we do not use wabVersion is to avoid force user to change wabVersion when they are customizing app.
-        deployVersion = '1.0.58';
+        deployVersion = '1.0.60';
 
 // console.time('before map');
 

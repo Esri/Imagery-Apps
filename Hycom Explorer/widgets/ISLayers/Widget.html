@@ -1,0 +1,76 @@
+<div>
+   <div class="layer-item" id="TopLayer" data-dojo-attach-point="multiARadio" data-tooltip="<span class='tooltip-title has-margin'>Current Direction</span>">
+      <img src="widgets/ISLayers/images/vector.png"/>
+    </div>
+    <div class="layer-item" id="TopLayerContour" data-dojo-attach-point="multiFRadio" data-tooltip="<span class='tooltip-title has-margin'>Contours</span>">
+      <img src="widgets/ISLayers/images/contour.png"/>
+    </div>
+    <div class="layer-item" id="seaSurfaceHeight" data-dojo-attach-point="multiBRadio" data-tooltip="<span class='tooltip-title has-margin'>Sea Surface Height</span>">
+      <img src="widgets/ISLayers/images/seasurfaceheight.png"/>
+    </div>
+    <div class="layer-item" id="seaWaterTemp" data-dojo-attach-point="multiCRadio" data-tooltip="<span class='tooltip-title has-margin'>Sea Water Temperature</span>">
+      <img src="widgets/ISLayers/images/seawatertemp.png"/>
+    </div> 
+    <div class="layer-item" id="seaWaterSalinity" data-dojo-attach-point="multiDRadio" data-tooltip="<span class='tooltip-title has-margin'>Sea Water Salinity</span>">
+      <img src="widgets/ISLayers/images/seawatersalinity.png"/>
+    </div> 
+  <div class="layer-item" id="oceanCurrent" data-dojo-attach-point="multiERadio" data-tooltip="<span class='tooltip-title has-margin'>Ocean Currents</span>">
+      <img src="widgets/ISLayers/images/oceancurrent.png"/>
+    </div>
+ <div data-dojo-type="dijit/Dialog" id="oceanCurrentsDialog" title="Choose Ocean Currents Vector" style="background-color: white;top: 20%;" data-dojo-props="focus:function(){}">
+   <div style="display: inline-block;">
+     <select data-dojo-type="dijit/form/Select" style="height: inherit;display: inline-block;" id="oceanCurrentList" data-dojo-props="focus:function(){}">
+         <option value="Eastward Sea Water Velocity (u)">Eastward Sea Water Velocity (u)</option>
+         <option value="Northward Sea Water Velocity (v)">Northward Sea Water Velocity (v)</option>
+    </select> 
+       
+   </div>
+ </div>  
+    
+ <div data-dojo-type="dijit/Dialog" id="overlayLayerDialog" title="Choose Contours" style="background-color: white;top: 20%;" data-dojo-props="focus:function(){}">
+   
+     <select data-dojo-type="dijit/form/Select" style="height: inherit;display: inline-block;" id="contourList" data-dojo-props="focus:function(){}">
+         <option value="Contour Water Temperature">Sea Water Temperature Contours</option>
+         <option value="Contour Sea Surface Elevation">Sea Surface Elevation Contours</option>
+    </select> <br /><br />
+           Smoothing Factor:
+           <select data-dojo-type="dijit/form/Select" style="height: inherit;display: inline-block;" id="smoothContours">
+               <option value="0.5">0.5</option>
+                   <option value=0.6>0.6</option>
+                   <option value=0.7>0.7</option>
+                   <option value=0.8>0.8</option>
+                   <option value=0.9>0.9</option>
+                   <option value=1.01>1</option>
+                   <option value=2.5 selected="selected">2.5</option>
+                   <option value=10.01>10</option>
+                   <option value=50.01>50</option>
+                   <option value=100.01>100</option>
+           </select><br /><br />
+           Number of Contours: 
+           <select data-dojo-type="dijit/form/Select" style="height: inherit;display: inline-block;" id="noOfContours">
+                   <option value=10>10</option>
+                   <option value=15 selected="selected">15</option>
+                   <option value=25>25</option>
+                   <option value=50>50</option>
+                   <option value=50>75</option>
+                   <option value=100>100</option>
+           </select>
+ </div>
+         
+    
+   
+         <input data-dojo-type="dijit/form/TextBox" id="currentOBJECTID" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="secondOBJECTID" style="display: none;" />
+   <input data-dojo-type="dijit/form/TextBox" id="appSceneID" style="display: none;" />
+   <input data-dojo-type="dijit/form/TextBox" id="savePropAccess" style="display: none;" />
+   <input data-dojo-type="dijit/form/TextBox" id="dateCompareFlag" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="changeProp" style="display: none;" />
+    <input data-dojo-type="dijit/form/TextBox" id="primarySceneId" style="display: none;" />
+     <input data-dojo-type="dijit/form/TextBox" id="secondarySceneId" style="display: none;" />
+      <input data-dojo-type="dijit/form/TextBox" id="changeMaskDetect" style="display: none;" />
+   <div data-dojo-type="dijit/Dialog" id="linkDialog" title="Share Link" style="background-color: white;" data-dojo-props="focus:function(){}">
+    <input type="text" data-dojo-type="dijit/form/TextBox" id="linkValue" style="width: 200px;;height: 30px;right: 10px; top: 130px;" />
+    </div>
+     
+</div>
+   

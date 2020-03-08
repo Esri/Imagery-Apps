@@ -529,11 +529,11 @@ define([
                 domStyle.set(this.filterDiv, "display", "none");
 
                 if (this.primaryLayer) {
-                if (this.mosaicBackup) {
-                    var mr = new MosaicRule(this.mosaicBackup);
-                } else {
+               // if (this.mosaicBackup) {
+                //    var mr = new MosaicRule(this.mosaicBackup);
+                //} else {
                     var mr = new MosaicRule({ "mosaicMethod": "esriMosaicAttribute", "sortField": "best", "sortValue": 0, "ascending": true, "mosaicOperation": "MT_FIRST"});
-                }
+                //}
 
                 
                 this.primaryLayer.setMosaicRule(mr);

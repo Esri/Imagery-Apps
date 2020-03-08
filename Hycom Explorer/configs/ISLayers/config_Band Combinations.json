@@ -1,0 +1,5 @@
+{
+   "hycomUrl": "https://utility.arcgis.com/usrsvcs/servers/dad1b980b240496a96fa0ef3d64a1634/rest/services/HYCOM/ImageServer",
+   "uvUrl": "https://utility.arcgis.com/usrsvcs/servers/0ac71a7f6d5843c889788e87f185caf1/rest/services/HYCOM_UV/ImageServer"
+   
+}

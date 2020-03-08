@@ -1,0 +1,5 @@
+{
+	"about": {
+		"aboutContent": "<p id='aboutText' style='text-align: justify;'>The Hycom Explorer app offers global oceanographic data at your fingertips. It leverages a 7-day forecast and a 30-day hindcast to help you better understand the state of the ocean. View and compare individual time and depth slices for sea water temperature, sea surface height, sea water salinity, and ocean currents. This application uses <a target='_blank' href='https://livingatlas.arcgis.com/en/browse/#d=2&q=HYCOM%20and%20owner%3Aesri'>HYCOM data</a> from the <a target='_blank' href='https://livingatlas.arcgis.com/en/browse/'>ArcGIS Living Atlas of the World</a>.<br /><br />For information on Esri's full imagery capabilities, visit <a target='_blank' href='http://www.esri.com/imagery'>http://www.esri.com/imagery</a>.<br/><br />To build your own web app like Hycom Explorer, visit <a target='_blank' href='http://developers.arcgis.com'>http://developers.arcgis.com</a>.</p>"
+	}
+}

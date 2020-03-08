@@ -84,15 +84,15 @@ define([
                 } else if (window.innerWidth < 850) {
                     domStyle.set("bandCombinationDialog", "font-size", "8px");
                     var headerCustom = domConstruct.toDom('<table id="headerTable" style="border: 0px;height: 40px;display: -webkit-inline-box;margin-left: 20px;">' +
-                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Earth Observation Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Sentinel&nbsp;Natural Color</div></td>' +
-                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateSecondary">&nbsp;&nbsp;Imagery:&nbsp;</div><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateDisplay"></div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="compDisplay"></div></td></tr></table>' +
+                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;width: max-content;">Earth Observation Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Sentinel&nbsp;Natural Color</div></td>' +
+                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateSecondary">&nbsp;&nbsp;Imagery:&nbsp;</div><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;width: max-content;" id="dateDisplay"></div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;width: max-content;" id="compDisplay"></div></td></tr></table>' +
                         '<div id="socialShortLinks" style="position: absolute;top:0px;right: 8px;display: block;margin-top: 8px;"><a id="userSignIn" target="_self" style="display:inline-block;height:22px;"><img id="signInThumbnail" src="./widgets/ISHeader/images/signIn.png" style="height: 19px;cursor:pointer;" alt="Sign In" /><span id="userName" style="color:white;cursor:pointer;font-size:' + fontsize2 + 'px;font-weight:400;font-family:sans-serif;vertical-align:super;">   Sign In</span></a>&nbsp;&nbsp;&nbsp;<a id="facebook" target="_blank"><img id="facebookThumnail" src="./widgets/ISHeader/images/facebook.png" style="height: 22px;cursor:pointer;" alt="Facebook" /></a>&nbsp;&nbsp;<a  id="twitter" target="_blank"><img id="twitterThumbnail" src="./widgets/ISHeader/images/twitter.png" style="height: 22px;cursor:pointer;" alt="Twitter" /></a>&nbsp;&nbsp;<a  id="link" target="_self"><img id="linkThumbnail" src="./widgets/ISHeader/images/link.png" style="height: 22px;cursor:pointer;" alt="Link" /></a></div>');
 
                 } else {
                     domStyle.set("bandCombinationDialog", "font-size", "12px");
                     var headerCustom = domConstruct.toDom('<table id="headerTable" style="border: 0px;height: 40px;display: -webkit-inline-box;margin-left: 20px;">' +
-                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;">Earth Observation Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Sentinel&nbsp;Natural Color</div></td>' +
-                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateSecondary">&nbsp;&nbsp;Imagery:&nbsp;</div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateDisplay"></div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="compDisplay"></div></td></tr></table>' +
+                        '<tr style="height: 40px;"><td><div id="appName" style="font-size: ' + fontsize + 'px; position: relative; bottom: 3px; color: white; font-weight: bold;background-color: transparent;width: max-content;">Earth Observation Explorer</div></td><td><div id="rendererInformation" style="font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rendering:&nbsp;Sentinel&nbsp;Natural Color</div></td>' +
+                        '<td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;" id="dateSecondary">&nbsp;&nbsp;Imagery:&nbsp;</div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;width: max-content;" id="dateDisplay"></div></td><td><div style=" font-size: ' + fontsize2 + 'px;color: white; font-weight: bold;background-color: transparent;width: max-content;" id="compDisplay"></div></td></tr></table>' +
                         '<div id="socialShortLinks" style="position: absolute;top:0px;right: 8px;display: block;margin-top: 8px;"><a id="userSignIn" target="_self" style="display:inline-block;height:22px;"><img id="signInThumbnail" src="./widgets/ISHeader/images/signIn.png" style="height: 22px;cursor:pointer;" alt="Sign In" /><span id="userName" style="color:white;cursor:pointer;font-size:' + fontsize2 + 'px;font-weight:400;font-family:sans-serif;vertical-align:super;">   Sign In</span></a>&nbsp;&nbsp;&nbsp;<a id="facebook" target="_blank"><img id="facebookThumnail" src="./widgets/ISHeader/images/facebook.png" style="height: 25px;cursor:pointer;" alt="Facebook" /></a>&nbsp;&nbsp;<a  id="twitter" target="_blank"><img id="twitterThumbnail" src="./widgets/ISHeader/images/twitter.png" style="height: 25px;cursor:pointer;" alt="Twitter" /></a>&nbsp;&nbsp;<a  id="link" target="_self"><img id="linkThumbnail" src="./widgets/ISHeader/images/link.png" style="height: 25px;cursor:pointer;" alt="Link" /></a></div>');
 
                 }
@@ -157,9 +157,11 @@ define([
                 if (window.innerWidth < 1150) {
                     var fontsize = (22 / window.innerWidth) * (window.innerWidth - 170);
                     var fontsize2 = 0.636 * fontsize;
+                    var tablewidth = 23;
                 } else {
                     var fontsize = 22;
                     var fontsize2 = 14;
+                    var tablewidth = 25;
                 }
                 document.getElementById("userName").style.fontSize = fontsize2 + "px";
                 var appName = document.getElementById("appName")
@@ -183,6 +185,7 @@ define([
                 var row = table.insertRow(0);
                 row.style = "height:40px";
                 var cell = row.insertCell(0);
+                //cell.style = "width:" + tablewidth + "rem";
                 cell.innerHTML = appName.outerHTML;
                 var cell1 = row.insertCell(1);
                 //domStyle.set("rendererInfoDialog", "top", "110px");
