@@ -23,9 +23,9 @@ Features of the apps include the following, which can serve as a model for featu
 
 ## Instructions
 
-Create your own Explorer apps using your own image services by updating the urls in the config file of each widget.
+Using the files here, you can create your own Explorer apps using your own image services. Learn more about [customizing the Explorer apps for imagery](CustomizingExplorerAppsforImagery.pdf).
 
-[Learn more](https://developers.arcgis.com/web-appbuilder/guide/home.htm) about creating and editing apps using Web AppBuilder for ArcGIS.
+Interested in creating custom themese and widgets? Learn more about [creating and editing apps using Web AppBuilder for ArcGIS](https://developers.arcgis.com/web-appbuilder/guide/home.htm).
 
 ## Requirements
 
