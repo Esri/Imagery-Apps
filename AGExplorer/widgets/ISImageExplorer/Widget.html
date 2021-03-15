@@ -1,0 +1,576 @@
+<div id="layerViewerNode">
+    <div class="widgetContainer" id="explorerWidget">
+        <div id="singleImageViewer">
+            <label for="layerSelector">${nls.layer}: </label><select id="layerSelectorView"
+                data-dojo-type="dijit/form/Select"></select>
+            <img id="sensorInfo" src='./widgets/ISHeader/images/info.png'
+                style="display: inline-block;vertical-align: bottom;cursor:pointer;margin-left: 5px;" height='17' />
+            <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'sensorInfo',position:['after']">
+                Click to know more about the sensor.
+            </div>
+
+            <div id="rendererView" style="display: none;"><br><label for="layerRenderer">${nls.rendering}: </label>
+                <select id="layerRendererView" data-dojo-type="dijit/form/Select"></select>
+
+                <img id="renderingInfo" src='./widgets/ISHeader/images/info.png'
+                    style="display: inline-block;vertical-align: bottom;cursor:pointer;margin-left: 5px;" height='17' />
+                <div data-dojo-type="dijit/Tooltip" data-dojo-props="connectId:'renderingInfo',position:['after']">
+                    Click to know more about the renderer.
+                </div>
+
+            </div>
+
+            <div id="buildExtensionExp" style="display: none;">
+                <br />
+
+                <label for='bnd1Exp' style='color : #0080C0;'>RGB Composite: </label>
+                <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd1Exp">
+                </select>
+
+                &nbsp;&nbsp;
+                <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd2Exp">
+                </select>
+
+                &nbsp;&nbsp; <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="bnd3Exp">
+                </select>
+
+
+                <br /><br />
+
+                <label for="stretchoptionsExp" style="color: #0080C0;">Stretch:</label>
+                <select data-dojo-type="dijit/form/Select" style="display : inline-block; height: inherit;"
+                    id="stretchoptionsExp">
+                    <option value="none">Fixed</option>
+                    <option value="standard">2 Std.Dev</option>
+                    <option value="standard1">3 Std.Dev</option>
+                    <option value="clip">2% Clip</option>
+                    <option value="clip1">0.5% Clip</option>
+                    <option value="clip2">0.1% Clip</option>
+                    <option value='full'>Full</option>
+                    <option value="dark">Dark</option>
+                    <option value="vdark">VDark</option>
+                    <option value="light">Light</option>
+                    <option value="vlight">VLight</option>
+                </select>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="gammaoptionsExp" style="color: #0080C0;">Gamma:</label>
+                <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="gammaoptionsExp">
+                    <option value="1">0.3</option>
+                    <option value="2">0.5</option>
+                    <option value="3">0.8</option>
+                    <option value="4">1</option>
+                    <option value="5">1.4</option>
+                    <option value="6">2</option>
+                    <option value="7">4</option>
+                </select>
+
+                <br />
+                <br />
+                <div style="margin-left: 31%;">
+                    <button data-dojo-type="dijit/form/Button" id="applyExp" type="button">Apply</button>
+                    <button data-dojo-type="dijit/form/Button" id="resetExp" type="button">Reset</button>
+                </div>
+            </div>
+
+
+            <div style="display: none;color: indianred;" id='formulaExp'>Offset + Scale * ((A-B)/(A+B))</div>
+            <div id="indexExtensionExp" style="display: none;">
+                <br />
+
+                <div id="indexBandsExp" style="/*display:none;*/">
+
+                    <label for="bandAExp" style="color: #0080C0;">Band A: </label>
+                    <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandAExp">
+                    </select>
+
+                    <label for="bandBExp" style="color: #0080C0;">Band B: </label>
+                    <select data-dojo-type="dijit/form/Select" style="width: 95px;height: inherit;" id="bandBExp">
+                    </select>
+
+                    <br /><br /></div>
+                <label for="OffsetValue" style="color: #0080C0;">Offset: </label><input
+                    data-dojo-type="dijit/form/TextBox" style="width: 50px;" id="OffsetValueExp" value=0 />
+                <label for="Scale" style="color: #0080C0;">Scale: </label><input data-dojo-type="dijit/form/TextBox"
+                    style="width: 50px;" id="ScaleExp" value=5 />
+
+                <label for="colorRamp" style="color: #0080C0;">Renderer: </label><select
+                    data-dojo-type="dijit/form/Select" id="colorRampExp" style="display: inline-block;height: inherit;">
+                    <option value="Yellow to Red">Yellow to Red</option>
+                    <option value="Red to Green">Red to Green</option>
+                    <option value="Green to Blue">Green to Blue</option>
+                    <option value="Cyan to Purple">Cyan to Purple</option>
+                    <option value="Black to White">Black to White</option>
+                    <option value="Precipitation" selected='selected'>Precipitation</option>
+                    <option value="Prediction">Prediction</option>
+                    <option value="Spectrum-Full Bright">Spectrum</option>
+                    <option value="custom">NDVI Colorized</option>
+                    <option value="moisture">Moisture</option>
+
+                </select><br /><br />
+
+                <button data-dojo-type="dijit/form/Button" id="applyIndexExp"
+                    style="margin-left: 40%;">${nls.apply}</button>
+            </div>
+
+
+            
+            <div id="imageSelectCheckBoxView" style="display: none;">
+                <br />
+                <input data-dojo-type="dijit/form/CheckBox" id="imageViewer" /> <label for="imageViewer"
+                    id="searchMessage">${nls.searchImages}</label>
+                <span id="sentinelTemporal"
+                    style="color: red;font-size: 11px; display: none; "><br>${nls.sentinelTemporal}</span>
+            </div>
+
+
+            <div id="selectorDivView" style="display:none;">
+                <div>
+                    <br />
+                    <div id="imageRangeView" style="display:inline-block"></div>
+
+                </div>
+                <div>
+                    <br />
+                    <div id="imageSelectContainerView" style="float:left;display:none;margin-right: 5px;">
+                        <button data-dojo-type="dijit/form/Button" type="button" id="dropDownListView"><img
+                                alt="Show images in drop down list"
+                                src="widgets/ISImageExplorer/images/dropdownlist.png" id="switchDisplayImageView"
+                                class="iconHeight" /></button>
+                    </div>
+                    <div style="float:right;display:inline-block;padding-right: 40px;">
+                        <button data-dojo-type="dijit/form/Button" type="button" id="refreshImageSliderView"><img
+                                alt="Show images on slider" id="refreshIconView"
+                                src="widgets/ISImageExplorer/images/refresh.png" class="iconHeight" /></button>
+                    </div>
+                    <div id="dropDownOptionView" style="display: none;">
+                        <select id="imageDropDownView" data-dojo-type="dijit/form/Select"
+                            style="/*width :50px;height: 12px;*/"></select>
+                    </div>
+                    <div id='imageSliderDivView'>
+                    </div>
+                </div>
+
+                <div id="cloudSelectView" style="display:block;margin-top: 20px;">
+
+                    Cloud Filter:
+                    <select id="cloudFilterView" data-dojo-type="dijit/form/Select" style="width :50px;height: 12px;">
+                        <option value=0>0% Cloud</option>
+                        <option value=0.02>2% Cloud</option>
+                        <option value=0.05>5% Cloud</option>
+                        <option value=0.1 selected="selected">10% Cloud</option>
+                        <option value=0.25>25% Cloud</option>
+                        <option value=0.5>50% Cloud</option>
+                        <option value=1>All</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <!-- <br /> -->
+                <div id="errorDivView" style="color: #ee0000;"></div>
+            </div>
+        </div>
+        <div data-dojo-type="dijit/Dialog" id="rendererInfoDialog" title=""
+            style="background-color: #00304d;border-radius: 5px;" data-dojo-props="focus:function(){}">
+            <div id="renderDescription" data-dojo-attach-point="descriptionRenderer"
+                style="max-height: 300px;max-width: 400px;overflow: auto;font-size:11px;"></div>
+        </div>
+        <div data-dojo-type="dijit/Dialog" id="sensorInfoDialog" title=""
+            style="background-color: #00304d;border-radius: 5px;" data-dojo-props="focus:function(){}">
+            <div id="sensorDescription" data-dojo-attach-point="descriptionSensor"
+                style="max-height: 300px;max-width: 400px;overflow: auto;font-size:11px;"></div>
+        </div>
+
+        <hr />
+        <div id="optionsDivExp">
+            <label for="options">${nls.imageryOperation}</label>
+            <select id="imageryTool" data-dojo-type="dijit/form/Select">
+                <option value="0">${nls.defaultLabel}</option>
+                <option value='aoi'>${nls.tool6}</option>
+                <option value="mask">${nls.tool1}</option>
+                <option value="spectral">${nls.tool2}</option>
+                <option value="scatterplot">${nls.tool3}</option>
+                <option value="temporal">${nls.tool0}</option>
+                <option value='query'>${nls.tool4}</option>
+                <option value='zones'>${nls.tool5}</option>
+                
+            </select>
+        </div>
+        <!-- <br /> -->
+        <div id='aoitemplate' style='display:none;'>
+            <input style='display:none;' data-dojo-type="dijit/form/CheckBox" id="define-aoi-ch" />
+            <div id='define-aoi-div'>
+                <select id="queryExt" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                    <option value='draw-aoi'>Draw AOI</option>
+                    <option value='choose-aoi'>Pick from layer</option>
+
+                </select>
+                <button type='button' data-dojo-type="dijit/form/Button" id='start-draw'>Start drawing</button>
+                <div id='selectLayer-div' style='display: none;'>
+                    <label for='featureLayerlist'>Choose layer:</label>
+                    <select id="featureLayerlist" data-dojo-type="dijit/form/Select" style="height: inherit;">
+
+                    </select>
+
+                </div>
+                <button type='button' data-dojo-type="dijit/form/Button" id='remove-aoi'>Remove AOI</button>
+            </div>
+        </div>
+        <div id="maskTemplate" style="display: none;">
+            <input data-dojo-type="dijit/form/TextBox" id='spectralIndexformula' style='display:none;' value=''>
+            <div id="errorDivMask" style="color: #ee0000;"></div>
+            <div id="maskDiv">
+
+                <div style="display: inline-block;">${nls.method}: </div><select autofocus="autofocus" id="methodMask"
+                    data-dojo-type="dijit/form/Select">
+                </select>
+                <!-- <button id="advanceIndexBtnMask" class="titleHeader" role="button">
+                        <span class="titleLabel">${nls.indexText}</span>
+                        <span class="launchpad-icon-arrow-right listExpandBtn"></span>
+                    </button> -->
+                <div id="bandInputsMask" style="display: none;">
+                    <table style="border: 0 solid transparent;">
+                        <tr>
+                            <td>
+                                <div id="bandName1Mask" style="display: inline-block;"></div>
+                            </td>
+                            <td><select data-dojo-type="dijit/form/Select" id="band1Mask">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="bandRowTable">
+                            <td>
+                                <div id="bandName2Mask" style="display: inline-block;"></div>
+                            </td>
+                            <td><select data-dojo-type="dijit/form/Select" id="band2Mask">
+                                </select></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="maskMode" style="margin-bottom: 1em;margin-top: 5px;">
+                    <div style="display: inline-block;font-size: 85%;">${nls.maskModeText} </div><select
+                        id="maskModeList" data-dojo-type="dijit/form/Select" style="font-size: 85%;margin-left: 5px;">
+                        <option value="less">${nls.method6}</option>
+                        <option value="more">${nls.method7}</option>
+                    </select>
+                </div>
+                <!-- <input id="aoiExtentMask" data-dojo-type="dijit/form/CheckBox" /><label for="aoiExtentMask">${nls.extent}</label> -->
+                <div data-dojo-type="dijit/form/DropDownButton" id="colorButton"
+                    style="display: inline-block;margin-left: 0.7em;">
+                    <span><img alt="${nls.colorPicker}" src="widgets/ISImageExplorer/images/ColorPicker.png"
+                            class="iconHeight" /></span>
+                    <div data-dojo-type="dijit/TooltipDialog" id="colorDialog">
+                        <div id="colorPalette" data-dojo-type="dijit/ColorPalette" data-dojo-props="palette:'7x10'">
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex;justify-content: center;margin: 1em 0px;">
+                    <button data-dojo-type="dijit/form/Button" type="button" id="maskApply">${nls.apply}</button>
+                    <button data-dojo-type="dijit/form/Button" type="button" id="maskClear">${nls.clear}</button>
+                </div>
+                <div id="updateMaskLayer" style="display: none;">${nls.updateResult}</div>
+                <div id="maskSettingsDiv" style="display: none;margin-bottom: 1.5em;">
+                    <div style="margin-top:5px;">${nls.sliderText}: <span id="sliderCurrentValue"
+                            style="color:#008299;font-weight: bold;"></span></div>
+                    <div id="maskSlider"></div>
+                </div>
+                <div id="areaValueContainerMask" style="margin-top: 8px;display:none;">
+                    <div style="display: inline-block;">${nls.areaText3}:</div>&nbsp;&nbsp;<div id="areaValueMask"
+                        style="font-weight: bolder;color: indianred; display: inline-block;"></div>
+                </div>
+            </div>
+
+            <div id="maskNode" style="display: none;"></div>
+
+            <div id="transparencySlider" style="display: none;margin: 1em 0 2.5em 0;">
+                <div style="vertical-align: top;display: inline-block;">${nls.transparency}: </div>
+                <div id="resultOpacity" data-dojo-attach-point="transparency"
+                    style="width:150px;display:inline-block;width: -moz-available;"
+                    data-dojo-type="dijit/form/HorizontalSlider"
+                    data-dojo-props="value:0,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true">
+                    <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration" style="height:0.5em;">
+                    </div>
+                    <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration"
+                        style="height:0.5em;font-size:65%;color:gray;">
+                        <li>0%</li>
+                        <li>50%</li>
+                        <li>100%</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div id="spectralTemplate" style="display: none;">
+            <div data-dojo-attach-point="identifytab" id="identifytab" style="color: #0080C0;"></div>
+
+            <div id="identifysp" style="display: none;">
+                <div style="width:100%;">
+                    <input data-dojo-type="dijit/form/CheckBox" checked id="type" value="spectral" /> <label
+                        for="type">Show
+                        Spectral Profile</label>
+                    <div id="typical" style="float:right; color: #0080C0; display: none;">Typical Spectral Profiles
+                    </div>
+                    <br />
+                    <div>
+
+                        <div id="chartshow1" style="display: none;">
+                            <br />
+                            <div>
+                                <div id="chartNode1" style="float:left; width: 390px; height: 270px;"></div>
+                                <div id="legend1" style="float:right;"></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="onlyidentify" style="display:block;">
+                <div style="float: left;color: #0080C0;"><br />Pick a point on the map to get a spectral profile for
+                    that point.
+                </div>
+                <br />
+            </div>
+        </div>
+
+        <div id="scatterTemplate" style="display: none;">
+            <div id="scatterPlotContainer" style="display:none;">
+
+                <label for="xBand" style="color: #0080C0;">X: </label>
+                <select id="xBand" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                </select>
+
+                <label for="yBand" style="color: #0080C0;margin-left: 5px;">Y: </label>
+                <select id="yBand" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                </select>
+                <br><br>
+
+                <div id='canvasContainer' style='/*width: 300px;height: 300px;*/'>
+                    <div>
+                        <div style="height: 256px;display: inline-block;float: left;max-width: 20px;">
+                            <div id="ymax" style='transform: rotate(-90deg);text-align: right;'></div>
+                            <div id="yBandName" style='transform: rotate(-90deg);margin-top: 106px;'>NIR</div>
+                            <div id="ymin" style='transform: rotate(-90deg);margin-top: 104px;'></div>
+                        </div>
+                        <canvas id="scatterPlotCanvas" width="260" height="260"
+                            style='display: inline-block;border-left: 2px solid black;border-bottom: 2px solid black;margin: auto;margin-right: 20px;cursor: crosshair;'></canvas>
+                    </div>
+                    <table style='margin-left: 15px;margin-top: -4px;width: 275px;border: 0px solid transparent;'>
+                        <tr>
+                            <td id="xmin" style='text-align: left;width: 91px;'></td>
+                            <td>
+                                <div id='xBandName' style='text-align: center;width: 92px;'>Red</div>
+                            </td>
+                            <td id="xmax" style='text-align: right;width: 92px;'></td>
+                        </tr>
+                    </table>
+                    <img src='./widgets/ISImageExplorer/images/ramp.PNG' style='margin-left: 10px;' />
+                </div>
+                <div style="color: #0080C0;">Draw on plot to select pixels in the map.<br>Click on map to see point on
+                    plot.</div>
+                <input data-dojo-type="dijit/form/CheckBox" id="markedAreasScatter" /><label for="markedAreasScatter"
+                    style="color: #0080C0;">Define
+                    Areas Of Interest</label>
+                <button type="button" data-dojo-type="dijit/form/Button" id="clipScatter"
+                    style="display: none;margin: auto;margin-left: 10px;">Apply</button>
+                <button type="button" data-dojo-type="dijit/form/Button" id="resetScatter"
+                    style="display: none;margin: auto;margin-left: 10px;">Reset</button>
+            </div>
+        </div>
+
+        <div id="temporalTemplate" style="display: none">
+            <button type="button" data-dojo-type="dijit/form/Button" id="start-temporal"
+                style="margin: auto;margin-left: 10px;">Create graph</button>
+            <select id="temporal-year" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                <option value="2weeks">Last two weeks</option>
+                <option value="1month">Last one month</option>
+                <option value="3month">Last three months</option>
+                <option value="1yearfull">Last one year</option>
+                <option value="1yearago">A year ago</option>
+                
+                <!-- <option value=">= date'2019-07-01 12:00:00' AND AcquisitionDate <= date'2019-11-01 12:00:00'">One year ago</option> -->
+
+            </select>
+            <div id="queryScenes" style="color: #0080C0;"></div>
+            <div id="mainPlot">
+                <div data-dojo-attach-point="pointgraphTempo" style="color: #0080C0;">
+                </div>
+                <div id="chartshowTempo" style="display : none;float:left;">
+                    <div id="chartValuesTempo"></div>
+                    <div id="chartNodeTempo" style="width: 390px; height: 270px;"></div>
+                    <div id="legendTempo" style="/*float:right;*/"></div>
+
+                </div>
+                <div id="savedNoti" data-dojo-attach-point="temporalproTempo" style="color: #0080C0;margin-top: 5px;">
+                </div>
+            </div>
+        </div>
+
+        <div id='queryAOITemplate' style='display: none;'>
+            <!-- <label for='queryExt' style="color: #0080C0;">Define AOI:</label>
+            <select id="queryExt" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                <option value='draw-aoi'>Draw AOI</option>
+                <option value='choose-aoi'>Pick from layer</option>
+                
+            </select>
+            <button type='button' data-dojo-type="dijit/form/Button" id='start-draw'>Start drawing</button>
+            <div id='selectLayer-div' style='display: none;'>
+                <label for='featureLayerlist'>Choose layer:</label>
+                <select id="featureLayerlist" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                
+                </select>
+                
+            </div> -->
+            <button type="button" data-dojo-type="dijit/form/Button" id="query-aoi"
+                style="margin: auto;margin-left: 10px;">Query AOI</button>
+            <button type="button" data-dojo-type="dijit/form/Button" id="remove-popup"
+                style="margin: auto;margin-left: 10px;">Remove popup</button>
+            <br />
+            <!-- <div id='segment-div' style='display:none;'>
+<!-- 
+                <label for='extractband' style='color : #0080C0;'>Extract band parameters</label><br />
+                <label for='bandcombo'>RGB Combination: </label>
+                <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="band-a">
+                </select>
+                
+                &nbsp;&nbsp;
+                <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="band-b">
+                </select>
+
+                &nbsp;&nbsp; <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="band-c">
+                </select>
+
+                <div id='gamma-val' style='display:none;'>
+                <label for='spectraldetail'>Gamma: </label><input style='width:70px;' id="gammadetail" type="text" data-dojo-type="dijit/form/NumberTextBox" name="SpectralDetail" required="true"
+                    value="1" data-dojo-props="constraints:{min:-1,max:10,places:0.000},
+                    
+                    invalidMessage:'Please enter a value between -1 and 10',
+                    rangeMessage:'Please enter a value between -1 and 10'" />
+                </div>
+                
+                <br /><br /> 
+                <label for='segmentation' style='color : #0080C0;'>Create management zones</label><br />
+
+                <label for='spectraldetail'>Spectral detail: </label><input style='width:70px;' id="spectraldetail" type="text" data-dojo-type="dijit/form/NumberTextBox" name="SpectralDetail" required="true"
+                    value="10" data-dojo-props="constraints:{min:0,max:21,places:0.000},
+                    invalidMessage:'Please enter a value between 0 and 21',
+                    rangeMessage:'Please enter a value between 0 and 21'" />
+                
+                    &nbsp;&nbsp;
+                    <label for='spatialdetail'>Spatial detail: </label><input style='width:70px;' id="spatialdetail" type="text" data-dojo-type="dijit/form/NumberTextBox" name="SpatialDetail" required="true"
+                    value="2" data-dojo-props="constraints:{min:0,max:21,places:0.000},
+                    invalidMessage:'Please enter a value between 0 and 21',
+                    rangeMessage:'Please enter a value between 0 and 21'" />
+                    <br />
+                    <label for='minpixel'>Minimum number of pixels per segment: </label><input style='width:100px;' id="minpixel" type="text" data-dojo-type="dijit/form/NumberTextBox" name="MinimumPixel" required="true" value="1000"
+                    data-dojo-props="constraints:{min:0,places:0},
+                    invalidMessage:'Please enter a valid number',
+                    rangeMessage:'Please enter a valid number'" />
+                <br />
+                <button type='button' data-dojo-type="dijit/form/Button" id='start-classify'>Segment</button>
+
+            </div> -->
+
+            <!-- <div id="chartshowQuery" style="display : none;float:left;">
+                <div id="chartValuesQuery"></div>
+                <div id="chartNodeQuery" style="width: 390px; height: 270px;"></div>
+                <div id="legendQuery" style="/*float:right;*/"></div>
+
+            </div> -->
+
+
+        </div>
+
+        <div id='zonestemplate' style='display:none;'>
+            <!-- <div id='default-msg-zones' style='float: left;color: #0080C0;' -->
+            <div id='segment-div'>
+                <div id="segment-msg" style='display:none;color : #0080C0;'>Please select new AOI or uncheck the AOI checkbox to create new zones</div>
+                <!-- 
+                                <label for='extractband' style='color : #0080C0;'>Extract band parameters</label><br />
+                                <label for='bandcombo'>RGB Combination: </label>
+                                <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="band-a">
+                                </select>
+                                
+                                &nbsp;&nbsp;
+                                <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="band-b">
+                                </select>
+                
+                                &nbsp;&nbsp; <select data-dojo-type="dijit/form/Select" style="height: inherit;" id="band-c">
+                                </select>
+                
+                                <div id='gamma-val' style='display:none;'>
+                                <label for='spectraldetail'>Gamma: </label><input style='width:70px;' id="gammadetail" type="text" data-dojo-type="dijit/form/NumberTextBox" name="SpectralDetail" required="true"
+                                    value="1" data-dojo-props="constraints:{min:-1,max:10,places:0.000},
+                                    
+                                    invalidMessage:'Please enter a value between -1 and 10',
+                                    rangeMessage:'Please enter a value between -1 and 10'" />
+                                </div>
+                                
+                                <br /><br /> -->
+                <!-- <label for='segmentation' style='color : #0080C0;'>Create management zones</label><br /> -->
+                <label for='zone-method'>Choose method: </label><select id="zone-method" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                    <option value='segmentation'>NDVI Segmentation</option>
+                    <option value='remap'>NDVI Remap</option>
+                    
+                </select>
+                <div id='zone-segment' style='display:block;'>
+                <label for='spectraldetail'>Spectral detail: </label><input style='width:70px;' id="spectraldetail"
+                    type="text" data-dojo-type="dijit/form/NumberTextBox" name="SpectralDetail" required="true"
+                    value="10" data-dojo-props="constraints:{min:0,max:21,places:0.000},
+                                    invalidMessage:'Please enter a value between 0 and 21',
+                                    rangeMessage:'Please enter a value between 0 and 21'" />
+
+                &nbsp;&nbsp;
+                <label for='spatialdetail'>Spatial detail: </label><input style='width:70px;' id="spatialdetail"
+                    type="text" data-dojo-type="dijit/form/NumberTextBox" name="SpatialDetail" required="true" value="2"
+                    data-dojo-props="constraints:{min:0,max:21,places:0.000},
+                                    invalidMessage:'Please enter a value between 0 and 21',
+                                    rangeMessage:'Please enter a value between 0 and 21'" />
+                <br />
+                <label for='minpixel'>Minimum number of pixels per segment: </label><input style='width:100px;'
+                    id="minpixel" type="text" data-dojo-type="dijit/form/NumberTextBox" name="MinimumPixel"
+                    required="true" value="1000" data-dojo-props="constraints:{min:0,places:0},
+                                    invalidMessage:'Please enter a valid number',
+                                    rangeMessage:'Please enter a valid number'" />
+                <br />
+            </div>
+            <div id='zone-remap' style='display:none;'>
+               
+                <label for='classes-no'>Number of classes: </label> <select id="classes-no" data-dojo-type="dijit/form/Select" style="height: inherit;">
+                    <option value='3'>3 classes</option>
+                    <option value='5'>5 classes</option>
+                    <option value='10'>10 classes</option>
+                    <option value='15'>15 classes</option>
+                    <option value='dra'>DRA with 5 classes</option>
+                    
+                </select>
+                <br />
+            </div>
+                <button type='button' data-dojo-type="dijit/form/Button" id='start-classify'>Apply</button>
+                <button type='button' data-dojo-type="dijit/form/Button" id='visible-classify'>Clear</button>
+                <br /><br />
+                <div id='seg-trans' style='display:none;'>
+                    <div style="vertical-align: top;display: inline-block;">${nls.transparency}: </div>
+                    <div id="result-seg-Opacity" data-dojo-attach-point="transparency"
+                        style="width:150px;display:inline-block;width: -moz-available;"
+                        data-dojo-type="dijit/form/HorizontalSlider"
+                        data-dojo-props="value:0,minimum: 0,maximum:1,intermediateChanges:true,showButtons:true">
+                        <!-- <div data-dojo-type="dijit/form/HorizontalRule" container="bottomDecoration"
+                            style="height:0.5em;"></div> -->
+                        <!-- <ol data-dojo-type="dijit/form/HorizontalRuleLabels" container="bottomDecoration"
+                            style="height:0.5em;font-size:65%;color:gray;">
+                            <li>0%</li>
+                            <li>50%</li>
+                            <li>100%</li>
+                        </ol> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div data-dojo-attach-point="noinfo" style="color: #0080C0;">
+        </div>
+
+    </div>
+</div>
