@@ -1,0 +1,25 @@
+{
+  "name": "ISImageExplorer",
+  "label": "IS ImageExplorer",
+  "2D": true,
+  "3D": false,
+  "platform": "HTML",
+  "version": "2.10",
+  "wabVersion": "2.10",
+  "author": "Esri R&D Center Sharjah",
+  "description": "This widget views imagery, and performs various operations on the imagery",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+		"inPanel":true,
+		"hasLocale": true,
+		"hasStyle":true,
+		"hasConfig":true,
+		"hasUIFile":true,
+		"hasSettingPage":true,
+		"hasSettingUIFile":true,
+		"hasSettingLocale":true,
+		"hasSettingStyle":true,
+		"IsController":false
+  }
+}

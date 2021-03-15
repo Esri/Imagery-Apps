@@ -1,0 +1,25 @@
+{
+  "name": "ISImageExport",
+  "label": "IS ImageExport",
+  "2D": true,
+  "3D": false,
+  "platform": "HTML",
+  "version": "2.10",
+  "wabVersion": "2.10",
+  "author": "Esri R&D Center Beijing",
+  "description": "This widget lets you export the layer to portal or disk.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+		"inPanel":true,
+		"hasLocale": true,
+		"hasStyle":true,
+		"hasConfig":true,
+		"hasUIFile":true,
+		"hasSettingPage":true,
+		"hasSettingUIFile":true,
+		"hasSettingLocale":true,
+		"hasSettingStyle":true,
+		"IsController":false
+  }
+}
